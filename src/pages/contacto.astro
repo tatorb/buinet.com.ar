@@ -1,0 +1,58 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { site } from '../site.config';
+---
+<PageLayout
+  title="Contacto"
+  intro="Contanos tu proyecto y te asesoramos."
+  description="Contactá a Building Networks. Córdoba, Argentina."
+>
+  <div class="contacto">
+    <div class="contacto__info">
+      <h2>Datos de contacto</h2>
+      <p><strong>Email:</strong> <a href={`mailto:${site.email}`}>{site.email}</a></p>
+      <p><strong>Teléfono:</strong> <a href={`tel:${site.phone.replace(/\s+/g, '')}`}>{site.phone}</a></p>
+      <p><strong>Ubicación:</strong> {site.city}</p>
+    </div>
+
+    <form class="contacto__form" action="/api/contacto" method="post">
+      <!--
+        IMPORTANTE: este formulario necesita un endpoint que lo procese en el server.
+        En un sitio estático no hay backend. Al definir el hosting, conectamos "action"
+        a un mini-handler propio (p. ej. un script en el server o una función).
+        Ver docs/INFRAESTRUCTURA.md > "Formulario de contacto".
+      -->
+      <div class="field">
+        <label for="nombre">Nombre</label>
+        <input id="nombre" name="nombre" type="text" required />
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required />
+      </div>
+      <div class="field">
+        <label for="telefono">Teléfono</label>
+        <input id="telefono" name="telefono" type="tel" />
+      </div>
+      <div class="field">
+        <label for="mensaje">Mensaje</label>
+        <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+      </div>
+      <!-- Honeypot anti-spam: si se completa, es un bot. -->
+      <input type="text" name="website" tabindex="-1" autocomplete="off" class="visually-hidden" aria-hidden="true" />
+      <button class="btn" type="submit">Enviar</button>
+    </form>
+  </div>
+</PageLayout>
+
+<style>
+  .contacto { display: grid; grid-template-columns: 1fr 1.4fr; gap: 2.5rem; max-width: 100%; }
+  .field { display: grid; gap: 0.35rem; margin-bottom: 1rem; }
+  .field label { font-weight: 600; }
+  .field input, .field textarea {
+    padding: 0.7rem 0.85rem; border: 1px solid var(--color-border);
+    border-radius: 8px; font: inherit; width: 100%;
+  }
+  .field input:focus, .field textarea:focus { outline: 2px solid var(--color-accent); border-color: var(--color-accent); }
+  @media (max-width: 760px) { .contacto { grid-template-columns: 1fr; } }
+</style>

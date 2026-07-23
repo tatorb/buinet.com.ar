@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// NOTA: contenido PLACEHOLDER basado en el rubro del sitio actual.
+// Se reemplaza por los textos e imágenes reales al clonar el sitio.
+const servicios = [
+  { titulo: 'Videovigilancia', href: '/videovigilancia/', desc: 'Cámaras y sistemas de video vigilancia para empresas, edificios y barrios.' },
+  { titulo: 'Data Center', href: '/data-center-cordoba/', desc: 'Alta disponibilidad, velocidad y baja latencia.' },
+  { titulo: 'Audio IP', href: '/audio-ip/', desc: 'Sistemas de audio con parlantes IP.' },
+  { titulo: 'CamScope', href: '/camscope/', desc: 'Nuestro sistema propio de videovigilancia, con más de 10 años de desarrollo.' },
+  { titulo: 'Control de Acceso', href: '/contacto/', desc: 'Soluciones de control de acceso y conectividad.' },
+  { titulo: 'Redes Convergentes', href: '/sobre-nosotros/', desc: 'Diseño e implementación de infraestructuras de red de alto rendimiento.' },
+];
+---
+<BaseLayout>
+  <section class="hero section">
+    <div class="container hero__inner">
+      <p class="hero__eyebrow">Building Networks · Córdoba, Argentina</p>
+      <h1>Infraestructuras de redes convergentes</h1>
+      <p class="hero__lead">
+        Diseñamos, implementamos y mantenemos soluciones tecnológicas de alto rendimiento:
+        redes convergentes, data center, videovigilancia, control de acceso y conectividad.
+      </p>
+      <div class="hero__cta">
+        <a class="btn" href="/contacto/">Contactanos</a>
+        <a class="btn btn--ghost" href="/sobre-nosotros/">Conocé más</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>Qué hacemos</h2>
+      <div class="cards">
+        {servicios.map((s) => (
+          <a class="card" href={s.href}>
+            <h3>{s.titulo}</h3>
+            <p>{s.desc}</p>
+            <span class="card__link">Ver más →</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero { background: linear-gradient(160deg, var(--color-primary-dark), var(--color-primary)); color: #fff; }
+  .hero__inner { max-width: 760px; }
+  .hero__eyebrow { text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem; color: #b9d0f2; margin: 0 0 0.5rem; }
+  .hero h1 { color: #fff; }
+  .hero__lead { font-size: 1.2rem; color: #e6eefb; }
+  .hero__cta { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: 1.5rem; }
+  .hero .btn--ghost { color: #fff; border-color: rgba(255,255,255,0.5); }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; margin-top: 1.5rem; }
+  .card {
+    display: block; padding: 1.5rem; background: var(--color-surface);
+    border: 1px solid var(--color-border); border-radius: var(--radius); color: var(--color-fg);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .card:hover { transform: translateY(-3px); box-shadow: var(--shadow); text-decoration: none; }
+  .card h3 { color: var(--color-primary); }
+  .card p { color: var(--color-muted); margin: 0.25rem 0 1rem; }
+  .card__link { font-weight: 600; color: var(--color-primary); }
+</style>

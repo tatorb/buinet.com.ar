@@ -1,0 +1,53 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
+);
+
+const fmtFecha = (d: Date) =>
+  d.toLocaleDateString('es-AR', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+<BaseLayout title="Blog" description="Novedades, notas técnicas y casos de Building Networks.">
+  <section class="page-header">
+    <div class="container">
+      <h1>Blog</h1>
+      <p class="page-header__intro">Novedades y notas técnicas de Building Networks.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      {posts.length === 0 ? (
+        <p>Todavía no hay artículos publicados. Se importarán desde la base de datos salvada.</p>
+      ) : (
+        <ul class="post-list">
+          {posts.map((post) => (
+            <li class="post-item">
+              <a href={`/blog/${post.id}/`}>
+                <p class="post-item__date">{fmtFecha(post.data.pubDate)}</p>
+                <h2 class="post-item__title">{post.data.title}</h2>
+                {post.data.description && <p class="post-item__desc">{post.data.description}</p>}
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-header { background: var(--color-surface); border-bottom: 1px solid var(--color-border); padding-block: clamp(2rem, 5vw, 3.5rem); }
+  .page-header__intro { color: var(--color-muted); font-size: 1.15rem; }
+  .post-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.25rem; }
+  .post-item a {
+    display: block; padding: 1.5rem; border: 1px solid var(--color-border);
+    border-radius: var(--radius); color: var(--color-fg);
+  }
+  .post-item a:hover { box-shadow: var(--shadow); text-decoration: none; }
+  .post-item__date { color: var(--color-muted); font-size: 0.9rem; margin: 0 0 0.25rem; text-transform: capitalize; }
+  .post-item__title { color: var(--color-primary); margin: 0; }
+  .post-item__desc { color: var(--color-muted); margin: 0.5rem 0 0; }
+</style>

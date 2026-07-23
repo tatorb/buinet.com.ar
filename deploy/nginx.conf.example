@@ -1,0 +1,59 @@
+# =============================================================================
+# nginx — ejemplo para servir el sitio estático de Building Networks
+# -----------------------------------------------------------------------------
+# Subí el contenido de `dist/` (resultado de `npm run build`) a /var/www/buinet
+# y adaptá server_name / rutas de certificados.
+# =============================================================================
+
+# Redirección HTTP -> HTTPS
+server {
+    listen 80;
+    listen [::]:80;
+    server_name buinet.com.ar www.buinet.com.ar;
+    return 301 https://buinet.com.ar$request_uri;
+}
+
+server {
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+    server_name buinet.com.ar www.buinet.com.ar;
+
+    root /var/www/buinet;
+    index index.html;
+
+    # Certificados (Let's Encrypt / certbot — gratis, sin proveedor pago).
+    ssl_certificate     /etc/letsencrypt/live/buinet.com.ar/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/buinet.com.ar/privkey.pem;
+
+    # www -> apex
+    if ($host = www.buinet.com.ar) { return 301 https://buinet.com.ar$request_uri; }
+
+    # Cabeceras de seguridad básicas
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header X-Frame-Options "SAMEORIGIN" always;
+    add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+
+    # URLs con directorio (trailingSlash: 'always'): sirve /pagina/ -> /pagina/index.html
+    location / {
+        try_files $uri $uri/ $uri/index.html =404;
+    }
+
+    # Cache largo para assets con hash (Astro versiona los nombres)
+    location /_astro/ {
+        expires 1y;
+        add_header Cache-Control "public, immutable";
+    }
+
+    # Página 404 personalizada
+    error_page 404 /404.html;
+
+    # -------------------------------------------------------------------------
+    # Formulario de contacto (opcional): si usás un handler PHP propio, algo así.
+    # Descomentar y ajustar cuando definamos el procesamiento del formulario.
+    # -------------------------------------------------------------------------
+    # location = /api/contacto {
+    #     include fastcgi_params;
+    #     fastcgi_pass unix:/run/php/php8.2-fpm.sock;
+    #     fastcgi_param SCRIPT_FILENAME /var/www/handlers/contacto.php;
+    # }
+}

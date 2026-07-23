@@ -1,0 +1,23 @@
+{
+  "name": "buinet-site",
+  "type": "module",
+  "version": "0.1.0",
+  "description": "Sitio de Building Networks (buinet.com.ar) — estático, sin backend, portable. Reemplazo de WordPress.",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "import:wp": "node scripts/import-wordpress.mjs"
+  },
+  "dependencies": {
+    "astro": "^5.13.0",
+    "@astrojs/sitemap": "^3.6.0",
+    "sharp": "^0.34.4"
+  },
+  "devDependencies": {
+    "fast-xml-parser": "^4.5.0",
+    "turndown": "^7.2.0"
+  }
+}

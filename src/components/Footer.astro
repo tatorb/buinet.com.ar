@@ -1,0 +1,40 @@
+---
+import { site, nav } from '../site.config';
+const year = 2026; // Astro build: fecha fija por reproducibilidad. Actualizar por versión si hace falta.
+---
+<footer class="site-footer">
+  <div class="container site-footer__grid">
+    <div>
+      <p class="site-footer__brand">{site.name}</p>
+      <p class="site-footer__muted">{site.tagline}</p>
+      <p class="site-footer__muted">{site.city}</p>
+    </div>
+    <nav aria-label="Navegación del pie">
+      <ul>
+        {nav.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+      </ul>
+    </nav>
+    <div>
+      <p class="site-footer__muted">Contacto</p>
+      <p><a href={`mailto:${site.email}`}>{site.email}</a></p>
+      <p><a href={`tel:${site.phone.replace(/\s+/g, '')}`}>{site.phone}</a></p>
+    </div>
+  </div>
+  <div class="container site-footer__bottom">
+    <p>© {year} {site.name}. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer { background: var(--color-primary-dark); color: #dfe7f4; margin-top: 3rem; }
+  .site-footer a { color: #fff; }
+  .site-footer__grid {
+    display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 2rem;
+    padding-block: 3rem;
+  }
+  .site-footer__brand { font-weight: 700; font-size: 1.2rem; color: #fff; margin: 0 0 0.25rem; }
+  .site-footer__muted { color: #a9bcdc; margin: 0.15rem 0; }
+  .site-footer nav ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.35rem; }
+  .site-footer__bottom { border-top: 1px solid rgba(255,255,255,0.12); padding-block: 1.25rem; font-size: 0.9rem; color: #a9bcdc; }
+  @media (max-width: 760px) { .site-footer__grid { grid-template-columns: 1fr; } }
+</style>
