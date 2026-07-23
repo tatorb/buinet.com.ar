@@ -1,4 +1,5 @@
 ---
+import { withBase } from '../../utils/url';
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Icon from '../../components/Icon.astro';
@@ -26,7 +27,7 @@ const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month:
       ) : (
         <div class="grid grid--3">
           {posts.map((post) => (
-            <a class="card card--link" href={`/novedades/${post.id}/`}>
+            <a class="card card--link" href={withBase(`/novedades/${post.id}/`)}>
               <p class="card__date">{fmt(post.data.pubDate)}</p>
               <h3>{post.data.title}</h3>
               {post.data.description && <p>{post.data.description}</p>}

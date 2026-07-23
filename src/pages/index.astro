@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
 import { getCollection } from 'astro:content';
 import { servicios, industrias, partners } from '../data/servicios';
+import { withBase } from '../utils/url';
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft))
   .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
@@ -20,8 +21,8 @@ const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month:
         escalabilidad a grandes organizaciones.
       </p>
       <div class="hero__cta">
-        <a class="btn" href="/contacto/">Contactanos <Icon name="arrow" size={18} /></a>
-        <a class="btn btn--ghost" href="/sobre-nosotros/">Sobre nosotros</a>
+        <a class="btn" href={withBase("/contacto/")}>Contactanos <Icon name="arrow" size={18} /></a>
+        <a class="btn btn--ghost" href={withBase("/sobre-nosotros/")}>Sobre nosotros</a>
       </div>
       <ul class="partners" aria-label="Partners">
         {partners.map((p) => (
@@ -43,7 +44,7 @@ const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month:
           el proyecto Distrito Capitalinas, donde se incorporaron más de 400 cámaras IP y más de
           70 altavoces IP.
         </p>
-        <a class="card__more" href="/novedades/">Ver novedades <Icon name="arrow" size={16} /></a>
+        <a class="card__more" href={withBase("/novedades/")}>Ver novedades <Icon name="arrow" size={16} /></a>
       </div>
     </div>
   </section>
@@ -59,7 +60,7 @@ const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month:
       </p>
       <div class="grid grid--3" style="margin-top:2.5rem">
         {servicios.map((s) => (
-          <a class="card card--link" href={s.href}>
+          <a class="card card--link" href={withBase(s.href)}>
             <span class="card__icon"><Icon name={s.icono} /></span>
             <h3>{s.titulo}</h3>
             <p>{s.resumen}</p>
@@ -81,7 +82,7 @@ const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month:
           Centraliza la gestión de cámaras, parlantes y accesos en grandes organizaciones, de
           manera simple e intuitiva.
         </p>
-        <a class="btn btn--light" href="/camscope/">Conocer CamScope <Icon name="arrow" size={18} /></a>
+        <a class="btn btn--light" href={withBase("/camscope/")}>Conocer CamScope <Icon name="arrow" size={18} /></a>
       </div>
       <div class="feature__media feature__media--dark" aria-hidden="true"><Icon name="server" size={54} /></div>
     </div>
@@ -121,7 +122,7 @@ const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month:
           <li><Icon name="check" size={18} /> Seguridad</li>
           <li><Icon name="check" size={18} /> Energía ininterrumpida</li>
         </ul>
-        <a class="card__more" href="/data-center/">Ver Data Center <Icon name="arrow" size={16} /></a>
+        <a class="card__more" href={withBase("/data-center/")}>Ver Data Center <Icon name="arrow" size={16} /></a>
       </div>
     </div>
   </section>
@@ -136,7 +137,7 @@ const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month:
         Descargá el informe completo con todos los detalles de este caso emblemático en el distrito
         corporativo más importante de la ciudad.
       </p>
-      <a class="btn" href="/contacto/">Descargar informe <Icon name="download" size={18} /></a>
+      <a class="btn" href={withBase("/contacto/")}>Descargar informe <Icon name="download" size={18} /></a>
     </div>
   </section>
 
@@ -148,7 +149,7 @@ const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month:
         <h2 class="center">Novedades y noticias</h2>
         <div class="grid grid--3" style="margin-top:2.5rem">
           {posts.map((post) => (
-            <a class="card card--link" href={`/novedades/${post.id}/`}>
+            <a class="card card--link" href={withBase(`/novedades/${post.id}/`)}>
               <p class="card__date">{fmt(post.data.pubDate)}</p>
               <h3>{post.data.title}</h3>
               {post.data.description && <p>{post.data.description}</p>}
@@ -167,7 +168,7 @@ const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month:
         <h2>Agendá una reunión con un asesor comercial</h2>
         <p class="lead">¿Te gustaría entender si podemos ayudarte? Coordinemos una reunión con un especialista.</p>
       </div>
-      <a class="btn btn--light" href="/contacto/">Coordinar reunión <Icon name="calendar" size={18} /></a>
+      <a class="btn btn--light" href={withBase("/contacto/")}>Coordinar reunión <Icon name="calendar" size={18} /></a>
     </div>
   </section>
 </BaseLayout>

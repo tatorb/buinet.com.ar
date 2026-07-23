@@ -1,4 +1,5 @@
 ---
+import { withBase } from '../utils/url';
 import BaseLayout from './BaseLayout.astro';
 import Icon from '../components/Icon.astro';
 import { servicios } from '../data/servicios';
@@ -34,12 +35,12 @@ const otros = servicios.filter((s) => s.slug !== slug);
         <div class="card">
           <h3>¿Hablamos de tu proyecto?</h3>
           <p>Coordinemos una reunión con un especialista.</p>
-          <a class="btn" href="/contacto/" style="margin-top:0.75rem">Contactanos <Icon name="arrow" size={16} /></a>
+          <a class="btn" href={withBase("/contacto/")} style="margin-top:0.75rem">Contactanos <Icon name="arrow" size={16} /></a>
         </div>
         <div class="card">
           <p class="eyebrow">Otros servicios</p>
           <ul class="svc-links">
-            {otros.map((s) => <li><a href={s.href}>{s.titulo}</a></li>)}
+            {otros.map((s) => <li><a href={withBase(s.href)}>{s.titulo}</a></li>)}
           </ul>
         </div>
       </aside>

@@ -1,13 +1,14 @@
 ---
 import { site, nav } from '../site.config';
 import Logo from './Logo.astro';
+import { withBase } from '../utils/url';
 const year = 2026;
 const cols = nav.filter((n) => n.href !== '/');
 ---
 <footer class="site-footer">
   <div class="container site-footer__grid">
     <div class="site-footer__brand-col">
-      <a href="/" aria-label={site.name}><Logo variant="light" /></a>
+      <a href={withBase('/')} aria-label={site.name}><Logo variant="light" /></a>
       <address>
         <strong>BUILDING NETWORKS</strong><br />
         {site.address.street}<br />
@@ -26,7 +27,7 @@ const cols = nav.filter((n) => n.href !== '/');
     <nav class="site-footer__nav" aria-label="Navegación del pie">
       <p class="site-footer__heading">Navegación</p>
       <ul>
-        {cols.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+        {cols.map((item) => <li><a href={withBase(item.href)}>{item.label}</a></li>)}
       </ul>
     </nav>
 
@@ -34,14 +35,14 @@ const cols = nav.filter((n) => n.href !== '/');
       <p class="site-footer__heading">Contacto</p>
       <p><a href={`mailto:${site.email}`}>{site.email}</a></p>
       <p><a href={`tel:${site.phoneHref}`}>{site.phone}</a></p>
-      <p><a href="/contacto/">Coordinar reunión con un asesor</a></p>
+      <p><a href={withBase('/contacto/')}>Coordinar reunión con un asesor</a></p>
     </div>
   </div>
 
   <div class="site-footer__bottom">
     <div class="container site-footer__bottom-inner">
       <p>© {year} {site.legalName}. Todos los derechos reservados.</p>
-      <p><a href="/politicas-de-privacidad/">Políticas de Privacidad</a></p>
+      <p><a href={withBase('/politicas-de-privacidad/')}>Políticas de Privacidad</a></p>
     </div>
   </div>
 </footer>
