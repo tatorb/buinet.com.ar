@@ -1,0 +1,21 @@
+---
+import ServiceLayout from '../layouts/ServiceLayout.astro';
+import { servicios } from '../data/servicios';
+const s = servicios.find((x) => x.slug === 'control-de-accesos')!;
+---
+<ServiceLayout slug={s.slug} title={s.titulo} resumen={s.resumen} icono={s.icono}>
+  <h2>Gestión inteligente de accesos</h2>
+  <p>
+    Diseñamos sistemas inteligentes de control de acceso que aseguran la gestión
+    eficiente de autorizaciones y resguardan tus instalaciones con tecnología moderna
+    y confiable.
+  </p>
+  <h2>Qué incluye</h2>
+  <ul>
+    <li>Control de accesos por credenciales, biometría o dispositivos móviles.</li>
+    <li>Definición de perfiles, horarios y permisos por zona.</li>
+    <li>Registro y trazabilidad de ingresos y egresos.</li>
+    <li>Integración con videovigilancia y audio IP en un mismo sistema.</li>
+    <li>Administración centralizada con CamScope.</li>
+  </ul>
+</ServiceLayout>

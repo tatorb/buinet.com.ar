@@ -1,11 +1,24 @@
 ---
-import PageLayout from '../layouts/PageLayout.astro';
+import ServiceLayout from '../layouts/ServiceLayout.astro';
+import { servicios } from '../data/servicios';
+const s = servicios.find((x) => x.slug === 'videovigilancia')!;
 ---
-<PageLayout
-  title="Videovigilancia"
-  intro="Cámaras y video vigilancia para empresas, edificios y barrios."
-  description="Sistemas de cámaras y videovigilancia profesional para empresas, edificios y barrios privados."
->
-  <!-- CONTENIDO PLACEHOLDER — reemplazar con los textos e imágenes reales. -->
-  <p>[Contenido real de la sección Videovigilancia pendiente de migración.]</p>
-</PageLayout>
+<ServiceLayout slug={s.slug} title={s.titulo} resumen={s.resumen} icono={s.icono}>
+  <h2>Protección en tiempo real</h2>
+  <p>
+    Integramos soluciones avanzadas de videovigilancia que te permiten supervisar
+    remotamente, grabar y almacenar datos de manera eficiente y accesible. Trabajamos
+    con tecnología de nuestro partner AXIS, líder mundial en cámaras y audio IP.
+  </p>
+  <h2>Qué incluye</h2>
+  <ul>
+    <li>Cámaras IP de alta resolución para empresas, edificios y barrios privados.</li>
+    <li>Monitoreo remoto y acceso en tiempo real desde cualquier dispositivo.</li>
+    <li>Grabación, almacenamiento y respaldo de imágenes.</li>
+    <li>Analítica de video e integración con control de accesos y audio IP.</li>
+    <li>Gestión centralizada a través de nuestro software propio CamScope.</li>
+  </ul>
+  <p>
+    <!-- Texto detallado de la página real pendiente de completar desde el HTML capturado. -->
+  </p>
+</ServiceLayout>

@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../site.config';
+---
+<BaseLayout title="Políticas de Privacidad" description="Políticas de privacidad de Building Networks.">
+  <section class="svc-hero">
+    <div class="container" style="padding-block:clamp(2.5rem,6vw,4rem)">
+      <p class="eyebrow">Legal</p>
+      <h1 style="color:#fff">Políticas de Privacidad</h1>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container prose measure">
+      <!-- Reemplazar por el texto legal real de Políticas de Privacidad del sitio actual. -->
+      <p>
+        En {site.legalName} respetamos tu privacidad. Los datos que nos compartís a través del
+        formulario de contacto se utilizan únicamente para responder tu consulta y no se ceden a
+        terceros.
+      </p>
+      <p>
+        Para consultas sobre el tratamiento de tus datos podés escribirnos a
+        <a href={`mailto:${site.email}`}>{site.email}</a>.
+      </p>
+      <p><em>Texto legal completo pendiente de completar.</em></p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .svc-hero { background: linear-gradient(160deg, var(--navy-950), var(--navy-800)); }
+  .prose { max-width: 68ch; }
+</style>

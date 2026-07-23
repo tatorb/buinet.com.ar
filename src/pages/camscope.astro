@@ -1,11 +1,50 @@
 ---
-import PageLayout from '../layouts/PageLayout.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
 ---
-<PageLayout
+<BaseLayout
   title="CamScope"
-  intro="Nuestro sistema propio de videovigilancia, con más de 10 años de desarrollo continuo."
-  description="CamScope: sistema de videovigilancia desarrollado por Building Networks, con más de una década de evolución."
+  description="CamScope: software de desarrollo propio de Building Networks que centraliza la gestión de videovigilancia, audio IP y control de accesos."
 >
-  <!-- CONTENIDO PLACEHOLDER — reemplazar con los textos e imágenes reales. -->
-  <p>[Contenido real de CamScope pendiente de migración.]</p>
-</PageLayout>
+  <section class="svc-hero">
+    <div class="container" style="padding-block:clamp(2.5rem,6vw,4.5rem)">
+      <p class="eyebrow">Software de desarrollo propio</p>
+      <h1 style="color:#fff">CamScope</h1>
+      <p class="lead" style="color:var(--color-on-dark-muted); max-width:720px">
+        Nuestro software nuclea los sistemas de Video Vigilancia, Audio IP y Control de Accesos
+        en una única plataforma.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container prose measure">
+      <p>
+        CamScope es el software de desarrollo propio que centraliza la gestión de las cámaras,
+        los parlantes y el sistema de acceso en grandes organizaciones. Con CamScope se gestionan
+        de manera simple e intuitiva complejos sistemas de video vigilancia y control de accesos.
+      </p>
+      <p>
+        Como facilitador tecnológico de AXIS en Argentina, en Building Networks diseñamos,
+        implementamos y mantenemos CamScope, con más de diez años de desarrollo continuo.
+      </p>
+      <h2>Un mismo sistema</h2>
+      <ul>
+        <li><Icon name="camera" size={18} /> Videovigilancia: gestión de cámaras IP y analítica.</li>
+        <li><Icon name="speaker" size={18} /> Audio IP: parlantes y avisos por zonas.</li>
+        <li><Icon name="lock" size={18} /> Control de accesos: autorizaciones y trazabilidad.</li>
+      </ul>
+      <p style="margin-top:2rem">
+        <a class="btn" href="/contacto/">Solicitar una demo <Icon name="arrow" size={18} /></a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .svc-hero { background: linear-gradient(160deg, var(--navy-950), var(--navy-800)); }
+  .prose { max-width: 68ch; }
+  .prose ul { list-style: none; padding: 0; }
+  .prose li { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.6rem; }
+  .prose li svg { color: var(--color-accent); flex: none; }
+</style>

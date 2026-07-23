@@ -1,0 +1,22 @@
+---
+import ServiceLayout from '../layouts/ServiceLayout.astro';
+import { servicios } from '../data/servicios';
+const s = servicios.find((x) => x.slug === 'infraestructura-de-red')!;
+---
+<ServiceLayout slug={s.slug} title={s.titulo} resumen={s.resumen} icono={s.icono}>
+  <h2>Redes convergentes de alta capacidad</h2>
+  <p>
+    Establecemos redes convergentes de alta capacidad, facilitando la comunicación LAN
+    o inalámbrica fluida entre dispositivos y garantizando un desempeño confiable y
+    continuo. Diseñamos y construimos redes donde conviven tus sistemas y procesos junto
+    a la videovigilancia, el control de accesos, el cómputo y la conectividad de toda la
+    organización.
+  </p>
+  <h2>Qué incluye</h2>
+  <ul>
+    <li>Diseño e implementación de redes cableadas e inalámbricas.</li>
+    <li>Conectividad de alta disponibilidad con partners como CISCO y Cambium Networks.</li>
+    <li>Segmentación, seguridad y priorización de tráfico (QoS).</li>
+    <li>Base convergente para desplegar todos los sistemas en una única red segura y escalable.</li>
+  </ul>
+</ServiceLayout>

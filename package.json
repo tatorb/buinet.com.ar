@@ -12,12 +12,13 @@
     "import:wp": "node scripts/import-wordpress.mjs"
   },
   "dependencies": {
-    "astro": "^5.13.0",
     "@astrojs/sitemap": "^3.6.0",
+    "astro": "^5.13.0",
     "sharp": "^0.34.4"
   },
   "devDependencies": {
     "fast-xml-parser": "^4.5.0",
+    "playwright-core": "^1.61.1",
     "turndown": "^7.2.0"
   }
 }

@@ -1,11 +1,20 @@
 ---
-import PageLayout from '../layouts/PageLayout.astro';
+import ServiceLayout from '../layouts/ServiceLayout.astro';
+import { servicios } from '../data/servicios';
+const s = servicios.find((x) => x.slug === 'audio-ip')!;
 ---
-<PageLayout
-  title="Audio IP"
-  intro="Desarrollo de sistemas de audio con parlantes IP."
-  description="Diseño e implementación de sistemas de audio profesional con parlantes IP."
->
-  <!-- CONTENIDO PLACEHOLDER — reemplazar con los textos e imágenes reales. -->
-  <p>[Contenido real de la sección Audio IP pendiente de migración.]</p>
-</PageLayout>
+<ServiceLayout slug={s.slug} title={s.titulo} resumen={s.resumen} icono={s.icono}>
+  <h2>Sistemas de audio sobre IP</h2>
+  <p>
+    Implementamos sistemas de audio IP innovadores, ideales para comunicación
+    corporativa, seguridad y entretenimiento, conectados directamente a tus redes
+    convergentes.
+  </p>
+  <h2>Aplicaciones</h2>
+  <ul>
+    <li>Avisos y comunicación corporativa en tiempo real.</li>
+    <li>Mensajería de seguridad y evacuación.</li>
+    <li>Música ambiental y entretenimiento por zonas.</li>
+    <li>Integración con videovigilancia y control de accesos vía CamScope.</li>
+  </ul>
+</ServiceLayout>

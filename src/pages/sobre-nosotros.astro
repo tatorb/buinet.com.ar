@@ -1,19 +1,70 @@
 ---
-import PageLayout from '../layouts/PageLayout.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
 ---
-<PageLayout
+<BaseLayout
   title="Sobre Nosotros"
-  intro="Misión y visión de Building Networks."
-  description="Sobre Building Networks: más de una década desarrollando e integrando soluciones tecnológicas de alto rendimiento en Córdoba, Argentina."
+  description="Modelo Building Networks, misión y visión. Más de una década desarrollando e integrando soluciones tecnológicas de alto rendimiento en Córdoba, Argentina."
 >
-  <!-- CONTENIDO PLACEHOLDER — reemplazar con los textos reales del sitio actual. -->
-  <p>
-    En Building Networks trabajamos para eliminar las complejidades tecnológicas, brindando
-    soluciones avanzadas y personalizadas en redes convergentes que impulsan la eficiencia,
-    la confiabilidad y el crecimiento de nuestros clientes.
-  </p>
-  <h2>Misión</h2>
-  <p>[Texto real de misión pendiente de migración desde el sitio actual.]</p>
-  <h2>Visión</h2>
-  <p>[Texto real de visión pendiente de migración desde el sitio actual.]</p>
-</PageLayout>
+  <section class="svc-hero">
+    <div class="container" style="padding-block:clamp(2.5rem,6vw,4.5rem)">
+      <p class="eyebrow">Sobre Nosotros</p>
+      <h1 style="color:#fff">Modelo Building Networks</h1>
+      <p class="lead" style="color:var(--color-on-dark-muted); max-width:720px">
+        Más de una década desarrollando e integrando soluciones tecnológicas de alto rendimiento.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container prose measure">
+      <p>
+        <strong>BuiNet</strong> se posiciona como un líder en la comercialización de soluciones
+        integrales y productos de red y cómputo, destacándose por su compromiso con la eficiencia,
+        la calidad y la robustez.
+      </p>
+      <p>
+        Nuestro enfoque en consultoría, diseño, implementación y mantenimiento opera para garantizar
+        sistemas escalables y resilientes. Elegir BuiNet significa confiar en una empresa dedicada a
+        maximizar el potencial de tu infraestructura tecnológica.
+      </p>
+      <blockquote class="quote">
+        <p>«Diseñamos y construimos redes convergentes sobre las que desplegamos sistemas que ven, escuchan, hablan y piensan.»</p>
+        <footer>Héctor Abdala — CEO, Building Networks</footer>
+      </blockquote>
+    </div>
+  </section>
+
+  <section class="section section--surface">
+    <div class="container grid grid--2">
+      <div class="card">
+        <span class="card__icon"><Icon name="arrow" /></span>
+        <h3>Misión</h3>
+        <p>
+          Ser un socio estratégico y proactivo para las empresas, facilitando su enfoque en su core
+          business. Nos dedicamos a eliminar las complejidades tecnológicas, proporcionando soluciones
+          avanzadas y personalizadas en redes convergentes que impulsan la eficiencia, la confiabilidad
+          y el crecimiento de nuestros clientes.
+        </p>
+      </div>
+      <div class="card">
+        <span class="card__icon"><Icon name="shield" /></span>
+        <h3>Visión</h3>
+        <p>
+          Ser reconocidos como líderes en el desarrollo e implementación de redes convergentes,
+          ofreciendo soluciones innovadoras y confiables para el sector industrial, grandes desarrollos
+          inmobiliarios y cualquier industria que requiera infraestructura tecnológica avanzada para
+          potenciar su core business.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .svc-hero { background: linear-gradient(160deg, var(--navy-950), var(--navy-800)); }
+  .prose { max-width: 68ch; }
+  .quote { border-left: 4px solid var(--color-accent); margin: 2rem 0; padding: 0.5rem 0 0.5rem 1.5rem; }
+  .quote p { font-size: 1.3rem; font-weight: 600; color: var(--color-primary); font-style: italic; }
+  .quote footer { color: var(--color-muted); font-weight: 600; }
+</style>

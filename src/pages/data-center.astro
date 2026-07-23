@@ -1,0 +1,26 @@
+---
+import ServiceLayout from '../layouts/ServiceLayout.astro';
+import { servicios } from '../data/servicios';
+const s = servicios.find((x) => x.slug === 'data-center')!;
+---
+<ServiceLayout slug={s.slug} title={s.titulo} resumen={s.resumen} icono={s.icono}>
+  <h2>Infraestructura diseñada para funcionar siempre</h2>
+  <p>
+    Optimizamos la infraestructura tecnológica de tu empresa con sistemas eficientes y
+    procesos robustos, diseñados para garantizar fluidez, seguridad y alto rendimiento
+    en cada operación.
+  </p>
+  <h2>Datacenter Capitalinas</h2>
+  <p>
+    Nuestra unidad de negocio <strong>Datacenter Capitalinas</strong> ofrece
+    infraestructura robusta y servicios avanzados de almacenamiento, conectividad y
+    seguridad digital, pensados para operaciones críticas con máxima eficiencia,
+    escalabilidad y soporte especializado.
+  </p>
+  <ul>
+    <li>Alojamiento / Housing en entorno controlado.</li>
+    <li>Temperatura y ambiente monitorizados de forma continua.</li>
+    <li>Seguridad física y digital.</li>
+    <li>Energía ininterrumpida y alta disponibilidad.</li>
+  </ul>
+</ServiceLayout>

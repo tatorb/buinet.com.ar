@@ -1,0 +1,64 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import { servicios } from '../data/servicios';
+
+interface Props {
+  slug: string;
+  title: string;
+  resumen: string;
+  icono: string;
+  description?: string;
+}
+const { slug, title, resumen, icono, description } = Astro.props;
+const otros = servicios.filter((s) => s.slug !== slug);
+---
+<BaseLayout title={title} description={description ?? resumen}>
+  <section class="svc-hero">
+    <div class="container svc-hero__inner">
+      <span class="svc-hero__icon"><Icon name={icono} size={34} /></span>
+      <div>
+        <p class="eyebrow">Servicios y productos</p>
+        <h1>{title}</h1>
+        <p class="lead" style="color:var(--color-on-dark-muted)">{resumen}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container svc-body">
+      <div class="prose">
+        <slot />
+      </div>
+      <aside class="svc-aside">
+        <div class="card">
+          <h3>¿Hablamos de tu proyecto?</h3>
+          <p>Coordinemos una reunión con un especialista.</p>
+          <a class="btn" href="/contacto/" style="margin-top:0.75rem">Contactanos <Icon name="arrow" size={16} /></a>
+        </div>
+        <div class="card">
+          <p class="eyebrow">Otros servicios</p>
+          <ul class="svc-links">
+            {otros.map((s) => <li><a href={s.href}>{s.titulo}</a></li>)}
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .svc-hero { background: linear-gradient(160deg, var(--navy-950), var(--navy-800)); color: var(--color-on-dark); }
+  .svc-hero__inner { display: flex; gap: 1.5rem; align-items: flex-start; padding-block: clamp(2.5rem, 6vw, 4.5rem); }
+  .svc-hero h1 { color: #fff; }
+  .svc-hero__icon { flex: none; width: 68px; height: 68px; border-radius: 16px; display: grid; place-items: center; background: rgba(22,165,224,0.15); color: var(--color-accent); border: 1px solid rgba(22,165,224,0.3); }
+  .svc-body { display: grid; grid-template-columns: 1.7fr 1fr; gap: 3rem; align-items: start; }
+  .prose { max-width: 68ch; }
+  .prose :global(h2) { margin-top: 2rem; }
+  .prose :global(ul) { padding-left: 1.2rem; }
+  .prose :global(li) { margin-bottom: 0.4rem; }
+  .svc-aside { display: grid; gap: 1.25rem; position: sticky; top: 130px; }
+  .svc-links { list-style: none; padding: 0; margin: 0.5rem 0 0; display: grid; gap: 0.5rem; }
+  .svc-links a { font-weight: 600; color: var(--color-primary); }
+  @media (max-width: 900px) { .svc-body { grid-template-columns: 1fr; } .svc-aside { position: static; } .svc-hero__inner { flex-direction: column; } }
+</style>
