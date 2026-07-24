@@ -51,23 +51,14 @@ jobs:
           HOST="${HOST%%/*}"     # quita cualquier /ruta
           # sshpass pasa la contraseña a ssh (lftp+sftp por sí solo no puede).
           export SSHPASS="$SSH_PASSWORD"
-          # Destino: carpeta de inicio del usuario SFTP (donde vive wp-content).
-          # Configurable con el secreto REMOTE_PATH; por defecto "." (login dir).
-          DEST="${REMOTE_PATH:-.}"
-          # mirror -R = subir (local -> remoto). SIN --delete (no destructivo).
-          # --no-perms evita chmod (SFTP gestionado no lo permite).
-          # --exclude-glob wp-content protege las imágenes ya subidas.
-          lftp -c "
-            set sftp:auto-confirm yes;
-            set sftp:connect-program 'sshpass -e ssh -a -x -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null';
-            set net:max-retries 2;
-            set net:timeout 25;
-            open -u \"$SSH_USER\",dummy sftp://$HOST:$PORT;
-            echo '=== DIAGNOSTICO (no sube nada todavia) ===';
-            echo '--- pwd (login dir) ---'; pwd;
-            echo '--- ls login dir ---'; cls -l;
-            echo '--- ls buinetweb/ (web root del dominio) ---'; cls -l buinetweb/;
-            echo '--- ls buinetweb/public_html/ ---'; cls -l buinetweb/public_html/;
-            echo '--- ls buinetweb/public_html/wp-content/ ---'; cls -l buinetweb/public_html/wp-content/;
-            bye;
-          "
+          # Destino real = raíz web del dominio (donde ya está wp-content).
+          DEST="${REMOTE_PATH:-buinetweb/home}"
+          OPEN="set sftp:auto-confirm yes; set sftp:connect-program 'sshpass -e ssh -a -x -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'; set net:max-retries 2; set net:timeout 25; open -u \"$SSH_USER\",dummy sftp://$HOST:$PORT;"
+
+          # 1) Limpieza best-effort: quitar archivos del sitio que quedaron sueltos
+          #    en la carpeta personal del usuario en una corrida previa.
+          lftp -c "$OPEN glob -a rm -r 404.html favicon.svg index.html robots.txt sitemap-0.xml sitemap-index.xml _astro audio-ip camscope contacto control-de-accesos data-center infraestructura-de-red novedades politicas-de-privacidad sobre-nosotros videovigilancia; bye" || true
+
+          # 2) Deploy real al docroot. SIN --delete (no destructivo).
+          #    --no-perms evita chmod; --exclude-glob wp-content protege las imágenes.
+          lftp -c "$OPEN echo '--- Contenido de '$DEST' (debe tener wp-content) ---'; cls -l \"$DEST\"/; echo '--- Subiendo el sitio ---'; mirror -R --no-perms --parallel=2 --verbose --exclude-glob wp-content ./dist/ \"$DEST\"; bye;"
