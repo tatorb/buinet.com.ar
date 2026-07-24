@@ -20,16 +20,17 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      # El sitio queda servido bajo el subdirectorio del repo en github.io.
-      SITE_URL: https://tatorb.github.io
-      PAGES_BASE: /buinet.coml.ar/
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
+      # Deriva URL y subdirectorio del nombre real del repo (robusto a renames).
+      - name: Configurar base del preview
+        run: |
+          echo "SITE_URL=https://${GITHUB_REPOSITORY_OWNER}.github.io" >> "$GITHUB_ENV"
+          echo "PAGES_BASE=/${GITHUB_REPOSITORY#*/}/" >> "$GITHUB_ENV"
       # Habilita Pages con fuente "GitHub Actions" automáticamente.
       - uses: actions/configure-pages@v5
         with:
