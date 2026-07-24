@@ -35,36 +35,27 @@ import { site } from '../site.config';
         </div>
       </div>
 
-      <form class="contacto__form card" action="/api/contacto" method="post">
-        <!--
-          El formulario necesita un endpoint que lo procese en el server (ver
-          docs/INFRAESTRUCTURA.md > "Formulario de contacto"). Al definir el hosting
-          conectamos "action" a un mini-handler propio.
-        -->
+      <div class="contacto__form card">
         <h2>Escribinos</h2>
-        <div class="grid2">
-          <div class="field">
-            <label for="nombre">Nombre</label>
-            <input id="nombre" name="nombre" type="text" autocomplete="given-name" />
-          </div>
-          <div class="field">
-            <label for="apellidos">Apellidos</label>
-            <input id="apellidos" name="apellidos" type="text" autocomplete="family-name" />
-          </div>
-        </div>
-        <div class="field">
-          <label for="email">Correo <span aria-hidden="true">*</span></label>
-          <input id="email" name="email" type="email" required autocomplete="email" />
-        </div>
-        <div class="field">
-          <label for="mensaje">Mensaje</label>
-          <textarea id="mensaje" name="mensaje" rows="5"></textarea>
-        </div>
-        <input type="text" name="website" tabindex="-1" autocomplete="off" class="visually-hidden" aria-hidden="true" />
-        <button class="btn" type="submit">Enviar <Icon name="arrow" size={16} /></button>
-      </form>
+        <!-- Formulario embebido de HubSpot (procesa el envío en HubSpot). -->
+        <div id="hubspot-form"></div>
+      </div>
     </div>
   </section>
+
+  <script is:inline charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
+  <script is:inline>
+    window.addEventListener('load', function () {
+      if (window.hbspt) {
+        hbspt.forms.create({
+          portalId: '45351897',
+          formId: '97d3db1d-fec8-41e4-9d92-88e606500dfe',
+          region: 'na1',
+          target: '#hubspot-form',
+        });
+      }
+    });
+  </script>
 </BaseLayout>
 
 <style>

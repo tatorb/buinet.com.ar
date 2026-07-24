@@ -95,8 +95,12 @@ const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month:
       <div class="partners__list">
         {partners.map((p) => (
           <div class="card partners__item">
-            <h3>{p.nombre}</h3>
-            <p><strong>{p.detalle}</strong></p>
+            <img class="partners__logo" src={p.logo} alt={p.nombre} loading="lazy" />
+            <div>
+              <h3>{p.nombre}</h3>
+              <p class="partners__role"><strong>{p.detalle}</strong></p>
+              <p>{p.resumen}</p>
+            </div>
           </div>
         ))}
       </div>
@@ -197,9 +201,12 @@ const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month:
   /* PARTNERS */
   .partners { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
   .partners__list { display: grid; gap: 1.5rem; }
-  .partners__item { text-align: left; align-items: flex-start; padding: 1.75rem 2rem; }
-  .partners__item h3 { margin-bottom: 0.25rem; }
-  .partners__item p { color: var(--teal); }
+  .partners__item { flex-direction: row; text-align: left; align-items: center; gap: 1.75rem; padding: 1.75rem 2rem; }
+  .partners__logo { width: 120px; height: auto; max-height: 80px; object-fit: contain; flex: none; }
+  .partners__item h3 { margin-bottom: 0.1rem; font-size: 1.25rem; }
+  .partners__role { color: var(--teal); margin-bottom: 0.6rem; }
+  .partners__item p { color: var(--muted); }
+  @media (max-width: 560px) { .partners__item { flex-direction: column; text-align: center; align-items: center; } }
 
   /* FEATURE (CamScope) */
   .feature { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3rem; align-items: center; }

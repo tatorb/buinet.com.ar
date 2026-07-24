@@ -71,9 +71,27 @@ export const industrias = [
   },
 ];
 
-// Partners estratégicos.
+// Partners estratégicos (logos servidos desde /wp-content/uploads del server).
 export const partners = [
-  { nombre: 'AXIS', detalle: 'Solution Gold Partner' },
-  { nombre: 'CISCO', detalle: 'Partner' },
-  { nombre: 'Cambium Networks', detalle: 'Connected Partner' },
+  {
+    nombre: 'Axis Communications',
+    detalle: 'Solution Gold Partner',
+    logo: '/wp-content/uploads/2025/03/logo_axis_cpp_solution_gold_cmyk-1-300x195.jpg',
+    resumen:
+      'Socio líder en soluciones de seguridad integradas: sistemas avanzados de videovigilancia y control para garantizar protección, conectividad y eficiencia en proyectos empresariales de alto estándar.',
+  },
+  {
+    nombre: 'CISCO',
+    detalle: 'Partner',
+    logo: '/wp-content/uploads/2024/07/Cisco.png',
+    resumen:
+      'Innovamos con Cisco para ofrecer soluciones de conectividad y redes avanzadas, diseñadas para maximizar la productividad y robustez en infraestructuras empresariales de cualquier escala.',
+  },
+  {
+    nombre: 'Cambium Networks',
+    detalle: 'Connected Partner',
+    logo: '/wp-content/uploads/2024/07/Cambium.png',
+    resumen:
+      'Integramos tecnología de Cambium Networks para crear redes inalámbricas eficientes, escalables y confiables, ideales para empresas que buscan máxima conectividad y desempeño en sus operaciones.',
+  },
 ];
