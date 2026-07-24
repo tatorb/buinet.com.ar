@@ -14,37 +14,35 @@ const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month:
   <!-- HERO -->
   <section class="hero">
     <div class="container hero__inner">
-      <p class="eyebrow">Building Networks · Córdoba, Argentina</p>
-      <h1>Enfocate en lo tuyo,<br />nosotros te respaldamos</h1>
-      <p class="hero__lead">
-        Soluciones tecnológicas integrales que garantizan respaldo, seguridad y
-        escalabilidad a grandes organizaciones.
-      </p>
-      <div class="hero__cta">
-        <a class="btn" href={withBase("/contacto/")}>Contactanos <Icon name="arrow" size={18} /></a>
-        <a class="btn btn--ghost" href={withBase("/sobre-nosotros/")}>Sobre nosotros</a>
+      <div class="hero__graphic" aria-hidden="true">
+        <svg viewBox="0 0 420 420" fill="none" stroke="currentColor">
+          <g stroke-width="7">
+            <line x1="210" y1="210" x2="210" y2="80" />
+            <line x1="210" y1="210" x2="335" y2="160" />
+            <line x1="210" y1="210" x2="300" y2="330" />
+            <line x1="210" y1="210" x2="120" y2="330" />
+            <line x1="210" y1="210" x2="85" y2="160" />
+          </g>
+          <g stroke-width="8" fill="#fff">
+            <circle cx="210" cy="210" r="46" />
+            <circle cx="210" cy="80" r="34" />
+            <circle cx="335" cy="160" r="34" />
+            <circle cx="300" cy="330" r="34" />
+            <circle cx="120" cy="330" r="34" />
+            <circle cx="85" cy="160" r="34" />
+          </g>
+        </svg>
       </div>
-      <ul class="partners" aria-label="Partners">
-        {partners.map((p) => (
-          <li><strong>{p.nombre}</strong><span>{p.detalle}</span></li>
-        ))}
-      </ul>
-    </div>
-  </section>
-
-  <!-- NOTICIA DESTACADA -->
-  <section class="section section--surface">
-    <div class="container feature">
-      <div class="feature__media" aria-hidden="true"><Icon name="camera" size={54} /></div>
-      <div>
-        <p class="eyebrow">Noticia</p>
-        <h2>AXIS destaca el despliegue de Building Networks en el Distrito Capitalinas</h2>
+      <div class="hero__text">
+        <h1>Redes convergentes,<br /><strong>soluciones integrales</strong></h1>
         <p class="lead">
-          El líder mundial en cámaras y audio IP publicó en su sección «Historias de Clientes»
-          el proyecto Distrito Capitalinas, donde se incorporaron más de 400 cámaras IP y más de
-          70 altavoces IP.
+          Soluciones tecnológicas integrales que garantizan respaldo, seguridad y
+          escalabilidad a grandes organizaciones.
         </p>
-        <a class="card__more" href={withBase("/novedades/")}>Ver novedades <Icon name="arrow" size={16} /></a>
+        <div class="hero__cta">
+          <a class="btn btn--solid" href={withBase('/contacto/')}>Contactanos</a>
+          <a class="btn" href={withBase('/sobre-nosotros/')}>Sobre nosotros</a>
+        </div>
       </div>
     </div>
   </section>
@@ -52,28 +50,66 @@ const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month:
   <!-- SERVICIOS -->
   <section class="section">
     <div class="container">
-      <p class="eyebrow center">Redes convergentes, soluciones integrales</p>
-      <h2 class="center">Diseñamos y construimos redes donde vive toda tu organización</h2>
-      <p class="lead center measure mx-auto">
-        Sistemas y procesos, videovigilancia, control de accesos, cómputo y conectividad.
-        Todo como un mismo sistema, seguro y escalable.
-      </p>
-      <div class="grid grid--3" style="margin-top:2.5rem">
+      <div class="grid grid--3">
+        <div class="card">
+          <span class="card__icon"><Icon name="network" size={54} /></span>
+          <h3>Tus Sistemas y Procesos</h3>
+          <p>
+            Diseñamos y construimos redes convergentes donde pueden vivir tus sistemas y procesos,
+            el sistema de video vigilancia, control de accesos, cómputo, procesamiento y la
+            conectividad de toda tu organización. Todo como un mismo sistema seguro y escalable.
+          </p>
+        </div>
         {servicios.map((s) => (
           <a class="card card--link" href={withBase(s.href)}>
-            <span class="card__icon"><Icon name={s.icono} /></span>
+            <span class="card__icon"><Icon name={s.icono} size={54} /></span>
             <h3>{s.titulo}</h3>
             <p>{s.resumen}</p>
-            <span class="card__more">Ver más <Icon name="arrow" size={16} /></span>
+            <span class="btn">{s.titulo}</span>
           </a>
         ))}
       </div>
     </div>
   </section>
 
+  <!-- CASO DE ÉXITO -->
+  <section class="exito">
+    <div class="exito__overlay"></div>
+    <div class="container exito__inner">
+      <h2>Desarrollamos redes sobre las que desplegamos<br />sistemas que ven, escuchan, hablan y piensan.</h2>
+      <div class="exito__card">
+        <p class="eyebrow">Caso de éxito</p>
+        <h3>Distrito Capitalinas Córdoba</h3>
+        <a class="btn btn--solid" href={withBase('/contacto/')}><Icon name="download" size={16} /> Descargar informe</a>
+        <p class="exito__desc">
+          Descargá el informe completo donde compartimos todos los detalles sobre este emblemático
+          caso de éxito en el distrito corporativo más importante de la ciudad de Córdoba.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNERS -->
+  <section class="section section--surface">
+    <div class="container partners">
+      <div class="partners__list">
+        {partners.map((p) => (
+          <div class="card partners__item">
+            <h3>{p.nombre}</h3>
+            <p><strong>{p.detalle}</strong></p>
+          </div>
+        ))}
+      </div>
+      <div class="partners__head">
+        <h2>Socios estratégicos<br /><strong>de primera línea</strong></h2>
+        <p class="lead">Trabajamos junto a los líderes mundiales en videovigilancia, conectividad y redes.</p>
+      </div>
+    </div>
+  </section>
+
   <!-- CAMSCOPE -->
-  <section class="section section--dark">
-    <div class="container feature feature--reverse">
+  <section class="section">
+    <div class="container feature">
       <div>
         <p class="eyebrow">Software de desarrollo propio</p>
         <h2>CamScope</h2>
@@ -82,66 +118,33 @@ const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month:
           Centraliza la gestión de cámaras, parlantes y accesos en grandes organizaciones, de
           manera simple e intuitiva.
         </p>
-        <a class="btn btn--light" href={withBase("/camscope/")}>Conocer CamScope <Icon name="arrow" size={18} /></a>
+        <a class="btn btn--solid" href={withBase('/camscope/')}>Conocer CamScope</a>
       </div>
-      <div class="feature__media feature__media--dark" aria-hidden="true"><Icon name="server" size={54} /></div>
+      <div class="feature__media" aria-hidden="true"><Icon name="server" size={64} /></div>
     </div>
   </section>
 
   <!-- INDUSTRIAS -->
   <section class="section section--surface">
-    <div class="container">
-      <p class="eyebrow center">Trabajamos con todas las industrias</p>
-      <h2 class="center">Soluciones a la medida de cada sector</h2>
-      <div class="grid grid--3" style="margin-top:2.5rem">
+    <div class="container industrias">
+      <div class="industrias__head">
+        <h2>Trabajamos con<br /><strong>todas las industrias</strong></h2>
+      </div>
+      <div class="industrias__list">
         {industrias.map((i) => (
-          <div class="card">
-            <span class="card__icon"><Icon name="shield" /></span>
-            <h3>{i.titulo}</h3>
-            <p>{i.resumen}</p>
+          <div class="card industrias__item">
+            <span class="card__icon"><Icon name="shield" size={44} /></span>
+            <div>
+              <h3>{i.titulo}</h3>
+              <p>{i.resumen}</p>
+            </div>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- DATA CENTER CAPITALINAS -->
-  <section class="section">
-    <div class="container feature">
-      <div class="feature__media" aria-hidden="true"><Icon name="server" size={54} /></div>
-      <div>
-        <p class="eyebrow">Unidad de negocio</p>
-        <h2>Datacenter Capitalinas</h2>
-        <p class="lead">
-          Infraestructura robusta y servicios avanzados de almacenamiento, conectividad y
-          seguridad digital, diseñados para operaciones críticas con máxima eficiencia y escalabilidad.
-        </p>
-        <ul class="checks">
-          <li><Icon name="check" size={18} /> Alojamiento / Housing</li>
-          <li><Icon name="check" size={18} /> Entorno controlado</li>
-          <li><Icon name="check" size={18} /> Seguridad</li>
-          <li><Icon name="check" size={18} /> Energía ininterrumpida</li>
-        </ul>
-        <a class="card__more" href={withBase("/data-center/")}>Ver Data Center <Icon name="arrow" size={16} /></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- CASO DE ÉXITO -->
-  <section class="section section--dark">
-    <div class="container center measure mx-auto">
-      <p class="eyebrow">Caso de éxito</p>
-      <h2>Distrito Capitalinas · Córdoba</h2>
-      <p class="lead">
-        Desarrollamos redes sobre las que desplegamos sistemas que ven, escuchan, hablan y piensan.
-        Descargá el informe completo con todos los detalles de este caso emblemático en el distrito
-        corporativo más importante de la ciudad.
-      </p>
-      <a class="btn" href={withBase("/contacto/")}>Descargar informe <Icon name="download" size={18} /></a>
-    </div>
-  </section>
-
-  <!-- ÚLTIMAS NOVEDADES -->
+  <!-- NOVEDADES -->
   {posts.length > 0 && (
     <section class="section">
       <div class="container">
@@ -149,11 +152,11 @@ const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month:
         <h2 class="center">Novedades y noticias</h2>
         <div class="grid grid--3" style="margin-top:2.5rem">
           {posts.map((post) => (
-            <a class="card card--link" href={withBase(`/novedades/${post.id}/`)}>
-              <p class="card__date">{fmt(post.data.pubDate)}</p>
-              <h3>{post.data.title}</h3>
+            <a class="card card--link" href={withBase(`/novedades/${post.id}/`)} style="text-align:left; align-items:flex-start">
+              <p class="post-date">{fmt(post.data.pubDate)}</p>
+              <h3 style="font-size:1.25rem">{post.data.title}</h3>
               {post.data.description && <p>{post.data.description}</p>}
-              <span class="card__more">Leer más <Icon name="arrow" size={16} /></span>
+              <span class="btn" style="margin-top:1.25rem">Leer más</span>
             </a>
           ))}
         </div>
@@ -161,47 +164,68 @@ const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month:
     </section>
   )}
 
-  <!-- CTA ASESOR -->
-  <section class="section--tight cta">
+  <!-- CTA -->
+  <section class="cta">
     <div class="container cta__inner">
-      <div>
-        <h2>Agendá una reunión con un asesor comercial</h2>
-        <p class="lead">¿Te gustaría entender si podemos ayudarte? Coordinemos una reunión con un especialista.</p>
-      </div>
-      <a class="btn btn--light" href={withBase("/contacto/")}>Coordinar reunión <Icon name="calendar" size={18} /></a>
+      <h2>Agendá una reunión con un asesor comercial</h2>
+      <p class="lead">¿Te gustaría entender si podemos ayudarte? Coordinemos una reunión con un especialista.</p>
+      <a class="btn btn--white" href={withBase('/contacto/')}>Coordinar reunión</a>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  .hero { background: radial-gradient(1200px 600px at 80% -10%, var(--navy-600), transparent 60%), linear-gradient(160deg, var(--navy-950), var(--navy-800)); color: var(--color-on-dark); }
-  .hero__inner { padding-block: clamp(3.5rem, 9vw, 7rem); max-width: 820px; }
-  .hero h1 { color: #fff; }
-  .hero__lead { font-size: 1.3rem; color: var(--color-on-dark-muted); max-width: 620px; }
-  .hero__cta { display: flex; gap: 0.85rem; flex-wrap: wrap; margin-top: 1.75rem; }
-  .partners { display: flex; flex-wrap: wrap; gap: 2rem; list-style: none; padding: 0; margin: 3rem 0 0; border-top: 1px solid rgba(255,255,255,0.12); padding-top: 1.5rem; }
-  .partners li { display: flex; flex-direction: column; line-height: 1.2; }
-  .partners strong { color: #fff; font-size: 1.15rem; letter-spacing: 0.05em; }
-  .partners span { color: var(--color-on-dark-muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; }
+  /* HERO */
+  .hero { background: #fff; }
+  .hero__inner { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; padding-block: clamp(2.5rem, 6vw, 5rem); }
+  .hero__graphic { color: var(--teal); display: flex; justify-content: center; }
+  .hero__graphic svg { width: min(100%, 400px); }
+  .hero__text h1 { color: var(--heading); }
+  .hero__text .lead { max-width: 30rem; }
+  .hero__cta { display: flex; gap: 0.9rem; flex-wrap: wrap; margin-top: 1.75rem; }
 
-  .feature { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 3rem; align-items: center; }
-  .feature--reverse .feature__media { order: 2; }
-  .feature__media { background: linear-gradient(150deg, var(--color-surface-2), #fff); border: 1px solid var(--color-border); border-radius: var(--radius-lg); min-height: 260px; display: grid; place-items: center; color: var(--color-accent-dark); }
-  .feature__media--dark { background: linear-gradient(150deg, var(--navy-800), var(--navy-950)); border-color: rgba(255,255,255,0.1); color: var(--color-accent); }
-  .checks { list-style: none; padding: 0; margin: 1.25rem 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem 1rem; }
-  .checks li { display: flex; align-items: center; gap: 0.5rem; font-weight: 500; }
-  .section--dark .checks li { color: var(--color-on-dark); }
-  .checks svg { color: var(--color-accent); flex: none; }
-  .card__date { color: var(--color-accent-dark); font-size: 0.85rem; font-weight: 600; margin: 0 0 0.35rem; text-transform: capitalize; }
+  /* CASO DE ÉXITO */
+  .exito { position: relative; background: linear-gradient(120deg, #0b6a6c, #0f8f86); color: #fff; overflow: hidden; }
+  .exito__overlay { position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M0 60L60 0' stroke='%23ffffff' stroke-opacity='0.05' stroke-width='1'/%3E%3C/svg%3E"); opacity: 0.6; }
+  .exito__inner { position: relative; text-align: center; padding-block: clamp(3.5rem, 8vw, 6rem); }
+  .exito h2 { color: #fff; font-weight: 300; }
+  .exito__card { background: rgba(255,255,255,0.12); backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.18); border-radius: var(--radius); padding: 2.5rem; max-width: 620px; margin: 2.5rem auto 0; }
+  .exito__card .eyebrow { color: #cdeae6; }
+  .exito__card h3 { color: #fff; font-size: 1.8rem; margin-bottom: 1.5rem; }
+  .exito__desc { color: #e5f3f1; margin-top: 1.5rem; margin-bottom: 0; }
 
-  .cta { background: var(--color-accent); color: #fff; }
-  .cta__inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; padding-block: 2.5rem; }
-  .cta h2 { color: #fff; margin-bottom: 0.25rem; }
-  .cta .lead { color: rgba(255,255,255,0.9); margin: 0; }
+  /* PARTNERS */
+  .partners { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+  .partners__list { display: grid; gap: 1.5rem; }
+  .partners__item { text-align: left; align-items: flex-start; padding: 1.75rem 2rem; }
+  .partners__item h3 { margin-bottom: 0.25rem; }
+  .partners__item p { color: var(--teal); }
 
-  @media (max-width: 820px) {
-    .feature { grid-template-columns: 1fr; gap: 1.75rem; }
-    .feature--reverse .feature__media { order: 0; }
-    .checks { grid-template-columns: 1fr; }
+  /* FEATURE (CamScope) */
+  .feature { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3rem; align-items: center; }
+  .feature__media { background: var(--teal-tint); border-radius: var(--radius-lg); min-height: 260px; display: grid; place-items: center; color: var(--teal); }
+
+  /* INDUSTRIAS */
+  .industrias { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 3rem; align-items: start; }
+  .industrias__head { position: sticky; top: 110px; }
+  .industrias__list { display: grid; gap: 1.5rem; }
+  .industrias__item { flex-direction: row; text-align: left; align-items: flex-start; gap: 1.5rem; padding: 2rem; }
+  .industrias__item .card__icon { margin-bottom: 0; flex: none; }
+
+  .post-date { color: var(--teal); font-weight: 500; font-size: 0.85rem; margin: 0 0 0.35rem; text-transform: capitalize; }
+
+  /* CTA */
+  .cta { background: var(--teal); color: #fff; }
+  .cta__inner { text-align: center; padding-block: clamp(3rem, 6vw, 4.5rem); }
+  .cta h2 { color: #fff; }
+  .cta .lead { color: rgba(255,255,255,0.9); max-width: 620px; margin-inline: auto; }
+  .cta .btn { margin-top: 1.5rem; }
+
+  @media (max-width: 900px) {
+    .hero__inner, .partners, .feature, .industrias { grid-template-columns: 1fr; }
+    .hero__graphic { order: -1; }
+    .partners__head { order: -1; }
+    .industrias__head { position: static; }
+    .industrias__item { flex-direction: column; text-align: center; align-items: center; }
   }
 </style>
