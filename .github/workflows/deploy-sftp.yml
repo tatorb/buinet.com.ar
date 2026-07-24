@@ -63,11 +63,11 @@ jobs:
             set net:max-retries 2;
             set net:timeout 25;
             open -u \"$SSH_USER\",dummy sftp://$HOST:$PORT;
-            echo '--- Ruta de inicio del usuario SFTP (pwd) ---';
-            pwd;
-            echo '--- Contenido de esa carpeta (debería verse wp-content) ---';
-            cls -l;
-            echo '--- Subiendo a: '$DEST' ---';
-            mirror -R --no-perms --parallel=2 --verbose --exclude-glob wp-content ./dist/ \"$DEST\";
+            echo '=== DIAGNOSTICO (no sube nada todavia) ===';
+            echo '--- pwd (login dir) ---'; pwd;
+            echo '--- ls login dir ---'; cls -l;
+            echo '--- ls buinetweb/ (web root del dominio) ---'; cls -l buinetweb/;
+            echo '--- ls buinetweb/public_html/ ---'; cls -l buinetweb/public_html/;
+            echo '--- ls buinetweb/public_html/wp-content/ ---'; cls -l buinetweb/public_html/wp-content/;
             bye;
           "
