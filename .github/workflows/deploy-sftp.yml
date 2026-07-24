@@ -32,8 +32,8 @@ jobs:
       # Build de PRODUCCIÓN: base "/" y dominio real.
       - run: npm run build
 
-      - name: Instalar lftp
-        run: sudo apt-get update && sudo apt-get install -y lftp
+      - name: Instalar lftp y sshpass
+        run: sudo apt-get update && sudo apt-get install -y lftp sshpass
 
       - name: Subir dist/ por SFTP (respeta wp-content)
         env:
@@ -44,16 +44,20 @@ jobs:
         run: |
           set -euo pipefail
           PORT="${SSH_PORT:-22}"
-          # mirror -R = subir (local -> remoto). SIN --delete en esta etapa (no destructivo).
-          # --exclude-glob wp-content* protege las imágenes ya subidas.
+          # Limpia el host por si vino con esquema (http://, sftp://) o ruta.
+          HOST="$SSH_HOST"
+          HOST="${HOST##*://}"   # quita esquema
+          HOST="${HOST%%/*}"     # quita cualquier /ruta
+          # sshpass pasa la contraseña a ssh (lftp+sftp por sí solo no puede).
+          export SSHPASS="$SSH_PASSWORD"
+          # mirror -R = subir (local -> remoto). SIN --delete (no destructivo).
+          # --exclude-glob wp-content protege las imágenes ya subidas.
           lftp -c "
             set sftp:auto-confirm yes;
+            set sftp:connect-program 'sshpass -e ssh -a -x -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null';
             set net:max-retries 2;
             set net:timeout 25;
-            open -u \"$SSH_USER\",\"$SSH_PASSWORD\" sftp://$SSH_HOST:$PORT;
-            mirror -R --parallel=4 --verbose \
-              --exclude-glob wp-content \
-              --exclude-glob wp-content/ \
-              ./dist/ /home/;
+            open -u \"$SSH_USER\",dummy sftp://$HOST:$PORT;
+            mirror -R --parallel=2 --verbose --exclude-glob wp-content ./dist/ /home/;
             bye;
           "
