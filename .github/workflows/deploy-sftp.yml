@@ -15,6 +15,12 @@ name: Deploy a producción (SFTP)
 
 on:
   workflow_dispatch:
+  push:
+    branches: [claude/buinet-wordpress-migration-cwo0m4, main]
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - '.github/**'
 
 permissions:
   contents: read
