@@ -67,7 +67,8 @@ jobs:
 
           # 2) Deploy real al docroot. SIN --delete (no destructivo).
           #    --no-perms evita chmod; --exclude-glob wp-content protege las imágenes.
-          # Diagnóstico: dónde están las imágenes realmente
-          lftp -c "$OPEN echo '=== ls '$DEST' ==='; cls -l \"$DEST\"/; echo '=== ls '$DEST'/wp-content ==='; cls -l \"$DEST\"/wp-content/ || true; echo '=== ls '$DEST'/wp-content/uploads ==='; cls \"$DEST\"/wp-content/uploads/ || true; echo '=== ls '$DEST'/wp-content/uploads/2024/07 (logo) ==='; cls \"$DEST\"/wp-content/uploads/2024/07/ 2>/dev/null || true; bye;" || true
+          # Corrige el nombre de la carpeta de medios: 'upload' (singular) -> 'uploads'
+          # (así coinciden las rutas de WordPress /wp-content/uploads/...). Idempotente.
+          lftp -c "$OPEN mv \"$DEST\"/wp-content/upload \"$DEST\"/wp-content/uploads; bye;" || true
 
           lftp -c "$OPEN echo '--- Subiendo el sitio ---'; mirror -R --no-perms --parallel=2 --verbose --exclude-glob wp-content ./dist/ \"$DEST\"; bye;"
