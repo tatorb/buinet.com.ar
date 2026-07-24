@@ -67,4 +67,7 @@ jobs:
 
           # 2) Deploy real al docroot. SIN --delete (no destructivo).
           #    --no-perms evita chmod; --exclude-glob wp-content protege las imágenes.
-          lftp -c "$OPEN echo '--- Contenido de '$DEST' (debe tener wp-content) ---'; cls -l \"$DEST\"/; echo '--- Subiendo el sitio ---'; mirror -R --no-perms --parallel=2 --verbose --exclude-glob wp-content ./dist/ \"$DEST\"; bye;"
+          # Diagnóstico: dónde están las imágenes realmente
+          lftp -c "$OPEN echo '=== ls '$DEST' ==='; cls -l \"$DEST\"/; echo '=== ls '$DEST'/wp-content ==='; cls -l \"$DEST\"/wp-content/ || true; echo '=== ls '$DEST'/wp-content/uploads ==='; cls \"$DEST\"/wp-content/uploads/ || true; echo '=== ls '$DEST'/wp-content/uploads/2024/07 (logo) ==='; cls \"$DEST\"/wp-content/uploads/2024/07/ 2>/dev/null || true; bye;" || true
+
+          lftp -c "$OPEN echo '--- Subiendo el sitio ---'; mirror -R --no-perms --parallel=2 --verbose --exclude-glob wp-content ./dist/ \"$DEST\"; bye;"
