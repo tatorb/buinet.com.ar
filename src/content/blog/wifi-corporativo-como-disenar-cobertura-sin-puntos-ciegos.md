@@ -1,6 +1,7 @@
 ---
 title: "Wifi corporativo: cómo diseñar cobertura sin puntos ciegos"
-description: "El wifi corporativo se suele pensar mal desde el principio. La empresa compra un router, funciona los primeros meses, aparecen zonas donde no llega, se suma un"
+description: "El wifi corporativo se suele pensar mal desde el principio. La empresa compra un router, funciona los primeros meses, aparecen zonas donde no llega, se suma un extensor…"
+heroImage: "/wp-content/uploads/2024/09/1366_2000.jpg"
 pubDate: 2026-07-13
 author: "Building Networks"
 draft: false

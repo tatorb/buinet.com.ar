@@ -6,7 +6,7 @@ import { glob } from 'astro/loaders';
 // una sola vez a partir del dump de la DB salvada.
 const blog = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/blog' }),
-  schema: ({ image }) =>
+  schema: () =>
     z.object({
       title: z.string(),
       description: z.string().optional(),
@@ -15,8 +15,8 @@ const blog = defineCollection({
       author: z.string().default('Building Networks'),
       category: z.string().optional(),
       tags: z.array(z.string()).default([]),
-      // Imagen destacada (ruta relativa a la carpeta del post o URL).
-      heroImage: image().optional(),
+      // Imagen destacada (URL servida desde /wp-content/uploads del server).
+      heroImage: z.string().optional(),
       draft: z.boolean().default(false),
     }),
 });

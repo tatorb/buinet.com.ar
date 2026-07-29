@@ -1,6 +1,7 @@
 ---
 title: "Edge Computing: Oportunidades para Empresas en Córdoba"
-description: "El avance del edge computing está transformando la manera en que las empresas gestionan su infraestructura tecnológica. Si bien el procesamiento en el borde per"
+description: "El avance del edge computing está transformando la manera en que las empresas gestionan su infraestructura tecnológica. Si bien el procesamiento en el borde permite…"
+heroImage: "/wp-content/uploads/2025/03/PORTADA-EDGE-COMPUTING-100.jpg"
 pubDate: 2025-03-09
 author: "Building Networks"
 draft: false

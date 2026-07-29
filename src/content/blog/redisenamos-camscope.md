@@ -1,6 +1,7 @@
 ---
 title: "Rediseñamos CamScope"
-description: "Más sólido, más claro, más preparado para lo que viene. En Building Networks llevamos más de una década desarrollando e integrando soluciones tecnológicas de al"
+description: "Más sólido, más claro, más preparado para lo que viene."
+heroImage: "/wp-content/uploads/2024/07/A5.jpg"
 pubDate: 2025-06-05
 author: "Building Networks"
 draft: false

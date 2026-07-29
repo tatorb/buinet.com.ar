@@ -1,6 +1,7 @@
 ---
 title: "¿Qué es una Red Convergente y por qué es esencial para las empresas modernas?"
-description: "¿Qué es una Red Convergente y por qué es esencial para las empresas modernas? En un mundo cada vez más digitalizado, las empresas enfrentan el desafío de gestio"
+description: "¿Qué es una Red Convergente y por qué es esencial para las empresas modernas?"
+heroImage: "/wp-content/uploads/2024/11/PORTADA-RED-CONVERGENTE-100.jpg"
 pubDate: 2024-11-19
 author: "Building Networks"
 draft: false

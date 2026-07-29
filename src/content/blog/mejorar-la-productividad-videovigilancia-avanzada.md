@@ -1,6 +1,7 @@
 ---
 title: "Mejorar la productividad con sistemas de videovigilancia inteligente"
-description: "Un nuevo rol para la videovigilancia industrial En la industria moderna, la productividad ya no depende solo de la velocidad de las máquinas, sino de la capacid"
+description: "Un nuevo rol para la videovigilancia industrial"
+heroImage: "/wp-content/uploads/2025/01/Fondo-AXIS-100.jpg"
 pubDate: 2025-11-04
 author: "Building Networks"
 draft: false

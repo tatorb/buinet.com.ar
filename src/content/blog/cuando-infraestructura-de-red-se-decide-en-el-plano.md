@@ -1,6 +1,7 @@
 ---
 title: "Por qué la infraestructura de red se decide en el plano, no cuando el edificio está terminado"
-description: "La infraestructura de red de un edificio corporativo o industrial se decide mejor cuando todavía está en planos. Es el momento en que cada decisión es reversibl"
+description: "La infraestructura de red de un edificio corporativo o industrial se decide mejor cuando todavía está en planos. Es el momento en que cada decisión es reversible, cada…"
+heroImage: "/wp-content/uploads/2024/07/A4.jpg"
 pubDate: 2026-06-02
 author: "Building Networks"
 draft: false

@@ -1,6 +1,7 @@
 ---
 title: "Cableado estructurado: por qué define la vida útil de tu red"
-description: "De todas las capas de una infraestructura de red/queesunaredconvergenteyporqueesesencialhoyendia/, hay una que la empresa va a heredar tal como se instaló duran"
+description: "De todas las capas de una infraestructura de red, hay una que la empresa va a heredar tal como se instaló durante los próximos diez o quince años: el cableado. Los…"
+heroImage: "/wp-content/uploads/2024/07/A4.jpg"
 pubDate: 2026-07-13
 author: "Building Networks"
 draft: false

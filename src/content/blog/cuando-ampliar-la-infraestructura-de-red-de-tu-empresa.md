@@ -1,6 +1,7 @@
 ---
 title: "Cuándo es el momento real de ampliar la infraestructura de red de tu empresa"
-description: "La infraestructura de red de una empresa rara vez se amplía porque algo dejó de funcionar. Se amplía porque aparece una necesidad concreta que obliga a moverse."
+description: "La infraestructura de red de una empresa rara vez se amplía porque algo dejó de funcionar. Se amplía porque aparece una necesidad concreta que obliga a moverse. Una…"
+heroImage: "/wp-content/uploads/2024/07/A4.jpg"
 pubDate: 2026-06-04
 author: "Building Networks"
 draft: false

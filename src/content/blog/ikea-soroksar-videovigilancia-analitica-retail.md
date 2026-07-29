@@ -1,6 +1,7 @@
 ---
 title: "Seguridad y analítica que transforman el retail"
-description: "Un nuevo estándar para el retail En Budapest, la tienda IKEA Soroksár enfrentaba un desafío compartido por miles de minoristas: ¿cómo proteger activos y persona"
+description: "Un nuevo estándar para el retail"
+heroImage: "/wp-content/uploads/2024/07/Operador-Seguridad.jpg"
 pubDate: 2025-09-23
 author: "Building Networks"
 draft: false

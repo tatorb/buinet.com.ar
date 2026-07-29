@@ -1,6 +1,7 @@
 ---
 title: "Monitoreo de red: cómo saber qué pasa antes de que falle"
-description: "La mayoría de las empresas se entera de que la red anda mal cuando alguien se queja. Un usuario levanta la mano en una reunión porque no puede compartir pantall"
+description: "La mayoría de las empresas se entera de que la red anda mal cuando alguien se queja. Un usuario levanta la mano en una reunión porque no puede compartir pantalla. El…"
+heroImage: "/wp-content/uploads/2024/09/1366_2000.jpg"
 pubDate: 2026-07-13
 author: "Building Networks"
 draft: false

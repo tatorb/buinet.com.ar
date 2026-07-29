@@ -1,6 +1,7 @@
 ---
 title: "Cámaras IP para prevención de accidentes y control de calidad"
-description: "El desafío de la seguridad y la calidad En toda planta industrial conviven dos prioridades: mantener la producción en marcha y proteger la vida de los trabajado"
+description: "El desafío de la seguridad y la calidad"
+heroImage: "/wp-content/uploads/2025/01/Fondo-AXIS-100.jpg"
 pubDate: 2025-09-17
 author: "Building Networks"
 draft: false

@@ -1,6 +1,7 @@
 ---
 title: "Mudanza e Infraestructura de red ¿Cómo conviene encararla?"
-description: "Una mudanza de empresa es una de las pocas oportunidades reales para mejorar la infraestructura de red sin que eso implique una obra aparte. Cuando una compañía"
+description: "Una mudanza de empresa es una de las pocas oportunidades reales para mejorar la infraestructura de red sin que eso implique una obra aparte. Cuando una compañía se muda…"
+heroImage: "/wp-content/uploads/2024/07/A4.jpg"
 pubDate: 2026-06-02
 author: "Building Networks"
 draft: false

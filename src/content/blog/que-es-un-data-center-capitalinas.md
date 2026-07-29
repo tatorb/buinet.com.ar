@@ -1,6 +1,7 @@
 ---
 title: "¿Qué es un Data Center?"
-description: "...y por qué el Centro de Datos de Capitalinas es una gran opción en Córdoba? Imaginá entrar a una segura en un ambiente controlado, monitorizado y con temperat"
+description: "...y por qué el Centro de Datos de Capitalinas es una gran opción en Córdoba?"
+heroImage: "/wp-content/uploads/2024/07/Datacenter-Hero.jpg"
 pubDate: 2025-05-20
 author: "Building Networks"
 draft: false

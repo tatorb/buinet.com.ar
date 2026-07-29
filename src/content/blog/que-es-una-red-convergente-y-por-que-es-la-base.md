@@ -1,6 +1,7 @@
 ---
 title: "¿Qué es una red convergente y por qué es la base de todo?"
-description: "En un mundo cada vez más digitalizado, las empresas enfrentan el desafío de gestionar múltiples sistemas tecnológicos para garantizar su eficiencia y seguridad."
+description: "En un mundo cada vez más digitalizado, las empresas enfrentan el desafío de gestionar múltiples sistemas tecnológicos para garantizar su eficiencia y seguridad. La…"
+heroImage: "/wp-content/uploads/2024/11/PORTADA-RED-CONVERGENTE-100.jpg"
 pubDate: 2026-05-28
 author: "Building Networks"
 draft: false

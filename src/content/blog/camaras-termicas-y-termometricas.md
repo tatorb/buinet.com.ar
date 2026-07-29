@@ -1,6 +1,7 @@
 ---
 title: "Cámaras térmicas y termométricas: detectar antes para evitar fallas"
-description: "Cuando la temperatura cambia, algo está pasando. La diferencia no está en “si” lo vamos a ver, sino en cuándo lo detectamos. En entornos críticos —desde un perí"
+description: "Cuando la temperatura cambia, algo está pasando. La diferencia no está en “si” lo vamos a ver, sino en cuándo lo detectamos."
+heroImage: "/wp-content/uploads/2024/10/PORTADA-SEGURIDAD-PERIMETROS-100.jpg"
 pubDate: 2026-02-19
 author: "Building Networks"
 draft: false

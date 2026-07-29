@@ -1,6 +1,7 @@
 ---
 title: "Mejorar la experiencia del cliente con sistema de video"
-description: "La nueva expectativa del cliente en entornos de servicio La experiencia del cliente ha cambiado. Hoy, un consumidor no solo busca un producto o servicio, sino c"
+description: "La nueva expectativa del cliente en entornos de servicio"
+heroImage: "/wp-content/uploads/2025/01/Fondo-AXIS-100.jpg"
 pubDate: 2025-11-11
 author: "Building Networks"
 draft: false

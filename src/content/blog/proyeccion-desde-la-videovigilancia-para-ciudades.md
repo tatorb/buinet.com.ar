@@ -1,6 +1,7 @@
 ---
 title: "Proyección desde la videovigilancia para ciudades"
-description: "Proyectar una ciudad segura desde el inicio El caso de la Whitehill & Bordon Regeneration Company se ha convertido en un ejemplo de cómo planificar la seguridad"
+description: "Proyectar una ciudad segura desde el inicio"
+heroImage: "/wp-content/uploads/2025/01/Fondo-AXIS-100.jpg"
 pubDate: 2025-09-04
 author: "Building Networks"
 draft: false

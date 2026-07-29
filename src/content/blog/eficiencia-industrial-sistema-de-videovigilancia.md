@@ -1,6 +1,7 @@
 ---
 title: "La receta de Nestlé para la seguridad y eficiencia industrial con sistema de videovigilancia"
-description: "La nueva era de la seguridad industrial En la industria moderna, la seguridad ya no es solo una medida de protección: es una palanca de eficiencia. Desde fabric"
+description: "La nueva era de la seguridad industrial"
+heroImage: "/wp-content/uploads/2025/01/Fondo-AXIS-100.jpg"
 pubDate: 2025-11-11
 author: "Building Networks"
 draft: false

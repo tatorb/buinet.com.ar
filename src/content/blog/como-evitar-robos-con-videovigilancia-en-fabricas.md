@@ -1,6 +1,7 @@
 ---
 title: "¿Cómo evitar robos con videovigilancia en fábricas?"
-description: "Cuando la seguridad industrial se vuelve una prioridad operativa En Argentina, la preocupación por la seguridad industrial crece año a año. Según la Confederaci"
+description: "Cuando la seguridad industrial se vuelve una prioridad operativa"
+heroImage: "/wp-content/uploads/2024/07/Operador-Seguridad.jpg"
 pubDate: 2025-10-30
 author: "Building Networks"
 draft: false

@@ -1,6 +1,7 @@
 ---
 title: "Actualización de sistemas de videovigilancia IP en perímetros: el camino a un enfoque térmico, visual y sonoro"
-description: "En los sistemas heredados suelen convivir tecnologías de distintas generaciones, adaptadas de manera ingeniosa a las necesidades puntuales del momento en que fu"
+description: "En los sistemas heredados suelen convivir tecnologías de distintas generaciones, adaptadas de manera ingeniosa a las necesidades puntuales del momento en que fueron…"
+heroImage: "/wp-content/uploads/2024/10/PORTADA-SEGURIDAD-PERIMETROS-100.jpg"
 pubDate: 2025-07-10
 author: "Building Networks"
 draft: false

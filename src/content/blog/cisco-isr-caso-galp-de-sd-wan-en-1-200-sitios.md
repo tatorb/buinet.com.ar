@@ -1,6 +1,7 @@
 ---
 title: "Cisco ISR C1111X-8P: cómo Galp estandarizó la conectividad en 1.200 sitios"
-description: "Las redes de una organización suelen “funcionar” hasta que el negocio las exige: más aplicaciones, más dispositivos, más servicios al cliente y más necesidad de"
+description: "Las redes de una organización suelen “funcionar” hasta que el negocio las exige: más aplicaciones, más dispositivos, más servicios al cliente y más necesidad de…"
+heroImage: "/wp-content/uploads/2024/09/1366_2000.jpg"
 pubDate: 2026-02-24
 author: "Building Networks"
 draft: false
