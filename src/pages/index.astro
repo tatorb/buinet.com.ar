@@ -52,7 +52,7 @@ const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month:
     <div class="container">
       <div class="grid grid--3">
         <div class="card">
-          <span class="card__icon"><Icon name="network" size={54} /></span>
+          <span class="card__icon"><Icon name="network" size={44} /></span>
           <h3>Tus Sistemas y Procesos</h3>
           <p>
             Diseñamos y construimos redes convergentes donde pueden vivir tus sistemas y procesos,
@@ -62,7 +62,7 @@ const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month:
         </div>
         {servicios.map((s) => (
           <a class="card card--link" href={withBase(s.href)}>
-            <span class="card__icon"><Icon name={s.icono} size={54} /></span>
+            <span class="card__icon"><Icon name={s.icono} size={44} /></span>
             <h3>{s.titulo}</h3>
             <p>{s.resumen}</p>
             <span class="btn">{s.titulo}</span>
@@ -124,7 +124,7 @@ const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month:
         </p>
         <a class="btn btn--solid" href={withBase('/camscope/')}>Conocer CamScope</a>
       </div>
-      <div class="feature__media" aria-hidden="true"><Icon name="server" size={64} /></div>
+      <div class="feature__media" aria-hidden="true"><Icon name="server" size={52} /></div>
     </div>
   </section>
 
@@ -137,7 +137,7 @@ const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month:
       <div class="industrias__list">
         {industrias.map((i) => (
           <div class="card industrias__item">
-            <span class="card__icon"><Icon name="shield" size={44} /></span>
+            <span class="card__icon"><Icon name="shield" size={36} /></span>
             <div>
               <h3>{i.titulo}</h3>
               <p>{i.resumen}</p>
@@ -181,9 +181,9 @@ const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month:
 <style>
   /* HERO */
   .hero { background: #fff; }
-  .hero__inner { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; padding-block: clamp(2.5rem, 6vw, 5rem); }
+  .hero__inner { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: center; padding-block: clamp(2rem, 5vw, 3.8rem); }
   .hero__graphic { color: var(--teal); display: flex; justify-content: center; }
-  .hero__graphic svg { width: min(100%, 400px); }
+  .hero__graphic svg { width: min(100%, 330px); }
   .hero__text h1 { color: var(--heading); }
   .hero__text .lead { max-width: 30rem; }
   .hero__cta { display: flex; gap: 0.9rem; flex-wrap: wrap; margin-top: 1.75rem; }
@@ -191,18 +191,18 @@ const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month:
   /* CASO DE ÉXITO */
   .exito { position: relative; background: linear-gradient(120deg, #0b6a6c, #0f8f86); color: #fff; overflow: hidden; }
   .exito__overlay { position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M0 60L60 0' stroke='%23ffffff' stroke-opacity='0.05' stroke-width='1'/%3E%3C/svg%3E"); opacity: 0.6; }
-  .exito__inner { position: relative; text-align: center; padding-block: clamp(3.5rem, 8vw, 6rem); }
+  .exito__inner { position: relative; text-align: center; padding-block: clamp(2.75rem, 6vw, 4.6rem); }
   .exito h2 { color: #fff; font-weight: 300; }
-  .exito__card { background: rgba(255,255,255,0.12); backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.18); border-radius: var(--radius); padding: 2.5rem; max-width: 620px; margin: 2.5rem auto 0; }
+  .exito__card { background: rgba(255,255,255,0.12); backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.18); border-radius: var(--radius); padding: 2rem; max-width: 540px; margin: 2rem auto 0; }
   .exito__card .eyebrow { color: #cdeae6; }
   .exito__card h3 { color: #fff; font-size: 1.8rem; margin-bottom: 1.5rem; }
   .exito__desc { color: #e5f3f1; margin-top: 1.5rem; margin-bottom: 0; }
 
   /* PARTNERS */
-  .partners { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+  .partners { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: center; }
   .partners__list { display: grid; gap: 1.5rem; }
   .partners__item { flex-direction: row; text-align: left; align-items: center; gap: 1.75rem; padding: 1.75rem 2rem; }
-  .partners__logo { width: 120px; height: auto; max-height: 80px; object-fit: contain; flex: none; }
+  .partners__logo { width: 100px; height: auto; max-height: 66px; object-fit: contain; flex: none; }
   .partners__item h3 { margin-bottom: 0.1rem; font-size: 1.25rem; }
   .partners__role { color: var(--teal); margin-bottom: 0.6rem; }
   .partners__item p { color: var(--muted); }
@@ -210,7 +210,7 @@ const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month:
 
   /* FEATURE (CamScope) */
   .feature { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3rem; align-items: center; }
-  .feature__media { background: var(--teal-tint); border-radius: var(--radius-lg); min-height: 260px; display: grid; place-items: center; color: var(--teal); }
+  .feature__media { background: var(--teal-tint); border-radius: var(--radius-lg); min-height: 210px; display: grid; place-items: center; color: var(--teal); }
 
   /* INDUSTRIAS */
   .industrias { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 3rem; align-items: start; }
@@ -223,7 +223,7 @@ const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month:
 
   /* CTA */
   .cta { background: var(--teal); color: #fff; }
-  .cta__inner { text-align: center; padding-block: clamp(3rem, 6vw, 4.5rem); }
+  .cta__inner { text-align: center; padding-block: clamp(2.5rem, 5vw, 3.6rem); }
   .cta h2 { color: #fff; }
   .cta .lead { color: rgba(255,255,255,0.9); max-width: 620px; margin-inline: auto; }
   .cta .btn { margin-top: 1.5rem; }

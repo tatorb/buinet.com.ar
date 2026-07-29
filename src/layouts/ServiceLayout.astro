@@ -17,7 +17,7 @@ const otros = servicios.filter((s) => s.slug !== slug);
 <BaseLayout title={title} description={description ?? resumen}>
   <section class="svc-hero">
     <div class="container svc-hero__inner">
-      <span class="svc-hero__icon"><Icon name={icono} size={34} /></span>
+      <span class="svc-hero__icon"><Icon name={icono} size={26} /></span>
       <div>
         <p class="eyebrow">Servicios y productos</p>
         <h1>{title}</h1>
@@ -50,11 +50,11 @@ const otros = servicios.filter((s) => s.slug !== slug);
 
 <style>
   .svc-hero { background: linear-gradient(160deg, var(--navy-950), var(--navy-800)); color: var(--color-on-dark); }
-  .svc-hero__inner { display: flex; gap: 1.5rem; align-items: flex-start; padding-block: clamp(2.5rem, 6vw, 4.5rem); }
+  .svc-hero__inner { display: flex; gap: 1.25rem; align-items: flex-start; padding-block: clamp(2rem, 4.5vw, 3.4rem); }
   .svc-hero h1 { color: #fff; }
-  .svc-hero__icon { flex: none; width: 68px; height: 68px; border-radius: 16px; display: grid; place-items: center; background: rgba(22,165,224,0.15); color: var(--color-accent); border: 1px solid rgba(22,165,224,0.3); }
-  .svc-body { display: grid; grid-template-columns: 1.7fr 1fr; gap: 3rem; align-items: start; }
-  .prose { max-width: 68ch; }
+  .svc-hero__icon { flex: none; width: 54px; height: 54px; border-radius: 13px; display: grid; place-items: center; background: rgba(255,255,255,0.12); color: #fff; border: 1px solid rgba(255,255,255,0.25); }
+  .svc-body { display: grid; grid-template-columns: 1.7fr 1fr; gap: 2.5rem; align-items: start; }
+  .prose { max-width: 62ch; }
   .prose :global(h2) { margin-top: 2rem; }
   .prose :global(ul) { padding-left: 1.2rem; }
   .prose :global(li) { margin-bottom: 0.4rem; }
