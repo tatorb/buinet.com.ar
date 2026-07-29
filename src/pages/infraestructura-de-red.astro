@@ -19,16 +19,19 @@ const momentos = [
     titulo: 'Mudanza',
     resumen: 'La mejor ventana para repensar la infraestructura, no solo trasladarla.',
     img: '/wp-content/uploads/2026/06/bloom-a4638219-2353-48a7-a58a-6c7ad56db8fa.jpg',
+    href: '/novedades/mudanza-e-infraestructura-de-red/',
   },
   {
     titulo: 'Ampliación',
     resumen: 'Cuando una necesidad puntual termina revelando el problema de fondo.',
     img: '/wp-content/uploads/2026/06/image-2.jpg',
+    href: '/novedades/cuando-ampliar-la-infraestructura-de-red-de-tu-empresa/',
   },
   {
     titulo: 'Construcción nueva',
     resumen: 'Las decisiones que se toman en el plano, no al final de la obra.',
     img: '/wp-content/uploads/2026/06/bloom-2e54147f-2adf-4b56-b403-27061aa6e396.jpg',
+    href: '/novedades/cuando-infraestructura-de-red-se-decide-en-el-plano/',
   },
 ];
 
@@ -158,11 +161,12 @@ const faqs = [
       </div>
       <div class="grid grid--3" style="margin-top:2.5rem">
         {momentos.map((m) => (
-          <article class="card ir-momento">
+          <a class="card card--link ir-momento" href={withBase(m.href)}>
             <img class="ir-momento__img" src={m.img} alt={m.titulo} loading="lazy" />
             <h3>{m.titulo}</h3>
             <p>{m.resumen}</p>
-          </article>
+            <span class="ir-momento__more">Leer más <Icon name="arrow" size={16} /></span>
+          </a>
         ))}
       </div>
     </div>
@@ -180,7 +184,7 @@ const faqs = [
           años siguientes. Building Networks acompaña las cuatro, de principio a fin.
         </p>
       </div>
-      <div class="grid grid--3 ir-etapas" style="margin-top:2.5rem">
+      <div class="ir-etapas" style="margin-top:2.5rem">
         {etapas.map((e) => (
           <div class="card">
             <span class="card__icon"><Icon name={e.icono} size={40} /></span>
@@ -207,20 +211,25 @@ const faqs = [
 
   <!-- EL DIFERENCIAL: ALCANCE -->
   <section class="section">
-    <div class="container measure mx-auto ir-alcance">
-      <p class="eyebrow">El diferencial que importa</p>
-      <h2>Alcance</h2>
-      <p>
-        Una infraestructura de red no es una especialidad. Son muchas, trabajando juntas: cableado,
-        equipos activos, configuración, seguridad, energía, mantenimiento. La mayoría de los
-        problemas no aparece en el centro de una capa, sino en el borde donde una se conecta con
-        otra. Building Networks tiene alcance en todas. No depende de un solo saber ni de una sola
-        persona: es un equipo que cubre la infraestructura completa.
-      </p>
-      <p>
-        Esa diferencia no se ve el primer día. Se ve con el tiempo. El alcance es lo que permite que
-        la red funcione todo el tiempo, no casi siempre.
-      </p>
+    <div class="container ir-alcance">
+      <div class="ir-alcance__media">
+        <img src="/wp-content/uploads/2026/05/bloom-8217b559-69ab-49b9-bb8d-551b16585041.png" alt="Infraestructura de red desplegada por Building Networks" loading="lazy" />
+      </div>
+      <div class="ir-alcance__text">
+        <p class="eyebrow">El diferencial que importa</p>
+        <h2>Alcance</h2>
+        <p>
+          Una infraestructura de red no es una especialidad. Son muchas, trabajando juntas: cableado,
+          equipos activos, configuración, seguridad, energía, mantenimiento. La mayoría de los
+          problemas no aparece en el centro de una capa, sino en el borde donde una se conecta con
+          otra. Building Networks tiene alcance en todas. No depende de un solo saber ni de una sola
+          persona: es un equipo que cubre la infraestructura completa.
+        </p>
+        <p>
+          Esa diferencia no se ve el primer día. Se ve con el tiempo. El alcance es lo que permite que
+          la red funcione todo el tiempo, no casi siempre.
+        </p>
+      </div>
     </div>
   </section>
 
@@ -257,11 +266,13 @@ const faqs = [
       </div>
       <div class="grid grid--3" style="margin-top:2.5rem">
         {partners.map((p) => (
-          <div class="card">
-            <img class="ir-partner__logo" src={p.logo} alt={p.nombre} loading="lazy" />
-            <h3>{p.nombre}</h3>
-            <p class="ir-partner__role"><strong>{p.detalle}</strong></p>
-            <p>{p.resumen}</p>
+          <div class="card ir-partner">
+            <div class="ir-partner__logo-wrap">
+              <img src={p.logo} alt={p.nombre} loading="lazy" />
+            </div>
+            <h3 class="ir-partner__name">{p.nombre}</h3>
+            <p class="ir-partner__role">{p.detalle}</p>
+            <p class="ir-partner__desc">{p.resumen}</p>
           </div>
         ))}
       </div>
@@ -278,7 +289,6 @@ const faqs = [
         <p><a href={`mailto:${site.email}`}><strong>{site.email}</strong></a></p>
         <div class="ir-reunion__cta">
           <a class="btn btn--solid" href={withBase('/contacto/')}>Coordinar reunión</a>
-          <a class="btn" href={`https://wa.me/${site.phoneHref.replace('+', '')}`} target="_blank" rel="noopener">WhatsApp</a>
         </div>
       </div>
     </div>
@@ -286,7 +296,7 @@ const faqs = [
 
   <!-- FAQ -->
   <section class="section section--surface">
-    <div class="container measure mx-auto">
+    <div class="container">
       <div class="center">
         <p class="eyebrow">Preguntas frecuentes</p>
         <h2>Preguntas frecuentes</h2>
@@ -322,9 +332,12 @@ const faqs = [
   .ir-momento { padding: 0; overflow: hidden; text-align: left; align-items: stretch; }
   .ir-momento__img { width: 100%; height: 190px; object-fit: cover; }
   .ir-momento h3 { margin: 1.4rem 1.6rem 0.5rem; }
-  .ir-momento p { margin: 0 1.6rem 1.6rem; color: var(--muted); }
+  .ir-momento p { margin: 0 1.6rem 0.9rem; color: var(--muted); }
+  .ir-momento__more { display: inline-flex; align-items: center; gap: 0.4rem; margin: 0 1.6rem 1.6rem; margin-top: auto; color: var(--teal); font-weight: 500; font-size: 0.9rem; }
+  .ir-momento:hover .ir-momento__more { gap: 0.6rem; }
 
-  /* ETAPAS */
+  /* ETAPAS: 4 en una fila; 2x2 en pantallas medianas; 1 en angostas */
+  .ir-etapas { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.4rem; }
   .ir-etapas .card__icon { color: var(--teal); }
 
   /* CAMBIUM */
@@ -334,39 +347,50 @@ const faqs = [
   .ir-cambium__inner p { margin: 0; font-size: 1.05rem; color: var(--fg); }
 
   /* ALCANCE */
-  .ir-alcance p { font-size: 1.05rem; }
+  .ir-alcance { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 3rem; align-items: center; }
+  .ir-alcance__media img { width: 100%; height: 100%; max-height: 420px; object-fit: cover; border-radius: var(--radius-lg); }
+  .ir-alcance__text p { font-size: 1.05rem; }
 
   /* PRUEBA */
   .ir-prueba { background: linear-gradient(160deg, var(--teal), var(--teal-dark)); color: #fff; padding-block: clamp(2.75rem, 6vw, 4.6rem); }
   .ir-prueba h2 { color: #fff; }
   .ir-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
   .ir-stat { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); border-radius: var(--radius); padding: 1.6rem 1.4rem; text-align: center; }
-  .ir-stat__num { display: block; font-size: 2rem; font-weight: 600; color: #fff; line-height: 1.1; }
+  .ir-stat__num { display: block; font-size: 2rem; font-weight: 400; color: #fff; line-height: 1.1; }
   .ir-stat__label { display: block; margin-top: 0.5rem; color: rgba(255,255,255,0.85); font-size: 0.92rem; }
 
-  /* PARTNERS */
-  .ir-partner__logo { width: 120px; height: auto; max-height: 70px; object-fit: contain; margin-bottom: 1rem; }
-  .ir-partner__role { color: var(--teal); margin-bottom: 0.6rem; }
+  /* PARTNERS — filas alineadas a la misma altura en las 3 tarjetas */
+  .ir-partner { justify-content: flex-start; }
+  .ir-partner__logo-wrap { height: 90px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.3rem; }
+  .ir-partner__logo-wrap img { max-height: 76px; max-width: 160px; width: auto; object-fit: contain; }
+  .ir-partner__name { min-height: 1.5em; display: flex; align-items: center; justify-content: center; margin-bottom: 0.4rem; }
+  .ir-partner__role { color: var(--teal); font-weight: 500; min-height: 1.4em; margin-bottom: 0.9rem; }
+  .ir-partner__desc { color: var(--muted); margin: 0; }
 
   /* REUNION */
   .ir-reunion { max-width: 720px; margin-inline: auto; padding: 3rem 2rem; }
   .ir-reunion .card__icon { color: var(--teal); }
   .ir-reunion__cta { display: flex; gap: 0.9rem; flex-wrap: wrap; justify-content: center; margin-top: 1.5rem; }
 
-  /* FAQ */
-  .ir-faq { margin-top: 2rem; display: grid; gap: 0.9rem; }
-  .ir-faq__item { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 0 1.4rem; }
-  .ir-faq__item summary { cursor: pointer; font-weight: 500; color: var(--heading); padding: 1.1rem 0; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+  /* FAQ — ancho completo del contenedor y filas más compactas */
+  .ir-faq { margin-top: 2rem; max-width: 980px; margin-inline: auto; display: grid; gap: 0.55rem; }
+  .ir-faq__item { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 0 1.3rem; }
+  .ir-faq__item summary { cursor: pointer; font-weight: 500; color: var(--heading); padding: 0.85rem 0; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 1rem; font-size: 0.98rem; }
   .ir-faq__item summary::-webkit-details-marker { display: none; }
-  .ir-faq__item summary::after { content: '+'; color: var(--teal); font-size: 1.4rem; font-weight: 300; flex: none; transition: transform 0.2s ease; }
+  .ir-faq__item summary::after { content: '+'; color: var(--teal); font-size: 1.3rem; font-weight: 300; line-height: 1; flex: none; transition: transform 0.2s ease; }
   .ir-faq__item[open] summary::after { transform: rotate(45deg); }
-  .ir-faq__item p { margin: 0 0 1.2rem; color: var(--fg); }
+  .ir-faq__item p { margin: 0 0 1rem; color: var(--fg); font-size: 0.95rem; }
 
+  @media (max-width: 980px) {
+    /* 4 tarjetas -> 2 y 2 cuando no entran en una línea */
+    .ir-etapas { grid-template-columns: repeat(2, 1fr); }
+  }
   @media (max-width: 900px) {
-    .ir-intro, .ir-cambium__inner { grid-template-columns: 1fr; }
+    .ir-intro, .ir-cambium__inner, .ir-alcance { grid-template-columns: 1fr; }
     .ir-stats { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 560px) {
     .ir-stats { grid-template-columns: 1fr; }
+    .ir-etapas { grid-template-columns: 1fr; }
   }
 </style>
