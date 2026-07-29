@@ -17,8 +17,8 @@ export const site = {
   },
   tagline: 'Infraestructuras de redes convergentes',
   social: {
-    linkedin: 'https://www.linkedin.com/company/building-networks/',
-    instagram: 'https://www.instagram.com/buildingnetworks/',
+    linkedin: 'https://www.linkedin.com/company/building-networks-sa/',
+    instagram: 'https://www.instagram.com/buinet.sa/',
   },
 };
 

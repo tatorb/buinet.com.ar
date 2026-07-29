@@ -8,7 +8,7 @@ const cols = nav.filter((n) => n.href !== '/');
 <footer class="site-footer">
   <div class="container site-footer__grid">
     <div class="site-footer__brand-col">
-      <a href={withBase('/')} aria-label={site.name}><Logo variant="light" /></a>
+      <a href={withBase('/')} aria-label={site.name} class="site-footer__logo"><Logo height={38} /></a>
       <address>
         <strong>BUILDING NETWORKS</strong><br />
         {site.address.street}<br />
@@ -52,6 +52,9 @@ const cols = nav.filter((n) => n.href !== '/');
   .site-footer a { color: var(--color-on-dark); }
   .site-footer a:hover { color: #fff; }
   .site-footer__grid { display: grid; grid-template-columns: 1.6fr 1fr 1.1fr; gap: 2.5rem; padding-block: 3.5rem; }
+  .site-footer__logo { display: inline-block; }
+  /* El logo original es de color; lo pasamos a blanco puro para el pie oscuro. */
+  .site-footer__logo :global(img) { filter: brightness(0) invert(1); }
   .site-footer__brand-col address { font-style: normal; margin-top: 1rem; line-height: 1.7; }
   .site-footer__brand-col strong { color: #fff; }
   .site-footer__social { display: flex; gap: 0.75rem; margin-top: 1.25rem; }

@@ -1,22 +1,372 @@
 ---
-import ServiceLayout from '../layouts/ServiceLayout.astro';
-import { servicios } from '../data/servicios';
-const s = servicios.find((x) => x.slug === 'infraestructura-de-red')!;
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import { partners } from '../data/servicios';
+import { site } from '../site.config';
+import { withBase } from '../utils/url';
+
+// Contenido real de la página original de Infraestructura de Red (buinet.com.ar).
+
+const heroBullets = [
+  'Despliegue y mantenimiento de redes informáticas',
+  'Fibra óptica, cobre y wireless',
+  'Partners de Cambium Networks® y Cisco Systems®',
+  'Para todo tipo de entornos',
+];
+
+const momentos = [
+  {
+    titulo: 'Mudanza',
+    resumen: 'La mejor ventana para repensar la infraestructura, no solo trasladarla.',
+    img: '/wp-content/uploads/2026/06/bloom-a4638219-2353-48a7-a58a-6c7ad56db8fa.jpg',
+  },
+  {
+    titulo: 'Ampliación',
+    resumen: 'Cuando una necesidad puntual termina revelando el problema de fondo.',
+    img: '/wp-content/uploads/2026/06/image-2.jpg',
+  },
+  {
+    titulo: 'Construcción nueva',
+    resumen: 'Las decisiones que se toman en el plano, no al final de la obra.',
+    img: '/wp-content/uploads/2026/06/bloom-2e54147f-2adf-4b56-b403-27061aa6e396.jpg',
+  },
+];
+
+const etapas = [
+  {
+    titulo: 'Diseño de proyecto',
+    resumen: 'Donde se decide lo que la red va a poder, y lo que no.',
+    icono: 'network',
+  },
+  {
+    titulo: 'Instalación',
+    resumen: 'Ejecutada al nivel que Cisco, AXIS y Cambium exigen.',
+    icono: 'shield',
+  },
+  {
+    titulo: 'Configuración',
+    resumen: 'No es setear equipos. Es entender cómo funciona el conjunto.',
+    icono: 'server',
+  },
+  {
+    titulo: 'Mantenimiento',
+    resumen: 'Equipo propio sosteniendo redes críticas, todos los días.',
+    icono: 'arrow',
+  },
+];
+
+const stats = [
+  { valor: '+2.000', label: 'conexiones de fibra óptica' },
+  { valor: '+1.000', label: 'puertos activos sobre +40 switches Cisco' },
+  { valor: '+450', label: 'cámaras IP integradas' },
+  { valor: '+250', label: 'controladores de acceso' },
+  { valor: '+130', label: 'puntos de audio IP' },
+  { valor: '6', label: 'capas operando juntas' },
+];
+
+const faqs = [
+  {
+    q: '¿Qué es una red convergente?',
+    a: 'Una red convergente integra diferentes sistemas tecnológicos de una organización en una única infraestructura. Esto incluye comunicación (telefonía e internet), videovigilancia, control de accesos, audio IP, conectividad de datos y los sistemas que corren en los servidores. En lugar de mantener redes separadas para cada uno, todos conviven sobre la misma base. El beneficio es que la empresa simplifica su gestión, reduce costos de mantenimiento y permite que los sistemas se integren entre sí. Una red convergente bien diseñada es escalable, segura y se mantiene más fácilmente que un conjunto de redes separadas que crecieron sin criterio.',
+  },
+  {
+    q: '¿Qué se decide en la etapa de diseño de una red?',
+    a: 'Todo empieza acá, antes de tocar un cable. En esta etapa se define dónde van las bocas, los conductos, cuántos cables van a pasar y de qué tipo. Pero lo más importante es lo que se tiene en cuenta al hacerlo: la necesidad actual, la necesidad futura por si hay que escalar, y la mantención a lo largo del tiempo. Cuando esas tres cosas se piensan desde el proyecto, el sistema crece sin sobresaltos. Cuando no, parchar o cambiar algo estructural una vez que la red está funcionando sale caro y molesta. Ahí es donde aparecen los dolores silenciosos que una empresa termina aguantando durante años. Por eso para nosotros el momento de diseño no es un trámite previo: es la decisión más importante de todo el proyecto.',
+  },
+  {
+    q: '¿Cómo se ejecuta una instalación bien hecha?',
+    a: 'Building Networks trabaja con partners de primer nivel: Cisco, AXIS, Cambium. Y ejecuta al nivel que esas marcas exigen. No nos apoyamos en ellas, nos nivelamos con ellas: respondemos al mismo estándar de calidad y buenas prácticas con el que trabajan los mejores del mercado. Una instalación bien hecha es la que se nota años después, cuando hay que ampliar, revisar o mantener, y todo está donde tiene que estar.',
+  },
+  {
+    q: '¿Qué incluye la configuración de un sistema convergente?',
+    a: 'Configurar no es setear dispositivos uno por uno. Es entender cómo todo el sistema trabaja en conjunto. Esa diferencia es la que separa a quien sabe conectar un equipo de quien entiende la infraestructura completa. Building Networks tiene esa mirada porque opera su propio data center: sabe de energía, conectividad, carriers, procesamiento, seguridad y temperatura porque lo gestiona todos los días en infraestructura propia, no solo en la de sus clientes. Configurar bien es saber qué hace cada pieza y, sobre todo, cómo se comporta el conjunto.',
+  },
+  {
+    q: '¿Cómo es el mantenimiento de una infraestructura de red?',
+    a: 'Una red no se instala y se abandona. Se mantiene. El mantenimiento preventivo detecta y corrige detalles antes de que se conviertan en fallas, mientras el sistema funciona con normalidad. El correctivo restaura el servicio cuando algo falla. Esperar a que algo se rompa para recién ahí actuar es siempre la opción más cara y más riesgosa. Building Networks tiene equipo propio dedicado al mantenimiento de las redes del Distrito Capitalinas y de las empresas que allí operan. No es un servicio que se contrata y se espera que responda: es un equipo que ya está sosteniendo infraestructura crítica, todos los días. Esa experiencia es la que respalda cada red que mantenemos.',
+  },
+  {
+    q: '¿Qué significa tener alcance en infraestructura de red?',
+    a: 'Una infraestructura de red no es una especialidad. Son muchas, trabajando juntas. Una red completa tiene capas: el cableado físico, los equipos activos, la configuración, la seguridad, la energía que la sostiene, el mantenimiento que la mantiene viva. Cada una requiere su propio conocimiento. Y la mayoría de los problemas reales no aparecen en el centro de una capa, sino en el borde donde una se conecta con otra. Resolver eso exige ver el sistema entero, no una parte. Building Networks tiene alcance en todas las capas. Trabaja con el soporte de todos sus partners, mantiene relación directa con los proveedores, y tiene experiencia en las cuatro etapas del proyecto, del diseño al mantenimiento. No depende de un solo saber ni de una sola persona: es un equipo que cubre la infraestructura completa. El alcance no es una promesa: es lo que permite que la red funcione todo el tiempo, no casi siempre.',
+  },
+  {
+    q: '¿Cómo funciona la infraestructura del Distrito Capitalinas?',
+    a: 'El Distrito Capitalinas es el epicentro de la actividad corporativa de Córdoba: un complejo que reúne a grandes empresas con altas exigencias tecnológicas. Building Networks diseñó, implementó y mantiene su infraestructura completa, y la de muchas de las firmas que operan dentro del complejo. La escala da una idea del alcance: más de 2.000 conexiones de fibra óptica y más de 400 conexiones UTP, con más de 1.000 puertos activos sobre más de 40 switches Cisco. Más de 450 cámaras IP integradas con servidores que corren software propio. Un sistema de audio con más de 40 altavoces de perímetro y casi 90 parlantes IP. Más de 250 controladores de acceso. Un esquema de energía con UPS y grupo electrógeno que sostiene todo cuando la red eléctrica falla. Las seis capas, infraestructura, videovigilancia, audio IP, control de acceso, activos de red y energía, operando juntas, en un mismo lugar, sostenidas por la misma empresa. Capitalinas no es un argumento. Es la demostración de que una red puede funcionar todo el tiempo, no casi siempre.',
+  },
+  {
+    q: '¿Para qué tipo de empresas trabaja Building Networks?',
+    a: 'Building Networks trabaja con empresas e industrias en Córdoba que necesitan infraestructura tecnológica al nivel de organizaciones exigentes. Esto incluye empresas medianas y grandes, industrias con líneas productivas, complejos corporativos, operadoras de servicios y compañías tecnológicas regionales. Lo que tienen en común estos clientes es que la tecnología no es un soporte secundario, es parte central de su operación. Y que necesitan un proveedor con capacidad de proyectar, instalar, configurar y mantener infraestructura crítica, no solo de vender equipos.',
+  },
+  {
+    q: '¿Por qué Building Networks trabaja con Cisco, AXIS y Cambium?',
+    a: 'Building Networks es partner directo de Cisco, AXIS y Cambium, tres de los referentes globales en infraestructura de red, videovigilancia y conectividad inalámbrica respectivamente. Ser partner directo significa acceso a soporte técnico de primer nivel, capacitación continua del equipo, y la posibilidad de ofrecer soluciones a la altura de lo que esas marcas representan. Además, Building Networks fue la primera empresa en Argentina en certificar un producto bajo el estándar ONVIF, y es miembro de ONVIF Organization. CamScope, su sistema propio de videovigilancia, lleva más de 10 años de desarrollo continuo. Esa combinación de respaldo internacional y desarrollo propio es lo que permite ofrecer soluciones que se integran con criterio, no soluciones que son catálogo.',
+  },
+  {
+    q: '¿Cuál es la diferencia entre una red parchada y una red proyectada?',
+    a: 'Una red parchada es la que se fue armando por partes, sumando dispositivos y soluciones a medida que aparecían las necesidades. Funciona, pero ya nadie entiende del todo cómo está armada, y cada ampliación implica volver a tocar algo que ya estaba andando. Los problemas aparecen en lugares inesperados y resolverlos es siempre más caro de lo que tendría que ser. Una red proyectada es la que se pensó desde el principio teniendo en cuenta el crecimiento futuro, la escalabilidad y el mantenimiento. Esa red se puede ampliar sin rehacer la base, se mantiene con criterio, y acompaña a la empresa durante años sin pedirle que se detenga para reparar lo que ya está. La diferencia entre una y otra no se ve el primer día. Se ve con el tiempo, en el costo total de operación de la infraestructura.',
+  },
+];
 ---
-<ServiceLayout slug={s.slug} title={s.titulo} resumen={s.resumen} icono={s.icono}>
-  <h2>Redes convergentes de alta capacidad</h2>
-  <p>
-    Establecemos redes convergentes de alta capacidad, facilitando la comunicación LAN
-    o inalámbrica fluida entre dispositivos y garantizando un desempeño confiable y
-    continuo. Diseñamos y construimos redes donde conviven tus sistemas y procesos junto
-    a la videovigilancia, el control de accesos, el cómputo y la conectividad de toda la
-    organización.
-  </p>
-  <h2>Qué incluye</h2>
-  <ul>
-    <li>Diseño e implementación de redes cableadas e inalámbricas.</li>
-    <li>Conectividad de alta disponibilidad con partners como CISCO y Cambium Networks.</li>
-    <li>Segmentación, seguridad y priorización de tráfico (QoS).</li>
-    <li>Base convergente para desplegar todos los sistemas en una única red segura y escalable.</li>
-  </ul>
-</ServiceLayout>
+<BaseLayout
+  title="Diseño e Implementación de Infraestructura de Redes"
+  description="Infraestructura de Redes Convergentes para uso intensivo. Conectividad, procesamiento, seguridad, respaldo y resiliencia. Partners de Cambium Networks® y Cisco Systems® en Córdoba."
+>
+  <!-- HERO -->
+  <section class="ir-hero">
+    <div class="container ir-hero__inner">
+      <p class="eyebrow" style="color:#bfe0dd">Infraestructura de Red</p>
+      <h1>Infraestructura de red para empresas e industrias en Córdoba</h1>
+      <ul class="ir-hero__bullets">
+        {heroBullets.map((b) => (
+          <li><Icon name="arrow" size={18} /> {b}</li>
+        ))}
+      </ul>
+      <a class="btn btn--white" href={withBase('/contacto/')}>Contactar asesor comercial</a>
+    </div>
+  </section>
+
+  <!-- INTRO / CONECTIVIDAD ESCALABLE -->
+  <section class="section">
+    <div class="container ir-intro">
+      <div>
+        <p class="eyebrow">Conectividad escalable</p>
+        <h2>Conectividad escalable para redes de alto rendimiento</h2>
+        <p class="lead">
+          Building Networks diseña, implementa y mantiene infraestructura de redes convergentes
+          para empresas e industrias en Córdoba. Es una compañía con casi 20 años de operación,
+          partner de Cisco, AXIS y Cambium, que cubre todas las capas de la red, desde el cableado
+          y los equipos activos hasta la seguridad, la energía y el mantenimiento.
+        </p>
+      </div>
+      <div class="ir-intro__partner card">
+        <img src="/wp-content/uploads/2024/07/Cambium.png" alt="Cambium Networks" loading="lazy" />
+        <p><strong>Socios de Integración Tecnológica de Cambium Networks®</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRES MOMENTOS -->
+  <section class="section section--surface">
+    <div class="container">
+      <div class="center measure mx-auto">
+        <p class="eyebrow">Cuándo pensarla</p>
+        <h2>Tres momentos para pensar la infraestructura</h2>
+        <p class="lead">
+          La infraestructura de red no se piensa igual en todos los momentos de la empresa.
+          Hay tres escenarios donde las decisiones que se toman definen los próximos diez años.
+        </p>
+      </div>
+      <div class="grid grid--3" style="margin-top:2.5rem">
+        {momentos.map((m) => (
+          <article class="card ir-momento">
+            <img class="ir-momento__img" src={m.img} alt={m.titulo} loading="lazy" />
+            <h3>{m.titulo}</h3>
+            <p>{m.resumen}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- COMO TRABAJAMOS -->
+  <section class="section">
+    <div class="container">
+      <div class="center measure mx-auto">
+        <p class="eyebrow">Cómo trabajamos</p>
+        <h2>Cuatro etapas, de principio a fin</h2>
+        <p class="lead">
+          La infraestructura de red de una empresa no se resuelve en un solo momento. Se construye
+          en cuatro etapas, y cada una define qué tan bien va a funcionar el sistema durante los
+          años siguientes. Building Networks acompaña las cuatro, de principio a fin.
+        </p>
+      </div>
+      <div class="grid grid--3 ir-etapas" style="margin-top:2.5rem">
+        {etapas.map((e) => (
+          <div class="card">
+            <span class="card__icon"><Icon name={e.icono} size={40} /></span>
+            <h3>{e.titulo}</h3>
+            <p>{e.resumen}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CAMBIUM CONNECTED PARTNER -->
+  <section class="ir-cambium">
+    <div class="container ir-cambium__inner">
+      <img src="/wp-content/uploads/2024/07/Cambium.png" alt="Cambium Networks" loading="lazy" />
+      <p>
+        Como socios del Programa <strong>Connected Partner de Cambium Networks®</strong>, colaboramos
+        estrechamente para desarrollar soluciones de conectividad personalizadas, optimizando la
+        integración de productos y garantizando a nuestros clientes sistemas confiables y adaptados
+        a sus necesidades específicas.
+      </p>
+    </div>
+  </section>
+
+  <!-- EL DIFERENCIAL: ALCANCE -->
+  <section class="section">
+    <div class="container measure mx-auto ir-alcance">
+      <p class="eyebrow">El diferencial que importa</p>
+      <h2>Alcance</h2>
+      <p>
+        Una infraestructura de red no es una especialidad. Son muchas, trabajando juntas: cableado,
+        equipos activos, configuración, seguridad, energía, mantenimiento. La mayoría de los
+        problemas no aparece en el centro de una capa, sino en el borde donde una se conecta con
+        otra. Building Networks tiene alcance en todas. No depende de un solo saber ni de una sola
+        persona: es un equipo que cubre la infraestructura completa.
+      </p>
+      <p>
+        Esa diferencia no se ve el primer día. Se ve con el tiempo. El alcance es lo que permite que
+        la red funcione todo el tiempo, no casi siempre.
+      </p>
+    </div>
+  </section>
+
+  <!-- LA PRUEBA: DISTRITO CAPITALINAS -->
+  <section class="ir-prueba">
+    <div class="container">
+      <div class="measure mx-auto center">
+        <p class="eyebrow" style="color:#bfe0dd">La prueba</p>
+        <h2>Distrito Capitalinas</h2>
+        <p class="lead" style="color:rgba(255,255,255,0.9)">
+          El Distrito Capitalinas es el epicentro de la actividad corporativa de Córdoba. Building
+          Networks diseñó, implementó y mantiene su infraestructura completa, y la de muchas de las
+          firmas que operan adentro. Las seis capas, operando juntas, sostenidas por el mismo equipo,
+          todos los días. Capitalinas no es un argumento. Es la demostración.
+        </p>
+      </div>
+      <div class="ir-stats">
+        {stats.map((s) => (
+          <div class="ir-stat">
+            <span class="ir-stat__num">{s.valor}</span>
+            <span class="ir-stat__label">{s.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNERS -->
+  <section class="section section--surface">
+    <div class="container">
+      <div class="center measure mx-auto">
+        <p class="eyebrow">Partners</p>
+        <h2>Socios estratégicos de primera línea</h2>
+      </div>
+      <div class="grid grid--3" style="margin-top:2.5rem">
+        {partners.map((p) => (
+          <div class="card">
+            <img class="ir-partner__logo" src={p.logo} alt={p.nombre} loading="lazy" />
+            <h3>{p.nombre}</h3>
+            <p class="ir-partner__role"><strong>{p.detalle}</strong></p>
+            <p>{p.resumen}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- REUNION CTA -->
+  <section class="section">
+    <div class="container">
+      <div class="card ir-reunion">
+        <span class="card__icon"><Icon name="calendar" size={40} /></span>
+        <h2>Agende una reunión con un Asesor Comercial</h2>
+        <p class="lead">¿Te gustaría entender si podemos ayudarte? Coordine una reunión con un especialista, o escríbanos a:</p>
+        <p><a href={`mailto:${site.email}`}><strong>{site.email}</strong></a></p>
+        <div class="ir-reunion__cta">
+          <a class="btn btn--solid" href={withBase('/contacto/')}>Coordinar reunión</a>
+          <a class="btn" href={`https://wa.me/${site.phoneHref.replace('+', '')}`} target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section section--surface">
+    <div class="container measure mx-auto">
+      <div class="center">
+        <p class="eyebrow">Preguntas frecuentes</p>
+        <h2>Preguntas frecuentes</h2>
+      </div>
+      <div class="ir-faq">
+        {faqs.map((f) => (
+          <details class="ir-faq__item">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* HERO */
+  .ir-hero { background: linear-gradient(160deg, var(--teal-dark), var(--teal)); color: #fff; }
+  .ir-hero__inner { padding-block: clamp(2.6rem, 6vw, 4.6rem); max-width: 780px; }
+  .ir-hero h1 { color: #fff; margin-bottom: 1.5rem; }
+  .ir-hero__bullets { list-style: none; padding: 0; margin: 0 0 2rem; display: grid; gap: 0.7rem; }
+  .ir-hero__bullets li { display: flex; align-items: center; gap: 0.6rem; font-size: 1.02rem; color: rgba(255,255,255,0.94); }
+  .ir-hero__bullets svg { color: #bfe0dd; flex: none; }
+
+  /* INTRO */
+  .ir-intro { display: grid; grid-template-columns: 1.6fr 1fr; gap: 2.5rem; align-items: center; }
+  .ir-intro__partner { gap: 1rem; }
+  .ir-intro__partner img { max-width: 190px; }
+  .ir-intro__partner p { color: var(--muted); margin: 0; font-size: 0.95rem; }
+
+  /* MOMENTOS */
+  .ir-momento { padding: 0; overflow: hidden; text-align: left; align-items: stretch; }
+  .ir-momento__img { width: 100%; height: 190px; object-fit: cover; }
+  .ir-momento h3 { margin: 1.4rem 1.6rem 0.5rem; }
+  .ir-momento p { margin: 0 1.6rem 1.6rem; color: var(--muted); }
+
+  /* ETAPAS */
+  .ir-etapas .card__icon { color: var(--teal); }
+
+  /* CAMBIUM */
+  .ir-cambium { background: var(--teal-tint); }
+  .ir-cambium__inner { display: grid; grid-template-columns: auto 1fr; gap: 2.5rem; align-items: center; padding-block: clamp(2.2rem, 5vw, 3.4rem); }
+  .ir-cambium__inner img { max-width: 210px; }
+  .ir-cambium__inner p { margin: 0; font-size: 1.05rem; color: var(--fg); }
+
+  /* ALCANCE */
+  .ir-alcance p { font-size: 1.05rem; }
+
+  /* PRUEBA */
+  .ir-prueba { background: linear-gradient(160deg, var(--teal), var(--teal-dark)); color: #fff; padding-block: clamp(2.75rem, 6vw, 4.6rem); }
+  .ir-prueba h2 { color: #fff; }
+  .ir-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+  .ir-stat { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); border-radius: var(--radius); padding: 1.6rem 1.4rem; text-align: center; }
+  .ir-stat__num { display: block; font-size: 2rem; font-weight: 600; color: #fff; line-height: 1.1; }
+  .ir-stat__label { display: block; margin-top: 0.5rem; color: rgba(255,255,255,0.85); font-size: 0.92rem; }
+
+  /* PARTNERS */
+  .ir-partner__logo { width: 120px; height: auto; max-height: 70px; object-fit: contain; margin-bottom: 1rem; }
+  .ir-partner__role { color: var(--teal); margin-bottom: 0.6rem; }
+
+  /* REUNION */
+  .ir-reunion { max-width: 720px; margin-inline: auto; padding: 3rem 2rem; }
+  .ir-reunion .card__icon { color: var(--teal); }
+  .ir-reunion__cta { display: flex; gap: 0.9rem; flex-wrap: wrap; justify-content: center; margin-top: 1.5rem; }
+
+  /* FAQ */
+  .ir-faq { margin-top: 2rem; display: grid; gap: 0.9rem; }
+  .ir-faq__item { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 0 1.4rem; }
+  .ir-faq__item summary { cursor: pointer; font-weight: 500; color: var(--heading); padding: 1.1rem 0; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+  .ir-faq__item summary::-webkit-details-marker { display: none; }
+  .ir-faq__item summary::after { content: '+'; color: var(--teal); font-size: 1.4rem; font-weight: 300; flex: none; transition: transform 0.2s ease; }
+  .ir-faq__item[open] summary::after { transform: rotate(45deg); }
+  .ir-faq__item p { margin: 0 0 1.2rem; color: var(--fg); }
+
+  @media (max-width: 900px) {
+    .ir-intro, .ir-cambium__inner { grid-template-columns: 1fr; }
+    .ir-stats { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .ir-stats { grid-template-columns: 1fr; }
+  }
+</style>

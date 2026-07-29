@@ -34,6 +34,10 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    <!-- Favicon: logo real de la marca (solo el ícono, sin texto), servido desde el server. -->
+    <link rel="icon" href="/wp-content/uploads/2024/07/favicon-150x150.png" sizes="32x32" />
+    <link rel="icon" href="/wp-content/uploads/2024/07/favicon-300x300.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="/wp-content/uploads/2024/07/favicon-300x300.png" />
     <link rel="icon" href={withBase('/favicon.svg')} type="image/svg+xml" />
 
     <!-- Open Graph / redes -->
