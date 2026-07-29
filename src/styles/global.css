@@ -56,8 +56,12 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+/* Escala global uniforme: equivale a "zoom 80%" del navegador. Reduce TODO
+   (texto, íconos, gráficos y espaciados) un 20% de forma pareja.
+   Ajustable en un solo lugar: subir a 0.85 = más grande, bajar a 0.75 = más chico. */
 body {
   margin: 0;
+  zoom: 0.8;
   font-family: var(--font);
   color: var(--fg);
   background: var(--color-bg);
