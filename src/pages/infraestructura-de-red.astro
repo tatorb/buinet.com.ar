@@ -1,9 +1,14 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
+import { getCollection } from 'astro:content';
 import { partners } from '../data/servicios';
 import { site } from '../site.config';
 import { withBase } from '../utils/url';
+
+// Mapa de posts del blog por slug, para reutilizar su imagen destacada.
+const blogBySlug = new Map((await getCollection('blog')).map((p) => [p.id, p.data]));
+const heroOf = (slug: string) => blogBySlug.get(slug)?.heroImage;
 
 // Contenido real de la página original de Infraestructura de Red (buinet.com.ar).
 
@@ -110,27 +115,38 @@ const faqs = [
   },
 ];
 
-// "Profundizá en cada tema" — artículos del blog vinculados a esta página.
+// "Profundizá en cada tema" — 6 artículos del blog vinculados a esta página.
+// La imagen de cada card se toma de la imagen destacada del post (por slug).
 const articulos = [
   {
     titulo: 'La red como base de todo',
     resumen: 'Por qué la infraestructura de red sostiene todo lo demás en una empresa moderna.',
-    href: '/novedades/que-es-una-red-convergente-y-por-que-es-la-base/',
+    slug: 'que-es-una-red-convergente-y-por-que-es-esencial-hoy-en-dia',
   },
   {
     titulo: 'Mudanza',
     resumen: 'La mejor ventana para repensar la infraestructura, no solo trasladarla.',
-    href: '/novedades/mudanza-e-infraestructura-de-red/',
+    slug: 'mudanza-e-infraestructura-de-red',
   },
   {
     titulo: 'Construcción nueva',
     resumen: 'Las decisiones que se toman en el plano, no al final de la obra.',
-    href: '/novedades/cuando-infraestructura-de-red-se-decide-en-el-plano/',
+    slug: 'cuando-infraestructura-de-red-se-decide-en-el-plano',
   },
   {
     titulo: 'Ampliación',
     resumen: 'Cuando una necesidad puntual termina revelando el problema de fondo.',
-    href: '/novedades/cuando-ampliar-la-infraestructura-de-red-de-tu-empresa/',
+    slug: 'cuando-ampliar-la-infraestructura-de-red-de-tu-empresa',
+  },
+  {
+    titulo: 'Qué preguntar antes de contratar',
+    resumen: 'Tres niveles de preguntas para evaluar a un proveedor de infraestructura.',
+    slug: 'diseno-de-infraestructura-de-red-nueva',
+  },
+  {
+    titulo: 'Infraestructura tecnológica en Córdoba',
+    resumen: 'Lo que cambió en el mercado local en casi 20 años haciendo este trabajo.',
+    slug: 'lo-que-aprendimos-en-20-anos-it-para-empresas-en-cordoba',
   },
 ];
 ---
@@ -328,12 +344,17 @@ const articulos = [
           en los escenarios más comunes que enfrentan las empresas en Córdoba.
         </p>
       </div>
-      <div class="grid grid--2 ir-articulos" style="margin-top:2.5rem">
+      <div class="grid grid--3 ir-articulos" style="margin-top:2.5rem">
         {articulos.map((a) => (
-          <a class="card card--link ir-articulo" href={withBase(a.href)}>
-            <h3>{a.titulo}</h3>
-            <p>{a.resumen}</p>
-            <span class="ir-momento__more">Leer más <Icon name="arrow" size={16} /></span>
+          <a class="card card--link ir-articulo" href={withBase(`/novedades/${a.slug}/`)}>
+            {heroOf(a.slug) && (
+              <img class="ir-articulo__img" src={heroOf(a.slug)} alt={a.titulo} loading="lazy" />
+            )}
+            <div class="ir-articulo__body">
+              <h3>{a.titulo}</h3>
+              <p>{a.resumen}</p>
+              <span class="ir-momento__more">Leer más <Icon name="arrow" size={16} /></span>
+            </div>
           </a>
         ))}
       </div>
@@ -417,9 +438,11 @@ const articulos = [
   .ir-reunion .card__icon { color: var(--teal); }
   .ir-reunion__cta { display: flex; gap: 0.9rem; flex-wrap: wrap; justify-content: center; margin-top: 1.5rem; }
 
-  /* ARTÍCULOS */
-  .ir-articulo { text-align: left; align-items: flex-start; }
-  .ir-articulo h3 { margin-bottom: 0.4rem; }
+  /* ARTÍCULOS — imagen destacada arriba + texto */
+  .ir-articulo { padding: 0; overflow: hidden; text-align: left; align-items: stretch; }
+  .ir-articulo__img { width: 100%; height: 175px; object-fit: cover; background: var(--surface); }
+  .ir-articulo__body { padding: 1.5rem 1.5rem 1.6rem; display: flex; flex-direction: column; height: 100%; }
+  .ir-articulo h3 { margin-bottom: 0.4rem; font-size: 1.15rem; }
   .ir-articulo p { color: var(--muted); margin: 0 0 0.9rem; }
   .ir-articulo .ir-momento__more { margin: auto 0 0; }
 
