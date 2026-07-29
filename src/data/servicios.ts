@@ -7,6 +7,7 @@ export interface Servicio {
   href: string;
   resumen: string;
   icono: string; // clave de ícono (ver Icon.astro)
+  hero: string;  // foto de fondo del hero (servida desde /wp-content/uploads del server)
 }
 
 export const servicios: Servicio[] = [
@@ -15,6 +16,7 @@ export const servicios: Servicio[] = [
     titulo: 'Videovigilancia',
     href: '/videovigilancia/',
     icono: 'camera',
+    hero: '/wp-content/uploads/2025/01/Fondo-AXIS-100.jpg',
     resumen:
       'Integramos soluciones avanzadas de videovigilancia para proteger tus activos, permitiéndote supervisar remotamente, grabar y almacenar datos de manera eficiente y accesible en tiempo real.',
   },
@@ -23,6 +25,7 @@ export const servicios: Servicio[] = [
     titulo: 'Control de Accesos',
     href: '/control-de-accesos/',
     icono: 'lock',
+    hero: '/wp-content/uploads/2025/01/Control-de-Accesos.webp',
     resumen:
       'Diseñamos sistemas inteligentes de control de acceso, asegurando la gestión eficiente de autorizaciones y resguardando tus instalaciones con tecnología moderna y confiable.',
   },
@@ -31,6 +34,7 @@ export const servicios: Servicio[] = [
     titulo: 'Data Center',
     href: '/data-center/',
     icono: 'server',
+    hero: '/wp-content/uploads/2024/07/Datacenter-Hero.jpg',
     resumen:
       'Optimizamos la infraestructura tecnológica de tu empresa con sistemas eficientes y procesos robustos, diseñados para garantizar fluidez, seguridad y alto rendimiento en cada operación.',
   },
@@ -39,6 +43,7 @@ export const servicios: Servicio[] = [
     titulo: 'Infraestructura de Red',
     href: '/infraestructura-de-red/',
     icono: 'network',
+    hero: '/wp-content/uploads/2024/07/A4.jpg',
     resumen:
       'Establecemos redes convergentes de alta capacidad, facilitando la comunicación LAN o inalámbrica fluida entre dispositivos y garantizando un desempeño confiable y continuo.',
   },
@@ -47,6 +52,7 @@ export const servicios: Servicio[] = [
     titulo: 'Audio IP',
     href: '/audio-ip/',
     icono: 'speaker',
+    hero: '/wp-content/uploads/2024/08/AXIS-PArlantes-cielo-razo.jpeg',
     resumen:
       'Implementamos sistemas de audio IP innovadores, perfectos para comunicación corporativa, seguridad y entretenimiento, conectados directamente a tus redes convergentes.',
   },

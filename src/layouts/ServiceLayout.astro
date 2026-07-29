@@ -13,9 +13,13 @@ interface Props {
 }
 const { slug, title, resumen, icono, description } = Astro.props;
 const otros = servicios.filter((s) => s.slug !== slug);
+const heroImg = servicios.find((s) => s.slug === slug)?.hero;
+const heroStyle = heroImg
+  ? `background: linear-gradient(160deg, rgba(0,70,75,0.86), rgba(0,98,105,0.66)), url("${heroImg}") center/cover no-repeat;`
+  : undefined;
 ---
 <BaseLayout title={title} description={description ?? resumen}>
-  <section class="svc-hero">
+  <section class="svc-hero" style={heroStyle}>
     <div class="container svc-hero__inner">
       <span class="svc-hero__icon"><Icon name={icono} size={26} /></span>
       <div>

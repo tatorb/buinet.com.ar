@@ -109,6 +109,30 @@ const faqs = [
     a: 'Una red parchada es la que se fue armando por partes, sumando dispositivos y soluciones a medida que aparecían las necesidades. Funciona, pero ya nadie entiende del todo cómo está armada, y cada ampliación implica volver a tocar algo que ya estaba andando. Los problemas aparecen en lugares inesperados y resolverlos es siempre más caro de lo que tendría que ser. Una red proyectada es la que se pensó desde el principio teniendo en cuenta el crecimiento futuro, la escalabilidad y el mantenimiento. Esa red se puede ampliar sin rehacer la base, se mantiene con criterio, y acompaña a la empresa durante años sin pedirle que se detenga para reparar lo que ya está. La diferencia entre una y otra no se ve el primer día. Se ve con el tiempo, en el costo total de operación de la infraestructura.',
   },
 ];
+
+// "Profundizá en cada tema" — artículos del blog vinculados a esta página.
+const articulos = [
+  {
+    titulo: 'La red como base de todo',
+    resumen: 'Por qué la infraestructura de red sostiene todo lo demás en una empresa moderna.',
+    href: '/novedades/que-es-una-red-convergente-y-por-que-es-la-base/',
+  },
+  {
+    titulo: 'Mudanza',
+    resumen: 'La mejor ventana para repensar la infraestructura, no solo trasladarla.',
+    href: '/novedades/mudanza-e-infraestructura-de-red/',
+  },
+  {
+    titulo: 'Construcción nueva',
+    resumen: 'Las decisiones que se toman en el plano, no al final de la obra.',
+    href: '/novedades/cuando-infraestructura-de-red-se-decide-en-el-plano/',
+  },
+  {
+    titulo: 'Ampliación',
+    resumen: 'Cuando una necesidad puntual termina revelando el problema de fondo.',
+    href: '/novedades/cuando-ampliar-la-infraestructura-de-red-de-tu-empresa/',
+  },
+];
 ---
 <BaseLayout
   title="Diseño e Implementación de Infraestructura de Redes"
@@ -294,6 +318,29 @@ const faqs = [
     </div>
   </section>
 
+  <!-- PROFUNDIZÁ EN CADA TEMA -->
+  <section class="section">
+    <div class="container">
+      <div class="center measure mx-auto">
+        <p class="eyebrow">Profundizá en cada tema</p>
+        <h2>Profundizá en cada tema</h2>
+        <p class="lead">
+          Cada decisión sobre la infraestructura de red tiene su momento. Estos artículos profundizan
+          en los escenarios más comunes que enfrentan las empresas en Córdoba.
+        </p>
+      </div>
+      <div class="grid grid--2 ir-articulos" style="margin-top:2.5rem">
+        {articulos.map((a) => (
+          <a class="card card--link ir-articulo" href={withBase(a.href)}>
+            <h3>{a.titulo}</h3>
+            <p>{a.resumen}</p>
+            <span class="ir-momento__more">Leer más <Icon name="arrow" size={16} /></span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <!-- FAQ -->
   <section class="section section--surface">
     <div class="container">
@@ -315,7 +362,7 @@ const faqs = [
 
 <style>
   /* HERO */
-  .ir-hero { background: linear-gradient(160deg, rgba(0,70,75,0.93), rgba(0,98,105,0.78)), url("/wp-content/uploads/2024/07/A4.jpg") center/cover no-repeat; color: #fff; }
+  .ir-hero { background: linear-gradient(160deg, rgba(0,70,75,0.86), rgba(0,98,105,0.66)), url("/wp-content/uploads/2024/07/A4.jpg") center/cover no-repeat; color: #fff; }
   .ir-hero__inner { padding-block: clamp(2.6rem, 6vw, 4.6rem); max-width: 780px; }
   .ir-hero h1 { color: #fff; margin-bottom: 1.5rem; }
   .ir-hero__bullets { list-style: none; padding: 0; margin: 0 0 2rem; display: grid; gap: 0.7rem; }
@@ -371,6 +418,12 @@ const faqs = [
   .ir-reunion { max-width: 720px; margin-inline: auto; padding: 3rem 2rem; }
   .ir-reunion .card__icon { color: var(--teal); }
   .ir-reunion__cta { display: flex; gap: 0.9rem; flex-wrap: wrap; justify-content: center; margin-top: 1.5rem; }
+
+  /* ARTÍCULOS */
+  .ir-articulo { text-align: left; align-items: flex-start; }
+  .ir-articulo h3 { margin-bottom: 0.4rem; }
+  .ir-articulo p { color: var(--muted); margin: 0 0 0.9rem; }
+  .ir-articulo .ir-momento__more { margin: auto 0 0; }
 
   /* FAQ — ancho completo del contenedor y filas más compactas */
   .ir-faq { margin-top: 2rem; max-width: 980px; margin-inline: auto; display: grid; gap: 0.55rem; }
