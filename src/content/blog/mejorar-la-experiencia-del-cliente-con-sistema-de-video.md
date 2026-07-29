@@ -1,7 +1,7 @@
 ---
 title: "Mejorar la experiencia del cliente con sistema de video"
 description: "La nueva expectativa del cliente en entornos de servicio"
-heroImage: "/wp-content/uploads/2025/01/Fondo-AXIS-100.jpg"
+heroImage: "/wp-content/uploads/2025/11/Mesa-de-trabajo-1-100-1.jpg"
 pubDate: 2025-11-11
 author: "Building Networks"
 draft: false

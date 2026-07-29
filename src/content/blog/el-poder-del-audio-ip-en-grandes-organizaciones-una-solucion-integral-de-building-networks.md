@@ -1,7 +1,7 @@
 ---
 title: "El poder del Audio IP en grandes organizaciones"
 description: "En el entorno actual, la comunicación eficiente y la seguridad son fundamentales para el éxito de cualquier organización. En Building Networks, entendemos esta necesidad…"
-heroImage: "/wp-content/uploads/2024/08/AXIS-PArlantes-cielo-razo.jpeg"
+heroImage: "/wp-content/uploads/2024/08/Mesa-de-trabajo-1.png"
 pubDate: 2024-08-14
 author: "Building Networks"
 draft: false

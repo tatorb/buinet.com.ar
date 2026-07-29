@@ -1,7 +1,7 @@
 ---
 title: "Rediseñamos CamScope"
 description: "Más sólido, más claro, más preparado para lo que viene."
-heroImage: "/wp-content/uploads/2024/07/A5.jpg"
+heroImage: "/wp-content/uploads/2025/01/datacenter.webp"
 pubDate: 2025-06-05
 author: "Building Networks"
 draft: false

@@ -1,7 +1,7 @@
 ---
 title: "Mayor rapidéz en alarmas para pacientes críticos con videovigilancia hospitalaria"
 description: "Los beneficios de la videovigilancia hospitalaria en salas de internación"
-heroImage: "/wp-content/uploads/2024/07/Operador-Seguridad.jpg"
+heroImage: "/wp-content/uploads/2025/09/Mesa-de-trabajo-1-100.jpg"
 pubDate: 2025-09-04
 author: "Building Networks"
 draft: false

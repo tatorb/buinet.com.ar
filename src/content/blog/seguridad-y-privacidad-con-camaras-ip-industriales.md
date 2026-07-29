@@ -1,7 +1,7 @@
 ---
 title: "Seguridad y privacidad con Cámaras IP en Industrias"
 description: "Cómo una solución de videovigilancia integrada fortalece la seguridad operativa, la continuidad y el cumplimiento normativo en entornos industriales."
-heroImage: "/wp-content/uploads/2025/01/Fondo-AXIS-100.jpg"
+heroImage: "/wp-content/uploads/2025/10/Mesa-de-trabajo-1-100-1.jpg"
 pubDate: 2025-10-09
 author: "Building Networks"
 draft: false

@@ -1,7 +1,7 @@
 ---
 title: "¿Cómo evitar robos con videovigilancia en fábricas?"
 description: "Cuando la seguridad industrial se vuelve una prioridad operativa"
-heroImage: "/wp-content/uploads/2024/07/Operador-Seguridad.jpg"
+heroImage: "/wp-content/uploads/2025/09/Mesa-de-trabajo-1-100-2.jpg"
 pubDate: 2025-10-30
 author: "Building Networks"
 draft: false

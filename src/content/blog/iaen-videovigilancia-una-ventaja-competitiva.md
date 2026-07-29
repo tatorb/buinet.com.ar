@@ -1,7 +1,7 @@
 ---
 title: "IA en videovigilancia: una ventaja competitiva para quienes saben aplicarla"
 description: "La inteligencia artificial aplicada a videovigilancia avanza rápidamente, pero no todos avanzan igual."
-heroImage: "/wp-content/uploads/2025/01/Fondo-AXIS-100.jpg"
+heroImage: "/wp-content/uploads/2025/08/Mesa-de-trabajo-1-100.jpg"
 pubDate: 2025-08-07
 author: "Building Networks"
 draft: false

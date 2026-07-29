@@ -1,7 +1,7 @@
 ---
 title: "Cámaras térmicas AXIS"
 description: "Las cámaras térmicas se han convertido en un recurso clave en entornos industriales donde la detección temprana, la seguridad operativa y la prevención de incidentes son…"
-heroImage: "/wp-content/uploads/2024/10/PORTADA-SEGURIDAD-PERIMETROS-100.jpg"
+heroImage: "/wp-content/uploads/2026/01/Mesa-de-trabajo-1-100.jpg"
 pubDate: 2026-01-22
 author: "Building Networks"
 draft: false
