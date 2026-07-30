@@ -1,12 +1,14 @@
 ---
-import { withBase } from '../../utils/url';
+import { withBase } from '../utils/url';
 import { getCollection, render } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
-import Icon from '../../components/Icon.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
 
+// Los artículos del blog se sirven en la RAÍZ (/slug/), igual que en el
+// WordPress original, para preservar las URLs indexadas y los backlinks.
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
-  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+  return posts.map((post) => ({ params: { post: post.id }, props: { post } }));
 }
 
 const { post } = Astro.props;

@@ -27,7 +27,7 @@ const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month:
       ) : (
         <div class="grid grid--3">
           {posts.map((post) => (
-            <a class="card card--link post-card" href={withBase(`/novedades/${post.id}/`)}>
+            <a class="card card--link post-card" href={withBase(`/${post.id}/`)}>
               {post.data.heroImage && (
                 <img class="post-card__img" src={post.data.heroImage} alt={post.data.title} loading="lazy" />
               )}

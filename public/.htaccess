@@ -1,0 +1,8 @@
+# Redirecciones 301 heredadas del SEO original (servidores Apache).
+# En servidores nginx se ignora este archivo; el sitio igual sirve una página
+# de redirección generada por Astro para las mismas rutas.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # Consolidar la variante "la-base" en la canónica "esencial-hoy-en-dia".
+  RewriteRule ^que-es-una-red-convergente-y-por-que-es-la-base/?$ /que-es-una-red-convergente-y-por-que-es-esencial-hoy-en-dia/ [R=301,L]
+</IfModule>

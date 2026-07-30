@@ -24,19 +24,19 @@ const momentos = [
     titulo: 'Mudanza',
     resumen: 'La mejor ventana para repensar la infraestructura, no solo trasladarla.',
     img: '/wp-content/uploads/2026/06/bloom-a4638219-2353-48a7-a58a-6c7ad56db8fa.jpg',
-    href: '/novedades/mudanza-e-infraestructura-de-red/',
+    href: '/mudanza-e-infraestructura-de-red/',
   },
   {
     titulo: 'Ampliación',
     resumen: 'Cuando una necesidad puntual termina revelando el problema de fondo.',
     img: '/wp-content/uploads/2026/06/image-2.jpg',
-    href: '/novedades/cuando-ampliar-la-infraestructura-de-red-de-tu-empresa/',
+    href: '/cuando-ampliar-la-infraestructura-de-red-de-tu-empresa/',
   },
   {
     titulo: 'Construcción nueva',
     resumen: 'Las decisiones que se toman en el plano, no al final de la obra.',
     img: '/wp-content/uploads/2026/06/bloom-2e54147f-2adf-4b56-b403-27061aa6e396.jpg',
-    href: '/novedades/cuando-infraestructura-de-red-se-decide-en-el-plano/',
+    href: '/cuando-infraestructura-de-red-se-decide-en-el-plano/',
   },
 ];
 
@@ -149,11 +149,23 @@ const articulos = [
     slug: 'lo-que-aprendimos-en-20-anos-it-para-empresas-en-cordoba',
   },
 ];
+
+// Structured data: FAQPage (schema.org) con las mismas preguntas del acordeón.
+const faqLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+});
 ---
 <BaseLayout
-  title="Diseño e Implementación de Infraestructura de Redes"
+  title="Infraestructura de red para empresas e industrias en Córdoba"
   description="Infraestructura de Redes Convergentes para uso intensivo. Conectividad, procesamiento, seguridad, respaldo y resiliencia. Partners de Cambium Networks® y Cisco Systems® en Córdoba."
 >
+  <script type="application/ld+json" is:inline set:html={faqLd} />
   <!-- HERO -->
   <section class="ir-hero">
     <div class="container ir-hero__inner">
@@ -346,7 +358,7 @@ const articulos = [
       </div>
       <div class="grid grid--3 ir-articulos" style="margin-top:2.5rem">
         {articulos.map((a) => (
-          <a class="card card--link ir-articulo" href={withBase(`/novedades/${a.slug}/`)}>
+          <a class="card card--link ir-articulo" href={withBase(`/${a.slug}/`)}>
             {heroOf(a.slug) && (
               <img class="ir-articulo__img" src={heroOf(a.slug)} alt={a.titulo} loading="lazy" />
             )}

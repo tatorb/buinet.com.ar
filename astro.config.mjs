@@ -16,6 +16,11 @@ export default defineConfig({
   // Se puede subir a cualquier server (nginx/Apache) o CDN.
   output: 'static',
   trailingSlash: 'always', // Mantiene las URLs con "/" final como en WordPress (/blog/mi-post/)
+  // 301 heredados del SEO original. La versión "la-base" consolida en la canónica "esencial-hoy-en-dia".
+  redirects: {
+    '/que-es-una-red-convergente-y-por-que-es-la-base/':
+      '/que-es-una-red-convergente-y-por-que-es-esencial-hoy-en-dia/',
+  },
   integrations: [
     sitemap({
       // La galería interna queda fuera del sitemap (no debe indexarse ni difundirse).

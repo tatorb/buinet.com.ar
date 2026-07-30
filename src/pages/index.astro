@@ -129,7 +129,7 @@ const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month:
             <li><Icon name="lock" size={22} /> Control de accesos</li>
             <li><Icon name="network" size={22} /> Gestión centralizada</li>
           </ul>
-          <a class="btn btn--solid" href={withBase('/camscope/')}>Conocer CamScope</a>
+          <a class="btn btn--solid" href="https://camscope.buinet.com.ar/" target="_blank" rel="noopener">Visitar sitio web</a>
         </div>
         <div class="unidad__media">
           <img src="/wp-content/uploads/2025/07/CamScope-laptop.png" alt="Software CamScope en una laptop" loading="lazy" />
@@ -166,7 +166,7 @@ const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month:
         <h2 class="center">Novedades y noticias</h2>
         <div class="grid grid--3" style="margin-top:2.5rem">
           {posts.map((post) => (
-            <a class="card card--link home-post" href={withBase(`/novedades/${post.id}/`)}>
+            <a class="card card--link home-post" href={withBase(`/${post.id}/`)}>
               {post.data.heroImage && (
                 <img class="home-post__img" src={post.data.heroImage} alt={post.data.title} loading="lazy" />
               )}
