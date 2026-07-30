@@ -16,7 +16,12 @@ export default defineConfig({
   // Se puede subir a cualquier server (nginx/Apache) o CDN.
   output: 'static',
   trailingSlash: 'always', // Mantiene las URLs con "/" final como en WordPress (/blog/mi-post/)
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      // La galería interna queda fuera del sitemap (no debe indexarse ni difundirse).
+      filter: (page) => !page.includes('/galeria-interna-'),
+    }),
+  ],
   build: {
     // Genera /pagina/index.html en vez de /pagina.html => URLs limpias y compatibles con WordPress.
     format: 'directory',

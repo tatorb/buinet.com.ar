@@ -1,0 +1,142 @@
+---
+// ============================================================================
+// GALERÍA INTERNA — uso privado del equipo (NO pública).
+// - noindex/nofollow: fuera del SEO.
+// - No está enlazada desde ninguna parte del sitio ni en el sitemap.
+// - URL con token difícil de adivinar.
+// Muestra todas las imágenes de /wp-content/uploads del server, por fecha,
+// para poder decidir qué imagen va en cada entrada de blog / sección.
+// ============================================================================
+import gallery from '../data/gallery.json';
+
+type Item = { y: string; mo: string; name: string; path: string };
+const items = gallery as Item[];
+
+const MESES = ['', 'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+
+// Agrupar por AÑO/MES manteniendo el orden (ya viene de más nuevo a más viejo).
+const groups: { key: string; y: string; mo: string; label: string; items: Item[] }[] = [];
+const index = new Map<string, number>();
+for (const it of items) {
+  const key = `${it.y}-${it.mo}`;
+  if (!index.has(key)) {
+    index.set(key, groups.length);
+    groups.push({ key, y: it.y, mo: it.mo, label: `${MESES[parseInt(it.mo, 10)]} ${it.y}`, items: [] });
+  }
+  groups[index.get(key)!].items.push(it);
+}
+const total = items.length;
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />
+    <title>Galería interna · Building Networks</title>
+    <style>
+      :root { --bg:#0f1720; --panel:#17212b; --line:#26333f; --fg:#e7edf2; --muted:#8ea0ad; --teal:#1aa6a0; }
+      * { box-sizing: border-box; }
+      body { margin:0; background:var(--bg); color:var(--fg); font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+      a { color: var(--teal); }
+      header { position: sticky; top:0; z-index:10; background:rgba(15,23,32,0.96); backdrop-filter: blur(6px); border-bottom:1px solid var(--line); padding:0.9rem 1.2rem; }
+      .head-row { display:flex; align-items:center; gap:1rem; flex-wrap:wrap; }
+      h1 { font-size:1.05rem; margin:0; font-weight:600; }
+      .count { color:var(--muted); font-size:0.85rem; }
+      .search { margin-left:auto; flex:1 1 260px; max-width:420px; }
+      .search input { width:100%; padding:0.55rem 0.8rem; border-radius:8px; border:1px solid var(--line); background:var(--panel); color:var(--fg); font-size:0.95rem; }
+      .months { display:flex; gap:0.4rem; flex-wrap:wrap; margin-top:0.7rem; }
+      .months a { font-size:0.75rem; padding:0.2rem 0.55rem; border:1px solid var(--line); border-radius:999px; color:var(--muted); text-decoration:none; white-space:nowrap; }
+      .months a:hover { color:var(--fg); border-color:var(--teal); }
+      main { padding:1.2rem; }
+      section { margin-bottom:2.2rem; scroll-margin-top:120px; }
+      section h2 { font-size:1rem; font-weight:600; margin:0 0 0.9rem; padding-bottom:0.4rem; border-bottom:1px solid var(--line); }
+      section h2 span { color:var(--muted); font-weight:400; font-size:0.85rem; }
+      .grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap:1rem; }
+      .card { background:var(--panel); border:1px solid var(--line); border-radius:10px; overflow:hidden; display:flex; flex-direction:column; }
+      .thumb { height:150px; background:
+        linear-gradient(45deg,#1b2530 25%,transparent 25%,transparent 75%,#1b2530 75%),
+        linear-gradient(45deg,#1b2530 25%,#141c25 25%,#141c25 75%,#1b2530 75%);
+        background-size:18px 18px; background-position:0 0,9px 9px; display:flex; align-items:center; justify-content:center; }
+      .thumb a { display:flex; width:100%; height:100%; align-items:center; justify-content:center; }
+      .thumb img { max-width:100%; max-height:150px; object-fit:contain; display:block; }
+      .meta { padding:0.55rem 0.6rem; border-top:1px solid var(--line); }
+      .name { font-size:0.72rem; color:var(--fg); word-break:break-all; line-height:1.35; }
+      .actions { display:flex; gap:0.4rem; margin-top:0.45rem; }
+      .btn { font-size:0.68rem; padding:0.28rem 0.5rem; border-radius:6px; border:1px solid var(--line); background:transparent; color:var(--muted); cursor:pointer; }
+      .btn:hover { color:var(--fg); border-color:var(--teal); }
+      .btn--path { flex:1; text-align:left; }
+      .empty { color:var(--muted); padding:2rem 0; text-align:center; display:none; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="head-row">
+        <h1>Galería interna</h1>
+        <span class="count">{total} imágenes · uploads/ · privado</span>
+        <div class="search"><input id="q" type="search" placeholder="Filtrar por nombre de archivo…" autocomplete="off" /></div>
+      </div>
+      <nav class="months">
+        {groups.map((g) => <a href={`#m-${g.key}`}>{g.label} ({g.items.length})</a>)}
+      </nav>
+    </header>
+
+    <main>
+      <p id="empty" class="empty">No hay imágenes que coincidan con el filtro.</p>
+      {groups.map((g) => (
+        <section id={`m-${g.key}`} data-month>
+          <h2>{g.label} <span>· {g.items.length}</span></h2>
+          <div class="grid">
+            {g.items.map((it) => (
+              <div class="card" data-name={it.name.toLowerCase()}>
+                <div class="thumb">
+                  <a href={it.path} target="_blank" rel="noopener">
+                    <img src={it.path} alt={it.name} loading="lazy" decoding="async" />
+                  </a>
+                </div>
+                <div class="meta">
+                  <div class="name">{it.name}</div>
+                  <div class="actions">
+                    <button class="btn btn--path" data-copy={it.path} title={it.path}>Copiar ruta</button>
+                    <a class="btn" href={it.path} target="_blank" rel="noopener">Ver</a>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      ))}
+    </main>
+
+    <script is:inline>
+      // Copiar ruta al portapapeles
+      document.addEventListener('click', (e) => {
+        const b = e.target.closest('[data-copy]');
+        if (!b) return;
+        navigator.clipboard.writeText(b.dataset.copy).then(() => {
+          const prev = b.textContent;
+          b.textContent = '¡Copiado!';
+          setTimeout(() => (b.textContent = prev), 1200);
+        });
+      });
+      // Filtro por nombre de archivo
+      const q = document.getElementById('q');
+      const empty = document.getElementById('empty');
+      q.addEventListener('input', () => {
+        const term = q.value.trim().toLowerCase();
+        let anyVisible = false;
+        document.querySelectorAll('section[data-month]').forEach((sec) => {
+          let visibleInSection = 0;
+          sec.querySelectorAll('.card').forEach((card) => {
+            const match = !term || card.dataset.name.includes(term);
+            card.style.display = match ? '' : 'none';
+            if (match) visibleInSection++;
+          });
+          sec.style.display = visibleInSection ? '' : 'none';
+          if (visibleInSection) anyVisible = true;
+        });
+        empty.style.display = anyVisible ? 'none' : 'block';
+      });
+    </script>
+  </body>
+</html>
