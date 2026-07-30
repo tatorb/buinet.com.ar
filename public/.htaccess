@@ -1,8 +1,33 @@
-# Redirecciones 301 heredadas del SEO original (servidores Apache).
-# En servidores nginx se ignora este archivo; el sitio igual sirve una página
-# de redirección generada por Astro para las mismas rutas.
+# ============================================================================
+#  .htaccess — Building Networks (sitio estático Astro)
+#  Servidores Apache (o Apache como backend detrás de nginx en HestiaCP).
+#  En un stack nginx-puro este archivo se ignora: ver reglas equivalentes
+#  para nginx en docs/redirects-410.md.
+# ============================================================================
+
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  # Consolidar la variante "la-base" en la canónica "esencial-hoy-en-dia".
+
+  # --------------------------------------------------------------------------
+  # 410 GONE — URLs de spam inyectadas por un hackeo previo (cloaking).
+  # Google indexó ~1.000 URLs falsas tipo:
+  #   /?shop/c/c82294/   /?shop/goods/W822665/   /shop/...   /goods/...
+  # Devolvemos 410 (NO 404, NO 301, NO 200) para que Google las elimine del
+  # índice de forma permanente. [G]=Gone(410) [L]=última regla [NC]=sin caso.
+  # --------------------------------------------------------------------------
+
+  # 1) Query string que arranca con "shop" o "goods"  (ej: /?shop/c/c82294/)
+  RewriteCond %{QUERY_STRING} (^|&)shop [OR,NC]
+  RewriteCond %{QUERY_STRING} (^|&)goods [NC]
+  RewriteRule ^ - [G,L]
+
+  # 2) Path que arranca con /shop/ o /goods/  (ej: /shop/ , /goods/lo-que-sea)
+  RewriteRule ^shop(/.*)?$  - [G,L,NC]
+  RewriteRule ^goods(/.*)?$ - [G,L,NC]
+
+  # --------------------------------------------------------------------------
+  # 301 heredado del SEO original: consolidar la variante "la-base" en la
+  # canónica "esencial-hoy-en-dia".
+  # --------------------------------------------------------------------------
   RewriteRule ^que-es-una-red-convergente-y-por-que-es-la-base/?$ /que-es-una-red-convergente-y-por-que-es-esencial-hoy-en-dia/ [R=301,L]
 </IfModule>
