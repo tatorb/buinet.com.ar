@@ -62,16 +62,19 @@ export const servicios: Servicio[] = [
 export const industrias = [
   {
     titulo: 'Sector Industrial y Productivo',
+    icono: 'factory',
     resumen:
       'Proveemos soluciones integrales para la automatización, conectividad y seguridad en entornos industriales, optimizando procesos productivos y asegurando la continuidad operativa con tecnología avanzada.',
   },
   {
     titulo: 'Complejos Residenciales y Barrios Privados',
+    icono: 'building',
     resumen:
       'Diseñamos infraestructuras tecnológicas para complejos residenciales que garantizan seguridad, conectividad y comodidad, mejorando la calidad de vida y experiencia de sus residentes.',
   },
   {
     titulo: 'Comercios y Redes de Franquicias',
+    icono: 'store',
     resumen:
       'Ofrecemos soluciones tecnológicas personalizadas para comercios, fortaleciendo su conectividad, sistemas de seguridad y gestión, optimizando la experiencia del cliente y las operaciones.',
   },
