@@ -34,11 +34,11 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    <!-- Favicon: logo real de la marca (solo el ícono, sin texto), servido desde el server.
-         Se usa el PNG real de marca; no se referencia un SVG para que el navegador no
-         prefiera un placeholder. -->
-    <link rel="icon" type="image/png" sizes="32x32" href="/wp-content/uploads/2024/07/favicon-150x150.png" />
-    <link rel="icon" type="image/png" sizes="192x192" href="/wp-content/uploads/2024/07/favicon-300x300.png" />
+    <!-- Favicon de marca (ícono real, sin texto). Es el que Google usa como
+         "logo" en los resultados. sizes con los valores REALES de cada archivo
+         (antes estaban mal declarados y Google podía descartarlos). -->
+    <link rel="icon" href="/wp-content/uploads/2024/07/favicon-300x300.png" type="image/png" sizes="300x300" />
+    <link rel="icon" href="/wp-content/uploads/2024/07/favicon-150x150.png" type="image/png" sizes="150x150" />
     <link rel="shortcut icon" href="/wp-content/uploads/2024/07/favicon-300x300.png" />
     <link rel="apple-touch-icon" href="/wp-content/uploads/2024/07/favicon-300x300.png" />
 
