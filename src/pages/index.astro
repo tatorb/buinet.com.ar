@@ -203,8 +203,10 @@ const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month:
   .hero__text .lead { max-width: 30rem; }
   .hero__cta { display: flex; gap: 0.9rem; flex-wrap: wrap; margin-top: 1.75rem; }
 
-  /* Imagen superior en tarjeta "Tus Sistemas y Procesos" */
-  .card__img-top { width: 100%; max-width: 220px; height: 130px; object-fit: contain; margin-bottom: 1rem; }
+  /* Imagen de la tarjeta "Tus Sistemas y Procesos": misma altura que los
+     íconos SVG (44px) para que todas las tarjetas se vean parejas. */
+  .card__icon { min-height: 44px; align-items: center; }
+  .card__img-top { width: auto; height: 44px; object-fit: contain; margin-bottom: 1rem; }
 
   /* CASO DE ÉXITO */
   .exito { position: relative; background: linear-gradient(120deg, #0b6a6c, #0f8f86); color: #fff; overflow: hidden; }
