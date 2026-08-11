@@ -1,7 +1,7 @@
 ---
 title: "Cuánto dura una cámara IP y cuándo conviene reemplazarla"
 description: "Vida útil real de una cámara IP, qué la acorta, las señales de reemplazo y cómo planificar el recambio sin rehacer todo el sistema de golpe."
-heroImage: "/wp-content/uploads/2024/10/PORTADA-SEGURIDAD-PERIMETROS-100.jpg"
+heroImage: "/wp-content/uploads/2026/08/perimetro-tecnico.png"
 pubDate: 2026-08-06
 author: "Building Networks"
 draft: false
