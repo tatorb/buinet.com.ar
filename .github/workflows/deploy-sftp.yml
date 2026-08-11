@@ -17,8 +17,11 @@ on:
   workflow_dispatch:
   push:
     branches: [claude/buinet-wordpress-migration-cwo0m4, main]
+    # OJO: no usar '**.md' acá. Las entradas del blog son .md dentro de
+    # src/content/blog/, así que ese patrón impedía que publicar un artículo
+    # disparara el deploy. Solo ignoramos los .md de la raíz (README y demás).
     paths-ignore:
-      - '**.md'
+      - '*.md'
       - 'docs/**'
       - '.github/**'
 
