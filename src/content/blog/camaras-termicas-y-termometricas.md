@@ -1,6 +1,6 @@
 ---
-title: "Cámaras térmicas y termométricas: detectar antes para evitar fallas"
-description: "Cuando la temperatura cambia, algo está pasando. La diferencia no está en “si” lo vamos a ver, sino en cuándo lo detectamos."
+title: "Cámaras térmicas y termométricas, qué son y en qué se diferencian"
+description: "Qué es una cámara térmica, en qué se diferencia de una termométrica y cuándo conviene cada una. Detección por calor, medición de temperatura y usos típicos."
 heroImage: "/wp-content/uploads/2026/02/Mesa-de-trabajo-1-100-1.jpg"
 pubDate: 2026-02-19
 author: "Building Networks"
