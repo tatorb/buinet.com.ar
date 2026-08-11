@@ -32,7 +32,11 @@ La cámara térmica no ve luz, ve calor. Genera imagen a partir de la radiación
 
 Para un perímetro esto cambia todo, porque una persona o un vehículo aparecen como una firma térmica clara contra un fondo frío. La discriminación entre lo que importa y lo que no deja de depender del contraste visual y pasa a depender de la temperatura, que es un dato mucho más estable.
 
-Lo que la térmica no hace es identificar. No vas a reconocer una cara ni leer una patente en una imagen térmica, y ahí está el error más común de diseño, comprar térmicas esperando que reemplacen a las visuales. No las reemplazan, las anteceden. Si querés profundizar en el equipo en sí, lo tratamos en [cámaras térmicas y termométricas](/camaras-termicas-y-termometricas/) y en [cámaras térmicas para industrias y perímetros](/camaras-termicas-axis-para-industrias-y-perimetros/).
+Lo que la térmica no hace es identificar. No vas a reconocer una cara ni leer una patente en una imagen térmica, y ahí está el error más común de diseño, comprar térmicas esperando que reemplacen a las visuales. No las reemplazan, las anteceden.
+
+La referencia de esta categoría es la serie AXIS Q19 de cámaras térmicas, construida específicamente para protección perimetral, con variantes de distinta distancia focal según el tramo a cubrir. La misma serie incluye modelos termométricos, que además de detectar miden temperatura y sirven para monitoreo de procesos industriales, un uso distinto que conviene no mezclar en el mismo pliego.
+
+Si querés profundizar en el equipo en sí, lo tratamos en [cámaras térmicas y termométricas](/camaras-termicas-y-termometricas/) y en [cámaras térmicas para industrias y perímetros](/camaras-termicas-axis-para-industrias-y-perimetros/).
 
 ## Capa dos, verificación visual
 
