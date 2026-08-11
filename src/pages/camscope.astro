@@ -1,51 +1,302 @@
 ---
-import { withBase } from '../utils/url';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
+import { withBase } from '../utils/url';
+
+// ============================================================================
+// PÁGINA DE PRODUCTO — CamScope.
+// Usa el sistema visual del sitio (no la plantilla de artículo).
+// ============================================================================
+
+const diferenciales = [
+  {
+    titulo: 'Sin licenciamiento por canal',
+    resumen:
+      'Sumar cámaras no vuelve a pagar software. El costo del sistema no crece de forma proporcional al parque, lo que cambia por completo la ecuación en instalaciones medianas y grandes.',
+    icono: 'server',
+  },
+  {
+    titulo: 'Construido sobre tu proceso',
+    resumen:
+      'Zonas que cambian de estado según el turno. Escalamiento de alarmas distinto por sector y por franja horaria. Políticas de retención por cámara. La configuración sigue la operación real, no un esquema genérico.',
+    icono: 'network',
+  },
+  {
+    titulo: 'Integración real, no agrupación',
+    resumen:
+      'Video, control de accesos y audio IP funcionando como un sistema con tres capas. Un evento en uno dispara la acción en otro, con trazabilidad completa.',
+    icono: 'lock',
+  },
+  {
+    titulo: 'Protocolos abiertos',
+    resumen:
+      'No te ata a un fabricante de hardware. Podés renovar cámaras por etapas, mezclar marcas y conservar la inversión en cableado, gabinetes y estructura.',
+    icono: 'shield',
+  },
+];
+
+const escenarios = [
+  'Operaciones donde el video cumple una función de proceso, no solo de seguridad, como auditoría de líneas, trazabilidad de despacho o control de calidad',
+  'Instalaciones con parque grande, donde el licenciamiento por canal se vuelve el rubro más pesado del presupuesto',
+  'Sistemas heredados con equipos de varias generaciones y plataformas que no se hablan entre sí',
+  'Proyectos que integran video con control de accesos, audio IP y sistemas propios de la empresa',
+  'Perímetros industriales con lógica de zonas y horarios cambiantes',
+];
+
+// Cifras de Capitalinas. No agregar ninguna que no esté en esta lista.
+const cifras = [
+  { valor: '436', label: 'cámaras IP' },
+  { valor: '8', label: 'servidores dedicados a la plataforma propia' },
+  { valor: '88', label: 'controladores de ingreso y egreso' },
+  { valor: '264', label: 'accesos controlados' },
+  { valor: '64', label: 'dispositivos de audio IP entre perímetro y cielorraso' },
+  { valor: '42', label: 'switches y 1176 puertos activos' },
+];
+
+const relacionados = [
+  {
+    titulo: 'Videovigilancia corporativa',
+    resumen: 'La guía completa sobre cómo se diseña un sistema.',
+    href: '/videovigilancia-corporativa/',
+  },
+  {
+    titulo: 'NVR vs VMS',
+    resumen: 'Cómo elegir la arquitectura de grabación.',
+    href: '/nvr-vs-vms/',
+  },
+  {
+    titulo: 'Integración con control de accesos y audio IP',
+    resumen: 'Qué cambia cuando los tres sistemas se hablan.',
+    href: '/integracion-control-accesos-audio-ip/',
+  },
+];
+
+const descripcion =
+  'Plataforma de videovigilancia desarrollada por Building Networks, sin licenciamiento por canal y construida sobre la lógica operativa de cada cliente.';
+
+const appLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'CamScope',
+  applicationCategory: 'SecurityApplication',
+  description: descripcion,
+  manufacturer: {
+    '@type': 'Organization',
+    name: 'Building Networks S.A.',
+    url: 'https://buinet.com.ar',
+  },
+});
 ---
-<BaseLayout
-  title="CamScope"
-  description="CamScope: software de desarrollo propio de Building Networks que centraliza la gestión de videovigilancia, audio IP y control de accesos."
->
-  <section class="svc-hero">
-    <div class="container" style="padding-block:clamp(2rem,4.5vw,3.4rem)">
-      <p class="eyebrow">Software de desarrollo propio</p>
-      <h1 style="color:#fff">CamScope</h1>
-      <p class="lead" style="color:var(--color-on-dark-muted); max-width:720px">
-        Nuestro software nuclea los sistemas de Video Vigilancia, Audio IP y Control de Accesos
-        en una única plataforma.
+<BaseLayout title="CamScope, plataforma propia de gestión de video" description={descripcion}>
+  <script type="application/ld+json" is:inline set:html={appLd} slot="head" />
+
+  <!-- 1 · ENCABEZADO -->
+  <section class="cs-hero">
+    <div class="container cs-hero__inner">
+      <p class="eyebrow" style="color:#bfe0dd">CamScope</p>
+      <h1>La plataforma que se adapta a tu operación, no al revés</h1>
+      <p class="lead" style="color:rgba(255,255,255,0.92); max-width:660px">
+        CamScope es el sistema de gestión de video que desarrollamos en Building Networks a lo largo
+        de diez años, para los proyectos donde una plataforma de catálogo no alcanza.
+      </p>
+      <a class="btn btn--white" href={withBase('/contacto/')}>Conversemos</a>
+    </div>
+  </section>
+
+  <!-- 2 · EL PROBLEMA -->
+  <section class="section">
+    <div class="container measure mx-auto cs-prosa">
+      <p class="eyebrow">El problema</p>
+      <h2>Cuando el software decide cómo tenés que operar</h2>
+      <p>
+        Las plataformas de gestión de video comerciales están construidas para un mercado amplio. Eso
+        tiene una consecuencia doble, traen decenas de funciones que nunca vas a usar, y les falta
+        exactamente la que tu operación necesita.
+      </p>
+      <p>
+        El resultado se ve en la práctica. Zonas que no se pueden configurar según el turno real de la
+        planta. Alarmas que escalan siempre igual, sin importar la hora ni el sector. Reglas de
+        retención uniformes cuando el proceso pide criterios distintos por cámara. Integraciones con
+        los sistemas que la empresa ya usa que requieren desarrollos aparte.
+      </p>
+      <p>
+        Y un costo que crece de una forma que no acompaña al negocio, porque el licenciamiento por
+        canal significa que cada cámara nueva vuelve a pagar software.
       </p>
     </div>
   </section>
 
+  <!-- 3 · QUÉ ES CAMSCOPE -->
+  <section class="section section--surface">
+    <div class="container cs-que">
+      <div class="cs-que__text">
+        <p class="eyebrow">Qué es</p>
+        <h2>Diez años de desarrollo sobre proyectos reales</h2>
+        <p>
+          CamScope no salió de un plan de producto. Salió de resolver, proyecto por proyecto, lo que
+          las plataformas disponibles no resolvían.
+        </p>
+        <p>
+          Es un sistema de gestión de video que unifica la visualización, la grabación, la analítica y
+          la integración con control de accesos y audio IP, y que se configura sobre la lógica
+          operativa de cada cliente en lugar de sobre un esquema fijo.
+        </p>
+        <p>
+          Trabaja con protocolos abiertos, así que se monta sobre el parque de cámaras existente y no
+          obliga a reemplazar hardware para migrar.
+        </p>
+      </div>
+      <div class="cs-que__media">
+        <img src="/wp-content/uploads/2025/07/CamScope-laptop.png" alt="CamScope en pantalla" loading="lazy" />
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · QUÉ LO DIFERENCIA -->
   <section class="section">
-    <div class="container prose measure">
+    <div class="container">
+      <div class="center measure mx-auto">
+        <p class="eyebrow">Qué lo diferencia</p>
+        <h2>Cuatro decisiones de fondo</h2>
+      </div>
+      <div class="grid grid--2 cs-difs" style="margin-top:2.5rem">
+        {diferenciales.map((d) => (
+          <div class="card cs-dif">
+            <span class="card__icon"><Icon name={d.icono} size={36} /></span>
+            <h3>{d.titulo}</h3>
+            <p>{d.resumen}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · DÓNDE SE USA -->
+  <section class="section section--surface">
+    <div class="container measure mx-auto cs-prosa">
+      <p class="eyebrow">Dónde se usa</p>
+      <h2>Para qué tipo de proyecto tiene sentido</h2>
       <p>
-        CamScope es el software de desarrollo propio que centraliza la gestión de las cámaras,
-        los parlantes y el sistema de acceso en grandes organizaciones. Con CamScope se gestionan
-        de manera simple e intuitiva complejos sistemas de video vigilancia y control de accesos.
+        CamScope no reemplaza a una plataforma comercial en todos los casos. En una instalación chica
+        y estándar, una solución de catálogo resuelve bien y es la recomendación honesta.
       </p>
-      <p>
-        Como facilitador tecnológico de AXIS en Argentina, en Building Networks diseñamos,
-        implementamos y mantenemos CamScope, con más de diez años de desarrollo continuo.
-      </p>
-      <h2>Un mismo sistema</h2>
-      <ul>
-        <li><Icon name="camera" size={18} /> Videovigilancia: gestión de cámaras IP y analítica.</li>
-        <li><Icon name="speaker" size={18} /> Audio IP: parlantes y avisos por zonas.</li>
-        <li><Icon name="lock" size={18} /> Control de accesos: autorizaciones y trazabilidad.</li>
+      <p>Donde CamScope hace la diferencia es en estos escenarios:</p>
+      <ul class="cs-lista">
+        {escenarios.map((e) => (
+          <li><Icon name="check" size={18} /> <span>{e}</span></li>
+        ))}
       </ul>
-      <p style="margin-top:2rem">
-        <a class="btn" href={withBase("/contacto/")}>Solicitar una demo <Icon name="arrow" size={18} /></a>
+    </div>
+  </section>
+
+  <!-- 6 · CASO CAPITALINAS -->
+  <section class="cs-caso">
+    <div class="container">
+      <div class="measure mx-auto center">
+        <p class="eyebrow" style="color:#bfe0dd">El caso</p>
+        <h2>Capitalinas, más de 15 años en producción</h2>
+        <p class="lead" style="color:rgba(255,255,255,0.9)">
+          Distrito Capitalinas es el complejo corporativo de referencia de Córdoba, y alberga a
+          empresas con alta demanda tecnológica. Building Networks diseñó, implementó y mantiene toda
+          su infraestructura tecnológica, y CamScope es la plataforma que gestiona el video de ese
+          sistema.
+        </p>
+      </div>
+      <div class="cs-cifras">
+        {cifras.map((c) => (
+          <div class="cs-cifra">
+            <span class="cs-cifra__num">{c.valor}</span>
+            <span class="cs-cifra__label">{c.label}</span>
+          </div>
+        ))}
+      </div>
+      <p class="cs-caso__cierre measure mx-auto center">
+        No es una instalación de referencia armada para mostrar. Es un sistema que lleva más de quince
+        años en operación continua, creciendo con el complejo, integrando video, control de accesos y
+        audio IP bajo una misma plataforma. Ese es el escenario donde CamScope se probó.
       </p>
+    </div>
+  </section>
+
+  <!-- 7 · CÓMO EMPEZAMOS -->
+  <section class="section">
+    <div class="container measure mx-auto center cs-prosa">
+      <p class="eyebrow">Cómo empezamos</p>
+      <h2>El primer paso es entender qué tenés</h2>
+      <p>
+        Antes de proponer nada relevamos el parque instalado, la red disponible y, sobre todo, cómo
+        funciona la operación. De ahí sale si conviene CamScope, una plataforma comercial o una
+        combinación de las dos.
+      </p>
+      <a class="btn btn--solid" href={withBase('/contacto/')} style="margin-top:0.5rem">Conversemos</a>
+    </div>
+  </section>
+
+  <!-- 8 · RELACIONADOS -->
+  <section class="section section--surface">
+    <div class="container">
+      <div class="center measure mx-auto"><h2>Seguí leyendo</h2></div>
+      <div class="grid grid--3" style="margin-top:2.5rem">
+        {relacionados.map((r) => (
+          <a class="card card--link cs-rel" href={withBase(r.href)}>
+            <h3>{r.titulo}</h3>
+            <p>{r.resumen}</p>
+            <span class="cs-more">Ver más <Icon name="arrow" size={16} /></span>
+          </a>
+        ))}
+      </div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  .svc-hero { background: linear-gradient(160deg, rgba(0,70,75,0.86), rgba(0,98,105,0.66)), url("/wp-content/uploads/2024/07/A5.jpg") center/cover no-repeat; }
-  .prose { max-width: 68ch; }
-  .prose ul { list-style: none; padding: 0; }
-  .prose li { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.6rem; }
-  .prose li svg { color: var(--color-accent); flex: none; }
+  /* HERO */
+  .cs-hero { background: linear-gradient(160deg, rgba(0,70,75,0.90), rgba(0,98,105,0.72)), url("/wp-content/uploads/2024/07/A5.jpg") center/cover no-repeat; color: #fff; }
+  .cs-hero__inner { padding-block: clamp(2.6rem, 6vw, 4.6rem); max-width: 800px; }
+  .cs-hero h1 { color: #fff; margin-bottom: 1.2rem; }
+
+  .cs-prosa p { font-size: 1.05rem; }
+
+  /* QUÉ ES */
+  .cs-que { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3rem; align-items: center; }
+  .cs-que__text p { font-size: 1.05rem; }
+  .cs-que__media img { width: 100%; max-width: 460px; margin-inline: auto; height: auto; object-fit: contain; }
+
+  /* DIFERENCIALES */
+  .cs-dif { text-align: left; align-items: flex-start; }
+  .cs-dif .card__icon { color: var(--teal); }
+  .cs-dif h3 { font-size: 1.15rem; margin-bottom: 0.5rem; }
+  .cs-dif p { color: var(--muted); margin: 0; }
+
+  /* LISTA DE ESCENARIOS */
+  .cs-lista { list-style: none; padding: 0; margin: 1.2rem 0 0; display: grid; gap: 0.8rem; }
+  .cs-lista li { display: flex; gap: 0.7rem; align-items: flex-start; }
+  .cs-lista li :global(svg) { color: var(--teal); flex: none; margin-top: 5px; }
+
+  /* CASO CAPITALINAS */
+  .cs-caso { background: linear-gradient(160deg, var(--teal), var(--teal-dark)); color: #fff; padding-block: clamp(2.75rem, 6vw, 4.6rem); }
+  .cs-caso h2 { color: #fff; }
+  .cs-cifras { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; margin-top: 3rem; }
+  .cs-cifra { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); border-radius: var(--radius); padding: 1.6rem 1.2rem; text-align: center; }
+  .cs-cifra__num { display: block; font-size: 2rem; font-weight: 400; color: #fff; line-height: 1.1; }
+  .cs-cifra__label { display: block; margin-top: 0.5rem; color: rgba(255,255,255,0.85); font-size: 0.9rem; }
+  .cs-caso__cierre { margin-top: 2.5rem; color: rgba(255,255,255,0.9); }
+
+  /* RELACIONADOS */
+  .cs-rel { text-align: left; align-items: flex-start; }
+  .cs-rel h3 { font-size: 1.1rem; margin-bottom: 0.4rem; }
+  .cs-rel p { color: var(--muted); margin: 0 0 0.9rem; }
+  .cs-more { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: auto; color: var(--teal); font-weight: 500; font-size: 0.9rem; }
+  .cs-rel:hover .cs-more { gap: 0.6rem; }
+
+  @media (max-width: 980px) {
+    .cs-cifras { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 900px) {
+    .cs-que { grid-template-columns: 1fr; }
+    .cs-que__media { order: -1; }
+  }
+  @media (max-width: 560px) {
+    .cs-cifras { grid-template-columns: 1fr; }
+  }
 </style>

@@ -25,3 +25,5 @@ Todo este desarrollo inaugura una nueva etapa, en la que convergen dos de nuestr
 Ya está disponible. Y para quienes quieran ver el nuevo CamScope en funcionamiento, les compartimos este video:
 
 https://youtu.be/YmHMb4MiS5s
+
+[Conocé CamScope en detalle](/camscope/)
