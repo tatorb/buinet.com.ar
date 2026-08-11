@@ -17,6 +17,9 @@ const blog = defineCollection({
       tags: z.array(z.string()).default([]),
       // Imagen destacada (URL servida desde /wp-content/uploads del server).
       heroImage: z.string().optional(),
+      // Canonical propio: consolida esta nota en otra URL cuando compiten por
+      // la misma consulta. El post sigue accesible y en el sitemap.
+      canonical: z.string().optional(),
       draft: z.boolean().default(false),
     }),
 });

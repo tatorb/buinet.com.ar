@@ -38,7 +38,7 @@ Por separado, cada capa deja un hueco que la otra llena. Ahí está todo el argu
 
 **Acceso vehicular.** La cámara lee la patente, el sistema la compara contra la lista autorizada y libera la barrera. Queda registrado qué vehículo entró, a qué hora y con qué imagen asociada. En plantas con movimiento de camiones esto reemplaza una planilla en papel que nadie audita.
 
-**Verificación de visitantes.** Un intercomunicador en el ingreso permite que alguien atienda desde adentro, vea a quien está afuera y abra remotamente si corresponde. En sedes sin personal de portería permanente, resuelve el acceso sin tener que poner a alguien ahí.
+**Verificación de visitantes.** Un intercomunicador en el ingreso permite que alguien atienda desde adentro, vea a quien está afuera y abra remotamente si corresponde. En sedes sin personal de portería permanente, resuelve el acceso sin tener que poner a alguien ahí. Vimos [un caso de integración en entorno hospitalario](/videovigilancia-hospitalaria/), donde el control del ingreso convive con el monitoreo asistencial.
 
 **Respuesta automática por zona.** La analítica detecta a una persona en un sector restringido fuera de horario, y el altavoz de ese sector emite el aviso automáticamente. No hace falta que haya un operador mirando. Sobre cómo funciona esta capa de detección, lo desarrollamos en [analítica de video con inteligencia artificial](/analitica-de-video-con-ia/).
 

@@ -55,3 +55,7 @@ Las cámaras ATEX están diseñadas para funcionar en zonas con riesgo de explos
 
 **¿Cómo contribuye la videovigilancia a la eficiencia operativa?**
 El análisis de video permite detectar fallos, optimizar procesos y reducir tiempos de parada. En Nestlé, esta información ayuda a mejorar la calibración de equipos y prevenir incidentes.
+
+## Seguí leyendo
+
+- [cómo se diseña un sistema industrial](/videovigilancia-industrial/)

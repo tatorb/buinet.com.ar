@@ -100,3 +100,7 @@ Las cámaras térmicas AXIS no reemplazan otros sistemas de monitoreo o segurida
 Los **complementan**, aportando información térmica que permite anticiparse a incidentes, mejorar la seguridad y fortalecer la continuidad operativa.
 
 Si querés analizar **qué tipo de cámara térmica se ajusta mejor a tu entorno industrial**, desde Building Networks podemos ayudarte a evaluar escenarios, riesgos y necesidades concretas: [Contactar un asesor.](/contacto/)
+
+## Seguí leyendo
+
+- [videovigilancia perimetral industrial](/videovigilancia-industrial/)

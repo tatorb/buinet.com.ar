@@ -27,3 +27,7 @@ Ya está disponible. Y para quienes quieran ver el nuevo CamScope en funcionamie
 https://youtu.be/YmHMb4MiS5s
 
 [Conocé CamScope en detalle](/camscope/)
+
+## Seguí leyendo
+
+- [cuándo conviene una plataforma de gestión](/nvr-vs-vms/)

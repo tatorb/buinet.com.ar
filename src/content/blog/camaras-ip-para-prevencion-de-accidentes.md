@@ -83,3 +83,8 @@ Las cámaras Axis integran **Edge Vault**, firmware firmado y secure boot, que e
 **¿Pueden las PyMEs industriales aplicar esta tecnología?**
 
 Sí. Pueden empezar con pilotos reducidos en zonas críticas y escalar gradualmente. Gracias a funciones como Zipstream y almacenamiento local, el costo de red y servidores se reduce considerablemente.
+
+## Seguí leyendo
+
+- [videovigilancia en obra](/videovigilancia-en-obra/)
+- [sistemas de videovigilancia industrial](/videovigilancia-industrial/)

@@ -133,3 +133,8 @@ Permite interacción directa con los pacientes, control de flujos de personal y 
 
 **¿Cómo evolucionará esta tecnología en los próximos años?**
 La tendencia apunta a la integración con inteligencia artificial para predecir riesgos clínicos antes de que sucedan, combinando datos de video, audio y sistemas clínicos en tiempo real.
+
+## Seguí leyendo
+
+- [integración con control de accesos y audio IP](/integracion-control-accesos-audio-ip/)
+- [cuántos días de grabación hay que retener](/almacenamiento-videovigilancia/)

@@ -92,7 +92,7 @@ CamScope, la plataforma que desarrollamos en Building Networks a lo largo de die
 
 ## Por dónde empezar
 
-Si tenés un perímetro que hoy tira falsas alarmas, la primera intervención no es comprar equipos. Es relevar qué está disparando esas alarmas y en qué zonas. En la mayoría de los casos, dos o tres sectores concentran casi todo el ruido, y ahí la mejora se consigue con reglas por zona y una capa de detección adecuada, no con más cámaras.
+Si tenés un perímetro que hoy tira falsas alarmas, la primera intervención no es comprar equipos. Es relevar qué está disparando esas alarmas y en qué zonas. En la mayoría de los casos, dos o tres sectores concentran casi todo el ruido, y ahí la mejora se consigue con reglas por zona y una capa de detección adecuada, no con más cámaras. Sobre el escenario de robo sistemático y cómo se aborda, escribimos en [prevención de robos en fábricas](/como-evitar-robos-con-videovigilancia-en-fabricas/).
 
 En Building Networks diseñamos e implementamos sistemas de videovigilancia perimetral industrial desde hace más de veinte años, con AXIS como partner de hardware y plataforma propia cuando el proyecto lo justifica. El panorama completo está en nuestra guía de [videovigilancia corporativa](/videovigilancia-corporativa/).
 

@@ -3,6 +3,7 @@ title: "Actualización de sistemas de videovigilancia IP en perímetros: el cami
 description: "En los sistemas heredados suelen convivir tecnologías de distintas generaciones, adaptadas de manera ingeniosa a las necesidades puntuales del momento en que fueron…"
 heroImage: "/wp-content/uploads/2024/10/PORTADA-SEGURIDAD-PERIMETROS-100.webp"
 pubDate: 2025-07-10
+canonical: "/videovigilancia-industrial/"
 author: "Building Networks"
 draft: false
 ---
@@ -128,3 +129,7 @@ De esta manera, el reemplazo progresivo de decenas de cámaras por un número op
 **[mbilotti@buinet.com.ar](mailto:mbilotti@buinet.com.ar)
 Tel. +54 9 (351) 5544150**
 **
+
+## Seguí leyendo
+
+- [videovigilancia perimetral industrial](/videovigilancia-industrial/)

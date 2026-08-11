@@ -65,3 +65,9 @@ A través de buenas prácticas: delimitar zonas de grabación, informar la exist
 
 **¿Qué beneficios genera la videovigilancia inteligente a nivel operativo?**
 Reducción de pérdidas, evidencia inmediata, menor costo en vigilancia física y optimización logística al controlar flujos y accesos en tiempo real.
+
+## Seguí leyendo
+
+- [protección perimetral por capas](/videovigilancia-industrial/)
+- [cruzar video con control de accesos](/integracion-control-accesos-audio-ip/)
+- [cuánto tiempo guardar las grabaciones](/almacenamiento-videovigilancia/)

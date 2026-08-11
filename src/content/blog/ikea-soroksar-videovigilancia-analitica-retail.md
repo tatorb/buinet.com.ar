@@ -50,3 +50,7 @@ En casos como IKEA, se redujo significativamente el almacenamiento necesario sin
 
 **¿Se puede combinar audio y video sin complejidad excesiva?**
 Sí. La plataforma abierta de Axis permite integrar cámaras y altavoces en un mismo entorno, habilitando usos tanto de seguridad como de marketing.
+
+## Seguí leyendo
+
+- [qué arquitectura soporta analítica en servidor](/nvr-vs-vms/)

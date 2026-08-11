@@ -15,16 +15,19 @@ interface Props {
   description?: string;
   /** Ruta de imagen para compartir en redes (Open Graph) */
   ogImage?: string;
+  /** Canonical explícito (ruta absoluta del sitio). Por defecto, la URL actual. */
+  canonical?: string;
 }
 
 const {
   title,
   description = 'Building Networks: diseño e implementación de redes convergentes, data center, videovigilancia (CamScope), control de acceso, audio IP y conectividad. Córdoba, Argentina.',
   ogImage = '/og-default.jpg',
+  canonical: canonicalOverride,
 } = Astro.props;
 
 const fullTitle = title ? `${title} — ${site.name}` : `${site.name} — ${site.tagline}`;
-const canonical = new URL(Astro.url.pathname, Astro.site);
+const canonical = new URL(canonicalOverride ?? Astro.url.pathname, Astro.site);
 ---
 <!doctype html>
 <html lang="es">

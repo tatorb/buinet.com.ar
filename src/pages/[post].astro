@@ -18,7 +18,7 @@ const heroStyle = post.data.heroImage
   ? `background: linear-gradient(160deg, rgba(0,70,75,0.86), rgba(0,98,105,0.66)), url("${post.data.heroImage}") center/cover no-repeat;`
   : undefined;
 ---
-<BaseLayout title={post.data.title} description={post.data.description}>
+<BaseLayout title={post.data.title} description={post.data.description} canonical={post.data.canonical}>
   <section class="svc-hero" style={heroStyle}>
     <div class="container" style="padding-block:clamp(1.9rem,4.2vw,3.1rem); max-width:820px">
       <p class="eyebrow">Novedades</p>
