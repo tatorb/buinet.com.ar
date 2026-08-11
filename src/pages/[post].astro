@@ -44,6 +44,12 @@ const heroStyle = post.data.heroImage
   .prose :global(h2) { margin-top: 2rem; }
   .prose :global(img) { border-radius: var(--radius); margin-block: 1.5rem; }
   .prose :global(pre) { background: var(--color-surface); padding: 1rem; border-radius: 8px; overflow-x: auto; }
+  /* Tablas comparativas: scrollean solas en pantallas angostas. */
+  .prose :global(table) { width: 100%; border-collapse: collapse; margin-block: 1.75rem; font-size: 0.94rem; display: block; overflow-x: auto; }
+  .prose :global(thead th) { background: var(--teal-tint); color: var(--heading); font-weight: 600; text-align: left; }
+  .prose :global(th), .prose :global(td) { border: 1px solid var(--border); padding: 0.7rem 0.9rem; vertical-align: top; }
+  .prose :global(tbody tr:nth-child(even)) { background: var(--surface); }
+  .prose :global(tbody td:first-child) { font-weight: 500; color: var(--heading); }
   .post__back { margin-top: 2.5rem; }
   .post__back a { display: inline-flex; align-items: center; gap: 0.4rem; font-weight: 600; }
 </style>
