@@ -48,7 +48,7 @@ Un sistema que solo mira registra un delito. Un sistema que responde lo interrum
 
 El audio IP sobre el perímetro permite que un operador hable directo a la zona donde se disparó la alarma, o que se emita un mensaje automático. La mayoría de las intrusiones en perímetro industrial son de oportunidad, y una voz que menciona la zona exacta en la que la persona está parada resuelve el episodio antes de que llegue a nada. Es la capa más barata del sistema y la que más eventos cierra.
 
-Sobre cómo se integra esta capa con el resto, lo desarrollamos en la nota sobre integración con control de accesos y audio IP.
+Sobre cómo se integra esta capa con el resto, lo desarrollamos en la nota sobre [integración con control de accesos y audio IP](/integracion-control-accesos-audio-ip/).
 
 ## Capa cuatro, la que decide qué es alarma
 
