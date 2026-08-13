@@ -1,6 +1,6 @@
 ---
-title: "Cableado estructurado: por qué define la vida útil de tu red"
-description: "De todas las capas de una infraestructura de red, hay una que la empresa va a heredar tal como se instaló durante los próximos diez o quince años: el cableado. Los…"
+title: "Cableado estructurado, qué categoría elegir y qué exigir"
+description: "Cat 6 o Cat 6A, cobre o fibra, y por qué exigir certificación en la entrega. La capa que la empresa hereda durante los próximos quince años."
 heroImage: "/wp-content/uploads/2026/07/bloom-c61f2c98-db75-4bbc-aa2d-0e1d781b2d6f.jpg"
 pubDate: 2026-07-13
 author: "Building Networks"

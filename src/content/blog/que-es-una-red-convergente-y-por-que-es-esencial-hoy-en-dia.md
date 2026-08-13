@@ -1,6 +1,6 @@
 ---
-title: "¿Qué es una Red Convergente y por qué es esencial para las empresas modernas?"
-description: "¿Qué es una Red Convergente y por qué es esencial para las empresas modernas?"
+title: "Qué es una red convergente y cuándo conviene implementarla"
+description: "Una sola infraestructura para datos, telefonía, videovigilancia y accesos. Qué integra, qué costos reduce y en qué momento conviene unificar."
 heroImage: "/wp-content/uploads/2024/11/PORTADA-RED-CONVERGENTE-100.webp"
 pubDate: 2024-11-19
 author: "Building Networks"

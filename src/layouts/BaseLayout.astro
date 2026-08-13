@@ -17,6 +17,13 @@ interface Props {
   ogImage?: string;
   /** Canonical explícito (ruta absoluta del sitio). Por defecto, la URL actual. */
   canonical?: string;
+  /**
+   * Agrega " — Building Networks" al <title> del documento.
+   * Las notas del blog lo omiten: en Google la marca es redundante porque el
+   * dominio ya aparece al lado, y esos 20 caracteres se comen el título útil.
+   * NO afecta a og:title, que siempre lleva la marca (ver abajo).
+   */
+  brandSuffix?: boolean;
 }
 
 const {
@@ -24,9 +31,15 @@ const {
   description = 'Building Networks: diseño e implementación de redes convergentes, data center, videovigilancia (CamScope), control de acceso, audio IP y conectividad. Córdoba, Argentina.',
   ogImage = '/og-default.jpg',
   canonical: canonicalOverride,
+  brandSuffix = true,
 } = Astro.props;
 
-const fullTitle = title ? `${title} — ${site.name}` : `${site.name} — ${site.tagline}`;
+// Título CON marca: es el que va a og:title en todas las páginas, porque en un
+// enlace compartido (LinkedIn, WhatsApp) la marca es lo único que da contexto
+// de quién publica.
+const brandedTitle = title ? `${title} — ${site.name}` : `${site.name} — ${site.tagline}`;
+// Título del documento: pierde la marca solo si la página pide brandSuffix={false}.
+const fullTitle = title && !brandSuffix ? title : brandedTitle;
 const canonical = new URL(canonicalOverride ?? Astro.url.pathname, Astro.site);
 ---
 <!doctype html>
@@ -55,7 +68,7 @@ const canonical = new URL(canonicalOverride ?? Astro.url.pathname, Astro.site);
     <!-- Open Graph / redes -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={site.name} />
-    <meta property="og:title" content={fullTitle} />
+    <meta property="og:title" content={brandedTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={new URL(ogImage, Astro.site)} />

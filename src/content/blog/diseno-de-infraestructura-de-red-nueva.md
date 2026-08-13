@@ -1,6 +1,6 @@
 ---
-title: "Qué preguntar antes de contratar a alguien para el diseño de la infraestructura de red de tu empresa"
-description: "Pedir presupuestos para una red corporativa es engañoso. Las propuestas que llegan suelen parecerse en el papel: especificaciones técnicas, marcas, plazos, precios. Pero…"
+title: "Qué preguntar antes de contratar el diseño de tu red"
+description: "Las propuestas se parecen en el papel y se diferencian en la obra. Las preguntas que separan un proyecto pensado de una lista de equipos."
 heroImage: "/wp-content/uploads/2024/07/A4.jpg"
 pubDate: 2026-06-02
 author: "Building Networks"

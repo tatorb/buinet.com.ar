@@ -1,6 +1,6 @@
 ---
-title: "Monitoreo de red: cómo saber qué pasa antes de que falle"
-description: "La mayoría de las empresas se entera de que la red anda mal cuando alguien se queja. Un usuario levanta la mano en una reunión porque no puede compartir pantalla. El…"
+title: "Monitoreo de red, cómo detectar fallas antes que el usuario"
+description: "Qué se monitorea, con qué herramientas y qué alertas importan. Cómo dejar de enterarse por un reclamo y saberlo antes de que afecte la operación."
 heroImage: "/wp-content/uploads/2026/07/monitoreo-de-red.jpg"
 pubDate: 2026-07-13
 author: "Building Networks"
