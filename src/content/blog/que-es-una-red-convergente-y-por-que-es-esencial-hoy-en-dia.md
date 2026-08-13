@@ -60,5 +60,5 @@ En **Building Networks**, somos expertos en diseñar e implementar soluciones te
 
 Si tu empresa está pensando en implementar o mejorar su infraestructura de red, puede interesarte:
 [Cómo abordar la infraestructura de red para empresas e industrias](/infraestructura-de-red/)
-[Qué tener en cuenta si tu empresa está por mudarse de sede](/infraestructura-de-red-en-una-mudanza-de-empresa/)
+[Qué tener en cuenta si tu empresa está por mudarse de sede](/mudanza-e-infraestructura-de-red/)
 [Por qué la infraestructura de red se decide en el plano y no al final de la obra](/cuando-infraestructura-de-red-se-decide-en-el-plano/)

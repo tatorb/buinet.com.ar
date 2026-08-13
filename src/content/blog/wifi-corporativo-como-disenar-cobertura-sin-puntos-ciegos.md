@@ -94,7 +94,7 @@ Hay señales bastante claras de que el wifi actual no se resuelve con más equip
 
 Cuando aparecen dos o más de estas señales, el problema ya no es un equipo. Es el diseño de fondo. Y como con cualquier [ampliación de infraestructura](/cuando-ampliar-la-infraestructura-de-red-de-tu-empresa/), conviene resolverlo con criterio antes de que se convierta en un problema mayor.
 
-Un caso frecuente: la empresa que [se muda a una sede nueva](/infraestructura-de-red-en-una-mudanza-de-empresa/) y replica el esquema de wifi que traía. Sede vieja tenía cuatro puntos de acceso, la sede nueva tiene cuatro puntos de acceso, aunque el layout, la ocupación y las paredes sean completamente distintos. El día uno el wifi funciona. El día 60 empiezan los tickets. Es exactamente el momento en que un site survey previo hubiera evitado todo. Lo mismo pasa cuando se hace una obra sin proyectar la red inalámbrica: los APs terminan colocados donde se pudo pasar cable, no donde tenían que ir. Los [problemas de wifi se decide en el plano](/cuando-infraestructura-de-red-se-decide-en-el-plano/), no después.
+Un caso frecuente: la empresa que [se muda a una sede nueva](/mudanza-e-infraestructura-de-red/) y replica el esquema de wifi que traía. Sede vieja tenía cuatro puntos de acceso, la sede nueva tiene cuatro puntos de acceso, aunque el layout, la ocupación y las paredes sean completamente distintos. El día uno el wifi funciona. El día 60 empiezan los tickets. Es exactamente el momento en que un site survey previo hubiera evitado todo. Lo mismo pasa cuando se hace una obra sin proyectar la red inalámbrica: los APs terminan colocados donde se pudo pasar cable, no donde tenían que ir. Los [problemas de wifi se decide en el plano](/cuando-infraestructura-de-red-se-decide-en-el-plano/), no después.
 
 ## El wifi que no se nota
 
@@ -104,4 +104,4 @@ La diferencia entre las dos situaciones no está en la marca del equipo. Está e
 
 Si en tu empresa el wifi se convirtió en un problema recurrente, o si estás por mudarte o ampliar la sede, es el momento de revisarlo con criterio técnico. Conversemos sobre tu caso y evaluemos qué necesita tu infraestructura inalámbrica hoy y cuál va a ser el escenario cuando la empresa siga creciendo.
 
-[Conversemos](https://www.claudeusercontent.com/contacto/)
+[Conversemos](/contacto/)

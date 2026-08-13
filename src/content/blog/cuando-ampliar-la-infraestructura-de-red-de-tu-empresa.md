@@ -24,7 +24,7 @@ Lo interesante es que en ese momento el cliente descubre algo que venía aguanta
 
 ### Una ampliación física
 
-Sumar metros, integrar una parte nueva de oficina, anexar una zona productiva, abrir una sucursal. Cualquier crecimiento físico de la empresa obliga a [llevar la red a un espacio donde antes no estaba](/infraestructura-de-red-en-una-mudanza-de-empresa/). Y según cómo esté pensada la base, ese movimiento puede ser un agregado simple o una obra compleja.
+Sumar metros, integrar una parte nueva de oficina, anexar una zona productiva, abrir una sucursal. Cualquier crecimiento físico de la empresa obliga a [llevar la red a un espacio donde antes no estaba](/mudanza-e-infraestructura-de-red/). Y según cómo esté pensada la base, ese movimiento puede ser un agregado simple o una obra compleja.
 
 En los dos casos, lo que dispara el llamado es una necesidad concreta o un crecimiento concreto. La red en sí no figura como problema. Figura como condición para lo que la empresa quiere hacer.
 

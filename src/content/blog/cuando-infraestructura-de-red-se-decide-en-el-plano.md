@@ -50,7 +50,7 @@ Cuando la infraestructura de red entra al proyecto en el momento correcto, el cl
 
 Esa invisibilidad es la marca de que la red se hizo bien. Un proveedor que entra temprano hace su trabajo en silencio. Uno que entra tarde se ve en cada parche, en cada ducto improvisado, en cada zona donde el wifi no llega del todo. La diferencia entre los dos enfoques se paga durante muchos años, distribuida en el tiempo, en horas de operación perdidas y en intervenciones repetidas.
 
-Para un decisor que está planificando una obra, esto se traduce en algo concreto: la mejor manera de no tener que pensar en la red [después de mudarse](/infraestructura-de-red-en-una-mudanza-de-empresa/) es pensarla antes de empezar a construir. En [Building Networks tomamos esa etapa de proyecto como la más importante de todas](/infraestructura-de-red/). Porque es la que decide cuánto tiempo va a estar la red funcionando bien sin que nadie tenga que ocuparse de ella. Funcionar todo el tiempo, no casi siempre, es la diferencia que se construye en el plano.
+Para un decisor que está planificando una obra, esto se traduce en algo concreto: la mejor manera de no tener que pensar en la red [después de mudarse](/mudanza-e-infraestructura-de-red/) es pensarla antes de empezar a construir. En [Building Networks tomamos esa etapa de proyecto como la más importante de todas](/infraestructura-de-red/). Porque es la que decide cuánto tiempo va a estar la red funcionando bien sin que nadie tenga que ocuparse de ella. Funcionar todo el tiempo, no casi siempre, es la diferencia que se construye en el plano.
 
 ## La prueba: Distrito Capitalinas
 

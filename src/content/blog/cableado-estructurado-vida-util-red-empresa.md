@@ -88,7 +88,7 @@ El cableado estructurado es una de esas capas donde el ahorro inicial se paga du
 
 - Cableado sin certificación de entrega original.
 
-Y el momento ideal para intervenir sobre esta capa siempre es el mismo: cuando la infraestructura se puede planificar. Si la empresa [está por mudarse](/infraestructura-de-red-en-una-mudanza-de-empresa/), es la mejor ventana para rehacer bien lo que venía arrastrando. Si está [construyendo o remodelando](/cuando-infraestructura-de-red-se-decide-en-el-plano/), el momento es antes de que las paredes estén cerradas. Si [está ampliando](/cuando-ampliar-la-infraestructura-de-red-de-tu-empresa/), la nueva parte tiene que integrarse a un esquema coherente, no sumarse como parche.
+Y el momento ideal para intervenir sobre esta capa siempre es el mismo: cuando la infraestructura se puede planificar. Si la empresa [está por mudarse](/mudanza-e-infraestructura-de-red/), es la mejor ventana para rehacer bien lo que venía arrastrando. Si está [construyendo o remodelando](/cuando-infraestructura-de-red-se-decide-en-el-plano/), el momento es antes de que las paredes estén cerradas. Si [está ampliando](/cuando-ampliar-la-infraestructura-de-red-de-tu-empresa/), la nueva parte tiene que integrarse a un esquema coherente, no sumarse como parche.
 
 ## La capa que dura
 
@@ -98,4 +98,4 @@ Por eso conviene tomarlo como una decisión estructural, no como un ítem de com
 
 Si tu empresa está por construir, mudarse o ampliar, este es el momento de revisar cómo va a quedar la capa que va a heredar durante la próxima década. Conversemos sobre tu caso y evaluemos qué necesita tu infraestructura hoy y cuál va a ser el escenario cuando el negocio siga creciendo.
 
-[Conversemos](https://www.claudeusercontent.com/contacto/)
+[Conversemos](/contacto/)
