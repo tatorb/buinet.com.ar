@@ -34,11 +34,13 @@ Una cámara para LPR resuelve un problema distinto al de una cámara de vigilanc
 
 En la práctica esto significa una cámara dedicada al carril, además de la cámara de vigilancia que muestra el contexto. Son dos equipos con dos funciones distintas, y querer ahorrarse uno es lo que hace fallar al sistema.
 
+Un ejemplo concreto de esta categoría es la AXIS P1465-LE, una cámara bullet de exterior con lente teleobjetivo y iluminación infrarroja optimizada, construida específicamente para lectura de patentes. La diferencia con una cámara de vigilancia común no es de calidad, es de propósito.
+
 ## La geometría, que es donde se define casi todo
 
-**Ángulo.** El eje de la cámara respecto de la patente debe mantenerse acotado en horizontal y en vertical. Cuanto más oblicua la vista, más se deforman los caracteres y más cae la tasa de acierto. Una cámara montada muy alta para "ver mejor" suele empeorar la lectura.
+**Ángulo.** El eje de la cámara respecto de la patente debe mantenerse acotado. Como referencia, AXIS especifica para sus equipos de lectura de patentes un ángulo de montaje que no supere los 30 grados en ninguna dirección, y una inclinación horizontal de la imagen de la placa no mayor a 5 grados. Cuanto más oblicua la vista, más se deforman los caracteres y más cae la tasa de acierto. Una cámara montada muy alta para "ver mejor" suele empeorar la lectura, por eso la regla práctica es que la altura de montaje sea menor a la mitad de la distancia entre el vehículo y la cámara.
 
-**Distancia y encuadre.** La patente tiene que ocupar una cantidad mínima de píxeles de ancho para ser legible. Eso define la combinación de distancia, resolución y lente, y es un cálculo, no una estimación visual. Sobre el método completo trabajamos en [cómo dimensionar un sistema de videovigilancia corporativo](/como-dimensionar-sistema-videovigilancia/).
+**Distancia y encuadre.** La patente tiene que ocupar una cantidad mínima de píxeles de ancho para ser legible, y eso define la combinación de distancia, resolución y lente. Los rangos varían según el escenario. Para control de acceso, donde el vehículo se detiene o pasa muy lento, se trabaja a distancias cortas, del orden de 2 a 7 metros. Para lectura en circulación, con un lente teleobjetivo, el rango se estira hasta unos 20 metros. Sobre el método completo trabajamos en [cómo dimensionar un sistema de videovigilancia corporativo](/como-dimensionar-sistema-videovigilancia/).
 
 **Carril delimitado.** El sistema funciona mucho mejor cuando el vehículo pasa por un punto previsible. Islas, defensas o simplemente una marca en el piso mejoran la tasa de acierto más que cualquier ajuste de software.
 
