@@ -1,6 +1,6 @@
 ---
-title: "La receta de Nestlé para la seguridad y eficiencia industrial con sistema de videovigilancia"
-description: "La nueva era de la seguridad industrial"
+title: "Videovigilancia industrial, el caso Nestlé"
+description: "Cómo una planta de alimentos usa el video para seguridad y eficiencia de proceso a la vez. Qué se monitorea y qué decisiones habilita."
 heroImage: "/wp-content/uploads/2025/11/Mesa-de-trabajo-1-100-2.jpg"
 pubDate: 2025-11-11
 author: "Building Networks"

@@ -1,5 +1,5 @@
 ---
-title: "Videovigilancia en industria alimenticia, qué exige el sector"
+title: "Videovigilancia en industria alimenticia"
 description: "Qué condiciones impone una planta de alimentos a un sistema de video, de la limpieza con agua a la trazabilidad, y qué equipamiento resiste ese ambiente."
 heroImage: "/wp-content/uploads/2026/08/videovigilancia-industria-alimenticia.png"
 pubDate: 2026-08-11

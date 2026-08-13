@@ -1,5 +1,5 @@
 ---
-title: "Cámaras térmicas y termométricas, qué son y en qué se diferencian"
+title: "Cámaras térmicas y termométricas, en qué difieren"
 description: "Qué es una cámara térmica, en qué se diferencia de una termométrica y cuándo conviene cada una. Detección por calor, medición de temperatura y usos típicos."
 heroImage: "/wp-content/uploads/2026/02/Mesa-de-trabajo-1-100-1.jpg"
 pubDate: 2026-02-19

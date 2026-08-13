@@ -1,5 +1,5 @@
 ---
-title: "Mejorar la productividad con sistemas de videovigilancia inteligente"
+title: "Mejorar la productividad con videovigilancia"
 description: "Un nuevo rol para la videovigilancia industrial"
 heroImage: "/wp-content/uploads/2025/11/Mesa-de-trabajo-1-100-2.jpg"
 pubDate: 2025-11-04

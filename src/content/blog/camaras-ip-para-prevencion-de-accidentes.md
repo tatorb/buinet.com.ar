@@ -1,5 +1,5 @@
 ---
-title: "Cámaras IP para prevención de accidentes y control de calidad"
+title: "Cámaras IP para prevenir accidentes en planta"
 description: "El desafío de la seguridad y la calidad"
 heroImage: "/wp-content/uploads/2025/09/Mesa-de-trabajo-1-100.jpg"
 pubDate: 2025-09-17

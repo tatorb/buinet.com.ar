@@ -1,5 +1,5 @@
 ---
-title: "Migrar de videovigilancia analógica a IP sin cortar el servicio"
+title: "Migrar de videovigilancia analógica a IP sin cortes"
 description: "Cómo se planifica una migración de analógico a IP por etapas, qué se conserva del cableado existente y cómo evitar quedarse sin cobertura durante el cambio."
 heroImage: "/wp-content/uploads/2026/08/actualizacion-videovigilancia-analogica-a-ip.png"
 pubDate: 2026-08-11

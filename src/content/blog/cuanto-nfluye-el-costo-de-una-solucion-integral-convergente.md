@@ -1,6 +1,6 @@
 ---
-title: "¿Cuánto influye el costo de una solución integral convergente en un proyecto residencial?"
-description: "En Building Networks, sabemos que el éxito de un proyecto inmobiliario no solo depende de la construcción, sino también de la infraestructura tecnológica que lo…"
+title: "Cuánto cuesta una solución convergente en residencial"
+description: "Cómo se compone el costo de integrar red, accesos y video en un proyecto residencial, y en qué etapa conviene definirlo."
 heroImage: "/wp-content/uploads/2024/12/PORTADA-SOLUCION-INTEGRAL-CONVERGENTE-100.jpg"
 pubDate: 2024-12-02
 author: "Building Networks"

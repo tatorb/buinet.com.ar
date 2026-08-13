@@ -1,6 +1,6 @@
 ---
-title: "Infraestructura tecnológica para empresas en Córdoba: lo que aprendimos en casi 20 años"
-description: "Building Networks proyecta, implementa y mantiene infraestructura tecnológica para empresas e industrias en Córdoba desde 2008. Trabaja desde el mismo terreno donde…"
+title: "Veinte años de infraestructura IT en Córdoba"
+description: "Lo que se aprende sosteniendo infraestructura crítica en operación real. Los errores que más se repiten y las decisiones que se pagan después."
 heroImage: "/wp-content/uploads/2024/07/distrito-capitalinas.jpg"
 pubDate: 2026-06-04
 author: "Building Networks"

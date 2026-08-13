@@ -1,6 +1,6 @@
 ---
-title: "Actualización de sistemas de videovigilancia IP en perímetros: el camino a un enfoque térmico, visual y sonoro"
-description: "En los sistemas heredados suelen convivir tecnologías de distintas generaciones, adaptadas de manera ingeniosa a las necesidades puntuales del momento en que fueron…"
+title: "Perímetros industriales, del video al enfoque térmico"
+description: "Por qué sumar cámaras no cubre un perímetro, y cómo se combina detección térmica, visual y sonora para cubrir grandes superficies sin puntos ciegos."
 heroImage: "/wp-content/uploads/2024/10/PORTADA-SEGURIDAD-PERIMETROS-100.webp"
 pubDate: 2025-07-10
 canonical: "/videovigilancia-industrial/"

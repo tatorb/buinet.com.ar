@@ -1,5 +1,5 @@
 ---
-title: "Video para auditar procesos y capacitar, más allá de la seguridad"
+title: "Video para auditar procesos y capacitar al equipo"
 description: "Cómo se usa el sistema de videovigilancia para revisar procesos, resolver reclamos y capacitar personal, y qué hace falta para que sirva a eso."
 heroImage: "/wp-content/uploads/2026/08/auditoria-procesos-video.png"
 pubDate: 2026-08-11
