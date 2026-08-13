@@ -16,11 +16,10 @@ export default defineConfig({
   // Se puede subir a cualquier server (nginx/Apache) o CDN.
   output: 'static',
   trailingSlash: 'always', // Mantiene las URLs con "/" final como en WordPress (/blog/mi-post/)
-  // 301 heredados del SEO original. La versión "la-base" consolida en la canónica "esencial-hoy-en-dia".
-  redirects: {
-    '/que-es-una-red-convergente-y-por-que-es-la-base/':
-      '/que-es-una-red-convergente-y-por-que-es-esencial-hoy-en-dia/',
-  },
+  // NO definir redirecciones acá. Todas viven en public/.htaccess, que es el
+  // único lugar donde se configuran (ver el comentario de ese archivo).
+  // Astro genera una página con meta refresh, que responde 200 y es una señal
+  // más débil para Google que un 301 real del servidor.
   integrations: [
     sitemap({
       // La galería interna queda fuera del sitemap (no debe indexarse ni difundirse).

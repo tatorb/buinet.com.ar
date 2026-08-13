@@ -25,9 +25,24 @@
   RewriteRule ^shop(/.*)?$  - [G,L,NC]
   RewriteRule ^goods(/.*)?$ - [G,L,NC]
 
-  # --------------------------------------------------------------------------
-  # 301 heredado del SEO original: consolidar la variante "la-base" en la
-  # canónica "esencial-hoy-en-dia".
-  # --------------------------------------------------------------------------
+  # ==========================================================================
+  #  REDIRECCIONES 301 — ÚNICO LUGAR DEL PROYECTO
+  #  Todas las redirecciones del sitio se definen acá y en ningún otro lado.
+  #  NO agregar la opción "redirects" en astro.config.mjs: definirlas en dos
+  #  lugares genera conflictos y Astro solo produce un meta refresh (HTTP 200),
+  #  mientras que estas reglas devuelven un 301 real, que es lo que Google
+  #  necesita para transferir el posicionamiento de la URL vieja a la nueva.
+  # ==========================================================================
+
+  # Artículo movido: el post ahora vive en la raíz, no bajo /novedades/.
+  RewriteRule ^novedades/que-es-un-data-center/?$ /que-es-un-data-center-capitalinas/ [R=301,L]
+
+  # Landings del sitio anterior que ya no existen.
+  RewriteRule ^data-center-cordoba/?$ /data-center/ [R=301,L]
+  RewriteRule ^camaras-ip-axis-para-industrias-a/?$ /videovigilancia-industrial/ [R=301,L]
+  RewriteRule ^camaras-ip-axis-para-industrias-formulario/?$ /contacto/ [R=301,L]
+  RewriteRule ^presentacion-de-caso-de-exito-distrito-capitalinas/?$ /videovigilancia/ [R=301,L]
+
+  # Duplicado: consolida la variante "la-base" en la canónica "esencial-hoy-en-dia".
   RewriteRule ^que-es-una-red-convergente-y-por-que-es-la-base/?$ /que-es-una-red-convergente-y-por-que-es-esencial-hoy-en-dia/ [R=301,L]
 </IfModule>
