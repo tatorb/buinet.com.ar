@@ -4,361 +4,365 @@ import Icon from '../components/Icon.astro';
 import { withBase } from '../utils/url';
 
 // ============================================================================
-// PILLAR SEO — Videovigilancia (cluster de 30 satélites).
-// Arquitectura de 9 bloques, mismo sistema visual que /infraestructura-de-red/.
-// Reglas: sin guiones medios largos, voseo rioplatense, sin competidores por
-// nombre, no se menciona el software de AXIS (solo su hardware como partner).
+// PÁGINA CENTRAL — Analítica de video.
+// La ruta sigue siendo /videovigilancia/ por ahora. Está previsto mudarla a
+// /analitica-de-video/, así que el texto no se autorreferencia a la URL actual
+// y la palabra "videovigilancia" no aparece en el cuerpo ni en ningún texto de
+// enlace. Solo sobrevive dentro de 6 de las 12 rutas satélite del bloque 7.
+//
+// Cuando se haga la mudanza, el 301 va en public/.htaccess, que es el único
+// lugar del proyecto donde viven las redirecciones. NO agregar "redirects" en
+// astro.config.mjs: con output estático Astro emite un meta refresh que
+// responde HTTP 200, señal mucho más débil que un 301 real del servidor.
+//
+// Restricciones de redacción vigentes: voseo rioplatense, sin guiones medios
+// largos, sin paréntesis aclaratorios, sin dos puntos explicativos, y lista de
+// vocabulario vedado acordada con el cliente.
 // ============================================================================
 
-const verticales = [
+// Enunciado de oferta congelado. Va textual, sin variantes ni sinónimos.
+const OFERTA =
+  'Sistemas de video para la detección, el control y la seguridad mediante IA, analítica y metadatos integrados en los dispositivos y en tiempo real.';
+
+// Cifras del caso. Son las únicas ocho autorizadas. No sumar ninguna más.
+// El complejo no se nombra por pedido expreso del cliente.
+const cifras = [
+  { valor: '436', label: 'cámaras' },
+  { valor: '8', label: 'servidores dedicados' },
+  { valor: '88', label: 'controladores de acceso' },
+  { valor: '264', label: 'puntos de acceso controlados' },
+  { valor: '64', label: 'dispositivos de audio IP' },
+  { valor: '42', label: 'switches' },
+  { valor: '1.176', label: 'puertos activos' },
+  { valor: '+15 años', label: 'de operación continua' },
+];
+
+// Satélites del cluster. Los textos de enlace describen el escenario, nunca el
+// producto, y ninguno contiene el término vedado.
+const escenarios = [
   {
-    titulo: 'Videovigilancia industrial',
-    resumen: 'Plantas, perímetros y logística. Cámaras robustas, detección temprana en condiciones exigentes y cobertura de grandes superficies sin puntos ciegos.',
+    titulo: 'Lectura de patentes y acceso vehicular',
+    resumen: 'Cuando lo que hay que resolver es quién entra y sale en portería, sin detener la circulación.',
+    href: '/lpr-control-acceso-vehicular/',
+  },
+  {
+    titulo: 'NVR o VMS, cómo elegir la base del sistema',
+    resumen: 'La decisión que condiciona todo lo que se pueda hacer después.',
+    href: '/nvr-vs-vms/',
+  },
+  {
+    titulo: 'Almacenamiento y retención',
+    resumen: 'Cuánto tiempo hay que poder mirar hacia atrás, y qué cuesta sostenerlo.',
+    href: '/almacenamiento-videovigilancia/',
+  },
+  {
+    titulo: 'Ciclo de vida del parque de dispositivos',
+    resumen: 'Cuándo un dispositivo dejó de rendir y conviene reemplazarlo.',
+    href: '/vida-util-camara-ip/',
+  },
+  {
+    titulo: 'Merma y faltante interno',
+    resumen: 'Cuando la pérdida ocurre adentro y no hay un ingreso forzado que investigar.',
+    href: '/merma-robo-interno-videovigilancia/',
+  },
+  {
+    titulo: 'Auditoría de procesos',
+    resumen: 'Usar el registro para verificar cómo se trabaja, no solamente para investigar un hecho.',
+    href: '/auditoria-procesos-video/',
+  },
+  {
+    titulo: 'Integración con accesos y audio IP',
+    resumen: 'Que la detección dispare una acción y no solamente un aviso.',
+    href: '/integracion-control-accesos-audio-ip/',
+  },
+  {
+    titulo: 'Perímetros industriales',
+    resumen: 'Grandes superficies donde el recorrido humano llega tarde.',
     href: '/videovigilancia-industrial/',
-    img: '/wp-content/uploads/2024/10/PORTADA-SEGURIDAD-PERIMETROS-100.jpg',
   },
   {
-    titulo: 'CamScope',
-    resumen: 'El software propio que integra todo. Multi-marca, analítica y alertas en tiempo real, en una sola plataforma de gestión.',
-    href: '/camscope/',
-    img: '/wp-content/uploads/2025/07/CamScope-laptop.png',
-  },
-];
-
-const features = [
-  { titulo: 'Multi-marca', resumen: 'Opera cámaras de distintos fabricantes bajo una sola plataforma.', icono: 'camera' },
-  { titulo: 'Analítica integrada', resumen: 'Detección de personas, vehículos, patentes y zonas, no solo grabación.', icono: 'network' },
-  { titulo: 'Alertas en tiempo real', resumen: 'Avisos en el momento en que algo importa, no horas después.', icono: 'shield' },
-  { titulo: 'Gestión centralizada', resumen: 'Todo el sistema desde una única consola, simple e intuitiva.', icono: 'server' },
-  { titulo: 'Almacenamiento propio', resumen: 'Grabaciones en servidores propios, con control de costos y privacidad.', icono: 'download' },
-  { titulo: 'Escalable', resumen: 'Suma cámaras y sedes sin rehacer lo que ya está funcionando.', icono: 'arrow' },
-];
-
-const stats = [
-  { valor: '450+', label: 'cámaras IP integradas' },
-  { valor: 'CamScope', label: 'software propio de gestión' },
-  { valor: '24/7', label: 'grabación y monitoreo' },
-  { valor: 'Integrado', label: 'con control de accesos y audio IP' },
-];
-
-const momentos = [
-  {
-    titulo: 'Renovación',
-    resumen: 'Pasar de analógico a IP no es cambiar cámaras, es dar el salto a un sistema que entiende lo que ve.',
-    href: '/actualizacion-videovigilancia-analogica-a-ip/',
-    img: '/wp-content/uploads/2024/07/Seguridad.jpg',
+    titulo: 'Plantas de alimentos',
+    resumen: 'Ambientes de lavado a presión, frío y trazabilidad por lote.',
+    href: '/videovigilancia-industria-alimenticia/',
   },
   {
-    titulo: 'Proyecto nuevo',
-    resumen: 'Pensar la videovigilancia desde el plano, no al final de la obra.',
+    titulo: 'Obras en ejecución',
+    resumen: 'Sistemas temporales que cambian a medida que avanza la obra.',
     href: '/videovigilancia-en-obra/',
-    img: '/wp-content/uploads/2024/07/A4.jpg',
+  },
+  {
+    titulo: 'Migración de sistemas analógicos a IP',
+    resumen: 'Pasar a IP sin cortar la operación durante la transición.',
+    href: '/actualizacion-videovigilancia-analogica-a-ip/',
+  },
+  {
+    titulo: 'Detección térmica',
+    resumen: 'Zonas sin luz, humo o niebla, donde la imagen convencional no alcanza.',
+    href: '/camaras-termicas-axis-para-industrias-y-perimetros/',
   },
 ];
 
-const faqs = [
-  {
-    q: '¿Qué es un sistema de videovigilancia IP?',
-    a: 'Un sistema de videovigilancia IP usa cámaras conectadas a la red de datos de la empresa, en lugar de un cableado analógico dedicado. Cada cámara es un dispositivo de red con su propia dirección IP, lo que permite verlas de forma remota, grabar en servidores centralizados y sumar analítica de video. Es la base sobre la que hoy se construye cualquier sistema de seguridad escalable.',
-  },
-  {
-    q: '¿Qué diferencia hay entre videovigilancia analógica e IP?',
-    a: 'La analógica manda una señal de video por cable coaxial a un grabador, con resolución limitada y poca inteligencia. La IP transmite video digital sobre la red, con mayor resolución, analítica integrada y la posibilidad de crecer sin rehacer el cableado. Migrar de analógico a IP no es solo cambiar cámaras: es repensar la infraestructura para que el sistema acompañe a la empresa durante años.',
-  },
-  {
-    q: '¿Qué es la analítica de video y para qué sirve?',
-    a: 'Es la capa de software que hace que las cámaras no solo graben, sino que entiendan lo que ven: detección de personas y vehículos, conteo, cruce de líneas, permanencia en zonas, lectura de patentes. La analítica convierte horas de grabación en alertas útiles en el momento en que importan, y reduce el trabajo de revisar video de forma manual.',
-  },
-  {
-    q: '¿Qué es CamScope?',
-    a: 'CamScope es el software de desarrollo propio de Building Networks, con más de diez años de evolución continua. Centraliza la gestión de cámaras de múltiples marcas en una sola plataforma, suma analítica y alertas en tiempo real, y se integra con el control de accesos y el audio IP. Es lo que permite operar sistemas grandes de forma simple, sin depender de una consola distinta por cada marca.',
-  },
-  {
-    q: '¿Puedo integrar cámaras de distintas marcas?',
-    a: 'Sí. CamScope está diseñado para operar cámaras de múltiples fabricantes bajo una única plataforma de gestión, lo que evita quedar atado a un solo proveedor y permite sumar equipos nuevos sin cambiar todo el sistema. Además, Building Networks fue la primera empresa argentina en certificar un producto bajo el estándar ONVIF, que es justamente el que hace posible esa interoperabilidad.',
-  },
-  {
-    q: '¿Cómo se integra la videovigilancia con el control de accesos y el audio IP?',
-    a: 'En una red convergente, la videovigilancia no vive aislada. Una cámara puede disparar la apertura o el bloqueo de un acceso, y un evento puede lanzar un mensaje por audio IP en una zona específica. Cuando todo corre sobre la misma infraestructura y se gestiona desde CamScope, la seguridad deja de ser sistemas separados y pasa a funcionar como un solo conjunto que ve, escucha, habla y actúa.',
-  },
-  {
-    q: '¿Cuántas cámaras necesita mi empresa?',
-    a: 'No hay un número fijo: depende del layout, los puntos críticos, los accesos y el nivel de detalle que se necesite en cada zona. Lo importante no es poner más cámaras, sino ubicarlas con criterio y dimensionar la red, el almacenamiento y la analítica en consecuencia. Un buen proyecto arranca por relevar la operación, no por elegir equipos.',
-  },
-  {
-    q: '¿Dónde se almacenan las grabaciones y por cuánto tiempo?',
-    a: 'Las grabaciones se guardan en servidores propios, dimensionados según la cantidad de cámaras, la resolución y los días de retención que necesite la empresa. Operar almacenamiento propio, y no depender de una nube de terceros, da control sobre la privacidad, los costos y los tiempos de acceso al material. La retención se define según la necesidad operativa y normativa de cada cliente.',
-  },
-  {
-    q: '¿La videovigilancia cumple con la normativa de privacidad?',
-    a: 'Un sistema bien diseñado contempla la privacidad desde el proyecto: zonas de exclusión, enmascarado de rostros o patentes cuando corresponde, y control de quién accede a las grabaciones. La tecnología permite proteger sin invadir. En Building Networks diseñamos cada sistema para que cumpla con la normativa vigente y con las políticas internas de cada organización.',
-  },
-  {
-    q: '¿Qué mantenimiento necesita un sistema de videovigilancia?',
-    a: 'Una red de cámaras no se instala y se abandona. Necesita mantenimiento preventivo, revisar estado de equipos, enfoque, almacenamiento y actualizaciones, y correctivo cuando algo falla. Building Networks tiene equipo propio sosteniendo la infraestructura del Distrito Capitalinas y de las empresas que operan ahí, todos los días. Esa continuidad es lo que hace que el sistema funcione todo el tiempo, no casi siempre.',
-  },
-];
-
-const faqLd = JSON.stringify({
+// Schema.org Service. Solo propiedades que corresponden a lo que la página
+// afirma. Sin aggregateRating, sin offers y sin review, que serían inventados.
+const serviceLd = JSON.stringify({
   '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: faqs.map((f) => ({
-    '@type': 'Question',
-    name: f.q,
-    acceptedAnswer: { '@type': 'Answer', text: f.a },
-  })),
+  '@type': 'Service',
+  name: 'Analítica de video',
+  serviceType: 'Analítica de video',
+  description: OFERTA,
+  provider: {
+    '@type': 'Organization',
+    name: 'Building Networks S.A.',
+    url: 'https://buinet.com.ar/',
+  },
+  areaServed: { '@type': 'Country', name: 'Argentina' },
+  url: 'https://buinet.com.ar/videovigilancia/',
 });
 ---
 <BaseLayout
-  title="Videovigilancia para empresas e industrias en Córdoba"
-  description="Sistemas de videovigilancia que no solo graban. Ven, entienden y actúan. Cámaras IP, analítica y CamScope, el software propio de Building Networks."
+  title="Analítica de video para empresas"
+  description="Analítica de video para empresas. Detección, control y seguridad con procesamiento en el dispositivo, eventos indexados y trazabilidad auditable."
 >
-  <script type="application/ld+json" is:inline set:html={faqLd} slot="head" />
+  <script type="application/ld+json" is:inline set:html={serviceLd} slot="head" />
 
-  <!-- BLOQUE 1 · HERO -->
-  <section class="vv-hero">
-    <div class="container vv-hero__inner">
-      <p class="eyebrow" style="color:#bfe0dd">Videovigilancia</p>
-      <h1>Sistemas de videovigilancia que ven, entienden y actúan</h1>
-      <p class="lead" style="color:rgba(255,255,255,0.92); max-width:640px">
-        Ver lo que importa, cuando importa. Cámaras IP, analítica avanzada y CamScope, el software
-        propio que integra todo en una sola plataforma.
+  <!-- BLOQUE 1 · ENCABEZADO -->
+  <section class="av-hero">
+    <div class="container av-hero__inner">
+      <p class="eyebrow" style="color:#bfe0dd">Analítica de video</p>
+      <h1>Analítica de video para empresas e industrias</h1>
+      <p class="lead" style="color:rgba(255,255,255,0.92); max-width:680px">{OFERTA}</p>
+      <p style="color:rgba(255,255,255,0.85); max-width:680px">
+        Si ya tenés cámaras operando, esto no las reemplaza. Las convierte en una fuente de datos que
+        se consulta, se integra con el resto de los sistemas y sostiene una auditoría.
       </p>
-      <a class="btn btn--white" href={withBase('/contacto/')}>Conversemos</a>
     </div>
   </section>
 
-  <!-- BLOQUE 2 · TRES VERTICALES -->
+  <!-- BLOQUE 2 · QUÉ HACE LA ANALÍTICA -->
   <section class="section">
-    <div class="container">
-      <div class="center measure mx-auto">
-        <p class="eyebrow">Tres realidades distintas</p>
-        <h2>Videovigilancia para tres realidades distintas</h2>
-        <p class="lead">
-          No es lo mismo proteger una oficina que un perímetro industrial que un data center. Cada
-          operación necesita un enfoque técnico distinto. Cubrimos las tres.
-        </p>
-      </div>
-      <div class="grid grid--3" style="margin-top:2.5rem">
-        {verticales.map((v) => (
-          <a class="card card--link vv-vert" href={withBase(v.href)}>
-            <img class="vv-vert__img" src={v.img} alt={v.titulo} loading="lazy" />
-            <div class="vv-vert__body">
-              <h3>{v.titulo}</h3>
-              <p>{v.resumen}</p>
-              <span class="vv-more">Ver más <Icon name="arrow" size={16} /></span>
-            </div>
-          </a>
-        ))}
-      </div>
+    <div class="container measure mx-auto av-prosa">
+      <p class="eyebrow">Cómo funciona</p>
+      <h2>Qué hace la analítica</h2>
+      <p>
+        El procesamiento ocurre dentro del propio dispositivo, no en un servidor central que recibe
+        todo el video y después lo analiza. Cada dispositivo clasifica lo que ve en el momento en que
+        lo ve.
+      </p>
+      <p>
+        Eso cambia tres cosas de la operación. El ancho de banda deja de ser el límite del sistema,
+        porque por la red viaja el evento y no la totalidad del video en crudo. La escalabilidad deja
+        de depender de cuántos servidores se agreguen, porque cada dispositivo que se suma trae su
+        propia capacidad de análisis. Y la disponibilidad mejora, porque un corte de enlace no
+        interrumpe la clasificación, que sigue ocurriendo donde está el dispositivo.
+      </p>
+      <p>
+        Cada imagen deja de ser un cuadro de video y pasa a ser un evento con datos asociados. Qué
+        objeto, de qué tipo, en qué zona, a qué hora, con qué recorrido. Esos eventos quedan
+        indexados, y un sistema indexado se busca, se integra y se audita. El tiempo de búsqueda de un
+        hecho puntual deja de ser una revisión de horas de grabación y pasa a ser una consulta.
+      </p>
     </div>
   </section>
 
-  <!-- BLOQUE 3 · DIFERENCIAL DE INTEGRACIÓN -->
+  <!-- BLOQUE 3 · LOS METADATOS -->
   <section class="section section--surface">
-    <div class="container measure mx-auto vv-dif">
-      <p class="eyebrow">El diferencial</p>
-      <h2>La seguridad no es una cámara. Es un sistema.</h2>
+    <div class="container measure mx-auto av-prosa">
+      <p class="eyebrow">El dato</p>
+      <h2>Qué es un metadato de escena</h2>
+      <p>Un metadato es la descripción de lo que pasó, separada de la imagen que lo muestra.</p>
       <p>
-        La videovigilancia moderna no es una cámara colgada de una pared. Es un sistema donde conviven
-        las cámaras, la red que las transporta, el control de accesos, el audio IP, la analítica que
-        interpreta el video y el almacenamiento que lo sostiene. La mayoría de los problemas no
-        aparece en el centro de una de esas capas, sino en el borde donde una se conecta con otra.
+        Cuando un vehículo entra a un playón, el dispositivo no guarda solamente el video. Guarda
+        además una ficha de ese hecho. Un objeto del tipo vehículo, que ingresó por una zona
+        determinada, con la hora exacta de ingreso y el tiempo que permaneció. Esa ficha pesa una
+        fracción mínima de lo que pesa el video, y a diferencia del video, se consulta como se
+        consulta cualquier base de datos.
       </p>
       <p>
-        Building Networks tiene alcance en todas. Como <strong>Solution Gold Partner de AXIS</strong>,
-        trabajamos con hardware de primer nivel, y sobre esa base desplegamos CamScope, nuestro
-        software propio, para que las cámaras no solo graben: vean, entiendan y actúen. Ese alcance
-        completo es lo que permite que el sistema funcione todo el tiempo, no casi siempre.
+        La consecuencia práctica es que el video deja de terminar en una pantalla que alguien mira.
+        Pasa a alimentar los sistemas que la organización ya usa para decidir.
+      </p>
+      <p>
+        Los metadatos de escena responden a un formato estándar de la industria y no a un lenguaje
+        cerrado de un fabricante. Por eso se integran con plataformas de gestión, con sistemas de
+        control de acceso y con sistemas de negocio sin desarrollos a medida, y por eso la
+        organización no queda atada a un proveedor único.
       </p>
     </div>
   </section>
 
-  <!-- BLOQUE 4 · CAMSCOPE DESTACADO -->
-  <section class="vv-camscope">
-    <div class="container">
-      <div class="center measure mx-auto">
-        <p class="eyebrow">Software propio</p>
-        <h2>CamScope, el software que integra todo</h2>
-        <p class="lead">
-          Diez años de desarrollo continuo. Diseñado para operar cámaras de múltiples marcas bajo una
-          sola plataforma de gestión.
-        </p>
-      </div>
-      <div class="vv-features" style="margin-top:2.5rem">
-        {features.map((f) => (
-          <div class="card vv-feature">
-            <span class="card__icon"><Icon name={f.icono} size={34} /></span>
-            <h3>{f.titulo}</h3>
-            <p>{f.resumen}</p>
-          </div>
-        ))}
-      </div>
-      <div class="center" style="margin-top:2.2rem">
-        <a class="btn btn--solid" href={withBase('/camscope/')}>Conocer CamScope en profundidad</a>
-      </div>
+  <!-- BLOQUE 4 · LAS TRES FUNCIONES -->
+  <section class="section">
+    <div class="container measure mx-auto av-prosa">
+      <p class="eyebrow">Detección, control y seguridad</p>
+      <h2>Las tres funciones</h2>
+
+      <h3>Detección</h3>
+      <p>
+        El sistema distingue de qué tipo de objeto se trata antes de generar un evento. Una persona,
+        un vehículo, algo que quedó detenido donde no corresponde. Esa clasificación es lo que separa
+        un evento real de un falso positivo.
+      </p>
+      <p>
+        Sobre esa base se calibran las reglas. Qué zona, qué umbral de permanencia, qué franja
+        horaria, qué dirección de recorrido. Una regla mal calibrada produce tantos eventos que el
+        operador deja de mirarlos, y un sistema que nadie mira no detecta nada. La calibración no es
+        un ajuste inicial, es un trabajo que sigue durante toda la vida del sistema, porque la
+        operación cambia.
+      </p>
+
+      <h3>Control</h3>
+      <p>
+        La misma detección que dispara un evento puede disparar una acción en otro sistema. Un
+        vehículo cuya patente está habilitada abre la barrera sin intervención de nadie. Un ingreso
+        fuera de la franja permitida activa un mensaje por audio en el punto exacto donde está
+        ocurriendo. El tiempo de respuesta deja de depender de que alguien esté mirando una pantalla
+        en ese momento.
+      </p>
+      <p>
+        Cuando la detección, el control de acceso y el audio comparten una sola línea de tiempo,
+        aparece la trazabilidad. Cada hecho queda asociado a quién lo produjo, en qué punto, con qué
+        credencial y con qué respuesta del sistema. Es la diferencia entre saber que algo pasó y poder
+        reconstruir la secuencia completa.
+      </p>
+
+      <h3>Seguridad</h3>
+      <p>
+        Un evento indexado es evidencia recuperable. Ante un reclamo, un siniestro o una investigación
+        interna, el tiempo de búsqueda deja de medirse en jornadas de revisión, y la organización
+        llega con material acotado al hecho y no con horas de grabación sin ordenar.
+      </p>
+      <p>
+        El cumplimiento se apoya en lo mismo. Retención definida por política y no por lo que entra en
+        el disco, acceso a la evidencia registrado y auditable, y zonas excluidas del análisis por
+        decisión explícita. Un sistema que no puede demostrar quién vio qué y cuándo es un problema,
+        no una defensa.
+      </p>
     </div>
   </section>
 
-  <!-- BLOQUE 5 · LA PRUEBA, DISTRITO CAPITALINAS -->
-  <section class="vv-prueba">
+  <!-- BLOQUE 5 · LA PLATAFORMA -->
+  <section class="av-camscope">
+    <div class="container measure mx-auto av-prosa">
+      <p class="eyebrow">Plataforma propia</p>
+      <h2>CamScope, la plataforma propia</h2>
+      <p>CamScope es el software de gestión que desarrolla Building Networks.</p>
+      <p>
+        Opera dispositivos de distintos fabricantes bajo una sola consola, así que la organización
+        elige el hardware por criterio técnico y no por lo que la plataforma acepta.
+      </p>
+      <p>
+        Sobre lo que permite y en qué casos conviene, está la
+        <a href={withBase('/camscope/')}>página de CamScope</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- BLOQUE 6 · EL CASO -->
+  <!-- El complejo no se nombra, por pedido expreso del cliente. Las ocho cifras
+       de abajo son las únicas autorizadas. El bloque va sin enlace: la ruta
+       /presentacion-de-caso-de-exito-distrito-capitalinas/ no es una página,
+       es un 301 hacia esta misma URL en public/.htaccess, así que enlazarla
+       devolvería al lector a donde ya está. -->
+  <section class="av-caso">
     <div class="container">
       <div class="measure mx-auto center">
-        <p class="eyebrow" style="color:#bfe0dd">La prueba</p>
-        <h2>Distrito Capitalinas</h2>
+        <p class="eyebrow" style="color:#bfe0dd">La escala</p>
+        <h2>Un complejo de uso mixto en Córdoba</h2>
         <p class="lead" style="color:rgba(255,255,255,0.9)">
-          El Distrito Capitalinas es el epicentro de la actividad corporativa de Córdoba. Building
-          Networks diseñó, implementó y mantiene su sistema de videovigilancia, integrado con el
-          control de accesos y el audio IP, y sostenido todos los días por equipo propio. Capitalinas
-          no es un argumento. Es la demostración.
+          Un sistema en operación continua desde hace más de 15 años.
         </p>
       </div>
-      <div class="vv-stats">
-        {stats.map((s) => (
-          <div class="vv-stat">
-            <span class="vv-stat__num">{s.valor}</span>
-            <span class="vv-stat__label">{s.label}</span>
+      <div class="av-cifras">
+        {cifras.map((c) => (
+          <div class="av-cifra">
+            <span class="av-cifra__num">{c.valor}</span>
+            <span class="av-cifra__label">{c.label}</span>
           </div>
         ))}
+      </div>
+      <div class="measure mx-auto" style="margin-top:2.6rem">
+        <p style="color:rgba(255,255,255,0.9)">
+          Lo relevante de esa escala no es el número, es la continuidad. Un sistema de ese tamaño
+          sostenido durante ese tiempo obliga a resolver la retención, el ancho de banda, el ciclo de
+          vida de los dispositivos y el costo por cámara al año como problemas permanentes, y no como
+          decisiones que se toman una sola vez.
+        </p>
       </div>
     </div>
   </section>
 
-  <!-- BLOQUE 6 · TRES MOMENTOS -->
-  <section class="section">
+  <!-- BLOQUE 7 · ALCANCE POR ESCENARIO -->
+  <section class="section section--surface">
     <div class="container">
       <div class="center measure mx-auto">
-        <p class="eyebrow">Cuándo pensarla</p>
-        <h2>Tres momentos para pensar la videovigilancia</h2>
+        <p class="eyebrow">Dónde se aplica</p>
+        <h2>Alcance por escenario</h2>
       </div>
-      <div class="grid grid--3" style="margin-top:2.5rem">
-        {momentos.map((m) => (
-          <a class="card card--link vv-vert" href={withBase(m.href)}>
-            <img class="vv-vert__img" src={m.img} alt={m.titulo} loading="lazy" />
-            <div class="vv-vert__body">
-              <h3>{m.titulo}</h3>
-              <p>{m.resumen}</p>
-              <span class="vv-more">Ver más <Icon name="arrow" size={16} /></span>
-            </div>
+      <div class="av-escenarios">
+        {escenarios.map((e) => (
+          <a class="card card--link av-esc" href={withBase(e.href)}>
+            <h3>{e.titulo}</h3>
+            <p>{e.resumen}</p>
+            <span class="av-more">Ver más <Icon name="arrow" size={16} /></span>
           </a>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- BLOQUE 7 · PARTNERS -->
-  <section class="section section--surface">
-    <div class="container">
-      <div class="center measure mx-auto">
-        <p class="eyebrow">Partners</p>
-        <h2>Respaldados por los referentes de la industria</h2>
-      </div>
-      <div class="grid grid--2 vv-partners" style="margin-top:2.5rem">
-        <div class="card vv-partner">
-          <img class="vv-partner__logo" src="/wp-content/uploads/2025/03/logo_axis_cpp_solution_gold_cmyk-1-300x195.jpg" alt="AXIS Communications" loading="lazy" />
-          <h3>AXIS Communications</h3>
-          <p class="vv-partner__role">Solution Gold Partner</p>
-          <p>Cámaras corporativas e industriales de primer nivel mundial. El estándar de calidad y buenas prácticas con el que nos nivelamos en cada proyecto.</p>
-        </div>
-        <div class="card vv-partner">
-          <span class="vv-partner__badge"><Icon name="check" size={30} /></span>
-          <h3>ONVIF</h3>
-          <p class="vv-partner__role">Miembro certificado</p>
-          <p>Building Networks fue la primera empresa argentina en certificar un producto bajo el estándar ONVIF, el que garantiza la interoperabilidad entre marcas.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- BLOQUE 8 · FAQ -->
-  <section class="section">
-    <div class="container">
-      <div class="center"><h2>Preguntas frecuentes</h2></div>
-      <div class="vv-faq">
-        {faqs.map((f) => (
-          <details class="vv-faq__item">
-            <summary>{f.q}</summary>
-            <p>{f.a}</p>
-          </details>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- BLOQUE 9 · CTA FINAL -->
-  <section class="vv-cta">
-    <div class="container vv-cta__inner">
-      <h2>Un sistema de videovigilancia bien pensado se nota años después</h2>
+  <!-- BLOQUE 8 · CIERRE -->
+  <section class="av-cta">
+    <div class="container av-cta__inner">
+      <h2>Escribinos y lo revisamos sobre tu operación</h2>
       <p class="lead">
-        Cuando hay que ampliar y todo está donde tiene que estar. Cuando algo pasa y el sistema ya lo
-        vio. Cuando la operación crece y la infraestructura acompaña. Conversemos sobre tu proyecto.
+        Si ya tenés un sistema operando y querés saber qué puede responder hoy y qué no, escribinos.
       </p>
-      <a class="btn btn--white" href={withBase('/contacto/')}>Conversemos</a>
+      <a class="btn btn--white" href={withBase('/contacto/')}>Escribinos</a>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  /* HERO */
-  .vv-hero { background: linear-gradient(160deg, rgba(0,70,75,0.86), rgba(0,98,105,0.66)), url("/wp-content/uploads/2025/01/Fondo-AXIS-100.jpg") center/cover no-repeat; color: #fff; }
-  .vv-hero__inner { padding-block: clamp(2.6rem, 6vw, 4.6rem); max-width: 780px; }
-  .vv-hero h1 { color: #fff; margin-bottom: 1.2rem; }
+  /* ENCABEZADO */
+  .av-hero { background: linear-gradient(160deg, rgba(0,70,75,0.86), rgba(0,98,105,0.66)), url("/wp-content/uploads/2025/01/Fondo-AXIS-100.jpg") center/cover no-repeat; color: #fff; }
+  .av-hero__inner { padding-block: clamp(2.6rem, 6vw, 4.6rem); max-width: 800px; }
+  .av-hero h1 { color: #fff; margin-bottom: 1.2rem; }
 
-  /* CARDS VERTICALES / MOMENTOS (imagen arriba) */
-  .vv-vert { padding: 0; overflow: hidden; text-align: left; align-items: stretch; }
-  .vv-vert__img { width: 100%; height: 190px; object-fit: cover; background: var(--surface); }
-  .vv-vert__body { padding: 1.6rem; display: flex; flex-direction: column; height: 100%; }
-  .vv-vert__body h3 { margin-bottom: 0.5rem; }
-  .vv-vert__body p { color: var(--muted); margin: 0 0 0.9rem; }
-  .vv-more { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: auto; color: var(--teal); font-weight: 500; font-size: 0.9rem; }
-  .vv-vert:hover .vv-more { gap: 0.6rem; }
+  /* PROSA DE LOS BLOQUES DE TEXTO */
+  .av-prosa p { font-size: 1.05rem; }
+  .av-prosa h3 { margin-top: 2rem; }
 
-  /* DIFERENCIAL */
-  .vv-dif p { font-size: 1.05rem; }
+  /* PLATAFORMA */
+  .av-camscope { padding-block: clamp(2.75rem, 6vw, 4.6rem); background: var(--teal-tint); }
 
-  /* CAMSCOPE */
-  .vv-camscope { padding-block: clamp(2.75rem, 6vw, 4.6rem); background: var(--teal-tint); }
-  .vv-features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
-  .vv-feature .card__icon { color: var(--teal); }
-  .vv-feature h3 { font-size: 1.1rem; margin-bottom: 0.4rem; }
-  .vv-feature p { color: var(--muted); margin: 0; }
+  /* CASO (banda teal con cifras) */
+  .av-caso { background: linear-gradient(160deg, var(--teal), var(--teal-dark)); color: #fff; padding-block: clamp(2.75rem, 6vw, 4.6rem); }
+  .av-caso h2 { color: #fff; }
+  .av-cifras { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.4rem; margin-top: 3rem; }
+  .av-cifra { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); border-radius: var(--radius); padding: 1.6rem 1.2rem; text-align: center; }
+  .av-cifra__num { display: block; font-size: 1.9rem; font-weight: 400; color: #fff; line-height: 1.1; }
+  .av-cifra__label { display: block; margin-top: 0.5rem; color: rgba(255,255,255,0.85); font-size: 0.9rem; }
 
-  /* PRUEBA (banda teal con stats) */
-  .vv-prueba { background: linear-gradient(160deg, var(--teal), var(--teal-dark)); color: #fff; padding-block: clamp(2.75rem, 6vw, 4.6rem); }
-  .vv-prueba h2 { color: #fff; }
-  .vv-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.4rem; margin-top: 3rem; }
-  .vv-stat { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); border-radius: var(--radius); padding: 1.6rem 1.2rem; text-align: center; }
-  .vv-stat__num { display: block; font-size: 1.9rem; font-weight: 400; color: #fff; line-height: 1.1; }
-  .vv-stat__label { display: block; margin-top: 0.5rem; color: rgba(255,255,255,0.85); font-size: 0.9rem; }
+  /* ESCENARIOS */
+  .av-escenarios { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; margin-top: 2.5rem; }
+  .av-esc { text-align: left; align-items: flex-start; display: flex; flex-direction: column; padding: 1.6rem; }
+  .av-esc h3 { font-size: 1.05rem; margin-bottom: 0.5rem; }
+  .av-esc p { color: var(--muted); margin: 0 0 0.9rem; }
+  .av-more { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: auto; color: var(--teal); font-weight: 500; font-size: 0.9rem; }
+  .av-esc:hover .av-more { gap: 0.6rem; }
 
-  /* PARTNERS */
-  .vv-partners { max-width: 900px; margin-inline: auto; }
-  .vv-partner__logo { width: 150px; height: auto; max-height: 78px; object-fit: contain; margin-bottom: 1.1rem; }
-  .vv-partner__badge { display: grid; place-items: center; width: 62px; height: 62px; border-radius: 50%; background: var(--teal-tint); color: var(--teal); margin-bottom: 1.1rem; }
-  .vv-partner__role { color: var(--teal); font-weight: 500; margin-bottom: 0.8rem; }
-  .vv-partner p { color: var(--muted); }
-
-  /* FAQ */
-  .vv-faq { margin-top: 2rem; max-width: 980px; margin-inline: auto; display: grid; gap: 0.55rem; }
-  .vv-faq__item { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 0 1.3rem; }
-  .vv-faq__item summary { cursor: pointer; font-weight: 500; color: var(--heading); padding: 0.85rem 0; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 1rem; font-size: 0.98rem; }
-  .vv-faq__item summary::-webkit-details-marker { display: none; }
-  .vv-faq__item summary::after { content: '+'; color: var(--teal); font-size: 1.3rem; font-weight: 300; line-height: 1; flex: none; transition: transform 0.2s ease; }
-  .vv-faq__item[open] summary::after { transform: rotate(45deg); }
-  .vv-faq__item p { margin: 0 0 1rem; color: var(--fg); font-size: 0.95rem; }
-
-  /* CTA FINAL */
-  .vv-cta { background: var(--teal); color: #fff; }
-  .vv-cta__inner { text-align: center; padding-block: clamp(2.5rem, 5vw, 3.6rem); }
-  .vv-cta h2 { color: #fff; max-width: 760px; margin-inline: auto; }
-  .vv-cta .lead { color: rgba(255,255,255,0.9); max-width: 640px; margin-inline: auto; }
-  .vv-cta .btn { margin-top: 1.5rem; }
+  /* CIERRE */
+  .av-cta { background: var(--teal); color: #fff; }
+  .av-cta__inner { text-align: center; padding-block: clamp(2.5rem, 5vw, 3.6rem); }
+  .av-cta h2 { color: #fff; max-width: 760px; margin-inline: auto; }
+  .av-cta .lead { color: rgba(255,255,255,0.9); max-width: 640px; margin-inline: auto; }
+  .av-cta .btn { margin-top: 1.5rem; }
 
   @media (max-width: 980px) {
-    .vv-features { grid-template-columns: repeat(2, 1fr); }
-    .vv-stats { grid-template-columns: repeat(2, 1fr); }
+    .av-cifras { grid-template-columns: repeat(2, 1fr); }
+    .av-escenarios { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 560px) {
-    .vv-features, .vv-stats { grid-template-columns: 1fr; }
+    .av-cifras, .av-escenarios { grid-template-columns: 1fr; }
   }
 </style>
