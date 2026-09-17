@@ -31,6 +31,89 @@ const diferenciales = [
   { titulo: 'Casi veinte años en Córdoba', resumen: 'Industria, logística, corporativo y sector regulado', icono: 'lock' },
 ];
 
+// Enunciado de oferta congelado. Va textual, sin variantes ni sinónimos.
+const OFERTA =
+  'Sistemas de video para la detección, el control y la seguridad mediante IA, analítica y metadatos integrados en los dispositivos y en tiempo real.';
+
+// Cifras del caso. Son las únicas ocho autorizadas. No sumar ninguna más.
+
+// El complejo no se nombra por pedido expreso del cliente.
+const cifras = [
+  { valor: '436', label: 'cámaras' },
+  { valor: '8', label: 'servidores dedicados' },
+  { valor: '88', label: 'controladores de acceso' },
+  { valor: '264', label: 'puntos de acceso controlados' },
+  { valor: '64', label: 'dispositivos de audio IP' },
+  { valor: '42', label: 'switches' },
+  { valor: '1.176', label: 'puertos activos' },
+  { valor: '+15 años', label: 'de operación continua' },
+];
+
+// Satélites del cluster. Los textos de enlace describen el escenario, nunca el
+// producto, y ninguno contiene el término vedado.
+const escenarios = [
+  {
+    titulo: 'Lectura de patentes y acceso vehicular',
+    resumen: 'Cuando lo que hay que resolver es quién entra y sale en portería, sin detener la circulación.',
+    href: '/lpr-control-acceso-vehicular/',
+  },
+  {
+    titulo: 'NVR o VMS, cómo elegir la base del sistema',
+    resumen: 'La decisión que condiciona todo lo que se pueda hacer después.',
+    href: '/nvr-vs-vms/',
+  },
+  {
+    titulo: 'Almacenamiento y retención',
+    resumen: 'Cuánto tiempo hay que poder mirar hacia atrás, y qué cuesta sostenerlo.',
+    href: '/almacenamiento-videovigilancia/',
+  },
+  {
+    titulo: 'Ciclo de vida del parque de dispositivos',
+    resumen: 'Cuándo un dispositivo dejó de rendir y conviene reemplazarlo.',
+    href: '/vida-util-camara-ip/',
+  },
+  {
+    titulo: 'Merma y faltante interno',
+    resumen: 'Cuando la pérdida ocurre adentro y no hay un ingreso forzado que investigar.',
+    href: '/merma-robo-interno-videovigilancia/',
+  },
+  {
+    titulo: 'Auditoría de procesos',
+    resumen: 'Usar el registro para verificar cómo se trabaja, no solamente para investigar un hecho.',
+    href: '/auditoria-procesos-video/',
+  },
+  {
+    titulo: 'Integración con accesos y audio IP',
+    resumen: 'Que la detección dispare una acción y no solamente un aviso.',
+    href: '/integracion-control-accesos-audio-ip/',
+  },
+  {
+    titulo: 'Perímetros industriales',
+    resumen: 'Grandes superficies donde el recorrido humano llega tarde.',
+    href: '/videovigilancia-industrial/',
+  },
+  {
+    titulo: 'Plantas de alimentos',
+    resumen: 'Ambientes de lavado a presión, frío y trazabilidad por lote.',
+    href: '/videovigilancia-industria-alimenticia/',
+  },
+  {
+    titulo: 'Obras en ejecución',
+    resumen: 'Sistemas temporales que cambian a medida que avanza la obra.',
+    href: '/videovigilancia-en-obra/',
+  },
+  {
+    titulo: 'Migración de sistemas analógicos a IP',
+    resumen: 'Pasar a IP sin cortar la operación durante la transición.',
+    href: '/actualizacion-videovigilancia-analogica-a-ip/',
+  },
+  {
+    titulo: 'Detección térmica',
+    resumen: 'Zonas sin luz, humo o niebla, donde la imagen convencional no alcanza.',
+    href: '/camaras-termicas-axis-para-industrias-y-perimetros/',
+  },
+];
+
 // Las 12 FAQ alimentan el acordeón visible y el schema FAQPage. Un solo origen
 // para las dos cosas, así nunca se desincronizan.
 const faqs = [
@@ -109,6 +192,7 @@ const faqLd = JSON.stringify({
       <p class="lead" style="color:rgba(255,255,255,0.92); max-width:640px">
         Detección, control operativo y seguridad integrados en un solo sistema.
       </p>
+      <p style="color:rgba(255,255,255,0.85); max-width:680px">{OFERTA}</p>
     </div>
   </section>
 
@@ -155,6 +239,166 @@ const faqLd = JSON.stringify({
       </div>
     </div>
   </section>
+
+  <!-- BLOQUE 2 · QUÉ HACE LA ANALÍTICA -->
+  <section class="section">
+    <div class="container measure mx-auto vi-prosa">
+      <p class="eyebrow">Cómo funciona</p>
+      <h2>Qué hace la analítica</h2>
+      <p>
+        El procesamiento ocurre dentro del propio dispositivo, no en un servidor central que recibe
+        todo el video y después lo analiza. Cada dispositivo clasifica lo que ve en el momento en que
+        lo ve.
+      </p>
+      <p>
+        Eso cambia tres cosas de la operación. El ancho de banda deja de ser el límite del sistema,
+        porque por la red viaja el evento y no la totalidad del video en crudo. La escalabilidad deja
+        de depender de cuántos servidores se agreguen, porque cada dispositivo que se suma trae su
+        propia capacidad de análisis. Y la disponibilidad mejora, porque un corte de enlace no
+        interrumpe la clasificación, que sigue ocurriendo donde está el dispositivo.
+      </p>
+      <p>
+        Cada imagen deja de ser un cuadro de video y pasa a ser un evento con datos asociados. Qué
+        objeto, de qué tipo, en qué zona, a qué hora, con qué recorrido. Esos eventos quedan
+        indexados, y un sistema indexado se busca, se integra y se audita. El tiempo de búsqueda de un
+        hecho puntual deja de ser una revisión de horas de grabación y pasa a ser una consulta.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- BLOQUE 3 · LOS METADATOS -->
+  <section class="section section--surface">
+    <div class="container measure mx-auto vi-prosa">
+      <p class="eyebrow">El dato</p>
+      <h2>Qué es un metadato de escena</h2>
+      <p>Un metadato es la descripción de lo que pasó, separada de la imagen que lo muestra.</p>
+      <p>
+        Cuando un vehículo entra a un playón, el dispositivo no guarda solamente el video. Guarda
+        además una ficha de ese hecho. Un objeto del tipo vehículo, que ingresó por una zona
+        determinada, con la hora exacta de ingreso y el tiempo que permaneció. Esa ficha pesa una
+        fracción mínima de lo que pesa el video, y a diferencia del video, se consulta como se
+        consulta cualquier base de datos.
+      </p>
+      <p>
+        La consecuencia práctica es que el video deja de terminar en una pantalla que alguien mira.
+        Pasa a alimentar los sistemas que la organización ya usa para decidir.
+      </p>
+      <p>
+        Los metadatos de escena responden a un formato estándar de la industria y no a un lenguaje
+        cerrado de un fabricante. Por eso se integran con plataformas de gestión, con sistemas de
+        control de acceso y con sistemas de negocio sin desarrollos a medida, y por eso la
+        organización no queda atada a un proveedor único.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- BLOQUE 4 · LAS TRES FUNCIONES -->
+  <section class="section">
+    <div class="container measure mx-auto vi-prosa">
+      <p class="eyebrow">Detección, control y seguridad</p>
+      <h2>Las tres funciones</h2>
+
+      <h3>Detección</h3>
+      <p>
+        El sistema distingue de qué tipo de objeto se trata antes de generar un evento. Una persona,
+        un vehículo, algo que quedó detenido donde no corresponde. Esa clasificación es lo que separa
+        un evento real de un falso positivo.
+      </p>
+      <p>
+        Sobre esa base se calibran las reglas. Qué zona, qué umbral de permanencia, qué franja
+        horaria, qué dirección de recorrido. Una regla mal calibrada produce tantos eventos que el
+        operador deja de mirarlos, y un sistema que nadie mira no detecta nada. La calibración no es
+        un ajuste inicial, es un trabajo que sigue durante toda la vida del sistema, porque la
+        operación cambia.
+      </p>
+
+      <h3>Control</h3>
+      <p>
+        La misma detección que dispara un evento puede disparar una acción en otro sistema. Un
+        vehículo cuya patente está habilitada abre la barrera sin intervención de nadie. Un ingreso
+        fuera de la franja permitida activa un mensaje por audio en el punto exacto donde está
+        ocurriendo. El tiempo de respuesta deja de depender de que alguien esté mirando una pantalla
+        en ese momento.
+      </p>
+      <p>
+        Cuando la detección, el control de acceso y el audio comparten una sola línea de tiempo,
+        aparece la trazabilidad. Cada hecho queda asociado a quién lo produjo, en qué punto, con qué
+        credencial y con qué respuesta del sistema. Es la diferencia entre saber que algo pasó y poder
+        reconstruir la secuencia completa.
+      </p>
+
+      <h3>Seguridad</h3>
+      <p>
+        Un evento indexado es evidencia recuperable. Ante un reclamo, un siniestro o una investigación
+        interna, el tiempo de búsqueda deja de medirse en jornadas de revisión, y la organización
+        llega con material acotado al hecho y no con horas de grabación sin ordenar.
+      </p>
+      <p>
+        El cumplimiento se apoya en lo mismo. Retención definida por política y no por lo que entra en
+        el disco, acceso a la evidencia registrado y auditable, y zonas excluidas del análisis por
+        decisión explícita. Un sistema que no puede demostrar quién vio qué y cuándo es un problema,
+        no una defensa.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- BLOQUE 6 · EL CASO -->
+  <!-- El complejo no se nombra, por pedido expreso del cliente. Las ocho cifras
+       de abajo son las únicas autorizadas. El bloque va sin enlace: la ruta
+       /presentacion-de-caso-de-exito-distrito-capitalinas/ no es una página,
+       es un 301 hacia esta misma URL en public/.htaccess, así que enlazarla
+       devolvería al lector a donde ya está. -->
+  <section class="vi-caso">
+    <div class="container">
+      <div class="measure mx-auto center">
+        <p class="eyebrow" style="color:#bfe0dd">La escala</p>
+        <h2>Un complejo de uso mixto en Córdoba</h2>
+        <p class="lead" style="color:rgba(255,255,255,0.9)">
+          Un sistema en operación continua desde hace más de 15 años.
+        </p>
+      </div>
+      <div class="vi-cifras">
+        {cifras.map((c) => (
+          <div class="vi-cifra">
+            <span class="vi-cifra__num">{c.valor}</span>
+            <span class="vi-cifra__label">{c.label}</span>
+          </div>
+        ))}
+      </div>
+      <div class="measure mx-auto" style="margin-top:2.6rem">
+        <p style="color:rgba(255,255,255,0.9)">
+          Lo relevante de esa escala no es el número, es la continuidad. Un sistema de ese tamaño
+          sostenido durante ese tiempo obliga a resolver la retención, el ancho de banda, el ciclo de
+          vida de los dispositivos y el costo por cámara al año como problemas permanentes, y no como
+          decisiones que se toman una sola vez.
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- BLOQUE 7 · ALCANCE POR ESCENARIO -->
+  <section class="section section--surface">
+    <div class="container">
+      <div class="center measure mx-auto">
+        <p class="eyebrow">Dónde se aplica</p>
+        <h2>Alcance por escenario</h2>
+      </div>
+      <div class="vi-escenarios">
+        {escenarios.map((e) => (
+          <a class="card card--link vi-esc" href={withBase(e.href)}>
+            <h3>{e.titulo}</h3>
+            <p>{e.resumen}</p>
+            <span class="vi-more">Ver más <Icon name="arrow" size={16} /></span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
 
   <!-- FAQS -->
   <section class="section section--surface">
@@ -207,6 +451,27 @@ const faqLd = JSON.stringify({
   .vi-card .card__icon { color: var(--teal); }
   .vi-card h3 { font-size: 1.05rem; margin-bottom: 0.4rem; }
   .vi-card p { color: var(--muted); margin: 0; }
+
+  /* PROSA DE LOS BLOQUES DE TEXTO */
+  .vi-prosa p { font-size: 1.05rem; }
+  .vi-prosa h3 { margin-top: 2rem; }
+
+  /* CASO (banda teal con cifras) */
+  .vi-caso { background: linear-gradient(160deg, var(--teal), var(--teal-dark)); color: #fff; padding-block: clamp(2.75rem, 6vw, 4.6rem); }
+  .vi-caso h2 { color: #fff; }
+  .vi-cifras { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.4rem; margin-top: 3rem; }
+  .vi-cifra { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); border-radius: var(--radius); padding: 1.6rem 1.2rem; text-align: center; }
+  .vi-cifra__num { display: block; font-size: 1.9rem; font-weight: 400; color: #fff; line-height: 1.1; }
+  .vi-cifra__label { display: block; margin-top: 0.5rem; color: rgba(255,255,255,0.85); font-size: 0.9rem; }
+
+  /* ESCENARIOS */
+  .vi-escenarios { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; margin-top: 2.5rem; }
+  .vi-esc { text-align: left; align-items: flex-start; display: flex; flex-direction: column; padding: 1.6rem; }
+  .vi-esc h3 { font-size: 1.05rem; margin-bottom: 0.5rem; }
+  .vi-esc p { color: var(--muted); margin: 0 0 0.9rem; }
+  .vi-more { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: auto; color: var(--teal); font-weight: 500; font-size: 0.9rem; }
+  .vi-esc:hover .vi-more { gap: 0.6rem; }
+
 
   /* FAQ */
   .vi-faq { margin-top: 2rem; max-width: 980px; margin-inline: auto; display: grid; gap: 0.55rem; }
