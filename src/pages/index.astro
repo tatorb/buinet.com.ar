@@ -53,17 +53,29 @@ const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month:
       </section>
     </div>
 
-    <div class="slide slide--axis" data-slide role="group" aria-roledescription="diapositiva" aria-label="2 de 2" hidden>
+    <div class="slide slide--axis" data-slide role="group" aria-roledescription="diapositiva" aria-label="2 de 2">
       <div class="container slide--axis__inner">
-        <p class="eyebrow" style="color:#bfe0dd">Noticia</p>
-        <h2>AXIS publica el despliegue realizado por Building Networks en el Distrito Capitalinas</h2>
-        <p class="lead" style="color:rgba(255,255,255,0.92)">
-          Más de 400 cámaras IP y más de 70 altavoces IP en la sección Historias de Clientes del
-          sitio de AXIS.
-        </p>
-        <a class="btn btn--white" href={withBase('/presentacion-de-caso-de-exito-distrito-capitalinas/')}>
-          Ver el caso <Icon name="arrow" size={16} />
-        </a>
+        <div class="slide--axis__text">
+          <p class="pill">Noticia</p>
+          <h2>AXIS publica el despliegue realizado por Building Networks en el Distrito Capitalinas</h2>
+          <p class="lead">
+            Más de 400 cámaras IP y más de 70 altavoces IP en la sección Historias de Clientes del
+            sitio de AXIS.
+          </p>
+          <a class="btn btn--solid" href={withBase('/presentacion-de-caso-de-exito-distrito-capitalinas/')}>
+            Ver el caso <Icon name="arrow" size={16} />
+          </a>
+        </div>
+        <div class="slide--axis__img">
+          <img
+            src="/img/axis-articulo-capitalinas.png"
+            alt="Historia de cliente de Distrito Capitalinas publicada en el sitio de AXIS"
+            width="1262"
+            height="757"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
       </div>
     </div>
 
@@ -86,7 +98,7 @@ const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month:
         i = (n + slides.length) % slides.length;
         slides.forEach(function (s, k) {
           s.classList.toggle('is-active', k === i);
-          s.hidden = k !== i;
+          s.setAttribute('aria-hidden', k === i ? 'false' : 'true');
         });
         dots.forEach(function (d, k) {
           d.classList.toggle('is-active', k === i);
@@ -260,12 +272,21 @@ const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month:
 <style>
   /* HERO — claro, con gráfico de red (sin foto de fondo) */
   /* HERO SLIDER */
-  .hero-slider { position: relative; }
-  .hero-slider .slide[hidden] { display: none; }
-  .slide--axis { background: linear-gradient(160deg, rgba(0,70,75,0.9), rgba(0,98,105,0.7)), url("/wp-content/uploads/2024/07/distrito-capitalinas.jpg") center/cover no-repeat; color: #fff; }
-  .slide--axis__inner { padding-block: clamp(2.6rem, 6vw, 4.2rem); max-width: 760px; }
-  .slide--axis h2 { color: #fff; margin-bottom: 1rem; }
+  /* Los dos slides comparten la misma celda de grilla: el alto del carrusel
+     es el del slide más alto y no cambia al rotar. Los inactivos usan
+     visibility, que los saca del orden de tabulación sin sacarlos del flujo. */
+  .hero-slider { position: relative; display: grid; }
+  .hero-slider > [data-slide] { grid-area: 1 / 1; display: grid; align-content: center; }
+  .hero-slider > [data-slide]:not(.is-active) { visibility: hidden; }
+  .hero-slider > [data-slide] > * { width: 100%; }
+  .slide--axis { background: linear-gradient(180deg, #eaf4f7, #f7fbfc); }
+  .slide--axis__inner { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: center; padding-block: clamp(2rem, 5vw, 3.4rem); }
+  .slide--axis h2 { color: var(--heading); margin-bottom: 0.9rem; font-size: clamp(1.45rem, 2.6vw, 2.05rem); }
+  .slide--axis .lead { max-width: 32rem; }
+  .slide--axis .pill { display: inline-block; background: var(--teal); color: #fff; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.3rem 0.9rem; border-radius: 999px; margin: 0 0 1rem; }
   .slide--axis .btn { margin-top: 1.3rem; display: inline-flex; align-items: center; gap: 0.45rem; }
+  .slide--axis__img img { width: 100%; height: auto; display: block; }
+  .hero-slider > [data-slide] { padding-bottom: 2.2rem; }
   .hero-slider__dots { position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%); display: flex; gap: 0.5rem; z-index: 2; }
   .hero-slider__dots .dot { width: 10px; height: 10px; border-radius: 50%; border: 1px solid var(--teal); background: transparent; padding: 0; cursor: pointer; }
   .hero-slider__dots .dot.is-active { background: var(--teal); }
@@ -342,7 +363,7 @@ const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month:
   .cta .btn { margin-top: 1.5rem; }
 
   @media (max-width: 900px) {
-    .hero__inner, .partners, .unidad, .industrias { grid-template-columns: 1fr; }
+    .hero__inner, .partners, .unidad, .industrias, .slide--axis__inner { grid-template-columns: 1fr; }
     .hero__graphic { order: -1; }
     .partners__head { order: -1; }
     .industrias__head { position: static; }
