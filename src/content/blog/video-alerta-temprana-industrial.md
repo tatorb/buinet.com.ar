@@ -6,15 +6,6 @@ pubDate: 2026-09-17
 author: "Building Networks"
 contactForm: true
 draft: false
-# ENLACE PENDIENTE
-# En el bloque "Condiciones logísticas", la frase final dice
-#   "Lo desarrollamos en detalle en control vehicular y LPR en planta."
-# Ese texto tiene que volver a ser un enlace a /lpr-logistica-vehicular-planta/
-# cuando esa nota se publique. Hoy quedó como texto plano porque el destino
-# no existe y habría sido un enlace roto.
-# El comentario va acá, en el frontmatter, y no en el cuerpo: un comentario
-# HTML dentro del Markdown se publica en el HTML final y queda a la vista de
-# cualquiera que mire el código fuente de la página.
 ---
 ## El sistema de video que tenés probablemente registra. El que necesitás detecta.
 
@@ -38,7 +29,7 @@ La analítica de video embebida en los dispositivos permite clasificar lo que la
 
 **Comportamientos de riesgo.** Caídas, corridas en zonas de maquinaria, acceso a áreas restringidas fuera de horario. La analítica detecta el patrón, no el evento posterior.
 
-**Condiciones logísticas.** En el exterior de la planta, reconocimiento de patentes de vehículos, detección de circulación en sentido contrario, optimización de flujos de carga. Lo que antes requería personal en cada acceso puede automatizarse con cobertura constante. Lo desarrollamos en detalle en control vehicular y LPR en planta.
+**Condiciones logísticas.** En el exterior de la planta, reconocimiento de patentes de vehículos, detección de circulación en sentido contrario, optimización de flujos de carga. Lo que antes requería personal en cada acceso puede automatizarse con cobertura constante. Lo desarrollamos en detalle en [control vehicular y LPR en planta](/lpr-logistica-vehicular-planta/).
 
 ## Cómo se genera la respuesta
 
