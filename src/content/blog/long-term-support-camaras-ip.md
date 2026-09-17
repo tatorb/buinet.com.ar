@@ -5,14 +5,6 @@ heroImage: "/img/long-term-support-camaras-ip.jpg"
 pubDate: 2026-09-17
 author: "Building Networks"
 draft: false
-# ENLACE PENDIENTE
-# En el bloque "Cómo calcular el ciclo de vida real de una instalación", la
-# frase final dice "Lo analizamos en TCO en videovigilancia corporativa."
-# Ese texto tiene que volver a ser un enlace a /tco-videovigilancia-corporativa/
-# cuando esa nota se publique. Hoy quedó como texto plano porque el destino no
-# existe y habría sido un enlace roto.
-# El comentario va acá y no en el cuerpo: un comentario HTML dentro del
-# Markdown se publica en el HTML final y queda a la vista en el código fuente.
 ---
 ## Comprás la cámara una vez. El costo de mantenerla segura lo pagás todos los años.
 
@@ -54,7 +46,7 @@ Una instalación de videovigilancia tiene tres variables de ciclo de vida que no
 
 **El ciclo de recambio conveniente.** El punto en que el costo de mantener el hardware viejo, parches manuales si los hay, incompatibilidades, rendimiento degradado, supera el costo de reemplazarlo. Ese punto no siempre coincide con el fin de la vida útil física ni con el fin del soporte.
 
-Cuando las tres variables se evalúan juntas, aparece el costo total de propiedad real de la instalación. Ese número es casi siempre diferente al precio de la propuesta inicial. Lo analizamos en TCO en videovigilancia corporativa.
+Cuando las tres variables se evalúan juntas, aparece el costo total de propiedad real de la instalación. Ese número es casi siempre diferente al precio de la propuesta inicial. Lo analizamos en [TCO en videovigilancia corporativa](/tco-videovigilancia-corporativa/).
 
 ## Por qué el LTS es un argumento de compra, no un detalle técnico
 
