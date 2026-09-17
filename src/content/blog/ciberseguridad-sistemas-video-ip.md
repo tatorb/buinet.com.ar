@@ -1,7 +1,7 @@
 ---
 title: "Ciberseguridad en sistemas de video IP, lo que nadie revisa"
 description: "Una cámara IP con firmware viejo es un vector de ataque. Firmware firmado, LTS del fabricante y segmentación de red, antes de que haya incidente."
-heroImage: "/wp-content/uploads/2026/09/ciberseguridad-sistemas-video-ip.png"
+heroImage: "/img/ciberseguridad-sistemas-video-ip.jpg"
 pubDate: 2026-09-17
 author: "Building Networks"
 contactForm: true
