@@ -99,6 +99,8 @@ Para conocer todas las opciones disponibles y sus especificaciones técnicas, se
 Las cámaras térmicas AXIS no reemplazan otros sistemas de monitoreo o seguridad.
 Los **complementan**, aportando información térmica que permite anticiparse a incidentes, mejorar la seguridad y fortalecer la continuidad operativa.
 
+Para el diseño completo de un sistema de detección térmica en planta, [esta nota explica cómo se integra con la infraestructura de red y con audio IP](/deteccion-termica-planta-industrial/).
+
 Si querés analizar **qué tipo de cámara térmica se ajusta mejor a tu entorno industrial**, desde Building Networks podemos ayudarte a evaluar escenarios, riesgos y necesidades concretas: [Contactar un asesor.](/contacto/)
 
 ## Seguí leyendo

@@ -75,6 +75,8 @@ No. Además de seguridad, se usa para mantenimiento preventivo, detección de so
 **¿Reemplaza a las cámaras ópticas o a los sistemas existentes?**
 No. Se integra como una capa adicional: donde la óptica no alcanza por visibilidad, y donde la temperatura aporta detección temprana.
 
+Para el diseño completo de un sistema de detección térmica en planta, [esta nota explica cómo se integra con la infraestructura de red y con audio IP](/deteccion-termica-planta-industrial/).
+
 ## Seguí leyendo
 
 - [cómo se protege un perímetro industrial por capas](/videovigilancia-industrial/)
