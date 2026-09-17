@@ -1,0 +1,169 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import { withBase } from '../utils/url';
+
+// ============================================================================
+// LANDING — Caso de éxito Distrito Capitalinas publicado por AXIS.
+// Recupera la URL original del sitio en WordPress, que hasta ahora tenía un
+// 301 hacia /videovigilancia/ porque la página no se había reconstruido.
+// Ese 301 se quitó de public/.htaccess al publicar esta página.
+//
+// OJO CON LAS CIFRAS: hay dos fuentes y no coinciden exactamente.
+//  - AXIS publica "más de 440 cámaras" y la gacetilla original decía "más de
+//    400 cámaras IP y más de 70 altavoces IP".
+//  - El relevamiento propio da 436 cámaras y 64 dispositivos de audio IP.
+// Cada bloque cita su fuente y no se mezclan en una misma frase.
+// ============================================================================
+
+const AXIS_URL = 'https://www.axis.com/es-es/customer-story/tailored-security-system-distrito';
+
+// Ficha del proyecto, tal como la publica AXIS en su historia de cliente.
+const ficha = [
+  { label: 'Organización', valor: 'Distrito Capitalinas' },
+  { label: 'Ubicación', valor: 'Córdoba, Argentina' },
+  { label: 'Segmento', valor: 'Inmuebles comerciales' },
+  { label: 'Necesidad del cliente', valor: 'Protección contra intrusiones, seguridad perimetral y de área, seguridad individual, megafonía' },
+];
+
+// Cifras del relevamiento propio de Building Networks.
+const cifras = [
+  { valor: '436', label: 'cámaras' },
+  { valor: '8', label: 'servidores dedicados' },
+  { valor: '88', label: 'controladores de acceso' },
+  { valor: '264', label: 'puntos de acceso controlados' },
+  { valor: '64', label: 'dispositivos de audio IP' },
+  { valor: '42', label: 'switches' },
+  { valor: '1.176', label: 'puertos activos' },
+  { valor: '+15 años', label: 'de operación continua' },
+];
+---
+<BaseLayout
+  title="Caso de éxito Distrito Capitalinas"
+  description="AXIS publicó en su sección Historias de Clientes el despliegue que Building Networks realizó en el Distrito Capitalinas, Córdoba."
+  canonical="/presentacion-de-caso-de-exito-distrito-capitalinas/"
+>
+  <!-- HERO -->
+  <section class="dc-hero">
+    <div class="container dc-hero__inner">
+      <p class="eyebrow" style="color:#bfe0dd">Noticia</p>
+      <h1>AXIS publica el despliegue realizado por Building Networks en el Distrito Capitalinas</h1>
+      <p class="lead" style="color:rgba(255,255,255,0.92); max-width:700px">
+        El líder mundial en tecnologías de cámaras y audio IP ha destacado en la sección
+        <strong>Historias de Clientes</strong> de su sitio web el proyecto Distrito Capitalinas
+        desplegado por Building Networks, en el que se incorporó más de 400 cámaras IP y más de 70
+        altavoces IP.
+      </p>
+      <a class="btn btn--white" href={AXIS_URL} target="_blank" rel="noopener noreferrer">
+        Leer la historia en AXIS <Icon name="arrow" size={16} />
+      </a>
+    </div>
+  </section>
+
+  <!-- LO QUE PUBLICA AXIS -->
+  <section class="section">
+    <div class="container measure mx-auto dc-prosa">
+      <p class="eyebrow">Lo que publica AXIS</p>
+      <h2>Un sistema de seguridad a la medida</h2>
+      <blockquote class="dc-quote">
+        <p>
+          Con más de 440 cámaras y audio en red integrado, Distrito Capitalinas ha logrado una
+          cobertura de instalaciones del 98% al tiempo que reduce los costos de infraestructura de
+          cableado en un 75% y los costos operativos en un 40%, transformándose en un complejo más
+          inteligente y seguro.
+        </p>
+        <cite>AXIS Communications, Historias de Clientes. Córdoba, Argentina, 2025</cite>
+      </blockquote>
+      <p>
+        Distrito Capitalinas es un moderno complejo en Córdoba, Argentina, que cuenta con una torre de
+        35 pisos, la más alta de la ciudad, junto con un centro de convenciones y dos bloques
+        corporativos que suman más de 130 oficinas.
+      </p>
+    </div>
+  </section>
+
+  <!-- FICHA DEL PROYECTO -->
+  <section class="section section--surface">
+    <div class="container measure mx-auto">
+      <h2>Ficha del proyecto</h2>
+      <dl class="dc-ficha">
+        {ficha.map((f) => (
+          <div class="dc-ficha__row">
+            <dt>{f.label}</dt>
+            <dd>{f.valor}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <!-- EL SISTEMA EN NÚMEROS -->
+  <section class="dc-cifras-band">
+    <div class="container">
+      <div class="measure mx-auto center">
+        <p class="eyebrow" style="color:#bfe0dd">Relevamiento propio</p>
+        <h2>El sistema en números</h2>
+        <p class="lead" style="color:rgba(255,255,255,0.9)">
+          Lo que Building Networks diseñó, implementó y sostiene todos los días.
+        </p>
+      </div>
+      <div class="dc-cifras">
+        {cifras.map((c) => (
+          <div class="dc-cifra">
+            <span class="dc-cifra__num">{c.valor}</span>
+            <span class="dc-cifra__label">{c.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CIERRE -->
+  <section class="section">
+    <div class="container measure mx-auto center">
+      <h2>Un sistema de esta escala se sostiene, no se instala</h2>
+      <p class="lead">
+        Si tenés un complejo, una planta o una operación que necesita un sistema así, el punto de
+        partida es un relevamiento de lo que ya tenés.
+      </p>
+      <p>
+        <a class="btn btn--solid" href={withBase('/contacto/')}>Conversemos</a>
+      </p>
+      <p style="margin-top:1.4rem">
+        <a href={AXIS_URL} target="_blank" rel="noopener noreferrer">Leer la historia completa en axis.com</a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .dc-hero { background: linear-gradient(160deg, rgba(0,70,75,0.9), rgba(0,98,105,0.7)), url("/wp-content/uploads/2024/07/distrito-capitalinas.jpg") center/cover no-repeat; color: #fff; }
+  .dc-hero__inner { padding-block: clamp(2.6rem, 6vw, 4.6rem); max-width: 820px; }
+  .dc-hero h1 { color: #fff; margin-bottom: 1.2rem; }
+  .dc-hero .btn { margin-top: 1.4rem; display: inline-flex; align-items: center; gap: 0.45rem; }
+
+  .dc-prosa p { font-size: 1.05rem; }
+  .dc-quote { margin: 1.8rem 0; padding: 1.4rem 1.6rem; border-left: 3px solid var(--teal); background: var(--teal-tint); border-radius: 0 var(--radius) var(--radius) 0; }
+  .dc-quote p { margin: 0 0 0.8rem; font-size: 1.05rem; }
+  .dc-quote cite { font-style: normal; font-size: 0.9rem; color: var(--muted); }
+
+  .dc-ficha { margin-top: 1.6rem; display: grid; gap: 0.1rem; }
+  .dc-ficha__row { display: grid; grid-template-columns: 220px 1fr; gap: 1rem; padding: 0.85rem 0; border-bottom: 1px solid var(--border); }
+  .dc-ficha dt { font-weight: 600; color: var(--heading); margin: 0; }
+  .dc-ficha dd { margin: 0; color: var(--fg); }
+
+  .dc-cifras-band { background: linear-gradient(160deg, var(--teal), var(--teal-dark)); color: #fff; padding-block: clamp(2.75rem, 6vw, 4.6rem); }
+  .dc-cifras-band h2 { color: #fff; }
+  .dc-cifras { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.4rem; margin-top: 2.6rem; }
+  .dc-cifra { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); border-radius: var(--radius); padding: 1.6rem 1.2rem; text-align: center; }
+  .dc-cifra__num { display: block; font-size: 1.9rem; font-weight: 400; color: #fff; line-height: 1.1; }
+  .dc-cifra__label { display: block; margin-top: 0.5rem; color: rgba(255,255,255,0.85); font-size: 0.9rem; }
+
+  @media (max-width: 980px) {
+    .dc-cifras { grid-template-columns: repeat(2, 1fr); }
+    .dc-ficha__row { grid-template-columns: 1fr; gap: 0.2rem; }
+  }
+  @media (max-width: 560px) {
+    .dc-cifras { grid-template-columns: 1fr; }
+  }
+</style>

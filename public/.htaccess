@@ -41,7 +41,9 @@
   RewriteRule ^data-center-cordoba/?$ /data-center/ [R=301,L]
   RewriteRule ^camaras-ip-axis-para-industrias-a/?$ /videovigilancia-industrial/ [R=301,L]
   RewriteRule ^camaras-ip-axis-para-industrias-formulario/?$ /contacto/ [R=301,L]
-  RewriteRule ^presentacion-de-caso-de-exito-distrito-capitalinas/?$ /videovigilancia/ [R=301,L]
+  # NOTA: /presentacion-de-caso-de-exito-distrito-capitalinas/ tenía un 301 hacia
+  # /videovigilancia/ mientras esa página no existía. Se quitó al reconstruir la
+  # landing del caso de éxito, que ahora sirve contenido propio en esa URL.
 
   # Página de servicio renombrada: "videovigilancia corporativa" pasó a ser
   # "video inteligente". La URL vieja estaba enlazada desde 11 notas del blog.
