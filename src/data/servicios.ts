@@ -12,6 +12,15 @@ export interface Servicio {
 
 export const servicios: Servicio[] = [
   {
+    slug: 'video-inteligente',
+    titulo: 'Video inteligente',
+    href: '/video-inteligente/',
+    icono: 'camera',
+    hero: '/img/video-inteligente-hero.jpg',
+    resumen:
+      'Detección en tiempo real, control operativo y seguridad para operaciones corporativas e industriales.',
+  },
+  {
     slug: 'videovigilancia',
     titulo: 'Videovigilancia',
     href: '/videovigilancia/',
