@@ -3,6 +3,7 @@ import { withBase } from '../utils/url';
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
+import ContactForm from '../components/ContactForm.astro';
 
 // Los artículos del blog se sirven en la RAÍZ (/slug/), igual que en el
 // WordPress original, para preservar las URLs indexadas y los backlinks.
@@ -35,32 +36,12 @@ const heroStyle = post.data.heroImage
       {post.data.contactForm && (
         <section class="post__form">
           <h2>Escribinos</h2>
-          <!-- Mismo formulario embebido de HubSpot que usa /contacto/.
-               El envío lo procesa HubSpot; el sitio sigue siendo estático. -->
-          <div id="hubspot-form"></div>
+          <ContactForm />
         </section>
       )}
       <p class="post__back"><a href={withBase("/novedades/")}><Icon name="arrow" size={16} /> Volver a Novedades</a></p>
     </div>
   </article>
-
-  {post.data.contactForm && (
-    <>
-      <script is:inline charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
-      <script is:inline>
-        window.addEventListener('load', function () {
-          if (window.hbspt) {
-            hbspt.forms.create({
-              portalId: '45351897',
-              formId: '97d3db1d-fec8-41e4-9d92-88e606500dfe',
-              region: 'na1',
-              target: '#hubspot-form',
-            });
-          }
-        });
-      </script>
-    </>
-  )}
 </BaseLayout>
 
 <style>

@@ -43,6 +43,10 @@
   RewriteRule ^camaras-ip-axis-para-industrias-formulario/?$ /contacto/ [R=301,L]
   RewriteRule ^presentacion-de-caso-de-exito-distrito-capitalinas/?$ /videovigilancia/ [R=301,L]
 
+  # Página de servicio renombrada: "videovigilancia corporativa" pasó a ser
+  # "video inteligente". La URL vieja estaba enlazada desde 11 notas del blog.
+  RewriteRule ^videovigilancia-corporativa/?$ /video-inteligente/ [R=301,L]
+
   # Duplicado: consolida la variante "la-base" en la canónica "esencial-hoy-en-dia".
   RewriteRule ^que-es-una-red-convergente-y-por-que-es-la-base/?$ /que-es-una-red-convergente-y-por-que-es-esencial-hoy-en-dia/ [R=301,L]
 </IfModule>

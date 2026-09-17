@@ -102,6 +102,6 @@ Identificá los tres o cuatro puntos de manipulación donde se concentra el ries
 
 Y definí el ciclo de detección, cada cuánto hacés inventario. Ese número, no otro, es el que fija la retención del sistema.
 
-En Building Networks diseñamos sistemas de videovigilancia integrados a la operación desde hace más de veinte años, con AXIS como partner de hardware y plataforma propia cuando el proyecto lo justifica. El panorama completo está en nuestra guía de [videovigilancia corporativa](/videovigilancia-corporativa/).
+En Building Networks diseñamos sistemas de videovigilancia integrados a la operación desde hace más de veinte años, con AXIS como partner de hardware y plataforma propia cuando el proyecto lo justifica. El panorama completo está en nuestra guía de [videovigilancia corporativa](/video-inteligente/).
 
 Si tenés una merma que no cierra y no sabés dónde se pierde, [conversemos](/contacto/).

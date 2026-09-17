@@ -92,6 +92,6 @@ Antes de cotizar equipos conviene tener tres definiciones. Qué se está protegi
 
 Con esas tres respuestas, el dimensionamiento sale solo. Sin ellas, lo más probable es terminar con un sistema sobredimensionado en el frente equivocado. El método de cálculo lo desarrollamos en [cómo dimensionar un sistema de videovigilancia corporativo](/como-dimensionar-sistema-videovigilancia/).
 
-En Building Networks diseñamos e implementamos sistemas de videovigilancia corporativa e industrial desde hace más de veinte años. Para obra trabajamos con la línea de soluciones desplegables de AXIS, nuestro partner de hardware, que está desarrollada específicamente para instalaciones temporales sin infraestructura de red propia. El panorama completo está en nuestra guía de [videovigilancia corporativa](/videovigilancia-corporativa/).
+En Building Networks diseñamos e implementamos sistemas de videovigilancia corporativa e industrial desde hace más de veinte años. Para obra trabajamos con la línea de soluciones desplegables de AXIS, nuestro partner de hardware, que está desarrollada específicamente para instalaciones temporales sin infraestructura de red propia. El panorama completo está en nuestra guía de [videovigilancia corporativa](/video-inteligente/).
 
 Si tenés una obra por arrancar y querés resolver el video antes de que aparezca el primer faltante, [conversemos](/contacto/).

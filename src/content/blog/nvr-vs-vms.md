@@ -90,6 +90,6 @@ La regla práctica es simple. Definí primero el escenario a tres años, despué
 
 Y sea cual sea la decisión, exigí protocolos abiertos en las cámaras. Un parque de cámaras que solo habla con un fabricante te obliga a reemplazar todo cuando cambiás de plataforma. Un parque abierto te deja migrar el software y conservar el hardware, que es donde está la mayor parte de la inversión y donde más pesa el [ciclo de vida de los equipos](/vida-util-camara-ip/).
 
-En Building Networks diseñamos, implementamos y mantenemos sistemas de videovigilancia corporativa e industrial desde hace más de veinte años, con partners de hardware como AXIS y plataforma propia cuando el proyecto lo justifica. Podés ver el panorama completo en nuestra guía de [videovigilancia corporativa](/videovigilancia-corporativa/).
+En Building Networks diseñamos, implementamos y mantenemos sistemas de videovigilancia corporativa e industrial desde hace más de veinte años, con partners de hardware como AXIS y plataforma propia cuando el proyecto lo justifica. Podés ver el panorama completo en nuestra guía de [videovigilancia corporativa](/video-inteligente/).
 
 Si estás evaluando la arquitectura de tu sistema o te quedó chico el que tenés, [conversemos](/contacto/).

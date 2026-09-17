@@ -96,6 +96,6 @@ El primer paso no es cotizar cámaras, es relevar. Inventario real del parque, e
 
 Con eso se arma el plan por etapas, y cada etapa se puede aprobar por separado. Es lo que convierte un proyecto grande y difícil de firmar en varios chicos que se ejecutan sin frenar la operación.
 
-En Building Networks migramos sistemas de videovigilancia analógicos a IP desde hace más de veinte años, con AXIS como partner de hardware y plataforma propia cuando el proyecto lo justifica. El panorama completo está en nuestra guía de [videovigilancia corporativa](/videovigilancia-corporativa/).
+En Building Networks migramos sistemas de videovigilancia analógicos a IP desde hace más de veinte años, con AXIS como partner de hardware y plataforma propia cuando el proyecto lo justifica. El panorama completo está en nuestra guía de [videovigilancia corporativa](/video-inteligente/).
 
 Si tenés un sistema analógico que ya no da y no sabés por dónde arrancar, [conversemos](/contacto/).

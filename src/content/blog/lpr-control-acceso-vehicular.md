@@ -108,6 +108,6 @@ Antes de cotizar, tres definiciones. Cuántos movimientos diarios tiene el acces
 
 Con esas respuestas se sabe qué equipo hace falta y, más importante, si el problema se resuelve con LPR o con una reforma del acceso.
 
-En Building Networks diseñamos e implementamos sistemas de control de acceso vehicular integrados a videovigilancia desde hace más de veinte años, con AXIS como partner de hardware y plataforma propia cuando el proyecto lo justifica. El panorama completo está en nuestra guía de [videovigilancia corporativa](/videovigilancia-corporativa/).
+En Building Networks diseñamos e implementamos sistemas de control de acceso vehicular integrados a videovigilancia desde hace más de veinte años, con AXIS como partner de hardware y plataforma propia cuando el proyecto lo justifica. El panorama completo está en nuestra guía de [videovigilancia corporativa](/video-inteligente/).
 
 Si tu portón todavía funciona con planilla y bocina, [conversemos](/contacto/).

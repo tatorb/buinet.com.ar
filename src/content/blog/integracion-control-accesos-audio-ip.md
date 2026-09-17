@@ -88,6 +88,6 @@ Si ya tenés los tres sistemas instalados y separados, la primera pregunta no es
 
 Si estás por comprar el primero de los tres, la definición es más simple y mucho más barata. Exigí protocolos abiertos y dejá previsto en la red el crecimiento de los otros dos, aunque los compres dentro de dos años.
 
-En Building Networks integramos video, control de accesos y audio IP desde hace más de veinte años, con AXIS como partner de hardware y plataforma propia cuando el proyecto lo justifica. El panorama completo está en nuestra guía de [videovigilancia corporativa](/videovigilancia-corporativa/).
+En Building Networks integramos video, control de accesos y audio IP desde hace más de veinte años, con AXIS como partner de hardware y plataforma propia cuando el proyecto lo justifica. El panorama completo está en nuestra guía de [videovigilancia corporativa](/video-inteligente/).
 
 Si tenés tres sistemas que no se hablan, [conversemos](/contacto/).

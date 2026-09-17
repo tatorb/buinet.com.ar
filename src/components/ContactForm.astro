@@ -1,0 +1,32 @@
+---
+// Formulario de contacto embebido de HubSpot. El envío lo procesa HubSpot,
+// así que el sitio sigue siendo 100% estático.
+//
+// Estaba duplicado en /contacto/ y en el layout de las notas del blog. Vive
+// acá para que el portalId y el formId existan en un solo lugar.
+interface Props {
+  /** id del contenedor donde HubSpot inyecta el formulario. Único por página. */
+  targetId?: string;
+}
+const { targetId = 'hubspot-form' } = Astro.props;
+---
+<div id={targetId} data-hs-target={targetId}></div>
+
+<script is:inline charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
+<script is:inline>
+  // Recorre todos los contenedores marcados, así el id del target puede
+  // cambiar por página sin tocar este script. data-hs-done evita que un
+  // formulario se cree dos veces si el componente aparece más de una vez.
+  window.addEventListener('load', function () {
+    if (!window.hbspt) return;
+    document.querySelectorAll('[data-hs-target]:not([data-hs-done])').forEach(function (el) {
+      el.setAttribute('data-hs-done', '1');
+      hbspt.forms.create({
+        portalId: '45351897',
+        formId: '97d3db1d-fec8-41e4-9d92-88e606500dfe',
+        region: 'na1',
+        target: '#' + el.getAttribute('data-hs-target'),
+      });
+    });
+  });
+</script>

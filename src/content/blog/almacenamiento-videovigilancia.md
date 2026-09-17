@@ -102,6 +102,6 @@ CamScope, la plataforma que desarrollamos en Building Networks a lo largo de die
 
 Si estás por dimensionar un sistema, pedí que el cálculo se haga cámara por cámara según la escena real, no con un promedio general. Si ya tenés uno andando y sospechás que la retención no se está cumpliendo, la verificación es directa, mirá cuál es la grabación más antigua disponible y compará con lo que se comprometió.
 
-En Building Networks diseñamos, implementamos y mantenemos sistemas de videovigilancia corporativa e industrial desde hace más de veinte años, con AXIS como partner de hardware y plataforma propia cuando el proyecto lo justifica. El panorama completo está en nuestra guía de [videovigilancia corporativa](/videovigilancia-corporativa/).
+En Building Networks diseñamos, implementamos y mantenemos sistemas de videovigilancia corporativa e industrial desde hace más de veinte años, con AXIS como partner de hardware y plataforma propia cuando el proyecto lo justifica. El panorama completo está en nuestra guía de [videovigilancia corporativa](/video-inteligente/).
 
 Si tu sistema no está guardando lo que debería guardar, [conversemos](/contacto/).

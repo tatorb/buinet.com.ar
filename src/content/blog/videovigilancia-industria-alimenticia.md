@@ -102,6 +102,6 @@ Antes de cotizar, mapeá las zonas por condición ambiental. Zona seca, zona hú
 
 Y definí qué tiene que poder responder el sistema. Si la respuesta es solo "quién entró", alcanza con un sistema de seguridad. Si la respuesta incluye "qué pasó con este lote", el sistema es otro y se diseña distinto desde el principio.
 
-En Building Networks diseñamos e implementamos sistemas de videovigilancia industrial desde hace más de veinte años, con AXIS como partner de hardware y plataforma propia cuando el proyecto lo justifica. El panorama completo está en nuestra guía de [videovigilancia corporativa](/videovigilancia-corporativa/) y en [videovigilancia industrial](/videovigilancia-industrial/).
+En Building Networks diseñamos e implementamos sistemas de videovigilancia industrial desde hace más de veinte años, con AXIS como partner de hardware y plataforma propia cuando el proyecto lo justifica. El panorama completo está en nuestra guía de [videovigilancia corporativa](/video-inteligente/) y en [videovigilancia industrial](/videovigilancia-industrial/).
 
 Si tenés una planta de alimentos y las cámaras no aguantan, o no te sirven para trazar un lote, [conversemos](/contacto/).

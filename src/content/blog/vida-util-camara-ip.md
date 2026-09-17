@@ -112,6 +112,6 @@ Segundo, clasificación por criticidad. Qué cámaras cubren un punto donde no p
 
 Tercero, ciclo asignado por condición de instalación, no por modelo. La misma cámara en una oficina y en un perímetro industrial tiene dos vidas útiles distintas, y planificarlas igual garantiza que una se cambie de más y la otra se caiga sola.
 
-En Building Networks diseñamos, implementamos y mantenemos sistemas de videovigilancia corporativa e industrial desde hace más de veinte años, con AXIS como partner de hardware y plataforma propia cuando el proyecto lo justifica. El panorama completo está en nuestra guía de [videovigilancia corporativa](/videovigilancia-corporativa/).
+En Building Networks diseñamos, implementamos y mantenemos sistemas de videovigilancia corporativa e industrial desde hace más de veinte años, con AXIS como partner de hardware y plataforma propia cuando el proyecto lo justifica. El panorama completo está en nuestra guía de [videovigilancia corporativa](/video-inteligente/).
 
 Si querés saber en qué estado está tu parque de cámaras y qué conviene renovar primero, [conversemos](/contacto/).

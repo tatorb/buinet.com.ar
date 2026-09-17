@@ -1,0 +1,230 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { withBase } from '../utils/url';
+
+// ============================================================================
+// PÁGINA DE SERVICIO — Video inteligente.
+// Nivel /videovigilancia/ e /infraestructura-de-red/: usa BaseLayout directo,
+// no ServiceLayout, porque tiene estructura propia.
+// Poco texto arriba, todo el desarrollo en las FAQ.
+// ============================================================================
+
+const beneficios = [
+  'Detecta condiciones antes de que se conviertan en incidente',
+  'Genera datos de proceso en tiempo real, no solo grabaciones',
+  'Responde automáticamente integrado con audio IP',
+  'Se gestiona junto con la red, accesos y audio desde CamScope',
+];
+
+const sectores = [
+  { titulo: 'Industria y manufactura', resumen: 'Líneas, perímetros, EPP, auditoría de proceso', icono: 'factory' },
+  { titulo: 'Logística y distribución', resumen: 'LPR, trazabilidad, tiempos de ciclo', icono: 'network' },
+  { titulo: 'Corporativo y oficinas', resumen: 'Accesos, visitas, perímetro de edificio', icono: 'building' },
+  { titulo: 'Industria regulada', resumen: 'Alimentaria, farmacéutica, salud', icono: 'shield' },
+];
+
+const diferenciales = [
+  { titulo: 'AXIS Solution Gold Partner', resumen: 'Hardware con LTS documentado y ciberseguridad desde el diseño', icono: 'camera' },
+  { titulo: 'CamScope', resumen: 'Plataforma propia, sin licenciamiento por canal', icono: 'server' },
+  { titulo: 'Casi veinte años en Córdoba', resumen: 'Industria, logística, corporativo y sector regulado', icono: 'lock' },
+];
+
+// Las 12 FAQ alimentan el acordeón visible y el schema FAQPage. Un solo origen
+// para las dos cosas, así nunca se desincronizan.
+const faqs = [
+  {
+    q: '¿Cuál es la diferencia entre un sistema que graba y uno que detecta?',
+    a: 'Un sistema que graba almacena lo que la cámara ve para revisarlo después. Un sistema que detecta clasifica lo que ve en tiempo real y genera un evento cuando identifica una condición definida. La diferencia práctica es cuándo llega la información. Con grabación, la información llega cuando alguien la busca. Con detección, llega en el momento en que todavía se puede actuar.',
+  },
+  {
+    q: '¿Qué puede detectar la analítica embebida en el dispositivo?',
+    a: 'Depende de la configuración, pero las capacidades más comunes incluyen clasificación de objetos, personas, vehículos o animales, presencia en zonas definidas, cruce de líneas virtuales en una dirección específica, ausencia de EPP en zonas de riesgo, comportamientos de riesgo como caídas o corridas, permanencia excesiva en un sector, y variables térmicas cuando se usan cámaras de ese tipo. La analítica corre en el dispositivo, sin enviar video a un servidor para procesarlo.',
+  },
+  {
+    q: '¿Cómo se integra el video con el audio IP para generar una respuesta automática?',
+    a: 'Cuando la analítica detecta una condición, puede activar directamente un altavoz en el sector donde ocurrió el evento. La respuesta no es una sirena general sino un mensaje específico dirigido al área específica. Eso permite disuadir una intrusión, alertar a un operador que ingresó sin EPP, o notificar a un supervisor de una anomalía en línea, todo antes de que alguien tenga que moverse o revisar una pantalla.',
+  },
+  {
+    q: '¿Qué son los metadatos de video y para qué sirven en una operación?',
+    a: 'Los metadatos son los datos estructurados que genera la analítica a partir de lo que ve la cámara. No es el video en sí sino la información extraída, cuántas personas pasaron por un sector, cuánto tiempo estuvo un vehículo en la playa de descarga, en qué momento se detectó una condición de riesgo. Esos datos son livianos, se integran con cualquier sistema de gestión y se pueden visualizar en tableros en tiempo real. El video queda grabado como respaldo. Los metadatos son los que generan valor operativo.',
+  },
+  {
+    q: '¿Qué hace falta en la red para que el sistema funcione en tiempo real?',
+    a: 'La red tiene que estar dimensionada para soportar el tráfico de video y metadatos en condiciones de operación plena, no solo en la demostración. Eso implica ancho de banda suficiente en los uplinks entre switches, segmentación del tráfico de video en una VLAN separada del tráfico productivo, y enlaces de fibra en instalaciones perimetrales o con puntos alejados. Un cuello de botella en la red hace que las alertas lleguen tarde. En un sistema de detección, tarde puede ser demasiado tarde.',
+  },
+  {
+    q: '¿Cómo se gestiona la ciberseguridad del sistema de video?',
+    a: 'Las cámaras AXIS tienen firmware firmado digitalmente que se verifica en cada arranque. Ningún firmware no autorizado puede instalarse en el dispositivo. AXIS opera un programa de long term support con actualizaciones de seguridad gratuitas y un servicio de notificación de vulnerabilidades. Desde CamScope, las actualizaciones de firmware de toda la flota se ejecutan de forma centralizada. Y la red de videovigilancia se diseña segmentada del tráfico productivo para limitar el radio de impacto ante cualquier incidente.',
+  },
+  {
+    q: '¿Qué es CamScope y qué diferencia tiene con un VMS genérico?',
+    a: 'CamScope es la plataforma de gestión que Building Networks desarrolló a lo largo de diez años de operación en instalaciones industriales y corporativas. Centraliza la gestión de video, control de accesos y audio IP en una sola interfaz. No aplica licenciamiento por canal, lo que cambia completamente la ecuación de costo en instalaciones que escalan. Y permite ejecutar actualizaciones de firmware de cámaras y del propio sistema de forma centralizada, sin intervención manual dispositivo por dispositivo.',
+  },
+  {
+    q: '¿Por qué AXIS y no otro fabricante?',
+    a: 'AXIS diseña su propio procesador, el ARTPEC, lo que le da control total sobre las funciones de seguridad desde el nivel más bajo del hardware. Cada dispositivo incluye Edge Vault, un módulo criptográfico que protege las claves y certificados ante cualquier intento de manipulación. El ciclo de long term support está documentado y publicado públicamente. Y AXIS cumple con la certificación FIPS 140, el estándar de seguridad criptográfica exigido por agencias federales de Estados Unidos. Es el fabricante que mejor combina capacidad de analítica, ciberseguridad documentada y soporte de largo plazo.',
+  },
+  {
+    q: '¿El sistema reemplaza al personal de seguridad o lo potencia?',
+    a: 'Lo potencia. Una persona puede cubrir un área, no diez. La analítica cubre todas las zonas simultáneamente y filtra el ruido, solo genera un evento cuando detecta una condición real. El personal de seguridad recibe la alerta con información precisa del sector y actúa sobre algo concreto, en lugar de monitorear pantallas o responder a falsas alarmas constantes. En instalaciones con perímetros grandes o múltiples turnos, esa diferencia es significativa.',
+  },
+  {
+    q: '¿Cuánto cuesta agregar cámaras cuando la operación crece?',
+    a: 'Depende de cómo esté diseñado el sistema desde el principio. Si la red fue dimensionada para el crecimiento proyectado, agregar cámaras es sumar dispositivos. Si no, puede implicar rehacer parte de la infraestructura. CamScope no cobra licencia por cámara adicional, lo que elimina el costo de software que tienen otros sistemas en cada ampliación. El costo real de escalar se define en el diseño inicial, no en el momento de la ampliación.',
+  },
+  {
+    q: '¿Cómo se actualiza el firmware de toda la flota?',
+    a: 'Desde CamScope se ejecutan actualizaciones de firmware de forma centralizada sobre toda la flota, incluyendo tanto las cámaras AXIS como el propio sistema de gestión. Las actualizaciones se planifican y ejecutan desde un punto único. El cliente no tiene que hacer nada manualmente. Eso garantiza que el sistema se mantiene actualizado sin que la gestión del mantenimiento dependa de que alguien lo recuerde y lo priorice.',
+  },
+  {
+    q: '¿Por dónde se empieza un proyecto?',
+    a: 'Por un relevamiento. Antes de especificar una sola cámara, necesitamos entender qué tiene instalado tu operación hoy, qué información necesita que hoy no tiene, cuáles son las condiciones reales del entorno y cómo está la infraestructura de red. Desde ahí definimos cobertura, equipamiento, configuración de analítica e integración con los sistemas existentes. El relevamiento es el primer paso y es sin costo.',
+  },
+];
+
+const faqLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+});
+---
+<BaseLayout
+  title="Video inteligente para empresas e industrias"
+  description="Sistemas de video con IA, analítica y metadatos integrados en el dispositivo. Detección en tiempo real, control operativo y seguridad para operaciones corporativas e industriales en Córdoba."
+  canonical="/video-inteligente/"
+>
+  <script type="application/ld+json" is:inline set:html={faqLd} slot="head" />
+
+  <!-- HERO -->
+  <section class="vi-hero">
+    <div class="container vi-hero__inner">
+      <p class="eyebrow" style="color:#bfe0dd">Servicios y productos</p>
+      <h1>Video inteligente para empresas e industrias</h1>
+      <p class="lead" style="color:rgba(255,255,255,0.92); max-width:640px">
+        Detección, control operativo y seguridad integrados en un solo sistema.
+      </p>
+    </div>
+  </section>
+
+  <!-- QUÉ HACE -->
+  <section class="section">
+    <div class="container measure mx-auto">
+      <h2>Lo que cambia cuando el video es inteligente</h2>
+      <ul class="vi-bullets">
+        {beneficios.map((b) => (
+          <li><Icon name="arrow" size={18} /><span>{b}</span></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- PARA QUIÉN -->
+  <section class="section section--surface">
+    <div class="container">
+      <div class="center measure mx-auto"><h2>Industrias y operaciones que lo usan</h2></div>
+      <div class="vi-grid" style="margin-top:2.5rem">
+        {sectores.map((s) => (
+          <div class="card vi-card">
+            <span class="card__icon"><Icon name={s.icono} size={32} /></span>
+            <h3>{s.titulo}</h3>
+            <p>{s.resumen}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- POR QUÉ BUILDING NETWORKS -->
+  <section class="section">
+    <div class="container">
+      <div class="center measure mx-auto"><h2>Por qué Building Networks</h2></div>
+      <div class="vi-grid vi-grid--3" style="margin-top:2.5rem">
+        {diferenciales.map((d) => (
+          <div class="card vi-card">
+            <span class="card__icon"><Icon name={d.icono} size={32} /></span>
+            <h3>{d.titulo}</h3>
+            <p>{d.resumen}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQS -->
+  <section class="section section--surface">
+    <div class="container">
+      <div class="center"><h2>Preguntas frecuentes</h2></div>
+      <div class="vi-faq">
+        {faqs.map((f) => (
+          <details class="vi-faq__item">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA + FORMULARIO -->
+  <section class="section">
+    <div class="container vi-cta">
+      <div>
+        <h2>Empezá por el relevamiento</h2>
+        <p class="lead">
+          El punto de partida es entender qué tiene instalado tu operación hoy y qué información
+          necesita que hoy no tiene. Desde ahí definimos qué agrega valor y qué no hace falta.
+        </p>
+        <p><a href={withBase('/camscope/')}>Conocé CamScope</a></p>
+      </div>
+      <div class="card">
+        <ContactForm targetId="hubspot-form-video" />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* HERO */
+  .vi-hero { background: linear-gradient(160deg, rgba(0,70,75,0.86), rgba(0,98,105,0.66)), url("/img/video-inteligente-hero.jpg") center/cover no-repeat; color: #fff; }
+  .vi-hero__inner { padding-block: clamp(2.6rem, 6vw, 4.6rem); max-width: 780px; }
+  .vi-hero h1 { color: #fff; margin-bottom: 1.2rem; }
+
+  /* BULLETS */
+  .vi-bullets { list-style: none; padding: 0; margin: 1.6rem 0 0; display: grid; gap: 0.9rem; }
+  .vi-bullets li { display: flex; gap: 0.7rem; align-items: flex-start; font-size: 1.05rem; }
+  .vi-bullets svg { color: var(--teal); flex: none; margin-top: 5px; }
+
+  /* CARDS */
+  .vi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.4rem; }
+  .vi-grid--3 { grid-template-columns: repeat(3, 1fr); }
+  .vi-card { text-align: left; align-items: flex-start; }
+  .vi-card .card__icon { color: var(--teal); }
+  .vi-card h3 { font-size: 1.05rem; margin-bottom: 0.4rem; }
+  .vi-card p { color: var(--muted); margin: 0; }
+
+  /* FAQ */
+  .vi-faq { margin-top: 2rem; max-width: 980px; margin-inline: auto; display: grid; gap: 0.55rem; }
+  .vi-faq__item { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 0 1.3rem; }
+  .vi-faq__item summary { cursor: pointer; font-weight: 500; color: var(--heading); padding: 0.85rem 0; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 1rem; font-size: 0.98rem; }
+  .vi-faq__item summary::-webkit-details-marker { display: none; }
+  .vi-faq__item summary::after { content: '+'; color: var(--teal); font-size: 1.3rem; font-weight: 300; line-height: 1; flex: none; transition: transform 0.2s ease; }
+  .vi-faq__item[open] summary::after { transform: rotate(45deg); }
+  .vi-faq__item p { margin: 0 0 1rem; color: var(--fg); font-size: 0.95rem; }
+
+  /* CTA */
+  .vi-cta { display: grid; grid-template-columns: 1fr 1.1fr; gap: 3rem; align-items: start; }
+
+  @media (max-width: 980px) {
+    .vi-grid, .vi-grid--3 { grid-template-columns: repeat(2, 1fr); }
+    .vi-cta { grid-template-columns: 1fr; gap: 2rem; }
+  }
+  @media (max-width: 560px) {
+    .vi-grid, .vi-grid--3 { grid-template-columns: 1fr; }
+  }
+</style>

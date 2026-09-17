@@ -94,6 +94,6 @@ Elegí un problema concreto y acotado, no "mejorar la operación". Buscá en el 
 
 De ahí van a salir dos cosas. Alguna mejora concreta, que ya justifica el ejercicio. Y una lista clara de qué le falta al sistema para que esto sea sistemático, que es exactamente el pliego de la próxima ampliación, algo que planteamos en [ampliación de un sistema de videovigilancia](/ampliacion-sistema-videovigilancia/).
 
-En Building Networks diseñamos sistemas de videovigilancia integrados a la operación desde hace más de veinte años, con AXIS como partner de hardware y plataforma propia cuando el proyecto lo justifica. El panorama completo está en nuestra guía de [videovigilancia corporativa](/videovigilancia-corporativa/).
+En Building Networks diseñamos sistemas de videovigilancia integrados a la operación desde hace más de veinte años, con AXIS como partner de hardware y plataforma propia cuando el proyecto lo justifica. El panorama completo está en nuestra guía de [videovigilancia corporativa](/video-inteligente/).
 
 Si tenés un proceso que falla siempre en el mismo punto y no sabés por qué, [conversemos](/contacto/).
