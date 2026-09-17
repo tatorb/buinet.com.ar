@@ -32,9 +32,35 @@ const heroStyle = post.data.heroImage
   <article class="section">
     <div class="container post__inner prose">
       <Content />
+      {post.data.contactForm && (
+        <section class="post__form">
+          <h2>Escribinos</h2>
+          <!-- Mismo formulario embebido de HubSpot que usa /contacto/.
+               El envío lo procesa HubSpot; el sitio sigue siendo estático. -->
+          <div id="hubspot-form"></div>
+        </section>
+      )}
       <p class="post__back"><a href={withBase("/novedades/")}><Icon name="arrow" size={16} /> Volver a Novedades</a></p>
     </div>
   </article>
+
+  {post.data.contactForm && (
+    <>
+      <script is:inline charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
+      <script is:inline>
+        window.addEventListener('load', function () {
+          if (window.hbspt) {
+            hbspt.forms.create({
+              portalId: '45351897',
+              formId: '97d3db1d-fec8-41e4-9d92-88e606500dfe',
+              region: 'na1',
+              target: '#hubspot-form',
+            });
+          }
+        });
+      </script>
+    </>
+  )}
 </BaseLayout>
 
 <style>
@@ -50,6 +76,8 @@ const heroStyle = post.data.heroImage
   .prose :global(th), .prose :global(td) { border: 1px solid var(--border); padding: 0.7rem 0.9rem; vertical-align: top; }
   .prose :global(tbody tr:nth-child(even)) { background: var(--surface); }
   .prose :global(tbody td:first-child) { font-weight: 500; color: var(--heading); }
+  .post__form { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
+  .post__form h2 { margin-bottom: 1.2rem; }
   .post__back { margin-top: 2.5rem; }
   .post__back a { display: inline-flex; align-items: center; gap: 0.4rem; font-weight: 600; }
 </style>

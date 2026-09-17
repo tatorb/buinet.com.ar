@@ -20,6 +20,9 @@ const blog = defineCollection({
       // Canonical propio: consolida esta nota en otra URL cuando compiten por
       // la misma consulta. El post sigue accesible y en el sitemap.
       canonical: z.string().optional(),
+      // Agrega al final del post el mismo formulario de HubSpot que usa
+      // /contacto/. Por defecto las notas cierran con un enlace de texto.
+      contactForm: z.boolean().default(false),
       draft: z.boolean().default(false),
     }),
 });
