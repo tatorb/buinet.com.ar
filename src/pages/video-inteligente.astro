@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
 import ContactForm from '../components/ContactForm.astro';
+import YouTube from '../components/YouTube.astro';
 import { withBase } from '../utils/url';
 
 // ============================================================================
@@ -245,17 +246,7 @@ const faqLd = JSON.stringify({
   <section class="section">
     <div class="container vi-cambia">
       <div class="vi-cambia__video">
-        <video
-          controls
-          playsinline
-          preload="none"
-          poster="/img/video-inteligente-hero.jpg"
-          width="1280"
-          height="720"
-        >
-          <source src="/video/video-inteligente-axis.mp4" type="video/mp4" />
-          Tu navegador no puede reproducir este video.
-        </video>
+        <YouTube id="KmWChISU8Ww" title="AXIS, video más inteligente y más seguro en el trabajo" />
       </div>
       <div>
         <h2>Lo que cambia cuando el video es inteligente</h2>
@@ -433,7 +424,6 @@ const faqLd = JSON.stringify({
 
   /* VIDEO + BULLETS */
   .vi-cambia { display: grid; grid-template-columns: 1fr 1fr; gap: 2.6rem; align-items: center; }
-  .vi-cambia__video video { width: 100%; height: auto; display: block; border-radius: var(--radius); background: #000; }
 
   /* LOGOS Y NÚMERO EN LOS DIFERENCIALES */
   .vi-card__marca { display: flex; align-items: center; justify-content: flex-start; height: 68px; margin-bottom: 0.9rem; }

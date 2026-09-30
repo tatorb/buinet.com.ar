@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
+import YouTube from '../components/YouTube.astro';
 import { withBase } from '../utils/url';
 
 // ============================================================================
@@ -11,6 +12,15 @@ import { withBase } from '../utils/url';
 // ============================================================================
 
 const verticales = [
+  {
+    // Esta tarjeta se había quitado en f881d66 porque /videovigilancia-corporativa/
+    // no existía. Hoy esa URL redirige a /video-inteligente/, así que vuelve
+    // apuntando directo al destino real y la sección recupera sus tres realidades.
+    titulo: 'Videovigilancia corporativa',
+    resumen: 'Oficinas, edificios y complejos. Protección de accesos, espacios comunes y activos, con analítica que prioriza lo que importa y gestión remota simple.',
+    href: '/video-inteligente/',
+    img: '/wp-content/uploads/2024/07/Operador-Seguridad.jpg',
+  },
   {
     titulo: 'Videovigilancia industrial',
     resumen: 'Plantas, perímetros y logística. Cámaras robustas, detección temprana en condiciones exigentes y cobertura de grandes superficies sin puntos ciegos.',
@@ -156,7 +166,11 @@ const faqLd = JSON.stringify({
 
   <!-- BLOQUE 3 · DIFERENCIAL DE INTEGRACIÓN -->
   <section class="section section--surface">
-    <div class="container measure mx-auto vv-dif">
+    <div class="container vv-dif-wrap">
+      <div class="vv-dif-sello">
+        <img src="/img/axis-technology-integration-partner.png" alt="AXIS Communications Technology Integration Partner" loading="lazy" width="600" height="462" />
+      </div>
+      <div class="vv-dif">
       <p class="eyebrow">El diferencial</p>
       <h2>La seguridad no es una cámara. Es un sistema.</h2>
       <p>
@@ -171,6 +185,7 @@ const faqLd = JSON.stringify({
         software propio, para que las cámaras no solo graben: vean, entiendan y actúen. Ese alcance
         completo es lo que permite que el sistema funcione todo el tiempo, no casi siempre.
       </p>
+      </div>
     </div>
   </section>
 
@@ -179,11 +194,15 @@ const faqLd = JSON.stringify({
     <div class="container">
       <div class="center measure mx-auto">
         <p class="eyebrow">Software propio</p>
+        <img class="vv-camscope__logo" src="/wp-content/uploads/2024/07/camscope-logo2-corporate-blanco.png" alt="CamScope Corporate" loading="lazy" />
         <h2>CamScope, el software que integra todo</h2>
         <p class="lead">
           Diez años de desarrollo continuo. Diseñado para operar cámaras de múltiples marcas bajo una
           sola plataforma de gestión.
         </p>
+      </div>
+      <div class="vv-camscope__video">
+        <YouTube id="YmHMb4MiS5s" title="CamScope, presentación de la plataforma" />
       </div>
       <div class="vv-features" style="margin-top:2.5rem">
         {features.map((f) => (
@@ -212,6 +231,14 @@ const faqLd = JSON.stringify({
           control de accesos y el audio IP, y sostenido todos los días por equipo propio. Capitalinas
           no es un argumento. Es la demostración.
         </p>
+      </div>
+      <div class="center vv-prueba__acciones">
+        <a class="btn btn--white" href={withBase('/presentacion-de-caso-de-exito-distrito-capitalinas/')}>
+          Ver artículo en AXIS <Icon name="arrow" size={16} />
+        </a>
+        <a class="btn btn--ghost-light" href="/descargas/caso-de-exito-datacenter-capitalinas.pdf" download>
+          <Icon name="download" size={16} /> Descargar brochure
+        </a>
       </div>
       <div class="vv-stats">
         {stats.map((s) => (
@@ -300,7 +327,7 @@ const faqLd = JSON.stringify({
 
 <style>
   /* HERO */
-  .vv-hero { background: linear-gradient(160deg, rgba(0,70,75,0.86), rgba(0,98,105,0.66)), url("/wp-content/uploads/2025/01/Fondo-AXIS-100.jpg") center/cover no-repeat; color: #fff; }
+  .vv-hero { background: linear-gradient(160deg, rgba(0,70,75,0.86), rgba(0,98,105,0.66)), url("/wp-content/uploads/2026/08/auditoria-procesos-video.png") center/cover no-repeat; color: #fff; }
   .vv-hero__inner { padding-block: clamp(2.6rem, 6vw, 4.6rem); max-width: 780px; }
   .vv-hero h1 { color: #fff; margin-bottom: 1.2rem; }
 
@@ -314,10 +341,20 @@ const faqLd = JSON.stringify({
   .vv-vert:hover .vv-more { gap: 0.6rem; }
 
   /* DIFERENCIAL */
+  .vv-dif-wrap { display: grid; grid-template-columns: 220px 1fr; gap: 2.6rem; align-items: start; max-width: 960px; margin-inline: auto; }
+  .vv-dif-sello img { width: 100%; height: auto; display: block; }
   .vv-dif p { font-size: 1.05rem; }
 
   /* CAMSCOPE */
-  .vv-camscope { padding-block: clamp(2.75rem, 6vw, 4.6rem); background: var(--teal-tint); }
+  /* Fondo oscuro, como la gráfica de marca de CamScope. */
+  .vv-camscope { padding-block: clamp(2.75rem, 6vw, 4.6rem); background: #0a1015; color: #fff; }
+  .vv-camscope h2, .vv-camscope h3 { color: #fff; }
+  .vv-camscope .eyebrow { color: #7fb7b3; }
+  .vv-camscope .lead { color: rgba(255,255,255,0.86); }
+  .vv-camscope__logo { display: block; width: 260px; max-width: 70%; height: auto; margin: 0.4rem auto 1.1rem; }
+  .vv-camscope__video { max-width: 860px; margin: 2.4rem auto 0; }
+  .vv-camscope .card { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.14); }
+  .vv-camscope .vv-feature p { color: rgba(255,255,255,0.75); }
   .vv-features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
   .vv-feature .card__icon { color: var(--teal); }
   .vv-feature h3 { font-size: 1.1rem; margin-bottom: 0.4rem; }
@@ -326,6 +363,8 @@ const faqLd = JSON.stringify({
   /* PRUEBA (banda teal con stats) */
   .vv-prueba { background: linear-gradient(160deg, var(--teal), var(--teal-dark)); color: #fff; padding-block: clamp(2.75rem, 6vw, 4.6rem); }
   .vv-prueba h2 { color: #fff; }
+  .vv-prueba__acciones { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.9rem; justify-content: center; }
+  .vv-prueba__acciones .btn { display: inline-flex; align-items: center; gap: 0.45rem; }
   .vv-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.4rem; margin-top: 3rem; }
   .vv-stat { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); border-radius: var(--radius); padding: 1.6rem 1.2rem; text-align: center; }
   .vv-stat__num { display: block; font-size: 1.9rem; font-weight: 400; color: #fff; line-height: 1.1; }
@@ -355,6 +394,8 @@ const faqLd = JSON.stringify({
   .vv-cta .btn { margin-top: 1.5rem; }
 
   @media (max-width: 980px) {
+    .vv-dif-wrap { grid-template-columns: 1fr; gap: 1.6rem; }
+    .vv-dif-sello img { max-width: 200px; }
     .vv-features { grid-template-columns: repeat(2, 1fr); }
     .vv-stats { grid-template-columns: repeat(2, 1fr); }
   }
