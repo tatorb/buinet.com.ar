@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
+import YouTube from '../components/YouTube.astro';
 import { withBase } from '../utils/url';
 
 // ============================================================================
@@ -153,6 +154,19 @@ const appLd = JSON.stringify({
     </div>
   </section>
 
+  <!-- 3 bis · VIDEO DE PRESENTACIÓN -->
+  <section class="section">
+    <div class="container">
+      <div class="center measure mx-auto">
+        <p class="eyebrow">En movimiento</p>
+        <h2>La plataforma, en dos minutos</h2>
+      </div>
+      <div class="cs-video">
+        <YouTube id="YmHMb4MiS5s" title="CamScope, presentación de la plataforma" />
+      </div>
+    </div>
+  </section>
+
   <!-- 4 · QUÉ LO DIFERENCIA -->
   <section class="section">
     <div class="container">
@@ -261,6 +275,7 @@ const appLd = JSON.stringify({
   /* QUÉ ES */
   .cs-que { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 3rem; align-items: center; }
   .cs-que__text p { font-size: 1.05rem; }
+  .cs-video { max-width: 860px; margin: 2.2rem auto 0; }
   .cs-que__media img { width: 100%; max-width: 460px; margin-inline: auto; height: auto; object-fit: contain; }
 
   /* DIFERENCIALES */
