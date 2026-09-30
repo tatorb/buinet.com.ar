@@ -105,6 +105,10 @@ p { margin: 0 0 1rem; }
 .btn--solid:hover { background: var(--teal-dark); border-color: var(--teal-dark); }
 .btn--white { background: #fff; color: var(--teal); border-color: #fff; }
 .btn--white:hover { background: transparent; color: #fff; }
+/* Secundario sobre fondo oscuro: sin relleno, borde y letra en blanco.
+   Pensado para acompañar a un .btn--white sin competir con él. */
+.btn--ghost-light { background: transparent; color: #fff; border-color: rgba(255,255,255,0.7); }
+.btn--ghost-light:hover { background: rgba(255,255,255,0.14); color: #fff; border-color: #fff; }
 
 /* Grillas y tarjetas */
 .grid { display: grid; gap: 1.4rem; }
