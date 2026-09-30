@@ -3,6 +3,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
 import { getCollection } from 'astro:content';
 import { servicios, industrias, partners } from '../data/servicios';
+
+// Las cards de la home muestran solo estos cinco servicios, en este orden.
+// El menú y el resto del sitio siguen usando el array completo.
+const ORDEN_HOME = ['video-inteligente', 'control-de-accesos', 'audio-ip', 'data-center', 'infraestructura-de-red'];
+const serviciosHome = ORDEN_HOME.map((slug) => servicios.find((s) => s.slug === slug)).filter(Boolean);
 import { withBase } from '../utils/url';
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft))
@@ -79,6 +84,13 @@ const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month:
       </div>
     </div>
 
+    <button type="button" class="hero-slider__nav hero-slider__nav--prev" data-prev aria-label="Diapositiva anterior">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
+    </button>
+    <button type="button" class="hero-slider__nav hero-slider__nav--next" data-next aria-label="Diapositiva siguiente">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+    </button>
+
     <div class="hero-slider__dots" role="tablist" aria-label="Elegir diapositiva">
       <button type="button" class="dot is-active" data-dot aria-label="Diapositiva 1" aria-selected="true" role="tab"></button>
       <button type="button" class="dot" data-dot aria-label="Diapositiva 2" aria-selected="false" role="tab"></button>
@@ -111,6 +123,10 @@ const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month:
       dots.forEach(function (d, k) {
         d.addEventListener('click', function () { parar(); ir(k); });
       });
+      var prev = root.querySelector('[data-prev]');
+      var next = root.querySelector('[data-next]');
+      if (prev) prev.addEventListener('click', function () { parar(); ir(i - 1); });
+      if (next) next.addEventListener('click', function () { parar(); ir(i + 1); });
       root.addEventListener('mouseenter', parar);
       root.addEventListener('mouseleave', arrancar);
       root.addEventListener('focusin', parar);
@@ -128,7 +144,7 @@ const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month:
     <div class="container">
       <div class="grid grid--3">
         <div class="card">
-          <img class="card__img-top" src="/wp-content/uploads/2025/01/Tu-sistemas-y-procesos-1.png" alt="Tus sistemas y procesos" loading="lazy" />
+          <span class="card__icon"><Icon name="robot" size={44} /></span>
           <h3>Tus Sistemas y Procesos</h3>
           <p>
             Diseñamos y construimos redes convergentes donde pueden vivir tus sistemas y procesos,
@@ -136,7 +152,7 @@ const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month:
             conectividad de toda tu organización. Todo como un mismo sistema seguro y escalable.
           </p>
         </div>
-        {servicios.map((s) => (
+        {serviciosHome.map((s) => (
           <a class="card card--link" href={withBase(s.href)}>
             <span class="card__icon"><Icon name={s.icono} size={44} /></span>
             <h3>{s.titulo}</h3>
@@ -156,7 +172,7 @@ const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month:
       <div class="exito__card">
         <p class="eyebrow">Caso de éxito</p>
         <h3>Distrito Capitalinas Córdoba</h3>
-        <a class="btn btn--solid" href={withBase('/contacto/')}><Icon name="download" size={16} /> Descargar informe</a>
+        <a class="btn btn--solid" href="/descargas/caso-de-exito-datacenter-capitalinas.pdf" download><Icon name="download" size={16} /> Descargar informe</a>
         <p class="exito__desc">
           Descargá el informe completo donde compartimos todos los detalles sobre este emblemático
           caso de éxito en el distrito corporativo más importante de la ciudad de Córdoba.
@@ -287,6 +303,14 @@ const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month:
   .slide--axis .btn { margin-top: 1.3rem; display: inline-flex; align-items: center; gap: 0.45rem; }
   .slide--axis__img img { width: 100%; height: auto; display: block; }
   .hero-slider > [data-slide] { padding-bottom: 2.2rem; }
+  /* Medio círculo asomando contra cada lateral: 30px de ancho por 60 de alto,
+     con la mitad redondeada hacia adentro. */
+  .hero-slider__nav { position: absolute; top: 50%; transform: translateY(-50%); z-index: 3; width: 30px; height: 60px; padding: 0; border: 0; cursor: pointer; display: grid; place-items: center; background: #d7dcde; color: #00293E; transition: background 0.18s ease; }
+  .hero-slider__nav:hover { background: #c3cacd; }
+  .hero-slider__nav:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+  .hero-slider__nav--prev { left: 0; border-radius: 0 60px 60px 0; }
+  .hero-slider__nav--next { right: 0; border-radius: 60px 0 0 60px; }
+
   .hero-slider__dots { position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%); display: flex; gap: 0.5rem; z-index: 2; }
   .hero-slider__dots .dot { width: 10px; height: 10px; border-radius: 50%; border: 1px solid var(--teal); background: transparent; padding: 0; cursor: pointer; }
   .hero-slider__dots .dot.is-active { background: var(--teal); }
@@ -305,8 +329,10 @@ const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month:
   .card__img-top { width: auto; height: 44px; object-fit: contain; margin-bottom: 1rem; }
 
   /* CASO DE ÉXITO */
-  .exito { position: relative; background: linear-gradient(120deg, #0b6a6c, #0f8f86); color: #fff; overflow: hidden; }
-  .exito__overlay { position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M0 60L60 0' stroke='%23ffffff' stroke-opacity='0.05' stroke-width='1'/%3E%3C/svg%3E"); opacity: 0.6; }
+  .exito { position: relative; background: url("/wp-content/uploads/2026/07/bloom-c61f2c98-db75-4bbc-aa2d-0e1d781b2d6f.jpg") center/cover no-repeat; color: #fff; overflow: hidden; }
+  /* El verde deja de ser el fondo y pasa a ser el overlay sobre la foto. */
+  .exito::before { content: ""; position: absolute; inset: 0; background: linear-gradient(120deg, rgba(11,106,108,0.82), rgba(15,143,134,0.66)); }
+  .exito__overlay { position: absolute; inset: 0; z-index: 1; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M0 60L60 0' stroke='%23ffffff' stroke-opacity='0.05' stroke-width='1'/%3E%3C/svg%3E"); opacity: 0.6; }
   .exito__inner { position: relative; text-align: center; padding-block: clamp(2.75rem, 6vw, 4.6rem); }
   .exito h2 { color: #fff; font-weight: 300; }
   .exito__card { background: rgba(255,255,255,0.12); backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.18); border-radius: var(--radius); padding: 2rem; max-width: 540px; margin: 2rem auto 0; }
