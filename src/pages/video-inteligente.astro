@@ -35,6 +35,27 @@ const diferenciales = [
 const OFERTA =
   'Sistemas de video para la detección, el control y la seguridad mediante IA, analítica y metadatos integrados en los dispositivos y en tiempo real.';
 
+// Los tres bloques de desarrollo pasan a cards con un resumen breve. El texto
+// completo no se pierde: vive íntegro en las FAQ de más abajo, que es donde lo
+// leen tanto las personas como los modelos de lenguaje.
+const pilares = [
+  {
+    titulo: 'Cómo funciona',
+    icono: 'chip',
+    resumen: 'El procesamiento ocurre en el propio dispositivo, no en un servidor central. Cada cámara clasifica lo que ve en el momento, y eso libera ancho de banda, escalabilidad y disponibilidad.',
+  },
+  {
+    titulo: 'El dato',
+    icono: 'database',
+    resumen: 'Cada hecho genera un metadato, la descripción de lo que pasó separada de la imagen. Pesa una fracción del video, se consulta como una base de datos y se integra con los sistemas que ya usás.',
+  },
+  {
+    titulo: 'Detección, control y seguridad',
+    icono: 'target',
+    resumen: 'Detectar es clasificar antes de alertar. Controlar es que el evento dispare una acción en otro sistema. Asegurar es que ese registro sirva como evidencia y sostenga el cumplimiento.',
+  },
+];
+
 // Cifras del caso. Son las únicas ocho autorizadas. No sumar ninguna más.
 
 // El complejo no se nombra por pedido expreso del cliente.
@@ -55,61 +76,73 @@ const escenarios = [
   {
     titulo: 'Lectura de patentes y acceso vehicular',
     resumen: 'Cuando lo que hay que resolver es quién entra y sale en portería, sin detener la circulación.',
+    icono: 'car',
     href: '/lpr-control-acceso-vehicular/',
   },
   {
     titulo: 'NVR o VMS, cómo elegir la base del sistema',
     resumen: 'La decisión que condiciona todo lo que se pueda hacer después.',
+    icono: 'server',
     href: '/nvr-vs-vms/',
   },
   {
     titulo: 'Almacenamiento y retención',
     resumen: 'Cuánto tiempo hay que poder mirar hacia atrás, y qué cuesta sostenerlo.',
+    icono: 'database',
     href: '/almacenamiento-videovigilancia/',
   },
   {
     titulo: 'Ciclo de vida del parque de dispositivos',
     resumen: 'Cuándo un dispositivo dejó de rendir y conviene reemplazarlo.',
+    icono: 'clock',
     href: '/vida-util-camara-ip/',
   },
   {
     titulo: 'Merma y faltante interno',
     resumen: 'Cuando la pérdida ocurre adentro y no hay un ingreso forzado que investigar.',
+    icono: 'box',
     href: '/merma-robo-interno-videovigilancia/',
   },
   {
     titulo: 'Auditoría de procesos',
     resumen: 'Usar el registro para verificar cómo se trabaja, no solamente para investigar un hecho.',
+    icono: 'clipboard',
     href: '/auditoria-procesos-video/',
   },
   {
     titulo: 'Integración con accesos y audio IP',
     resumen: 'Que la detección dispare una acción y no solamente un aviso.',
+    icono: 'speaker',
     href: '/integracion-control-accesos-audio-ip/',
   },
   {
     titulo: 'Perímetros industriales',
     resumen: 'Grandes superficies donde el recorrido humano llega tarde.',
+    icono: 'factory',
     href: '/videovigilancia-industrial/',
   },
   {
     titulo: 'Plantas de alimentos',
     resumen: 'Ambientes de lavado a presión, frío y trazabilidad por lote.',
+    icono: 'food',
     href: '/videovigilancia-industria-alimenticia/',
   },
   {
     titulo: 'Obras en ejecución',
     resumen: 'Sistemas temporales que cambian a medida que avanza la obra.',
+    icono: 'helmet',
     href: '/videovigilancia-en-obra/',
   },
   {
     titulo: 'Migración de sistemas analógicos a IP',
     resumen: 'Pasar a IP sin cortar la operación durante la transición.',
+    icono: 'refresh',
     href: '/actualizacion-videovigilancia-analogica-a-ip/',
   },
   {
     titulo: 'Detección térmica',
     resumen: 'Zonas sin luz, humo o niebla, donde la imagen convencional no alcanza.',
+    icono: 'thermometer',
     href: '/camaras-termicas-axis-para-industrias-y-perimetros/',
   },
 ];
@@ -117,6 +150,18 @@ const escenarios = [
 // Las 12 FAQ alimentan el acordeón visible y el schema FAQPage. Un solo origen
 // para las dos cosas, así nunca se desincronizan.
 const faqs = [
+  {
+    q: '¿Cómo funciona la analítica de video embebida en el dispositivo?',
+    a: 'El procesamiento ocurre dentro del propio dispositivo, no en un servidor central que recibe todo el video y después lo analiza. Cada dispositivo clasifica lo que ve en el momento en que lo ve. Eso cambia tres cosas de la operación. El ancho de banda deja de ser el límite del sistema, porque por la red viaja el evento y no la totalidad del video en crudo. La escalabilidad deja de depender de cuántos servidores se agreguen, porque cada dispositivo que se suma trae su propia capacidad de análisis. Y la disponibilidad mejora, porque un corte de enlace no interrumpe la clasificación, que sigue ocurriendo donde está el dispositivo. Cada imagen deja de ser un cuadro de video y pasa a ser un evento con datos asociados. Qué objeto, de qué tipo, en qué zona, a qué hora, con qué recorrido. Esos eventos quedan indexados, y un sistema indexado se busca, se integra y se audita. El tiempo de búsqueda de un hecho puntual deja de ser una revisión de horas de grabación y pasa a ser una consulta.',
+  },
+  {
+    q: '¿Qué es un metadato de escena y para qué sirve?',
+    a: 'Un metadato es la descripción de lo que pasó, separada de la imagen que lo muestra. Cuando un vehículo entra a un playón, el dispositivo no guarda solamente el video. Guarda además una ficha de ese hecho. Un objeto del tipo vehículo, que ingresó por una zona determinada, con la hora exacta de ingreso y el tiempo que permaneció. Esa ficha pesa una fracción mínima de lo que pesa el video, y a diferencia del video, se consulta como se consulta cualquier base de datos. La consecuencia práctica es que el video deja de terminar en una pantalla que alguien mira. Pasa a alimentar los sistemas que la organización ya usa para decidir. Los metadatos de escena responden a un formato estándar de la industria y no a un lenguaje cerrado de un fabricante. Por eso se integran con plataformas de gestión, con sistemas de control de acceso y con sistemas de negocio sin desarrollos a medida, y por eso la organización no queda atada a un proveedor único.',
+  },
+  {
+    q: '¿Qué significan exactamente detección, control y seguridad?',
+    a: 'Detección. El sistema distingue de qué tipo de objeto se trata antes de generar un evento. Una persona, un vehículo, algo que quedó detenido donde no corresponde. Esa clasificación es lo que separa un evento real de un falso positivo. Sobre esa base se calibran las reglas. Qué zona, qué umbral de permanencia, qué franja horaria, qué dirección de recorrido. Una regla mal calibrada produce tantos eventos que el operador deja de mirarlos, y un sistema que nadie mira no detecta nada. La calibración no es un ajuste inicial, es un trabajo que sigue durante toda la vida del sistema, porque la operación cambia. Control. La misma detección que dispara un evento puede disparar una acción en otro sistema. Un vehículo cuya patente está habilitada abre la barrera sin intervención de nadie. Un ingreso fuera de la franja permitida activa un mensaje por audio en el punto exacto donde está ocurriendo. El tiempo de respuesta deja de depender de que alguien esté mirando una pantalla en ese momento. Cuando la detección, el control de acceso y el audio comparten una sola línea de tiempo, aparece la trazabilidad. Cada hecho queda asociado a quién lo produjo, en qué punto, con qué credencial y con qué respuesta del sistema. Es la diferencia entre saber que algo pasó y poder reconstruir la secuencia completa. Seguridad. Un evento indexado es evidencia recuperable. Ante un reclamo, un siniestro o una investigación interna, el tiempo de búsqueda deja de medirse en jornadas de revisión, y la organización llega con material acotado al hecho y no con horas de grabación sin ordenar. El cumplimiento se apoya en lo mismo. Retención definida por política y no por lo que entra en el disco, acceso a la evidencia registrado y auditable, y zonas excluidas del análisis por decisión explícita. Un sistema que no puede demostrar quién vio qué y cuándo es un problema, no una defensa.',
+  },
   {
     q: '¿Cuál es la diferencia entre un sistema que graba y uno que detecta?',
     a: 'Un sistema que graba almacena lo que la cámara ve para revisarlo después. Un sistema que detecta clasifica lo que ve en tiempo real y genera un evento cuando identifica una condición definida. La diferencia práctica es cuándo llega la información. Con grabación, la información llega cuando alguien la busca. Con detección, llega en el momento en que todavía se puede actuar.',
@@ -198,13 +243,28 @@ const faqLd = JSON.stringify({
 
   <!-- QUÉ HACE -->
   <section class="section">
-    <div class="container measure mx-auto">
-      <h2>Lo que cambia cuando el video es inteligente</h2>
-      <ul class="vi-bullets">
-        {beneficios.map((b) => (
-          <li><Icon name="arrow" size={18} /><span>{b}</span></li>
-        ))}
-      </ul>
+    <div class="container vi-cambia">
+      <div class="vi-cambia__video">
+        <video
+          controls
+          playsinline
+          preload="none"
+          poster="/img/video-inteligente-hero.jpg"
+          width="1280"
+          height="720"
+        >
+          <source src="/video/video-inteligente-axis.mp4" type="video/mp4" />
+          Tu navegador no puede reproducir este video.
+        </video>
+      </div>
+      <div>
+        <h2>Lo que cambia cuando el video es inteligente</h2>
+        <ul class="vi-bullets">
+          {beneficios.map((b) => (
+            <li><Icon name="arrow" size={18} /><span>{b}</span></li>
+          ))}
+        </ul>
+      </div>
     </div>
   </section>
 
@@ -229,121 +289,47 @@ const faqLd = JSON.stringify({
     <div class="container">
       <div class="center measure mx-auto"><h2>Por qué Building Networks</h2></div>
       <div class="vi-grid vi-grid--3" style="margin-top:2.5rem">
-        {diferenciales.map((d) => (
-          <div class="card vi-card">
-            <span class="card__icon"><Icon name={d.icono} size={32} /></span>
-            <h3>{d.titulo}</h3>
-            <p>{d.resumen}</p>
-          </div>
-        ))}
+        <div class="card vi-card">
+          <span class="vi-card__marca">
+            <img src="/img/axis-technology-integration-partner.png" alt="AXIS Communications Technology Integration Partner" loading="lazy" width="600" height="462" />
+          </span>
+          <h3>AXIS Solution Gold Partner</h3>
+          <p>Hardware con LTS documentado y ciberseguridad desde el diseño</p>
+        </div>
+        <div class="card vi-card">
+          <span class="vi-card__marca vi-card__marca--ancha">
+            <img src="/img/camscope-corporate.webp" alt="CamScope Corporate" loading="lazy" width="700" height="159" />
+          </span>
+          <h3>CamScope</h3>
+          <p>Plataforma propia, sin licenciamiento por canal</p>
+        </div>
+        <div class="card vi-card">
+          <span class="vi-card__num" aria-hidden="true">20</span>
+          <h3>Casi veinte años en Córdoba</h3>
+          <p>Industria, logística, corporativo y sector regulado</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- BLOQUE 2 · QUÉ HACE LA ANALÍTICA -->
-  <section class="section">
-    <div class="container measure mx-auto vi-prosa">
-      <p class="eyebrow">Cómo funciona</p>
-      <h2>Qué hace la analítica</h2>
-      <p>
-        El procesamiento ocurre dentro del propio dispositivo, no en un servidor central que recibe
-        todo el video y después lo analiza. Cada dispositivo clasifica lo que ve en el momento en que
-        lo ve.
-      </p>
-      <p>
-        Eso cambia tres cosas de la operación. El ancho de banda deja de ser el límite del sistema,
-        porque por la red viaja el evento y no la totalidad del video en crudo. La escalabilidad deja
-        de depender de cuántos servidores se agreguen, porque cada dispositivo que se suma trae su
-        propia capacidad de análisis. Y la disponibilidad mejora, porque un corte de enlace no
-        interrumpe la clasificación, que sigue ocurriendo donde está el dispositivo.
-      </p>
-      <p>
-        Cada imagen deja de ser un cuadro de video y pasa a ser un evento con datos asociados. Qué
-        objeto, de qué tipo, en qué zona, a qué hora, con qué recorrido. Esos eventos quedan
-        indexados, y un sistema indexado se busca, se integra y se audita. El tiempo de búsqueda de un
-        hecho puntual deja de ser una revisión de horas de grabación y pasa a ser una consulta.
-      </p>
-    </div>
-  </section>
-
-
-  <!-- BLOQUE 3 · LOS METADATOS -->
+  <!-- PILARES · resumen; el desarrollo completo vive en las FAQ -->
   <section class="section section--surface">
-    <div class="container measure mx-auto vi-prosa">
-      <p class="eyebrow">El dato</p>
-      <h2>Qué es un metadato de escena</h2>
-      <p>Un metadato es la descripción de lo que pasó, separada de la imagen que lo muestra.</p>
-      <p>
-        Cuando un vehículo entra a un playón, el dispositivo no guarda solamente el video. Guarda
-        además una ficha de ese hecho. Un objeto del tipo vehículo, que ingresó por una zona
-        determinada, con la hora exacta de ingreso y el tiempo que permaneció. Esa ficha pesa una
-        fracción mínima de lo que pesa el video, y a diferencia del video, se consulta como se
-        consulta cualquier base de datos.
-      </p>
-      <p>
-        La consecuencia práctica es que el video deja de terminar en una pantalla que alguien mira.
-        Pasa a alimentar los sistemas que la organización ya usa para decidir.
-      </p>
-      <p>
-        Los metadatos de escena responden a un formato estándar de la industria y no a un lenguaje
-        cerrado de un fabricante. Por eso se integran con plataformas de gestión, con sistemas de
-        control de acceso y con sistemas de negocio sin desarrollos a medida, y por eso la
-        organización no queda atada a un proveedor único.
+    <div class="container">
+      <div class="center measure mx-auto"><h2>Cómo funciona un sistema de video inteligente</h2></div>
+      <div class="vi-grid vi-grid--3" style="margin-top:2.5rem">
+        {pilares.map((x) => (
+          <div class="card vi-card">
+            <span class="card__icon"><Icon name={x.icono} size={34} /></span>
+            <h3>{x.titulo}</h3>
+            <p>{x.resumen}</p>
+          </div>
+        ))}
+      </div>
+      <p class="center" style="margin-top:1.6rem; color:var(--muted)">
+        El desarrollo completo de cada punto está en las <a href="#faq">preguntas frecuentes</a>.
       </p>
     </div>
   </section>
-
-
-  <!-- BLOQUE 4 · LAS TRES FUNCIONES -->
-  <section class="section">
-    <div class="container measure mx-auto vi-prosa">
-      <p class="eyebrow">Detección, control y seguridad</p>
-      <h2>Las tres funciones</h2>
-
-      <h3>Detección</h3>
-      <p>
-        El sistema distingue de qué tipo de objeto se trata antes de generar un evento. Una persona,
-        un vehículo, algo que quedó detenido donde no corresponde. Esa clasificación es lo que separa
-        un evento real de un falso positivo.
-      </p>
-      <p>
-        Sobre esa base se calibran las reglas. Qué zona, qué umbral de permanencia, qué franja
-        horaria, qué dirección de recorrido. Una regla mal calibrada produce tantos eventos que el
-        operador deja de mirarlos, y un sistema que nadie mira no detecta nada. La calibración no es
-        un ajuste inicial, es un trabajo que sigue durante toda la vida del sistema, porque la
-        operación cambia.
-      </p>
-
-      <h3>Control</h3>
-      <p>
-        La misma detección que dispara un evento puede disparar una acción en otro sistema. Un
-        vehículo cuya patente está habilitada abre la barrera sin intervención de nadie. Un ingreso
-        fuera de la franja permitida activa un mensaje por audio en el punto exacto donde está
-        ocurriendo. El tiempo de respuesta deja de depender de que alguien esté mirando una pantalla
-        en ese momento.
-      </p>
-      <p>
-        Cuando la detección, el control de acceso y el audio comparten una sola línea de tiempo,
-        aparece la trazabilidad. Cada hecho queda asociado a quién lo produjo, en qué punto, con qué
-        credencial y con qué respuesta del sistema. Es la diferencia entre saber que algo pasó y poder
-        reconstruir la secuencia completa.
-      </p>
-
-      <h3>Seguridad</h3>
-      <p>
-        Un evento indexado es evidencia recuperable. Ante un reclamo, un siniestro o una investigación
-        interna, el tiempo de búsqueda deja de medirse en jornadas de revisión, y la organización
-        llega con material acotado al hecho y no con horas de grabación sin ordenar.
-      </p>
-      <p>
-        El cumplimiento se apoya en lo mismo. Retención definida por política y no por lo que entra en
-        el disco, acceso a la evidencia registrado y auditable, y zonas excluidas del análisis por
-        decisión explícita. Un sistema que no puede demostrar quién vio qué y cuándo es un problema,
-        no una defensa.
-      </p>
-    </div>
-  </section>
-
 
   <!-- BLOQUE 6 · EL CASO -->
   <!-- El complejo no se nombra, por pedido expreso del cliente. Las ocho cifras
@@ -354,8 +340,8 @@ const faqLd = JSON.stringify({
   <section class="vi-caso">
     <div class="container">
       <div class="measure mx-auto center">
-        <p class="eyebrow" style="color:#bfe0dd">La escala</p>
-        <h2>Un complejo de uso mixto en Córdoba</h2>
+        <p class="eyebrow" style="color:#bfe0dd">Caso de Éxito</p>
+        <h2>Distrito Capitalinas, un complejo de uso mixto en Córdoba</h2>
         <p class="lead" style="color:rgba(255,255,255,0.9)">
           Un sistema en operación continua desde hace más de 15 años.
         </p>
@@ -368,13 +354,10 @@ const faqLd = JSON.stringify({
           </div>
         ))}
       </div>
-      <div class="measure mx-auto" style="margin-top:2.6rem">
-        <p style="color:rgba(255,255,255,0.9)">
-          Lo relevante de esa escala no es el número, es la continuidad. Un sistema de ese tamaño
-          sostenido durante ese tiempo obliga a resolver la retención, el ancho de banda, el ciclo de
-          vida de los dispositivos y el costo por cámara al año como problemas permanentes, y no como
-          decisiones que se toman una sola vez.
-        </p>
+      <div class="center" style="margin-top:2.6rem">
+        <a class="btn btn--white" href={withBase('/presentacion-de-caso-de-exito-distrito-capitalinas/')}>
+          Ver artículo en AXIS <Icon name="arrow" size={16} />
+        </a>
       </div>
     </div>
   </section>
@@ -390,6 +373,7 @@ const faqLd = JSON.stringify({
       <div class="vi-escenarios">
         {escenarios.map((e) => (
           <a class="card card--link vi-esc" href={withBase(e.href)}>
+            <span class="card__icon"><Icon name={e.icono} size={30} /></span>
             <h3>{e.titulo}</h3>
             <p>{e.resumen}</p>
             <span class="vi-more">Ver más <Icon name="arrow" size={16} /></span>
@@ -403,7 +387,7 @@ const faqLd = JSON.stringify({
   <!-- FAQS -->
   <section class="section section--surface">
     <div class="container">
-      <div class="center"><h2>Preguntas frecuentes</h2></div>
+      <div class="center" id="faq"><h2>Preguntas frecuentes</h2></div>
       <div class="vi-faq">
         {faqs.map((f) => (
           <details class="vi-faq__item">
@@ -443,6 +427,16 @@ const faqLd = JSON.stringify({
   .vi-bullets { list-style: none; padding: 0; margin: 1.6rem 0 0; display: grid; gap: 0.9rem; }
   .vi-bullets li { display: flex; gap: 0.7rem; align-items: flex-start; font-size: 1.05rem; }
   .vi-bullets svg { color: var(--teal); flex: none; margin-top: 5px; }
+
+  /* VIDEO + BULLETS */
+  .vi-cambia { display: grid; grid-template-columns: 1fr 1fr; gap: 2.6rem; align-items: center; }
+  .vi-cambia__video video { width: 100%; height: auto; display: block; border-radius: var(--radius); background: #000; }
+
+  /* LOGOS Y NÚMERO EN LOS DIFERENCIALES */
+  .vi-card__marca { display: flex; align-items: center; justify-content: flex-start; height: 68px; margin-bottom: 0.9rem; }
+  .vi-card__marca img { max-height: 68px; width: auto; max-width: 150px; object-fit: contain; }
+  .vi-card__marca--ancha img { max-width: 210px; max-height: 44px; }
+  .vi-card__num { display: flex; align-items: center; height: 68px; margin-bottom: 0.9rem; font-size: 2.9rem; font-weight: 300; color: var(--teal); line-height: 1; }
 
   /* CARDS */
   .vi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.4rem; }
@@ -487,6 +481,7 @@ const faqLd = JSON.stringify({
 
   @media (max-width: 980px) {
     .vi-grid, .vi-grid--3 { grid-template-columns: repeat(2, 1fr); }
+    .vi-cambia { grid-template-columns: 1fr; gap: 1.8rem; }
     .vi-cta { grid-template-columns: 1fr; gap: 2rem; }
   }
   @media (max-width: 560px) {
