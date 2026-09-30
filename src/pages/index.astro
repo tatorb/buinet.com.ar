@@ -144,7 +144,9 @@ const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month:
     <div class="container">
       <div class="grid grid--3">
         <div class="card card--destacada">
-          <span class="card__icon"><img src="/img/icono-sistemas-procesos-blanco.png" alt="" width="44" height="44" loading="lazy" /></span>
+          <span class="card__icon">
+            <svg width="44" height="44" viewBox="0 -960 960 960" fill="currentColor" aria-hidden="true"><path d="M182.81-154.46v-71.08h123.58L200.77-581.31q-30.08-13.34-46.71-36.9-16.64-23.56-16.64-61.91 0-43.11 31.22-74.57 31.21-31.46 75.01-31.46 41.08 0 68.5 23.46 27.43 23.46 35.83 61h150.37v-64.62q0-9.3 5.98-15.54 5.98-6.23 15.79-6.23 9.7 0 15.13 7.5 5.44 7.5 4.86 16.97v5.38l75.77-71.31q7.23-7.61 18.68-9.57 11.44-1.97 23.56 3.75l153.03 73.26q7.73 3.95 11.23 11.1 3.5 7.15-1.04 15.62-4.61 8.07-11.61 9.53-7.01 1.47-14.69-2.76l-155.85-75-97 95.99v52.54l97 98.39 155.83-75.62q7.98-4.23 14.81-2.31 6.83 1.93 11.76 10 3.91 8.47.35 16.19-3.56 7.73-11.13 12.04l-149.82 69.77q-12.76 6.39-24.41 5.85-11.66-.54-20.7-9.38l-75.77-70.54v5.38q.58 12.39-4.9 18.42-5.49 6.04-15.24 6.04-9.47 0-15.55-6.42-6.07-6.42-6.07-15.35v-65.23H346.5q-.87 13.91-8.53 27.98-7.66 14.08-16.85 22.36l199.03 381.97h158.96v71.08h-496.3Zm104.84-481.06q18.39-17.98 18.39-44.4 0-26.81-18.39-44.6-18.4-17.79-44.6-17.79-26.2 0-43.99 17.79-17.79 17.79-17.79 44.6 0 26.42 17.79 44.4 17.79 17.98 43.99 17.98 26.2 0 44.6-17.98Zm67.93 409.98h116.07L282.96-588.19q-5.23 3.46-16.19 6.48-10.96 3.02-18.04 2.75l106.85 353.42Zm116.07 0Z"/></svg>
+          </span>
           <h3>Tus Sistemas y Procesos</h3>
           <p>
             Diseñamos y construimos redes convergentes donde pueden vivir tus sistemas y procesos,
@@ -356,7 +358,7 @@ const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month:
   .card--destacada { background: var(--teal); }
   .card--destacada h3 { color: #fff; }
   .card--destacada p { color: rgba(255,255,255,0.9); }
-  .card--destacada .card__icon img { width: 44px; height: 44px; display: block; }
+  .card--destacada .card__icon svg { display: block; color: #fff; }
 
   /* Botones a la misma altura en todas las cards: el párrafo se estira y
      empuja el botón al pie, sin importar cuánto texto tenga cada una. */
