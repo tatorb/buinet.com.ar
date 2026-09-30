@@ -16,7 +16,7 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month: 'long', day: 'numeric' });
 const heroStyle = post.data.heroImage
-  ? `background: linear-gradient(160deg, rgba(0,70,75,0.86), rgba(0,98,105,0.66)), url("${post.data.heroImage}") center/cover no-repeat;`
+  ? `background: linear-gradient(160deg, rgba(0,70,75,0.93), rgba(0,98,105,0.80)), url("${post.data.heroImage}") center/cover no-repeat;`
   : undefined;
 ---
 <BaseLayout title={post.data.title} description={post.data.description} canonical={post.data.canonical} brandSuffix={false}>
@@ -45,7 +45,7 @@ const heroStyle = post.data.heroImage
 </BaseLayout>
 
 <style>
-  .svc-hero { background: linear-gradient(160deg, rgba(0,70,75,0.86), rgba(0,98,105,0.66)), url("/wp-content/uploads/2024/12/PORTADA-SOLUCION-INTEGRAL-CONVERGENTE-100.jpg") center/cover no-repeat; }
+  .svc-hero { background: linear-gradient(160deg, rgba(0,70,75,0.93), rgba(0,98,105,0.80)), url("/wp-content/uploads/2024/12/PORTADA-SOLUCION-INTEGRAL-CONVERGENTE-100.jpg") center/cover no-repeat; }
   .post__meta { color: var(--color-on-dark-muted); font-size: 0.95rem; text-transform: capitalize; margin: 0; }
   .post__inner { max-width: 720px; }
   .prose :global(h2) { margin-top: 2rem; }

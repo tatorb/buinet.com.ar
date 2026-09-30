@@ -169,6 +169,7 @@ const faqLd = JSON.stringify({
   <!-- HERO -->
   <section class="ir-hero">
     <div class="container ir-hero__inner">
+      <span class="hero-badge"><Icon name="network" size={26} /></span>
       <p class="eyebrow" style="color:#bfe0dd">Infraestructura de Red</p>
       <h1>Infraestructura de red para empresas e industrias en Córdoba</h1>
       <ul class="ir-hero__bullets">
@@ -177,26 +178,6 @@ const faqLd = JSON.stringify({
         ))}
       </ul>
       <a class="btn btn--white" href={withBase('/contacto/')}>Contactar asesor comercial</a>
-    </div>
-  </section>
-
-  <!-- INTRO / CONECTIVIDAD ESCALABLE -->
-  <section class="section">
-    <div class="container ir-intro">
-      <div>
-        <p class="eyebrow">Conectividad escalable</p>
-        <h2>Conectividad escalable para redes de alto rendimiento</h2>
-        <p class="lead">
-          Building Networks diseña, implementa y mantiene infraestructura de redes convergentes
-          para empresas e industrias en Córdoba. Es una compañía con casi 20 años de operación,
-          partner de Cisco, AXIS y Cambium, que cubre todas las capas de la red, desde el cableado
-          y los equipos activos hasta la seguridad, la energía y el mantenimiento.
-        </p>
-      </div>
-      <div class="ir-intro__partner card">
-        <img src="/wp-content/uploads/2024/07/Cambium.png" alt="Cambium Networks" loading="lazy" />
-        <p><strong>Socios de Integración Tecnológica de Cambium Networks®</strong></p>
-      </div>
     </div>
   </section>
 
@@ -229,7 +210,7 @@ const faqLd = JSON.stringify({
     <div class="container">
       <div class="center measure mx-auto">
         <p class="eyebrow">Cómo trabajamos</p>
-        <h2>Cuatro etapas, de principio a fin</h2>
+        <h2>Proceso de cuatro etapas</h2>
         <p class="lead">
           La infraestructura de red de una empresa no se resuelve en un solo momento. Se construye
           en cuatro etapas, y cada una define qué tan bien va a funcionar el sistema durante los
@@ -297,6 +278,14 @@ const faqLd = JSON.stringify({
           firmas que operan adentro. Las seis capas, operando juntas, sostenidas por el mismo equipo,
           todos los días. Capitalinas no es un argumento. Es la demostración.
         </p>
+      </div>
+      <div class="center ir-prueba__acciones">
+        <a class="btn btn--white" href={withBase('/presentacion-de-caso-de-exito-distrito-capitalinas/')}>
+          Ver artículo en AXIS <Icon name="arrow" size={16} />
+        </a>
+        <a class="btn btn--ghost-light" href="/descargas/caso-de-exito-datacenter-capitalinas.pdf" download>
+          <Icon name="download" size={16} /> Descargar brochure
+        </a>
       </div>
       <div class="ir-stats">
         {stats.map((s) => (
@@ -393,7 +382,7 @@ const faqLd = JSON.stringify({
 
 <style>
   /* HERO */
-  .ir-hero { background: linear-gradient(160deg, rgba(0,70,75,0.86), rgba(0,98,105,0.66)), url("/wp-content/uploads/2024/07/A4.jpg") center/cover no-repeat; color: #fff; }
+  .ir-hero { background: linear-gradient(160deg, rgba(0,70,75,0.93), rgba(0,98,105,0.80)), url("/wp-content/uploads/2026/07/bloom-c61f2c98-db75-4bbc-aa2d-0e1d781b2d6f.jpg") center/cover no-repeat; color: #fff; }
   .ir-hero__inner { padding-block: clamp(2.6rem, 6vw, 4.6rem); max-width: 780px; }
   .ir-hero h1 { color: #fff; margin-bottom: 1.5rem; }
   .ir-hero__bullets { list-style: none; padding: 0; margin: 0 0 2rem; display: grid; gap: 0.7rem; }
@@ -430,7 +419,13 @@ const faqLd = JSON.stringify({
   .ir-alcance__text p { font-size: 1.05rem; }
 
   /* PRUEBA */
-  .ir-prueba { background: linear-gradient(160deg, var(--teal), var(--teal-dark)); color: #fff; padding-block: clamp(2.75rem, 6vw, 4.6rem); }
+  /* Foto del complejo de fondo, con el teal como overlay bien opaco encima
+     para que las cifras en blanco se lean sin esfuerzo. */
+  .ir-prueba { position: relative; background: url("/wp-content/uploads/2024/07/distrito-capitalinas.jpg") center/cover no-repeat; color: #fff; padding-block: clamp(2.75rem, 6vw, 4.6rem); overflow: hidden; }
+  .ir-prueba::before { content: ""; position: absolute; inset: 0; background: linear-gradient(160deg, rgba(0,98,105,0.92), rgba(0,70,75,0.82)); }
+  .ir-prueba > * { position: relative; z-index: 1; }
+  .ir-prueba__acciones { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: 0.9rem; justify-content: center; }
+  .ir-prueba__acciones .btn { display: inline-flex; align-items: center; gap: 0.45rem; }
   .ir-prueba h2 { color: #fff; }
   .ir-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
   .ir-stat { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); border-radius: var(--radius); padding: 1.6rem 1.4rem; text-align: center; }
