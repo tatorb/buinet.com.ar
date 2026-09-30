@@ -143,8 +143,8 @@ const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month:
   <section class="section">
     <div class="container">
       <div class="grid grid--3">
-        <div class="card">
-          <span class="card__icon"><Icon name="robot" size={44} /></span>
+        <div class="card card--destacada">
+          <span class="card__icon"><img src="/img/icono-sistemas-procesos-blanco.png" alt="" width="44" height="44" loading="lazy" /></span>
           <h3>Tus Sistemas y Procesos</h3>
           <p>
             Diseñamos y construimos redes convergentes donde pueden vivir tus sistemas y procesos,
@@ -322,6 +322,18 @@ const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month:
   .hero__text h1 { color: var(--heading); }
   .hero__text .lead { max-width: 30rem; }
   .hero__cta { display: flex; gap: 0.9rem; flex-wrap: wrap; margin-top: 1.75rem; }
+
+  /* Card destacada: la única en color del bloque de servicios. */
+  .card--destacada { background: var(--teal); }
+  .card--destacada h3 { color: #fff; }
+  .card--destacada p { color: rgba(255,255,255,0.9); }
+  .card--destacada .card__icon img { width: 44px; height: 44px; display: block; }
+
+  /* Botones a la misma altura en todas las cards: el párrafo se estira y
+     empuja el botón al pie, sin importar cuánto texto tenga cada una. */
+  .grid--3 > .card { justify-content: flex-start; }
+  .grid--3 > .card p { flex: 1 0 auto; }
+  .grid--3 > .card .btn { margin-top: 1.75rem; align-self: center; }
 
   /* Imagen de la tarjeta "Tus Sistemas y Procesos": misma altura que los
      íconos SVG (44px) para que todas las tarjetas se vean parejas. */
