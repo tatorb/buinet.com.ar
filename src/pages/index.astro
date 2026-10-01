@@ -237,9 +237,7 @@ const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month:
       <div class="unidad unidad--oscura">
         <div class="unidad__text">
           <p class="unidad__eyebrow">Unidad de negocio</p>
-          <!-- NOTA: logo y render viven en wp-content, en el servidor.
-               Si alguno no es el archivo correcto, se cambia solo esta ruta. -->
-          <img class="unidad__logo unidad__logo--dc" src="/wp-content/uploads/2025/01/logodatacenter-medium.jpg" alt="Datacenter Capitalinas" loading="lazy" />
+          <img class="unidad__logo unidad__logo--dc" src="/img/datacenter-capitalinas-logo.webp" alt="Datacenter Capitalinas" loading="lazy" width="520" height="397" />
           <p class="unidad__desc">
             Data Center Capitalinas ofrece <strong>infraestructura robusta y servicios avanzados de
             almacenamiento, conectividad y seguridad digital</strong>, diseñados para garantizar
@@ -255,7 +253,7 @@ const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month:
           <a class="btn btn--solid" href="https://capitalinasdc.com/" target="_blank" rel="noopener">Visitar sitio web</a>
         </div>
         <div class="unidad__media">
-          <img src="/wp-content/uploads/2025/01/Data-Center.png" alt="Racks de servidores del Data Center Capitalinas" loading="lazy" />
+          <img src="/img/datacenter-capitalinas-racks.webp" alt="Racks de servidores del Data Center Capitalinas" loading="lazy" width="739" height="740" />
         </div>
       </div>
     </div>
@@ -399,12 +397,14 @@ const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month:
     border-radius: var(--radius); padding: clamp(1.8rem, 4vw, 3.2rem);
   }
   .unidad--clara { background: #fff; box-shadow: var(--shadow-sm); }
-  .unidad--oscura { background: #0a0a0a; color: #fff; }
+  .unidad--oscura { background: #000; color: #fff; }
   .unidad__eyebrow { text-transform: uppercase; letter-spacing: 0.18em; font-size: 0.72rem; font-weight: 600; margin: 0 0 1.2rem; }
   .unidad--clara .unidad__eyebrow { color: var(--muted); }
   .unidad--oscura .unidad__eyebrow { color: #8fb7b3; }
   .unidad__logo { height: 62px; width: auto; margin-bottom: 1.3rem; }
-  .unidad__logo--dc { height: 132px; }
+  /* El logo trae fondo negro horneado: con lighten sobre negro puro
+     los píxeles negros desaparecen y no se ve el recuadro. */
+  .unidad__logo--dc { height: 150px; mix-blend-mode: lighten; }
   .unidad__titulo { font-size: clamp(1.4rem, 2.4vw, 1.95rem); font-weight: 400; line-height: 1.25; margin: 0 0 1.1rem; }
   .unidad__desc { margin: 0 0 1.4rem; max-width: 46ch; }
   .unidad--clara .unidad__desc { color: var(--muted); }

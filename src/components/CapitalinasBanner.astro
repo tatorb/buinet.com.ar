@@ -1,46 +1,86 @@
 ---
-// Banner del cluster de data center. Se inserta cerca del cierre del
-// contenido, antes del CTA o del formulario.
+// Banner vertical de Data Center Capitalinas.
 //
-// En páginas .astro se importa y se coloca directamente. En las notas del
-// blog, que son Markdown y no pueden importar componentes, se activa con
-// `capitalinasBanner: true` en el frontmatter; lo renderiza src/pages/[post].astro.
+// Corre a la izquierda del contenido del artículo y queda fijo al hacer
+// scroll (position: sticky), con la misma estética que la tarjeta de unidad
+// de negocio de la home: fondo negro, puntas redondeadas y la tipografía
+// del sistema.
+//
+// En pantallas angostas no hay lugar para una columna lateral, así que la
+// barra se oculta y aparece la versión compacta al pie del artículo. Las
+// dos salen de este mismo componente.
+//
+// En páginas .astro se importa y se coloca. En las notas del blog, que son
+// Markdown y no pueden importar componentes, se activa con
+// `capitalinasBanner: true` en el frontmatter y lo renderiza [post].astro.
+const URL_DC = 'https://capitalinasdc.com';
 ---
-<aside class="cap-banner">
-  <p class="cap-banner__titulo">¿Buscás un data center en Córdoba?</p>
-  <p class="cap-banner__texto">
-    Data Center Capitalinas opera hace más de quince años. Acceso 24/7, comodidad, multi-carrier y
-    gestionado por Building Networks.
-  </p>
-  <a class="cap-banner__link" href="https://capitalinasdc.com" target="_blank" rel="noopener">
-    Conocé Capitalinas →
-  </a>
+<aside class="cap-rail" aria-label="Data Center Capitalinas">
+  <div class="cap-rail__inner">
+    <img
+      class="cap-rail__logo"
+      src="/img/datacenter-capitalinas-logo.webp"
+      alt="Datacenter Capitalinas"
+      width="520"
+      height="397"
+      loading="lazy"
+    />
+    <p class="cap-rail__titulo">¿Buscás un data center en Córdoba?</p>
+    <p class="cap-rail__texto">
+      Opera hace más de quince años. Acceso 24/7, comodidad, multi-carrier y gestionado por Building
+      Networks.
+    </p>
+    <a class="cap-rail__link" href={URL_DC} target="_blank" rel="noopener">Conocé Capitalinas →</a>
+  </div>
 </aside>
 
 <style>
-  .cap-banner {
-    background: var(--teal-tint);
-    border-left: 4px solid var(--teal);
-    border-radius: 0 var(--radius) var(--radius) 0;
-    padding: 1.7rem 1.8rem;
-    margin-block: 2.6rem;
+  /* COLUMNA LATERAL FIJA */
+  .cap-rail { grid-area: rail; align-self: stretch; height: 100%; }
+  .cap-rail__inner {
+    position: sticky;
+    top: 90px; /* deja pasar el header, que es sticky */
+    background: #000;
+    color: #fff;
+    border-radius: var(--radius);
+    padding: 1.6rem 1.4rem;
   }
-  .cap-banner__titulo {
-    font-size: 1.22rem;
+  .cap-rail__logo {
+    display: block;
+    width: 100%;
+    max-width: 170px;
+    height: auto;
+    margin: 0 auto 1.1rem;
+    mix-blend-mode: lighten;
+  }
+  .cap-rail__titulo {
+    font-size: 1.02rem;
     font-weight: 500;
-    color: var(--heading);
+    line-height: 1.35;
+    color: #fff;
     margin: 0 0 0.6rem;
   }
-  .cap-banner__texto {
-    color: var(--fg);
+  .cap-rail__texto {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.78);
     margin: 0 0 1.1rem;
-    max-width: 58ch;
   }
-  .cap-banner__link {
+  .cap-rail__link {
     display: inline-block;
-    color: var(--teal);
+    color: var(--teal-soft, #7fd4cd);
     font-weight: 600;
+    font-size: 0.92rem;
     text-decoration: none;
   }
-  .cap-banner__link:hover { text-decoration: underline; }
+  .cap-rail__link:hover { text-decoration: underline; }
+
+  /* Sin lugar para la columna: pasa a bloque al pie del artículo. */
+  @media (max-width: 1100px) {
+    .cap-rail { grid-area: auto; margin-block: 2.4rem; }
+    .cap-rail__inner { position: static; padding: 1.7rem 1.8rem; }
+    .cap-rail__logo { margin: 0 0 1.1rem; max-width: 150px; }
+    .cap-rail__titulo { font-size: 1.18rem; }
+    .cap-rail__texto { font-size: 0.98rem; max-width: 58ch; }
+  }
 </style>

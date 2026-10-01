@@ -32,9 +32,10 @@ const heroStyle = post.data.heroImage
   </section>
 
   <article class="section">
-    <div class="container post__inner prose">
-      <Content />
+    <div class={post.data.capitalinasBanner ? 'container post__layout' : 'container'}>
       {post.data.capitalinasBanner && <CapitalinasBanner />}
+      <div class="post__inner prose">
+      <Content />
       {post.data.contactForm && (
         <section class="post__form">
           <h2>Escribinos</h2>
@@ -42,6 +43,7 @@ const heroStyle = post.data.heroImage
         </section>
       )}
       <p class="post__back"><a href={withBase("/novedades/")}><Icon name="arrow" size={16} /> Volver a Novedades</a></p>
+      </div>
     </div>
   </article>
 </BaseLayout>
@@ -50,6 +52,14 @@ const heroStyle = post.data.heroImage
   .svc-hero { background: linear-gradient(160deg, rgba(0,70,75,0.93), rgba(0,98,105,0.80)), url("/wp-content/uploads/2024/12/PORTADA-SOLUCION-INTEGRAL-CONVERGENTE-100.jpg") center/cover no-repeat; }
   .post__meta { color: var(--color-on-dark-muted); font-size: 0.95rem; text-transform: capitalize; margin: 0; }
   .post__inner { max-width: 720px; }
+  /* Con barra lateral: columna fija de 230px a la izquierda del cuerpo.
+     El conjunto se centra y el cuerpo mantiene su ancho de lectura. */
+  .post__layout { display: grid; grid-template-areas: "rail body"; grid-template-columns: 230px minmax(0, 720px); gap: 2.6rem; justify-content: center; align-items: stretch; }
+  .post__layout .post__inner { grid-area: body; }
+  @media (max-width: 1100px) {
+    .post__layout { display: block; }
+    .post__layout .post__inner { margin-inline: auto; }
+  }
   .prose :global(h2) { margin-top: 2rem; }
   .prose :global(img) { border-radius: var(--radius); margin-block: 1.5rem; }
   .prose :global(pre) { background: var(--color-surface); padding: 1rem; border-radius: 8px; overflow-x: auto; }
