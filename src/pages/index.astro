@@ -397,7 +397,24 @@ const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month:
     border-radius: var(--radius); padding: clamp(1.8rem, 4vw, 3.2rem);
   }
   .unidad--clara { background: #fff; box-shadow: var(--shadow-sm); }
-  .unidad--oscura { background: #000; color: #fff; }
+  /* Fondo negro con dos capas tomadas de la gráfica de marca:
+     un resplandor verde detrás de los racks y líneas de 1px cada 72px. */
+  .unidad--oscura {
+    position: relative;
+    background: #000;
+    color: #fff;
+    overflow: hidden;
+  }
+  .unidad--oscura::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(to bottom, rgba(255,255,255,0.055) 0 1px, transparent 1px 72px),
+      radial-gradient(60% 55% at 72% 50%, rgba(0,150,140,0.30), transparent 70%);
+    pointer-events: none;
+  }
+  .unidad--oscura > * { position: relative; z-index: 1; }
   .unidad__eyebrow { text-transform: uppercase; letter-spacing: 0.18em; font-size: 0.72rem; font-weight: 600; margin: 0 0 1.2rem; }
   .unidad--clara .unidad__eyebrow { color: var(--muted); }
   .unidad--oscura .unidad__eyebrow { color: #8fb7b3; }

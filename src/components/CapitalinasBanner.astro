@@ -30,7 +30,7 @@ const URL_DC = 'https://capitalinasdc.com';
       Opera hace más de quince años. Acceso 24/7, comodidad, multi-carrier y gestionado por Building
       Networks.
     </p>
-    <a class="cap-rail__link" href={URL_DC} target="_blank" rel="noopener">Conocé Capitalinas →</a>
+    <a class="btn btn--solid cap-rail__btn" href={URL_DC} target="_blank" rel="noopener">Visitar sitio web</a>
   </div>
 </aside>
 
@@ -44,6 +44,20 @@ const URL_DC = 'https://capitalinasdc.com';
     color: #fff;
     border-radius: var(--radius);
     padding: 1.6rem 1.4rem;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  /* Mismas dos capas que la tarjeta de la home: líneas de 1px y el
+     resplandor verde, acá detrás del logo. */
+  .cap-rail__inner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      repeating-linear-gradient(to bottom, rgba(255,255,255,0.055) 0 1px, transparent 1px 72px),
+      radial-gradient(70% 38% at 50% 20%, rgba(0,150,140,0.34), transparent 70%);
+    pointer-events: none;
   }
   .cap-rail__logo {
     display: block;
@@ -66,14 +80,7 @@ const URL_DC = 'https://capitalinasdc.com';
     color: rgba(255, 255, 255, 0.78);
     margin: 0 0 1.1rem;
   }
-  .cap-rail__link {
-    display: inline-block;
-    color: var(--teal-soft, #7fd4cd);
-    font-weight: 600;
-    font-size: 0.92rem;
-    text-decoration: none;
-  }
-  .cap-rail__link:hover { text-decoration: underline; }
+  .cap-rail__btn { margin-top: 0.2rem; }
 
   /* Sin lugar para la columna: pasa a bloque al pie del artículo. */
   @media (max-width: 1100px) {
