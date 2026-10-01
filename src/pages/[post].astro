@@ -4,6 +4,7 @@ import { getCollection, render } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
 import ContactForm from '../components/ContactForm.astro';
+import CapitalinasBanner from '../components/CapitalinasBanner.astro';
 
 // Los artículos del blog se sirven en la RAÍZ (/slug/), igual que en el
 // WordPress original, para preservar las URLs indexadas y los backlinks.
@@ -33,6 +34,7 @@ const heroStyle = post.data.heroImage
   <article class="section">
     <div class="container post__inner prose">
       <Content />
+      {post.data.capitalinasBanner && <CapitalinasBanner />}
       {post.data.contactForm && (
         <section class="post__form">
           <h2>Escribinos</h2>

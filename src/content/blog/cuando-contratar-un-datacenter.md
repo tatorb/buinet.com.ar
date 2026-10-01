@@ -4,6 +4,7 @@ description: "En la era digital, el manejo eficiente y seguro de los datos es es
 heroImage: "/wp-content/uploads/2024/09/Mesa-de-trabajo-3-copia-27-100.jpg"
 pubDate: 2024-09-10
 author: "Building Networks"
+capitalinasBanner: true
 draft: false
 ---
 #### 

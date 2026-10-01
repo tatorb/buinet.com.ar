@@ -23,6 +23,10 @@ const blog = defineCollection({
       // Agrega al final del post el mismo formulario de HubSpot que usa
       // /contacto/. Por defecto las notas cierran con un enlace de texto.
       contactForm: z.boolean().default(false),
+      // Inserta el banner de Data Center Capitalinas al cierre de la nota.
+      // Las notas son Markdown y no pueden importar componentes, así que el
+      // layout [post].astro lo renderiza cuando este flag está en true.
+      capitalinasBanner: z.boolean().default(false),
       draft: z.boolean().default(false),
     }),
 });

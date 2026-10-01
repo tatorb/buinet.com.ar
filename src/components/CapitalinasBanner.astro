@@ -1,0 +1,46 @@
+---
+// Banner del cluster de data center. Se inserta cerca del cierre del
+// contenido, antes del CTA o del formulario.
+//
+// En páginas .astro se importa y se coloca directamente. En las notas del
+// blog, que son Markdown y no pueden importar componentes, se activa con
+// `capitalinasBanner: true` en el frontmatter; lo renderiza src/pages/[post].astro.
+---
+<aside class="cap-banner">
+  <p class="cap-banner__titulo">¿Buscás un data center en Córdoba?</p>
+  <p class="cap-banner__texto">
+    Data Center Capitalinas opera hace más de quince años. Acceso 24/7, comodidad, multi-carrier y
+    gestionado por Building Networks.
+  </p>
+  <a class="cap-banner__link" href="https://capitalinasdc.com" target="_blank" rel="noopener">
+    Conocé Capitalinas →
+  </a>
+</aside>
+
+<style>
+  .cap-banner {
+    background: var(--teal-tint);
+    border-left: 4px solid var(--teal);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 1.7rem 1.8rem;
+    margin-block: 2.6rem;
+  }
+  .cap-banner__titulo {
+    font-size: 1.22rem;
+    font-weight: 500;
+    color: var(--heading);
+    margin: 0 0 0.6rem;
+  }
+  .cap-banner__texto {
+    color: var(--fg);
+    margin: 0 0 1.1rem;
+    max-width: 58ch;
+  }
+  .cap-banner__link {
+    display: inline-block;
+    color: var(--teal);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .cap-banner__link:hover { text-decoration: underline; }
+</style>

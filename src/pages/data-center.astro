@@ -1,6 +1,7 @@
 ---
 import ServiceLayout from '../layouts/ServiceLayout.astro';
 import { servicios } from '../data/servicios';
+import CapitalinasBanner from '../components/CapitalinasBanner.astro';
 const s = servicios.find((x) => x.slug === 'data-center')!;
 ---
 <ServiceLayout slug={s.slug} title={s.titulo} resumen={s.resumen} icono={s.icono}>
@@ -23,4 +24,6 @@ const s = servicios.find((x) => x.slug === 'data-center')!;
     <li>Seguridad física y digital.</li>
     <li>Energía ininterrumpida y alta disponibilidad.</li>
   </ul>
+
+  <CapitalinasBanner />
 </ServiceLayout>

@@ -4,6 +4,7 @@ description: "El avance del edge computing está transformando la manera en que 
 heroImage: "/wp-content/uploads/2025/03/PORTADA-EDGE-COMPUTING-100.webp"
 pubDate: 2025-03-09
 author: "Building Networks"
+capitalinasBanner: true
 draft: false
 ---
 #### 
