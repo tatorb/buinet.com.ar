@@ -52,6 +52,8 @@ Red dimensionada. El tráfico de video y de audio tiene que estar en VLANs separ
 
 Reglas de negocio claras. Antes de configurar las reglas en CamScope, hay que definir con la operación qué condiciones disparan qué respuestas. Ese proceso forma parte del relevamiento.
 
+Para ver cómo funciona el sistema de voceo en planta, el detalle de implementación está en [Sistema de audio IP en planta industrial](/sistema-audio-ip-planta-industrial/). Y para entender cómo se gestiona la integración desde múltiples sitios, [monitoreo remoto de audio en instalaciones distribuidas](/monitoreo-audio-remoto-instalaciones/). La integración con el cluster de videovigilancia está documentada en [Video inteligente](/video-inteligente/).
+
 ---
 
 Para diseñar la integración entre el sistema de audio y el de video de tu instalación, [contactanos desde /audio-ip/](/audio-ip/).

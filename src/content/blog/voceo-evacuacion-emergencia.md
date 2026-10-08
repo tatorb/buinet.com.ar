@@ -50,6 +50,8 @@ En algunos entornos, la señalización de emergencia incluye iluminación estrob
 
 Esa integración no requiere hardware adicional cuando todos los sistemas están en CamScope. Es una configuración de reglas dentro de la misma plataforma.
 
+El control de acceso con audio bidireccional en puertas y portones complementa el sistema de emergencias. Más detalle en [Intercomunicadores IP para control de acceso](/intercomunicadores-ip-acceso/).
+
 ---
 
 Para revisar si tu sistema de emergencias actual se puede integrar con audio IP, el punto de partida es un relevamiento. [Contactanos desde /audio-ip/](/audio-ip/).

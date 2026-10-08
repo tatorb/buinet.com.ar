@@ -1,6 +1,6 @@
 ---
 title: "Intercomunicadores IP para control de acceso"
-description: "Cómo los intercomunicadores IP reemplazan las garitas y unifican audio, video y credenciales en un solo dispositivo. Hardware AXIS 2N, integración con CamScope."
+description: "Cómo los intercomunicadores IP unifican audio, video y credenciales en un solo dispositivo. Hardware AXIS 2N, integración con CamScope."
 pubDate: 2026-10-08
 heroImage: "/img/bloom-84f4f239-intercom-ip-acceso.jpg"
 tags: ["audio ip", "intercomunicadores", "control de acceso", "AXIS 2N"]

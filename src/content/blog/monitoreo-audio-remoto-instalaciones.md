@@ -46,6 +46,8 @@ Un sistema de audio IP centralizado escala sin cambiar la arquitectura. Agregar 
 
 Esa escalabilidad es importante en empresas en crecimiento. No hay que prever en el diseño inicial cuántos sitios va a tener la empresa en cinco años. El sistema absorbe los sitios nuevos sin rediseño.
 
+La integración entre el audio y el video es lo que permite que la gestión centralizada tenga valor operativo real. El detalle de cómo se configura está en [Integración de audio IP y videovigilancia](/integracion-audio-video-seguridad/).
+
 ---
 
 Para revisar cómo integrar los sistemas de audio de tus distintas instalaciones en una sola plataforma, [contactanos desde /audio-ip/](/audio-ip/).

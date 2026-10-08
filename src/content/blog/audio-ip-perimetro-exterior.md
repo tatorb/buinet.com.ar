@@ -1,6 +1,6 @@
 ---
 title: "Audio IP en perímetros exteriores e instalaciones"
-description: "Altavoces IP para exteriores industriales: disuasión activa, voceo en perímetros, estacionamientos y zonas de carga. Hardware AXIS certificado para intemperie."
+description: "Altavoces IP para exteriores industriales: disuasión activa, voceo en perímetros, estacionamientos y zonas de carga. Hardware AXIS para intemperie."
 pubDate: 2026-10-08
 heroImage: "/img/bloom-2e380f93-perimetro-exterior.jpg"
 tags: ["audio ip", "exterior", "perímetro", "AXIS", "disuasión"]
@@ -45,6 +45,8 @@ La cámara y el altavoz no tienen que estar en el mismo polo ni en el mismo tram
 En estacionamientos con control de acceso vehicular, el audio IP se usa para guiar a los conductores. "Favor avanzar a la barrera", "acceso autorizado, la barrera se abrirá en 5 segundos", "zona de carga, respetar las 15 km/h". Mensajes que hoy requieren presencia humana en la garita pueden automatizarse con audio IP y lectura de patentes integrada.
 
 En playas de descarga con movimiento de camiones, los mensajes de maniobra y las alertas de retroceso reducen el riesgo operativo en el área.
+
+La respuesta automática del altavoz ante una detección perimetral depende de cómo está configurada la integración con las cámaras. El detalle está en [Integración de audio IP y videovigilancia](/integracion-audio-video-seguridad/).
 
 ---
 
