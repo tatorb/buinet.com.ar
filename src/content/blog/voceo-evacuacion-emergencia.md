@@ -46,6 +46,8 @@ En instalaciones con grupos electrógenos, la transferencia al generador mantien
 
 El audio de emergencia se puede integrar con el sistema de detección de incendios para que la activación del panel de incendio dispare automáticamente los mensajes en las zonas correspondientes. También se puede integrar con la gestión de accesos para que una evacuación active la apertura de salidas de emergencia.
 
+En algunos entornos, la señalización de emergencia incluye iluminación estroboscópica coordinada con el audio. Esa combinación es especialmente útil en zonas de alto ruido donde la percepción visual refuerza la alerta sonora, o en instalaciones con personal con restricciones auditivas. La coordinación entre audio e iluminación se configura como reglas dentro de CamScope, sin hardware de interfaz adicional.
+
 Esa integración no requiere hardware adicional cuando todos los sistemas están en CamScope. Es una configuración de reglas dentro de la misma plataforma.
 
 ---

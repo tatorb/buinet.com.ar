@@ -28,7 +28,7 @@ En exteriores o en zonas con ruido ambiental alto, el AXIS C1310-E Mk II Network
 
 ## Zonificación por área y por turno
 
-Una planta típica tiene zonas con necesidades distintas. La línea de producción necesita alertas operativas y mensajes de seguridad. El área de expedición necesita avisos de movimiento de vehículos. La recepción y los pasillos administrativos pueden tener música ambiental en horario de oficina.
+Una planta típica tiene zonas con necesidades distintas. La línea de producción necesita alertas operativas y mensajes de seguridad. El área de expedición necesita avisos de movimiento de vehículos. La recepción y los pasillos administrativos pueden tener música ambiental o audio funcional en horario de oficina. En instalaciones con punto de venta o atención al público, esas mismas zonas pueden recibir audio retail, con contenido diferente al del resto de la planta y gestionado desde la misma plataforma.
 
 Con audio IP, cada zona recibe exactamente lo que corresponde, en el horario que corresponde, sin que un operador tenga que hacer nada manualmente. Los horarios y las prioridades se configuran una sola vez en CamScope.
 
