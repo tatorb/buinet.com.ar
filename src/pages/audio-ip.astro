@@ -1,20 +1,399 @@
 ---
-import ServiceLayout from '../layouts/ServiceLayout.astro';
-import { servicios } from '../data/servicios';
-const s = servicios.find((x) => x.slug === 'audio-ip')!;
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { withBase } from '../utils/url';
+
+// ============================================================================
+// PÁGINA DE SERVICIO — Audio IP.
+// Migrada a BaseLayout directo (igual que /video-inteligente/).
+// Pillar del cluster Audio IP. Formulario HubSpot aquí, no en satélites.
+// ============================================================================
+
+const beneficios = [
+  'Voceo y mensajería en tiempo real sobre la misma red IP',
+  'Integración con video y control de accesos en una sola plataforma',
+  'Respuesta automática: la detección dispara el mensaje en la zona exacta',
+  'Gestión centralizada de toda la flota de altavoces desde CamScope',
+];
+
+const sectores = [
+  { titulo: 'Industria y manufactura', resumen: 'PA industrial, voceo de evacuación, alertas de zona', icono: 'factory' },
+  { titulo: 'Logística y distribución', resumen: 'Avisos operativos, control de acceso con audio', icono: 'network' },
+  { titulo: 'Corporativo y oficinas', resumen: 'Intercomunicación, música ambiental, mensajería', icono: 'building' },
+  { titulo: 'Perímetros y exteriores', resumen: 'Disuasión activa, voceo en exterior, alertas perimetrales', icono: 'shield' },
+];
+
+const pilares = [
+  {
+    titulo: 'Sobre la red IP',
+    icono: 'network',
+    resumen: 'Los altavoces son dispositivos de red, no periféricos de un amplificador. Se gestionan con IP, se configuran remotamente y se integran con el mismo sistema que maneja las cámaras y los accesos.',
+  },
+  {
+    titulo: 'Respuesta automática',
+    icono: 'speaker',
+    resumen: 'Cuando la analítica de video detecta una condición, el audio responde en la zona exacta donde ocurrió el evento. Sin que nadie tenga que estar mirando una pantalla en ese momento.',
+  },
+  {
+    titulo: 'Gestión centralizada',
+    icono: 'server',
+    resumen: 'Toda la flota de altavoces, intercomunicadores y puntos de audio se gestiona desde CamScope. Zonificación, horarios, mensajes pregrabados y actualizaciones sin intervención manual.',
+  },
+];
+
+const cifras = [
+  { valor: '64', label: 'dispositivos de audio IP' },
+  { valor: '436', label: 'cámaras integradas' },
+  { valor: '88', label: 'controladores de acceso' },
+  { valor: '+15 años', label: 'de operación continua' },
+];
+
+const escenarios = [
+  {
+    titulo: 'PA en planta industrial',
+    resumen: 'Cubrir galpones y líneas de producción con voceo claro, por zonas, sobre la red existente.',
+    icono: 'factory',
+    href: '/sistema-audio-ip-planta-industrial/',
+  },
+  {
+    titulo: 'Voceo de evacuación',
+    resumen: 'Mensajería de emergencia integrada con el sistema de seguridad, sin cableado de audio separado.',
+    icono: 'shield',
+    href: '/voceo-evacuacion-emergencia/',
+  },
+  {
+    titulo: 'Audio en perímetro exterior',
+    resumen: 'Altavoces IP en exteriores, estacionamientos y perímetros para disuasión y avisos.',
+    icono: 'camera',
+    href: '/audio-ip-perimetro-exterior/',
+  },
+  {
+    titulo: 'Intercomunicadores IP',
+    resumen: 'Control de acceso con audio bidireccional en puertas, portones y accesos peatonales.',
+    icono: 'lock',
+    href: '/intercomunicadores-ip-acceso/',
+  },
+  {
+    titulo: 'Integración audio y video',
+    resumen: 'Que la detección de video dispare un mensaje de audio en el sector exacto.',
+    icono: 'chip',
+    href: '/integracion-audio-video-seguridad/',
+  },
+  {
+    titulo: 'Monitoreo remoto de audio',
+    resumen: 'Supervisión y gestión centralizada de todas las instalaciones desde un único punto.',
+    icono: 'database',
+    href: '/monitoreo-audio-remoto-instalaciones/',
+  },
+];
+
+const faqs = [
+  {
+    q: '¿Qué es un sistema de audio IP y en qué se diferencia de un sistema de PA tradicional?',
+    a: 'Un sistema de audio IP usa la red de datos de la empresa para transportar el audio, en lugar de cableado de audio dedicado. Cada altavoz es un dispositivo de red con dirección IP, lo que permite gestionarlo, configurarlo y actualizarlo de forma remota. La diferencia práctica es la integración: un altavoz IP puede recibir una instrucción de reproducción desde el mismo sistema que gestiona las cámaras y los accesos. Un sistema de PA tradicional no puede hacer eso sin hardware adicional. En instalaciones que ya tienen red IP, sumar audio significa agregar dispositivos a la red, no tender una segunda infraestructura de cableado.',
+  },
+  {
+    q: '¿Cómo se integra el audio IP con el sistema de videovigilancia?',
+    a: 'La integración ocurre a través de la plataforma de gestión. Cuando la analítica de video detecta una condición, como un ingreso en zona restringida, ausencia de EPP o permanencia excesiva, puede disparar automáticamente un mensaje de audio en el altavoz del sector donde está ocurriendo el evento. La respuesta es específica a la zona y al evento, no una alarma general. Eso cambia la dinámica de respuesta: el operador no tiene que estar mirando una pantalla para que el sistema actúe. En instalaciones con AXIS C1004-E o C1310-E Mk II, la integración con las cámaras AXIS se configura de forma nativa dentro de CamScope.',
+  },
+  {
+    q: '¿Qué hardware AXIS se usa en sistemas de audio IP industrial?',
+    a: 'Depende del entorno. Para interiores industriales y gabinetes de producción, el AXIS C1004-E Network Cabinet Speaker es el dispositivo más habitual: robusto, bidireccional, diseñado para entornos ruidosos. Para techos en galpones y depósitos, el AXIS C2005 Network Ceiling Speaker ofrece cobertura amplia. En exteriores, el AXIS C1310-E Mk II Network Horn Speaker está certificado para intemperie y alcanza distancias de hasta 100 metros con alta inteligibilidad. Para control de acceso con audio bidireccional en puertas y portones, los intercomunicadores de la serie AXIS 2N integran video, audio y lector de credenciales en un solo dispositivo.',
+  },
+  {
+    q: '¿Qué infraestructura de red se necesita para implementar audio IP?',
+    a: 'La red tiene que tener capacidad de PoE (Power over Ethernet) en los switches que alimentarán los altavoces, lo que elimina la necesidad de alimentación eléctrica separada en cada punto. Para audio de alta calidad, el ancho de banda requerido por dispositivo es bajo, pero hay que asegurar que la VLAN de audio tenga prioridad sobre el tráfico general para evitar cortes o degradación. En instalaciones con puntos alejados o exteriores, los altavoces se conectan por fibra y se alimentan localmente. El relevamiento de red es parte del diseño de sistema antes de especificar el equipamiento.',
+  },
+  {
+    q: '¿Se puede zonificar el audio para mensajes dirigidos a sectores específicos?',
+    a: 'Sí. La zonificación es una de las ventajas centrales del audio IP sobre los sistemas de PA tradicionales. Cada altavoz o grupo de altavoces se configura como una zona independiente. Los mensajes pueden enviarse a una sola zona, a un grupo de zonas o a toda la instalación, según la necesidad. La zonificación se configura desde CamScope y puede modificarse sin tocar el cableado físico. En turnos de producción con distintas líneas activas, eso permite avisos operativos dirigidos sin interrumpir las zonas que no necesitan el mensaje.',
+  },
+  {
+    q: '¿Cómo funciona el audio en protocolos de evacuación?',
+    a: 'Un sistema de audio IP puede integrarse con los protocolos de evacuación de la instalación para que un solo evento, como la activación de un pulsador o la detección de humo, dispare mensajes pregrabados en todas las zonas de forma simultánea o en secuencia definida. Los mensajes son claros y específicos, no una sirena que el personal tiene que interpretar. El sistema puede configurarse para que ciertos mensajes tengan prioridad sobre cualquier audio en reproducción en ese momento. En entornos regulados, el registro de activaciones y los logs de reproducción quedan disponibles para auditoría.',
+  },
+  {
+    q: '¿Qué son los intercomunicadores IP y cómo se usan en control de acceso?',
+    a: 'Un intercomunicador IP es un dispositivo que combina audio bidireccional, cámara de video y, según el modelo, lector de credenciales o teclado de código en una sola unidad. Se instala en la entrada que se quiere controlar, y desde CamScope el operador puede ver quién está en la puerta, hablar con esa persona y autorizar la apertura sin moverse del puesto. Los modelos de la serie AXIS 2N tienen lector RFID integrado, lo que permite combinar identificación por credencial con la verificación visual. En puertas donde hay turnos de guardia, el intercomunicador reemplaza la necesidad de presencia física permanente.',
+  },
+  {
+    q: '¿Se puede gestionar la música ambiental junto con el sistema de seguridad?',
+    a: 'Sí. CamScope permite asignar distintas fuentes de audio a distintas zonas. Las zonas que requieren música ambiental, como recepciones o áreas de atención al cliente, la reciben de forma continua con la posibilidad de programar horarios. Si en esa misma zona se dispara un evento de seguridad, la mensajería de alerta tiene prioridad sobre el audio ambiental en curso. Al resolverse el evento, el sistema retoma la reproducción normal. Todo desde la misma interfaz, sin sistemas paralelos que haya que coordinar manualmente.',
+  },
+  {
+    q: '¿Cómo se actualiza y mantiene la flota de altavoces?',
+    a: 'Las actualizaciones de firmware de los dispositivos AXIS se ejecutan de forma centralizada desde CamScope sobre toda la flota. El cliente no tiene que acceder físicamente a cada altavoz. El diagnóstico de estado también es remoto: si un dispositivo tiene un problema de conectividad o de alimentación, el sistema lo detecta y lo reporta. En instalaciones distribuidas en múltiples plantas o edificios, eso significa que el mantenimiento no requiere desplazamiento a cada ubicación para verificar el estado de los dispositivos.',
+  },
+  {
+    q: '¿Por dónde se empieza un proyecto de audio IP?',
+    a: 'Por un relevamiento. Antes de especificar un solo dispositivo, necesitamos entender el plano de la instalación, las zonas que requieren cobertura, las condiciones del entorno, la infraestructura de red disponible y qué otros sistemas, como video y accesos, deben integrarse con el audio. Desde ahí definimos cobertura, equipamiento y configuración. El relevamiento es el primer paso y es sin costo.',
+  },
+];
+
+const faqLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+});
 ---
-<ServiceLayout slug={s.slug} title={s.titulo} resumen={s.resumen} icono={s.icono}>
-  <h2>Sistemas de audio sobre IP</h2>
-  <p>
-    Implementamos sistemas de audio IP innovadores, ideales para comunicación
-    corporativa, seguridad y entretenimiento, conectados directamente a tus redes
-    convergentes.
-  </p>
-  <h2>Aplicaciones</h2>
-  <ul>
-    <li>Avisos y comunicación corporativa en tiempo real.</li>
-    <li>Mensajería de seguridad y evacuación.</li>
-    <li>Música ambiental y entretenimiento por zonas.</li>
-    <li>Integración con videovigilancia y control de accesos vía CamScope.</li>
-  </ul>
-</ServiceLayout>
+<BaseLayout
+  title="Audio IP para industria y seguridad"
+  description="Sistemas de audio IP para voceo, evacuación y mensajería automática. Hardware AXIS, integración con videovigilancia y gestión centralizada desde CamScope. Córdoba."
+  canonical="/audio-ip/"
+>
+  <script type="application/ld+json" is:inline set:html={faqLd} slot="head" />
+
+  <!-- HERO -->
+  <section class="ai-hero">
+    <div class="container ai-hero__inner">
+      <span class="hero-badge"><Icon name="speaker" size={26} /></span>
+      <p class="eyebrow" style="color:#bfe0dd">Servicios y productos</p>
+      <h1>Audio IP para industria y seguridad</h1>
+      <p class="lead" style="color:rgba(255,255,255,0.92); max-width:640px">
+        Voceo, mensajería automática y respuesta integrada con video sobre la red IP de tu operación.
+      </p>
+    </div>
+  </section>
+
+  <!-- QUÉ CAMBIA -->
+  <section class="section">
+    <div class="container ai-cambia">
+      <div>
+        <h2>Lo que cambia cuando el audio está en la red</h2>
+        <ul class="ai-bullets">
+          {beneficios.map((b) => (
+            <li><Icon name="arrow" size={18} /><span>{b}</span></li>
+          ))}
+        </ul>
+      </div>
+      <div class="ai-hero-img">
+        <img
+          src="/img/bloom-a1958213-audio-ip-planta.jpg"
+          alt="Sistema de audio IP en planta industrial con altavoces en techo"
+          loading="lazy"
+          width="800"
+          height="450"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- PARA QUIÉN -->
+  <section class="section section--surface">
+    <div class="container">
+      <div class="center measure mx-auto"><h2>Industrias y operaciones que lo usan</h2></div>
+      <div class="ai-grid" style="margin-top:2.5rem">
+        {sectores.map((s) => (
+          <div class="card ai-card">
+            <span class="card__icon"><Icon name={s.icono} size={32} /></span>
+            <h3>{s.titulo}</h3>
+            <p>{s.resumen}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- POR QUÉ BUILDING NETWORKS -->
+  <section class="section">
+    <div class="container">
+      <div class="center measure mx-auto"><h2>Por qué Building Networks</h2></div>
+      <div class="ai-grid ai-grid--3" style="margin-top:2.5rem">
+        <div class="card ai-card">
+          <span class="ai-card__marca">
+            <img src="/img/axis-technology-integration-partner.png" alt="AXIS Communications Technology Integration Partner" loading="lazy" width="600" height="462" />
+          </span>
+          <h3>AXIS Solution Gold Partner</h3>
+          <p>Hardware de audio con LTS documentado y ciberseguridad desde el diseño</p>
+        </div>
+        <div class="card ai-card">
+          <span class="ai-card__marca ai-card__marca--ancha">
+            <img src="/img/camscope-corporate.webp" alt="CamScope Corporate" loading="lazy" width="700" height="159" />
+          </span>
+          <h3>CamScope</h3>
+          <p>Audio, video y accesos en una sola plataforma, sin licenciamiento por canal</p>
+        </div>
+        <div class="card ai-card">
+          <span class="ai-card__num" aria-hidden="true">20</span>
+          <h3>Casi veinte años en Córdoba</h3>
+          <p>Industria, logística, corporativo y sector regulado</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PILARES -->
+  <section class="section section--surface">
+    <div class="container">
+      <div class="center measure mx-auto"><h2>Cómo funciona un sistema de audio IP</h2></div>
+      <div class="ai-grid ai-grid--3" style="margin-top:2.5rem">
+        {pilares.map((x) => (
+          <div class="card ai-card">
+            <span class="card__icon"><Icon name={x.icono} size={34} /></span>
+            <h3>{x.titulo}</h3>
+            <p>{x.resumen}</p>
+          </div>
+        ))}
+      </div>
+      <p class="center" style="margin-top:1.6rem; color:var(--muted)">
+        El desarrollo completo de cada punto está en las <a href="#faq">preguntas frecuentes</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- CASO -->
+  <section class="ai-caso">
+    <div class="container">
+      <div class="measure mx-auto center">
+        <p class="eyebrow" style="color:#bfe0dd">Caso de Éxito</p>
+        <h2>Distrito Capitalinas, un complejo de uso mixto en Córdoba</h2>
+        <p class="lead" style="color:rgba(255,255,255,0.9)">
+          Un sistema en operación continua desde hace más de 15 años.
+        </p>
+      </div>
+      <div class="ai-cifras">
+        {cifras.map((c) => (
+          <div class="ai-cifra">
+            <span class="ai-cifra__num">{c.valor}</span>
+            <span class="ai-cifra__label">{c.label}</span>
+          </div>
+        ))}
+      </div>
+      <div class="center ai-caso__acciones">
+        <a class="btn btn--white" href={withBase('/presentacion-de-caso-de-exito-distrito-capitalinas/')}>
+          Ver artículo en AXIS <Icon name="arrow" size={16} />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ESCENARIOS -->
+  <section class="section section--surface">
+    <div class="container">
+      <div class="center measure mx-auto">
+        <p class="eyebrow">Dónde se aplica</p>
+        <h2>Alcance por escenario</h2>
+      </div>
+      <div class="ai-escenarios">
+        {escenarios.map((e) => (
+          <a class="card card--link ai-esc" href={withBase(e.href)}>
+            <span class="card__icon"><Icon name={e.icono} size={30} /></span>
+            <h3>{e.titulo}</h3>
+            <p>{e.resumen}</p>
+            <span class="ai-more">Ver más <Icon name="arrow" size={16} /></span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQS -->
+  <section class="section section--surface">
+    <div class="container">
+      <div class="center" id="faq"><h2>Preguntas frecuentes</h2></div>
+      <div class="ai-faq">
+        {faqs.map((f) => (
+          <details class="ai-faq__item">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA + FORMULARIO -->
+  <section class="section">
+    <div class="container ai-cta">
+      <div>
+        <h2>Empezá por el relevamiento</h2>
+        <p class="lead">
+          El punto de partida es entender el plano de tu instalación, las zonas que necesitan cobertura
+          y qué sistemas ya están en operación. Desde ahí definimos cobertura, equipamiento y configuración.
+        </p>
+        <p><a href={withBase('/video-inteligente/')}>Cómo se integra con video inteligente</a></p>
+      </div>
+      <div class="card">
+        <ContactForm targetId="hubspot-form-audio" />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* HERO */
+  .ai-hero { background: linear-gradient(160deg, rgba(0,70,75,0.93), rgba(0,98,105,0.80)), url("/img/bloom-a1958213-audio-ip-planta.jpg") center/cover no-repeat; color: #fff; }
+  .ai-hero__inner { padding-block: clamp(2.6rem, 6vw, 4.6rem); max-width: 780px; }
+  .ai-hero h1 { color: #fff; margin-bottom: 1.2rem; }
+
+  /* BULLETS */
+  .ai-bullets { list-style: none; padding: 0; margin: 1.6rem 0 0; display: grid; gap: 0.9rem; }
+  .ai-bullets li { display: flex; gap: 0.7rem; align-items: flex-start; font-size: 1.05rem; }
+  .ai-bullets svg { color: var(--teal); flex: none; margin-top: 5px; }
+
+  /* IMAGEN INTRO */
+  .ai-cambia { display: grid; grid-template-columns: 1fr 1fr; gap: 2.6rem; align-items: center; }
+  .ai-hero-img img { width: 100%; height: auto; border-radius: var(--radius); display: block; }
+
+  /* LOGOS Y NÚMERO */
+  .ai-card__marca { display: flex; align-items: center; justify-content: flex-start; height: 68px; margin-bottom: 0.9rem; }
+  .ai-card__marca img { max-height: 68px; width: auto; max-width: 150px; object-fit: contain; }
+  .ai-card__marca--ancha img { max-width: 210px; max-height: 44px; }
+  .ai-card__num { display: flex; align-items: center; height: 68px; margin-bottom: 0.9rem; font-size: 2.9rem; font-weight: 300; color: var(--teal); line-height: 1; }
+
+  /* CARDS */
+  .ai-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.4rem; }
+  .ai-grid--3 { grid-template-columns: repeat(3, 1fr); }
+  .ai-card { text-align: left; align-items: flex-start; }
+  .ai-card .card__icon { color: var(--teal); }
+  .ai-card h3 { font-size: 1.05rem; margin-bottom: 0.4rem; }
+  .ai-card p { color: var(--muted); margin: 0; }
+
+  /* CASO */
+  .ai-caso { position: relative; background: url("/wp-content/uploads/2024/07/distrito-capitalinas.jpg") center/cover no-repeat; color: #fff; padding-block: clamp(2.75rem, 6vw, 4.6rem); overflow: hidden; }
+  .ai-caso::before { content: ""; position: absolute; inset: 0; background: linear-gradient(160deg, rgba(0,98,105,0.92), rgba(0,70,75,0.82)); }
+  .ai-caso > * { position: relative; z-index: 1; }
+  .ai-caso h2 { color: #fff; }
+  .ai-cifras { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.4rem; margin-top: 3rem; }
+  .ai-cifra { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); border-radius: var(--radius); padding: 1.6rem 1.2rem; text-align: center; }
+  .ai-cifra__num { display: block; font-size: 1.9rem; font-weight: 400; color: #fff; line-height: 1.1; }
+  .ai-cifra__label { display: block; margin-top: 0.5rem; color: rgba(255,255,255,0.85); font-size: 0.9rem; }
+  .ai-caso__acciones { margin-top: 2.6rem; display: flex; flex-wrap: wrap; gap: 0.9rem; justify-content: center; }
+  .ai-caso__acciones .btn { display: inline-flex; align-items: center; gap: 0.45rem; }
+
+  /* ESCENARIOS */
+  .ai-escenarios { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; margin-top: 2.5rem; }
+  .ai-esc { text-align: left; align-items: flex-start; display: flex; flex-direction: column; padding: 1.6rem; }
+  .ai-esc h3 { font-size: 1.05rem; margin-bottom: 0.5rem; }
+  .ai-esc p { color: var(--muted); margin: 0 0 0.9rem; }
+  .ai-more { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: auto; color: var(--teal); font-weight: 500; font-size: 0.9rem; }
+  .ai-esc:hover .ai-more { gap: 0.6rem; }
+
+  /* FAQ */
+  .ai-faq { margin-top: 2rem; max-width: 980px; margin-inline: auto; display: grid; gap: 0.55rem; }
+  .ai-faq__item { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 0 1.3rem; }
+  .ai-faq__item summary { cursor: pointer; font-weight: 500; color: var(--heading); padding: 0.85rem 0; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 1rem; font-size: 0.98rem; }
+  .ai-faq__item summary::-webkit-details-marker { display: none; }
+  .ai-faq__item summary::after { content: '+'; color: var(--teal); font-size: 1.3rem; font-weight: 300; line-height: 1; flex: none; transition: transform 0.2s ease; }
+  .ai-faq__item[open] summary::after { transform: rotate(45deg); }
+  .ai-faq__item p { margin: 0 0 1rem; color: var(--fg); font-size: 0.95rem; }
+
+  /* CTA */
+  .ai-cta { display: grid; grid-template-columns: 1fr 1.1fr; gap: 3rem; align-items: start; }
+
+  @media (max-width: 980px) {
+    .ai-grid, .ai-grid--3 { grid-template-columns: repeat(2, 1fr); }
+    .ai-cambia { grid-template-columns: 1fr; gap: 1.8rem; }
+    .ai-cta { grid-template-columns: 1fr; gap: 2rem; }
+    .ai-cifras { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .ai-grid, .ai-grid--3, .ai-escenarios { grid-template-columns: 1fr; }
+    .ai-cifras { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
