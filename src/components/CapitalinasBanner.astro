@@ -47,16 +47,13 @@ const URL_DC = 'https://capitalinasdc.com';
     overflow: hidden;
     isolation: isolate;
   }
-  /* Mismas dos capas que la tarjeta de la home: líneas de 1px y el
-     resplandor verde, acá detrás del logo. */
+  /* Resplandor verde detrás del logo, como en la tarjeta de la home. */
   .cap-rail__inner::before {
     content: "";
     position: absolute;
     inset: 0;
     z-index: -1;
-    background:
-      repeating-linear-gradient(to bottom, rgba(255,255,255,0.055) 0 1px, transparent 1px 72px),
-      radial-gradient(70% 38% at 50% 20%, rgba(0,150,140,0.34), transparent 70%);
+    background: radial-gradient(70% 38% at 50% 20%, rgba(0,150,140,0.34), transparent 70%);
     pointer-events: none;
   }
   .cap-rail__logo {
