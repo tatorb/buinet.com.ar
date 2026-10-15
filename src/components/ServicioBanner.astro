@@ -1,0 +1,96 @@
+---
+// Banner que lleva de una nota del blog a la página del servicio del que trata.
+//
+// Gemelo del de Data Center Capitalinas en comportamiento: corre a la
+// izquierda del artículo y queda fijo al hacer scroll (position: sticky), y en
+// pantallas angostas pasa a bloque al pie. La diferencia es el color: este va
+// sobre el verde institucional, mientras el de Capitalinas va en negro porque
+// replica la estética de esa unidad de negocio.
+//
+// Qué servicio mostrar lo decide [post].astro con el mapa de
+// src/data/servicio-de-nota.ts. Una nota sin entrada en ese mapa no muestra
+// banner.
+import Icon from './Icon.astro';
+import { withBase } from '../utils/url';
+import { servicios } from '../data/servicios';
+import { copyPorServicio } from '../data/servicio-de-nota';
+
+interface Props { servicio: string }
+const { servicio } = Astro.props;
+
+const s = servicios.find((x) => x.slug === servicio);
+const copy = copyPorServicio[servicio];
+---
+{s && copy && (
+  <aside class="svc-rail" aria-label={`Servicio: ${s.titulo}`}>
+    <div class="svc-rail__inner">
+      <span class="svc-rail__icono"><Icon name={s.icono} size={26} /></span>
+      <p class="svc-rail__titulo">{copy.pregunta}</p>
+      <p class="svc-rail__texto">{copy.apoyo}</p>
+      <a class="btn btn--white svc-rail__btn" href={withBase(s.href)}>{copy.cta}</a>
+    </div>
+  </aside>
+)}
+
+<style>
+  /* COLUMNA LATERAL FIJA */
+  .svc-rail { grid-area: rail; align-self: stretch; height: 100%; }
+  .svc-rail__inner {
+    position: sticky;
+    top: 90px; /* deja pasar el header, que es sticky */
+    background: linear-gradient(160deg, var(--teal), var(--teal-dark));
+    color: #fff;
+    border-radius: var(--radius);
+    padding: 1.6rem 1.4rem;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  /* Las mismas líneas de 1px que la tarjeta de unidad de negocio de la home,
+     acá en blanco muy tenue para que se lean sobre el verde. */
+  .svc-rail__inner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: repeating-linear-gradient(to bottom, rgba(255,255,255,0.07) 0 1px, transparent 1px 72px);
+    pointer-events: none;
+  }
+  .svc-rail__icono {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.14);
+    border: 1px solid rgba(255,255,255,0.28);
+    color: #fff;
+    margin-bottom: 1.1rem;
+  }
+  .svc-rail__titulo {
+    font-size: 1.02rem;
+    font-weight: 500;
+    line-height: 1.35;
+    color: #fff;
+    margin: 0 0 0.6rem;
+  }
+  .svc-rail__texto {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.82);
+    margin: 0 0 1.1rem;
+  }
+  /* :global() porque el <svg> lo renderiza Icon y lleva su propio hash de
+     scope, no el de este componente. */
+  /* Sin flecha, igual que el botón del banner de Capitalinas: en una columna
+     de 230px las etiquetas largas se parten en dos o tres líneas y el ícono
+     queda colgado al final de una línea intermedia en vez de cerrar la frase. */
+  .svc-rail__btn { margin-top: 0.2rem; }
+
+  /* Sin lugar para la columna: pasa a bloque al pie del artículo. */
+  @media (max-width: 1100px) {
+    .svc-rail { grid-area: auto; margin-block: 2.4rem; }
+    .svc-rail__inner { position: static; padding: 1.7rem 1.8rem; }
+    .svc-rail__titulo { font-size: 1.18rem; }
+    .svc-rail__texto { font-size: 0.98rem; max-width: 58ch; }
+  }
+</style>

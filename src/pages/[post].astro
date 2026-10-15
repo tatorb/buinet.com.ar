@@ -5,6 +5,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
 import ContactForm from '../components/ContactForm.astro';
 import CapitalinasBanner from '../components/CapitalinasBanner.astro';
+import ServicioBanner from '../components/ServicioBanner.astro';
+import { servicioDeNota } from '../data/servicio-de-nota';
 
 // Los artículos del blog se sirven en la RAÍZ (/slug/), igual que en el
 // WordPress original, para preservar las URLs indexadas y los backlinks.
@@ -16,6 +18,12 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await render(post);
 const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month: 'long', day: 'numeric' });
+// El riel es una sola ranura del grid. Cuando la nota lleva el banner de
+// Capitalinas, ese gana: es más específico que el del servicio y dos banners
+// apilados en una columna de 230px son ruido.
+const servicio = post.data.capitalinasBanner ? null : servicioDeNota[post.id];
+const conRiel = post.data.capitalinasBanner || Boolean(servicio);
+
 const heroStyle = post.data.heroImage
   ? `background: linear-gradient(160deg, rgba(0,70,75,0.93), rgba(0,98,105,0.80)), url("${post.data.heroImage}") center/cover no-repeat;`
   : undefined;
@@ -32,8 +40,9 @@ const heroStyle = post.data.heroImage
   </section>
 
   <article class="section">
-    <div class={post.data.capitalinasBanner ? 'container post__layout' : 'container'}>
+    <div class={conRiel ? 'container post__layout' : 'container'}>
       {post.data.capitalinasBanner && <CapitalinasBanner />}
+      {servicio && <ServicioBanner servicio={servicio} />}
       <div class="post__inner prose">
       <Content />
       {post.data.contactForm && (
