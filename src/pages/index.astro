@@ -421,7 +421,11 @@ const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month:
   .unidad__logo { height: 62px; width: auto; margin-bottom: 1.3rem; }
   /* El logo trae fondo negro horneado: con lighten sobre negro puro
      los píxeles negros desaparecen y no se ve el recuadro. */
-  .unidad__logo--dc { height: 150px; mix-blend-mode: lighten; }
+  /* El logo trae canal alfa, así que el degradé de la sección pasa por detrás.
+     Antes se intentaba con mix-blend-mode, pero no servía: el contenedor crea
+     contexto de apilado (z-index: 1) y el blend no tenía fondo contra el cual
+     mezclar, así que el rectángulo negro del archivo quedaba a la vista. */
+  .unidad__logo--dc { height: 150px; }
   .unidad__titulo { font-size: clamp(1.4rem, 2.4vw, 1.95rem); font-weight: 400; line-height: 1.25; margin: 0 0 1.1rem; }
   .unidad__desc { margin: 0 0 1.4rem; max-width: 46ch; }
   .unidad--clara .unidad__desc { color: var(--muted); }

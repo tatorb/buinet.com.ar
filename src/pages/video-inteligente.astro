@@ -421,7 +421,10 @@ const faqLd = JSON.stringify({
   /* BULLETS */
   .vi-bullets { list-style: none; padding: 0; margin: 1.6rem 0 0; display: grid; gap: 0.9rem; }
   .vi-bullets li { display: flex; gap: 0.7rem; align-items: flex-start; font-size: 1.05rem; }
-  .vi-bullets svg { color: var(--teal); flex: none; margin-top: 5px; }
+  /* :global() porque el <svg> lo renderiza el componente Icon y lleva su
+     propio hash de scope, no el de esta página. Sin esto la regla no matchea
+     y el ícono se encoge a un ancho distinto en cada ítem. */
+  .vi-bullets :global(svg) { color: var(--teal); flex: none; margin-top: 5px; }
 
   /* VIDEO + BULLETS */
   .vi-cambia { display: grid; grid-template-columns: 1fr 1fr; gap: 2.6rem; align-items: center; }
@@ -482,11 +485,15 @@ const faqLd = JSON.stringify({
   .vi-cta { display: grid; grid-template-columns: 1fr 1.1fr; gap: 3rem; align-items: start; }
 
   @media (max-width: 980px) {
-    .vi-grid, .vi-grid--3 { grid-template-columns: repeat(2, 1fr); }
+    .vi-grid, .vi-grid--3, .vi-escenarios { grid-template-columns: repeat(2, 1fr); }
+    .vi-cifras { grid-template-columns: repeat(2, 1fr); }
     .vi-cambia { grid-template-columns: 1fr; gap: 1.8rem; }
     .vi-cta { grid-template-columns: 1fr; gap: 2rem; }
   }
   @media (max-width: 560px) {
-    .vi-grid, .vi-grid--3 { grid-template-columns: 1fr; }
+    .vi-grid, .vi-grid--3, .vi-escenarios { grid-template-columns: 1fr; }
+    /* Las cifras siguen de a dos: son un número corto y una etiqueta de una o
+       dos palabras, así que entran holgadas y evitan ocho pantallas de scroll. */
+    .vi-cifras { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
   }
 </style>

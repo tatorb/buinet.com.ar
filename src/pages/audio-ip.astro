@@ -337,7 +337,8 @@ const faqLd = JSON.stringify({
   /* BULLETS */
   .ai-bullets { list-style: none; padding: 0; margin: 1.6rem 0 0; display: grid; gap: 0.9rem; }
   .ai-bullets li { display: flex; gap: 0.7rem; align-items: flex-start; font-size: 1.05rem; }
-  .ai-bullets svg { color: var(--teal); flex: none; margin-top: 5px; }
+  /* :global() — el <svg> viene de Icon y lleva otro hash de scope. */
+  .ai-bullets :global(svg) { color: var(--teal); flex: none; margin-top: 5px; }
 
   /* IMAGEN INTRO */
   .ai-cambia { display: grid; grid-template-columns: 1fr 1fr; gap: 2.6rem; align-items: center; }
