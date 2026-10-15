@@ -51,4 +51,9 @@
 
   # Duplicado: consolida la variante "la-base" en la canónica "esencial-hoy-en-dia".
   RewriteRule ^que-es-una-red-convergente-y-por-que-es-la-base/?$ /que-es-una-red-convergente-y-por-que-es-esencial-hoy-en-dia/ [R=301,L]
+
+  # Slugs con errores de tipeo corregidos: redirigen la URL vieja (mal escrita,
+  # ya indexada) a la nueva canónica.
+  RewriteRule ^cuanto-nfluye-el-costo-de-una-solucion-integral-convergente/?$ /cuanto-influye-el-costo-de-una-solucion-integral-convergente/ [R=301,L]
+  RewriteRule ^iaen-videovigilancia-una-ventaja-competitiva/?$ /ia-en-videovigilancia-una-ventaja-competitiva/ [R=301,L]
 </IfModule>

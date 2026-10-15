@@ -41,6 +41,32 @@ const brandedTitle = title ? `${title} — ${site.name}` : `${site.name} — ${s
 // Título del documento: pierde la marca solo si la página pide brandSuffix={false}.
 const fullTitle = title && !brandSuffix ? title : brandedTitle;
 const canonical = new URL(canonicalOverride ?? Astro.url.pathname, Astro.site);
+
+// JSON-LD Organization (global, en todas las páginas). Los datos salen de
+// site.config para no duplicarlos; subOrganization enlaza con Data Center
+// Capitalinas. El FAQPage de /videovigilancia/ se define aparte y no se toca.
+const orgLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: site.legalName,
+  url: 'https://buinet.com.ar/',
+  logo: new URL('/wp-content/uploads/2024/07/logo.png', Astro.site).href,
+  telephone: site.phoneHref,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: site.address.street,
+    postalCode: site.address.zip,
+    addressLocality: site.address.city,
+    addressRegion: site.address.region,
+    addressCountry: site.address.countryCode,
+  },
+  sameAs: [site.social.linkedin, site.social.instagram],
+  subOrganization: {
+    '@type': 'Organization',
+    name: 'Data Center Capitalinas',
+    url: 'https://capitalinasdc.com/',
+  },
+});
 ---
 <!doctype html>
 <html lang="es">
@@ -73,6 +99,8 @@ const canonical = new URL(canonicalOverride ?? Astro.url.pathname, Astro.site);
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={new URL(ogImage, Astro.site)} />
     <meta name="twitter:card" content="summary_large_image" />
+    <!-- Datos estructurados: Organization (global, todas las páginas). -->
+    <script type="application/ld+json" is:inline set:html={orgLd} />
     <!-- Contenido adicional de <head> por página (p. ej. JSON-LD). -->
     <slot name="head" />
   </head>

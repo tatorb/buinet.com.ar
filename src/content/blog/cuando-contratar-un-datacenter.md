@@ -69,4 +69,4 @@ Si tu empresa pertenece a alguno de estos sectores o enfrenta desafíos similare
 
 ##### Conclusión
 
-Si tu empresa se enfrenta a cualquiera de estos desafíos, es el momento de considerar la contratación de un datacenter. En **Buinet**, estamos comprometidos en brindarte la infraestructura y las soluciones necesarias para proteger tus datos, garantizar la continuidad de tus operaciones y apoyar el crecimiento de tu negocio. ¡Contáctanos hoy mismo y descubre cómo podemos ayudarte a llevar tu empresa al siguiente nivel!
+Si tu empresa se enfrenta a cualquiera de estos desafíos, es el momento de considerar la contratación de un datacenter. En **Buinet**, estamos comprometidos en brindarte la infraestructura y las soluciones necesarias para proteger tus datos, garantizar la continuidad de tus operaciones y apoyar el crecimiento de tu negocio. ¡Contáctanos hoy mismo y descubre cómo podemos ayudarte a llevar tu empresa al siguiente nivel! Conocé [Data Center Capitalinas](https://capitalinasdc.com/), nuestro data center en Córdoba.

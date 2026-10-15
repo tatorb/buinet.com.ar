@@ -10,10 +10,12 @@ export const site = {
   phone: '+54 351 5544150',
   phoneHref: '+543515544150',
   address: {
-    street: 'Humberto Primo 670, Piso 6 - Of. F66',
+    street: 'Humberto Primo 670, piso 6, oficina 66, Edificio Fragueiro',
     zip: 'X5000FAN',
     city: 'Córdoba',
-    country: 'Argentina',
+    region: 'Córdoba',
+    country: 'Argentina',   // texto que muestra el pie del sitio
+    countryCode: 'AR',      // código ISO para schema.org (JSON-LD)
   },
   tagline: 'Infraestructuras de redes convergentes',
   social: {

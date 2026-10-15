@@ -33,6 +33,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Historial completo: el sitemap toma el lastmod de cada URL del
+          # último commit de git que tocó el archivo (ver astro.config.mjs).
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: 20
