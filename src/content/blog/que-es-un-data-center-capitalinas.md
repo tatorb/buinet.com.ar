@@ -7,7 +7,7 @@ author: "Building Networks"
 capitalinasBanner: true
 draft: false
 ---
-...y por qué el Centro de Datos de Capitalinas es una gran opción en Córdoba?
+...y por qué el [Centro de Datos de Capitalinas](https://capitalinasdc.com/) es una gran opción en Córdoba?
 
 Imaginá entrar a una segura en un ambiente controlado, monitorizado y con temperatura constante cerca de los 23 °C. Las luces LED blancas iluminan pasillos perfectamente ordenados, donde filas de racks metálicos alojan servidores que parpadean sin pausa. El aire acondicionado nunca se apaga, la energía nunca se corta, internet nunca se cae.
 

@@ -11,7 +11,7 @@ draft: false
 
 El avance del edge computing está transformando la manera en que las empresas gestionan su infraestructura tecnológica. Si bien el procesamiento en el borde permite reducir latencias y optimizar el tráfico de datos, su efectividad depende de una arquitectura híbrida que integre centros de datos confiables y estratégicamente ubicados.
 
-En Córdoba, nuestro [Data Center en el Distrito Corporativo Capitalinas](/data-center/) se posiciona como una pieza clave para empresas que buscan resiliencia, conectividad y seguridad de nivel empresarial. A pesar de estas ventajas, muchas organizaciones aún no han explorado el potencial de alojar su infraestructura en un entorno controlado y de alta disponibilidad, perdiendo eficiencia operativa y competitividad.
+En Córdoba, nuestro [Data Center en el Distrito Corporativo Capitalinas](/data-center/) se posiciona como una pieza clave para empresas que buscan resiliencia, conectividad y seguridad de nivel empresarial. Podés conocerlo en el sitio de [Data Center Capitalinas](https://capitalinasdc.com/). A pesar de estas ventajas, muchas organizaciones aún no han explorado el potencial de alojar su infraestructura en un entorno controlado y de alta disponibilidad, perdiendo eficiencia operativa y competitividad.
 
 #### Data Centers y Edge Computing: ¿Cómo se complementan?
 

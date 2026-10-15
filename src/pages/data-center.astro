@@ -11,6 +11,17 @@ const s = servicios.find((x) => x.slug === 'data-center')!;
     procesos robustos, diseñados para garantizar fluidez, seguridad y alto rendimiento
     en cada operación.
   </p>
+
+  <aside class="dc-cap-destacado">
+    <p>
+      El alojamiento de infraestructura crítica se presta a través de
+      <a href="https://capitalinasdc.com/" target="_blank" rel="noopener">Data Center Capitalinas en Córdoba</a>,
+      nuestro data center en el Distrito Capitalinas. Conocé las modalidades de
+      <a href="https://capitalinasdc.com/soluciones/colocation" target="_blank" rel="noopener">Co-Locación</a>
+      y <a href="https://capitalinasdc.com/soluciones/bare-metal" target="_blank" rel="noopener">Bare Metal</a>.
+    </p>
+  </aside>
+
   <h2>Datacenter Capitalinas</h2>
   <p>
     Nuestra unidad de negocio <strong>Datacenter Capitalinas</strong> ofrece
@@ -26,4 +37,15 @@ const s = servicios.find((x) => x.slug === 'data-center')!;
   </ul>
 
   <CapitalinasBanner />
+
+  <style>
+    .dc-cap-destacado {
+      border-left: 3px solid var(--teal, #0a7d74);
+      background: rgba(10, 125, 116, 0.06);
+      padding: 1rem 1.25rem;
+      border-radius: 6px;
+      margin: 1.25rem 0 1.75rem;
+    }
+    .dc-cap-destacado p { margin: 0; }
+  </style>
 </ServiceLayout>
