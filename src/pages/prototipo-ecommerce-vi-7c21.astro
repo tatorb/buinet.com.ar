@@ -416,7 +416,7 @@ const faqLd = JSON.stringify({
               >
                 <div class="prod__foto">
                   {p.imagen
-                    ? <img src={p.imagen} alt={p.modelo} loading="lazy" />
+                    ? <img src={p.imagen} alt={p.modelo} loading="lazy" width="800" height="800" />
                     : <span class="prod__ph" aria-hidden="true"><Icon name={p.categoria === 'altavoz' ? 'speaker' : p.categoria === 'radar' ? 'target' : p.categoria === 'grabacion' ? 'server' : 'camera'} size={46} /></span>
                   }
                   {p.analitica && <span class="prod__flag">Analítica</span>}
@@ -708,7 +708,9 @@ const faqLd = JSON.stringify({
   .prod { grid-column: span 3; display: flex; flex-direction: column; background: #fff; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-sm); }
   .prod[hidden] { display: none; }
   .prod__foto { position: relative; aspect-ratio: 4 / 3; display: grid; place-items: center; background: var(--teal-tint); }
-  .prod__foto img { width: 100%; height: 100%; object-fit: cover; }
+  /* Las fotos son el producto recortado sobre fondo transparente, así que van
+     contenidas y con aire. Con cover se recortaría el equipo. */
+  .prod__foto img { width: 100%; height: 100%; object-fit: contain; padding: 0.9rem; }
   .prod__ph { color: var(--teal); opacity: 0.5; }
   .prod__flag { position: absolute; top: 0.7rem; left: 0.7rem; background: var(--teal); color: #fff; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.22rem 0.5rem; border-radius: 999px; }
   .prod__body { padding: 1.1rem 1.1rem 0.6rem; flex: 1; }
