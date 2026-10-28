@@ -18,8 +18,11 @@
 //    convención de AXIS: -E, -LE, -VE, -LVE y -SLVE para intemperie, el resto
 //    para interior. Para el prototipo alcanza; para un catálogo de verdad hay
 //    que confirmarlo contra la ficha de cada producto.
-//  - Los altavoces, el radar y los equipos de grabación todavía NO tienen
-//    foto: quedan con el placeholder hasta que lleguen las imágenes.
+//  - Faltan dos fotos: el altavoz AXIS C1004-E y el servidor AXIS S1216.
+//    Esos dos quedan con el placeholder hasta que lleguen las imágenes.
+//  - OJO con los modelos de radar y grabación: salieron de la primera versión
+//    inventada de este archivo y no se verificaron contra el catálogo vigente
+//    de AXIS. Los de cámaras y altavoces sí vinieron del cliente.
 // ============================================================================
 
 export interface Producto {
@@ -305,6 +308,7 @@ export const productos: Producto[] = [
     ficha: 'Detecta por movimiento real y no por cambio de píxeles. No lo afectan la lluvia, la niebla ni las sombras.',
     tags: ['radar', 'perímetro', 'sin falsas alarmas'],
     precio: 3900000,
+    imagen: IMG + 'axis-d2110-ve.webp',
   },
   {
     sku: 'AX-D2210',
@@ -316,6 +320,7 @@ export const productos: Producto[] = [
     ficha: 'Alcance mayor para predios grandes. Se combina con una PTZ para que el radar detecte y la cámara siga.',
     tags: ['radar', 'predios grandes', 'ptz'],
     precio: 4600000,
+    imagen: IMG + 'axis-d2210-ve.webp',
   },
 
   // --------------------------------------------------- altavoces (sin foto)
@@ -340,6 +345,7 @@ export const productos: Producto[] = [
     ficha: 'Para intemperie y distancias largas. Disuasión activa en perímetro cuando la analítica detecta un ingreso.',
     tags: ['audio ip', 'exterior', 'disuasión'],
     precio: 740000,
+    imagen: IMG + 'axis-c1310-e-mk-ii.webp',
   },
   {
     sku: 'AX-C2005',
@@ -351,6 +357,7 @@ export const productos: Producto[] = [
     ficha: 'Cobertura pareja en galpones y depósitos. Voceo, evacuación y mensajería por zona.',
     tags: ['audio ip', 'techo', 'voceo'],
     precio: 410000,
+    imagen: IMG + 'axis-c2005.webp',
   },
 
   // -------------------------------------------------- grabación (sin foto)
@@ -364,6 +371,7 @@ export const productos: Producto[] = [
     ficha: 'Ocho puertos PoE y almacenamiento integrado. Para instalaciones chicas que no justifican un servidor.',
     tags: ['nvr', 'poe', 'instalación chica'],
     precio: 1250000,
+    imagen: IMG + 'axis-s3008-recorder.webp',
   },
   {
     sku: 'AX-S1216',
