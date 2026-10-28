@@ -680,7 +680,15 @@ const faqLd = JSON.stringify({
   }
   .proto-aviso a { color: #ffd98a; }
 
-  .tienda__layout { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 2.2rem; margin-top: 2.6rem; align-items: start; }
+  /* Grilla de 12 columnas. El filtro toma 3 y los productos los 9 restantes.
+     Las dos grillas comparten el mismo --gap a propósito: con 9 columnas
+     dentro de un área de 9 columnas y el mismo gap, las pistas internas miden
+     exactamente lo mismo que las del padre, así que las tarjetas caen sobre
+     la misma retícula de 12. Si los gaps difieren, se desalinea. */
+  .tienda { --gap: 1.4rem; }
+  .tienda__layout { display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--gap); margin-top: 2.6rem; align-items: start; }
+  .tienda__filtros { grid-column: span 3; padding-right: 0.8rem; }
+  .tienda__main { grid-column: span 9; }
   .tienda__filtros-inner { position: sticky; top: 90px; display: grid; gap: 1.5rem; }
   .filtro { border: 0; padding: 0; margin: 0; display: grid; gap: 0.5rem; }
   .filtro__label { font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--heading); padding: 0; }
@@ -696,8 +704,8 @@ const faqLd = JSON.stringify({
   .tienda__orden { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; color: var(--muted); }
   .tienda__orden select { padding: 0.45rem 0.6rem; border: 1px solid var(--border); border-radius: 8px; font: inherit; font-size: 0.9rem; background: #fff; }
 
-  .tienda__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.3rem; }
-  .prod { display: flex; flex-direction: column; background: #fff; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-sm); }
+  .tienda__grid { display: grid; grid-template-columns: repeat(9, 1fr); gap: var(--gap); }
+  .prod { grid-column: span 3; display: flex; flex-direction: column; background: #fff; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-sm); }
   .prod[hidden] { display: none; }
   .prod__foto { position: relative; aspect-ratio: 4 / 3; display: grid; place-items: center; background: var(--teal-tint); }
   .prod__foto img { width: 100%; height: 100%; object-fit: cover; }
@@ -759,10 +767,14 @@ const faqLd = JSON.stringify({
   .carrito__cta2 { font-size: 0.68rem; border-color: var(--border); color: var(--muted); }
   .carrito__cta2:hover { border-color: var(--teal); background: transparent; color: var(--teal); }
 
+  /* Sin lugar para la columna de filtros: los dos bloques pasan a ancho
+     completo de las 12 y las tarjetas bajan a dos por fila, y despues a una. */
   @media (max-width: 980px) {
-    .tienda__layout { grid-template-columns: 1fr; }
+    .tienda__filtros, .tienda__main { grid-column: 1 / -1; }
+    .tienda__filtros { padding-right: 0; }
     .tienda__filtros-inner { position: static; grid-template-columns: repeat(2, 1fr); }
     .tienda__grid { grid-template-columns: repeat(2, 1fr); }
+    .prod { grid-column: auto; }
   }
   @media (max-width: 620px) {
     .tienda__filtros-inner { grid-template-columns: 1fr; }
