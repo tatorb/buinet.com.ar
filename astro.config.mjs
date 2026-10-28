@@ -83,8 +83,10 @@ export default defineConfig({
   // más débil para Google que un 301 real del servidor.
   integrations: [
     sitemap({
-      // La galería interna queda fuera del sitemap (no debe indexarse ni difundirse).
-      filter: (page) => !page.includes('/galeria-interna-'),
+      // Fuera del sitemap: la galería interna y las páginas de prototipo. No
+      // deben indexarse ni difundirse. Las dos llevan además noindex en el
+      // <head> y viven en URLs con un token difícil de adivinar.
+      filter: (page) => !page.includes('/galeria-interna-') && !page.includes('/prototipo-'),
       // lastmod por URL (ver lastmodForUrl). Google lo usa para priorizar el recrawl.
       serialize(item) {
         const lm = lastmodForUrl(item.url);

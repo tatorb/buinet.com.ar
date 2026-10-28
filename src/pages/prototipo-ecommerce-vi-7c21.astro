@@ -1,0 +1,971 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import ContactForm from '../components/ContactForm.astro';
+import YouTube from '../components/YouTube.astro';
+import { withBase } from '../utils/url';
+import { productos, CATEGORIAS, ENTORNOS } from '../data/catalogo-axis';
+
+// ============================================================================
+// PROTOTIPO — NO ES UNA PÁGINA PÚBLICA.
+//
+// Copia de /video-inteligente/ con una sección de e-commerce agregada, para
+// ver cómo conviven el argumento de servicio y una grilla de producto en la
+// misma página.
+//
+// Cómo queda oculta, tres candados:
+//  1. URL con token difícil de adivinar (el sufijo -7c21).
+//  2. noindex en el <head> (prop noindex de BaseLayout).
+//  3. Excluida del sitemap, en el filter de astro.config.mjs.
+// No está enlazada desde ningún lado: ni el menú, ni el pie, ni otra página.
+//
+// No tiene backend. El carrito vive en el navegador (localStorage) y los
+// botones de compra no hacen nada: son para mirar el flujo, no para operar.
+// El catálogo y los precios son de mentira, ver src/data/catalogo-axis.ts.
+// ============================================================================
+
+const precioMax = Math.max(...productos.map((p) => p.precio));
+
+// ============================================================================
+// PÁGINA DE SERVICIO — Video inteligente.
+// Nivel /videovigilancia/ e /infraestructura-de-red/: usa BaseLayout directo,
+// no ServiceLayout, porque tiene estructura propia.
+// Poco texto arriba, todo el desarrollo en las FAQ.
+// ============================================================================
+
+const beneficios = [
+  'Detecta condiciones antes de que se conviertan en incidente',
+  'Genera datos de proceso en tiempo real, no solo grabaciones',
+  'Responde automáticamente integrado con audio IP',
+  'Se gestiona junto con la red, accesos y audio desde CamScope',
+];
+
+const sectores = [
+  { titulo: 'Industria y manufactura', resumen: 'Líneas, perímetros, EPP, auditoría de proceso', icono: 'factory' },
+  { titulo: 'Logística y distribución', resumen: 'LPR, trazabilidad, tiempos de ciclo', icono: 'network' },
+  { titulo: 'Corporativo y oficinas', resumen: 'Accesos, visitas, perímetro de edificio', icono: 'building' },
+  { titulo: 'Industria regulada', resumen: 'Alimentaria, farmacéutica, salud', icono: 'shield' },
+];
+
+const diferenciales = [
+  { titulo: 'AXIS Solution Gold Partner', resumen: 'Hardware con LTS documentado y ciberseguridad desde el diseño', icono: 'camera' },
+  { titulo: 'CamScope', resumen: 'Plataforma propia, sin licenciamiento por canal', icono: 'server' },
+  { titulo: 'Casi veinte años en Córdoba', resumen: 'Industria, logística, corporativo y sector regulado', icono: 'lock' },
+];
+
+// Enunciado de oferta congelado. Va textual, sin variantes ni sinónimos.
+const OFERTA =
+  'Sistemas de video para la detección, el control y la seguridad mediante IA, analítica y metadatos integrados en los dispositivos y en tiempo real.';
+
+// Los tres bloques de desarrollo pasan a cards con un resumen breve. El texto
+// completo no se pierde: vive íntegro en las FAQ de más abajo, que es donde lo
+// leen tanto las personas como los modelos de lenguaje.
+const pilares = [
+  {
+    titulo: 'Cómo funciona',
+    icono: 'chip',
+    resumen: 'El procesamiento ocurre en el propio dispositivo, no en un servidor central. Cada cámara clasifica lo que ve en el momento, y eso libera ancho de banda, escalabilidad y disponibilidad.',
+  },
+  {
+    titulo: 'El dato',
+    icono: 'database',
+    resumen: 'Cada hecho genera un metadato, la descripción de lo que pasó separada de la imagen. Pesa una fracción del video, se consulta como una base de datos y se integra con los sistemas que ya usás.',
+  },
+  {
+    titulo: 'Detección, control y seguridad',
+    icono: 'target',
+    resumen: 'Detectar es clasificar antes de alertar. Controlar es que el evento dispare una acción en otro sistema. Asegurar es que ese registro sirva como evidencia y sostenga el cumplimiento.',
+  },
+];
+
+// Cifras del caso. Son las únicas ocho autorizadas. No sumar ninguna más.
+
+// El complejo no se nombra por pedido expreso del cliente.
+const cifras = [
+  { valor: '436', label: 'cámaras' },
+  { valor: '8', label: 'servidores dedicados' },
+  { valor: '88', label: 'controladores de acceso' },
+  { valor: '264', label: 'puntos de acceso controlados' },
+  { valor: '64', label: 'dispositivos de audio IP' },
+  { valor: '42', label: 'switches' },
+  { valor: '1.176', label: 'puertos activos' },
+  { valor: '+15 años', label: 'de operación continua' },
+];
+
+// Satélites del cluster. Los textos de enlace describen el escenario, nunca el
+// producto, y ninguno contiene el término vedado.
+const escenarios = [
+  {
+    titulo: 'Lectura de patentes y acceso vehicular',
+    resumen: 'Cuando lo que hay que resolver es quién entra y sale en portería, sin detener la circulación.',
+    icono: 'car',
+    href: '/lpr-control-acceso-vehicular/',
+  },
+  {
+    titulo: 'NVR o VMS, cómo elegir la base del sistema',
+    resumen: 'La decisión que condiciona todo lo que se pueda hacer después.',
+    icono: 'server',
+    href: '/nvr-vs-vms/',
+  },
+  {
+    titulo: 'Almacenamiento y retención',
+    resumen: 'Cuánto tiempo hay que poder mirar hacia atrás, y qué cuesta sostenerlo.',
+    icono: 'database',
+    href: '/almacenamiento-videovigilancia/',
+  },
+  {
+    titulo: 'Ciclo de vida del parque de dispositivos',
+    resumen: 'Cuándo un dispositivo dejó de rendir y conviene reemplazarlo.',
+    icono: 'clock',
+    href: '/vida-util-camara-ip/',
+  },
+  {
+    titulo: 'Merma y faltante interno',
+    resumen: 'Cuando la pérdida ocurre adentro y no hay un ingreso forzado que investigar.',
+    icono: 'box',
+    href: '/merma-robo-interno-videovigilancia/',
+  },
+  {
+    titulo: 'Auditoría de procesos',
+    resumen: 'Usar el registro para verificar cómo se trabaja, no solamente para investigar un hecho.',
+    icono: 'clipboard',
+    href: '/auditoria-procesos-video/',
+  },
+  {
+    titulo: 'Integración con accesos y audio IP',
+    resumen: 'Que la detección dispare una acción y no solamente un aviso.',
+    icono: 'speaker',
+    href: '/integracion-control-accesos-audio-ip/',
+  },
+  {
+    titulo: 'Perímetros industriales',
+    resumen: 'Grandes superficies donde el recorrido humano llega tarde.',
+    icono: 'factory',
+    href: '/videovigilancia-industrial/',
+  },
+  {
+    titulo: 'Plantas de alimentos',
+    resumen: 'Ambientes de lavado a presión, frío y trazabilidad por lote.',
+    icono: 'food',
+    href: '/videovigilancia-industria-alimenticia/',
+  },
+  {
+    titulo: 'Obras en ejecución',
+    resumen: 'Sistemas temporales que cambian a medida que avanza la obra.',
+    icono: 'helmet',
+    href: '/videovigilancia-en-obra/',
+  },
+  {
+    titulo: 'Migración de sistemas analógicos a IP',
+    resumen: 'Pasar a IP sin cortar la operación durante la transición.',
+    icono: 'refresh',
+    href: '/actualizacion-videovigilancia-analogica-a-ip/',
+  },
+  {
+    titulo: 'Detección térmica',
+    resumen: 'Zonas sin luz, humo o niebla, donde la imagen convencional no alcanza.',
+    icono: 'thermometer',
+    href: '/camaras-termicas-axis-para-industrias-y-perimetros/',
+  },
+];
+
+// Las 12 FAQ alimentan el acordeón visible y el schema FAQPage. Un solo origen
+// para las dos cosas, así nunca se desincronizan.
+const faqs = [
+  {
+    q: '¿Cómo funciona la analítica de video embebida en el dispositivo?',
+    a: 'El procesamiento ocurre dentro del propio dispositivo, no en un servidor central que recibe todo el video y después lo analiza. Cada dispositivo clasifica lo que ve en el momento en que lo ve. Eso cambia tres cosas de la operación. El ancho de banda deja de ser el límite del sistema, porque por la red viaja el evento y no la totalidad del video en crudo. La escalabilidad deja de depender de cuántos servidores se agreguen, porque cada dispositivo que se suma trae su propia capacidad de análisis. Y la disponibilidad mejora, porque un corte de enlace no interrumpe la clasificación, que sigue ocurriendo donde está el dispositivo. Cada imagen deja de ser un cuadro de video y pasa a ser un evento con datos asociados. Qué objeto, de qué tipo, en qué zona, a qué hora, con qué recorrido. Esos eventos quedan indexados, y un sistema indexado se busca, se integra y se audita. El tiempo de búsqueda de un hecho puntual deja de ser una revisión de horas de grabación y pasa a ser una consulta.',
+  },
+  {
+    q: '¿Qué es un metadato de escena y para qué sirve?',
+    a: 'Un metadato es la descripción de lo que pasó, separada de la imagen que lo muestra. Cuando un vehículo entra a un playón, el dispositivo no guarda solamente el video. Guarda además una ficha de ese hecho. Un objeto del tipo vehículo, que ingresó por una zona determinada, con la hora exacta de ingreso y el tiempo que permaneció. Esa ficha pesa una fracción mínima de lo que pesa el video, y a diferencia del video, se consulta como se consulta cualquier base de datos. La consecuencia práctica es que el video deja de terminar en una pantalla que alguien mira. Pasa a alimentar los sistemas que la organización ya usa para decidir. Los metadatos de escena responden a un formato estándar de la industria y no a un lenguaje cerrado de un fabricante. Por eso se integran con plataformas de gestión, con sistemas de control de acceso y con sistemas de negocio sin desarrollos a medida, y por eso la organización no queda atada a un proveedor único.',
+  },
+  {
+    q: '¿Qué significan exactamente detección, control y seguridad?',
+    a: 'Detección. El sistema distingue de qué tipo de objeto se trata antes de generar un evento. Una persona, un vehículo, algo que quedó detenido donde no corresponde. Esa clasificación es lo que separa un evento real de un falso positivo. Sobre esa base se calibran las reglas. Qué zona, qué umbral de permanencia, qué franja horaria, qué dirección de recorrido. Una regla mal calibrada produce tantos eventos que el operador deja de mirarlos, y un sistema que nadie mira no detecta nada. La calibración no es un ajuste inicial, es un trabajo que sigue durante toda la vida del sistema, porque la operación cambia. Control. La misma detección que dispara un evento puede disparar una acción en otro sistema. Un vehículo cuya patente está habilitada abre la barrera sin intervención de nadie. Un ingreso fuera de la franja permitida activa un mensaje por audio en el punto exacto donde está ocurriendo. El tiempo de respuesta deja de depender de que alguien esté mirando una pantalla en ese momento. Cuando la detección, el control de acceso y el audio comparten una sola línea de tiempo, aparece la trazabilidad. Cada hecho queda asociado a quién lo produjo, en qué punto, con qué credencial y con qué respuesta del sistema. Es la diferencia entre saber que algo pasó y poder reconstruir la secuencia completa. Seguridad. Un evento indexado es evidencia recuperable. Ante un reclamo, un siniestro o una investigación interna, el tiempo de búsqueda deja de medirse en jornadas de revisión, y la organización llega con material acotado al hecho y no con horas de grabación sin ordenar. El cumplimiento se apoya en lo mismo. Retención definida por política y no por lo que entra en el disco, acceso a la evidencia registrado y auditable, y zonas excluidas del análisis por decisión explícita. Un sistema que no puede demostrar quién vio qué y cuándo es un problema, no una defensa.',
+  },
+  {
+    q: '¿Cuál es la diferencia entre un sistema que graba y uno que detecta?',
+    a: 'Un sistema que graba almacena lo que la cámara ve para revisarlo después. Un sistema que detecta clasifica lo que ve en tiempo real y genera un evento cuando identifica una condición definida. La diferencia práctica es cuándo llega la información. Con grabación, la información llega cuando alguien la busca. Con detección, llega en el momento en que todavía se puede actuar.',
+  },
+  {
+    q: '¿Qué puede detectar la analítica embebida en el dispositivo?',
+    a: 'Depende de la configuración, pero las capacidades más comunes incluyen clasificación de objetos, personas, vehículos o animales, presencia en zonas definidas, cruce de líneas virtuales en una dirección específica, ausencia de EPP en zonas de riesgo, comportamientos de riesgo como caídas o corridas, permanencia excesiva en un sector, y variables térmicas cuando se usan cámaras de ese tipo. La analítica corre en el dispositivo, sin enviar video a un servidor para procesarlo.',
+  },
+  {
+    q: '¿Cómo se integra el video con el audio IP para generar una respuesta automática?',
+    a: 'Cuando la analítica detecta una condición, puede activar directamente un altavoz en el sector donde ocurrió el evento. La respuesta no es una sirena general sino un mensaje específico dirigido al área específica. Eso permite disuadir una intrusión, alertar a un operador que ingresó sin EPP, o notificar a un supervisor de una anomalía en línea, todo antes de que alguien tenga que moverse o revisar una pantalla.',
+  },
+  {
+    q: '¿Qué son los metadatos de video y para qué sirven en una operación?',
+    a: 'Los metadatos son los datos estructurados que genera la analítica a partir de lo que ve la cámara. No es el video en sí sino la información extraída, cuántas personas pasaron por un sector, cuánto tiempo estuvo un vehículo en la playa de descarga, en qué momento se detectó una condición de riesgo. Esos datos son livianos, se integran con cualquier sistema de gestión y se pueden visualizar en tableros en tiempo real. El video queda grabado como respaldo. Los metadatos son los que generan valor operativo.',
+  },
+  {
+    q: '¿Qué hace falta en la red para que el sistema funcione en tiempo real?',
+    a: 'La red tiene que estar dimensionada para soportar el tráfico de video y metadatos en condiciones de operación plena, no solo en la demostración. Eso implica ancho de banda suficiente en los uplinks entre switches, segmentación del tráfico de video en una VLAN separada del tráfico productivo, y enlaces de fibra en instalaciones perimetrales o con puntos alejados. Un cuello de botella en la red hace que las alertas lleguen tarde. En un sistema de detección, tarde puede ser demasiado tarde.',
+  },
+  {
+    q: '¿Cómo se gestiona la ciberseguridad del sistema de video?',
+    a: 'Las cámaras AXIS tienen firmware firmado digitalmente que se verifica en cada arranque. Ningún firmware no autorizado puede instalarse en el dispositivo. AXIS opera un programa de long term support con actualizaciones de seguridad gratuitas y un servicio de notificación de vulnerabilidades. Desde CamScope, las actualizaciones de firmware de toda la flota se ejecutan de forma centralizada. Y la red de videovigilancia se diseña segmentada del tráfico productivo para limitar el radio de impacto ante cualquier incidente.',
+  },
+  {
+    q: '¿Qué es CamScope y qué diferencia tiene con un VMS genérico?',
+    a: 'CamScope es la plataforma de gestión que Building Networks desarrolló a lo largo de diez años de operación en instalaciones industriales y corporativas. Centraliza la gestión de video, control de accesos y audio IP en una sola interfaz. No aplica licenciamiento por canal, lo que cambia completamente la ecuación de costo en instalaciones que escalan. Y permite ejecutar actualizaciones de firmware de cámaras y del propio sistema de forma centralizada, sin intervención manual dispositivo por dispositivo.',
+  },
+  {
+    q: '¿Por qué AXIS y no otro fabricante?',
+    a: 'AXIS diseña su propio procesador, el ARTPEC, lo que le da control total sobre las funciones de seguridad desde el nivel más bajo del hardware. Cada dispositivo incluye Edge Vault, un módulo criptográfico que protege las claves y certificados ante cualquier intento de manipulación. El ciclo de long term support está documentado y publicado públicamente. Y AXIS cumple con la certificación FIPS 140, el estándar de seguridad criptográfica exigido por agencias federales de Estados Unidos. Es el fabricante que mejor combina capacidad de analítica, ciberseguridad documentada y soporte de largo plazo.',
+  },
+  {
+    q: '¿El sistema reemplaza al personal de seguridad o lo potencia?',
+    a: 'Lo potencia. Una persona puede cubrir un área, no diez. La analítica cubre todas las zonas simultáneamente y filtra el ruido, solo genera un evento cuando detecta una condición real. El personal de seguridad recibe la alerta con información precisa del sector y actúa sobre algo concreto, en lugar de monitorear pantallas o responder a falsas alarmas constantes. En instalaciones con perímetros grandes o múltiples turnos, esa diferencia es significativa.',
+  },
+  {
+    q: '¿Cuánto cuesta agregar cámaras cuando la operación crece?',
+    a: 'Depende de cómo esté diseñado el sistema desde el principio. Si la red fue dimensionada para el crecimiento proyectado, agregar cámaras es sumar dispositivos. Si no, puede implicar rehacer parte de la infraestructura. CamScope no cobra licencia por cámara adicional, lo que elimina el costo de software que tienen otros sistemas en cada ampliación. El costo real de escalar se define en el diseño inicial, no en el momento de la ampliación.',
+  },
+  {
+    q: '¿Cómo se actualiza el firmware de toda la flota?',
+    a: 'Desde CamScope se ejecutan actualizaciones de firmware de forma centralizada sobre toda la flota, incluyendo tanto las cámaras AXIS como el propio sistema de gestión. Las actualizaciones se planifican y ejecutan desde un punto único. El cliente no tiene que hacer nada manualmente. Eso garantiza que el sistema se mantiene actualizado sin que la gestión del mantenimiento dependa de que alguien lo recuerde y lo priorice.',
+  },
+  {
+    q: '¿Por dónde se empieza un proyecto?',
+    a: 'Por un relevamiento. Antes de especificar una sola cámara, necesitamos entender qué tiene instalado tu operación hoy, qué información necesita que hoy no tiene, cuáles son las condiciones reales del entorno y cómo está la infraestructura de red. Desde ahí definimos cobertura, equipamiento, configuración de analítica e integración con los sistemas existentes. El relevamiento es el primer paso y es sin costo.',
+  },
+];
+
+const faqLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+});
+---
+<BaseLayout
+  title="Prototipo · Video inteligente con tienda"
+  description="Prototipo interno. No es una página pública."
+  canonical="/prototipo-ecommerce-vi-7c21/"
+  noindex
+>
+  <!-- Sin JSON-LD de FAQPage: esta copia no debe competir con /video-inteligente/ en buscadores. -->
+
+  <!-- Aviso permanente: que nadie confunda esta copia con la pagina real. -->
+  <p class="proto-aviso">
+    Prototipo interno · copia de <a href={withBase('/video-inteligente/')}>/video-inteligente/</a> con tienda ·
+    catálogo y precios de prueba · no indexada
+  </p>
+
+  <!-- HERO -->
+  <section class="vi-hero">
+    <div class="container vi-hero__inner">
+      <span class="hero-badge"><Icon name="camera" size={26} /></span>
+      <p class="eyebrow" style="color:#bfe0dd">Servicios y productos</p>
+      <h1>Video inteligente para empresas e industrias</h1>
+      <p class="lead" style="color:rgba(255,255,255,0.92); max-width:640px">
+        Detección, control operativo y seguridad integrados en un solo sistema.
+      </p>
+      <p style="color:rgba(255,255,255,0.85); max-width:680px">{OFERTA}</p>
+      <p style="margin-top:1.4rem"><a class="btn btn--white" href="#equipamiento">Ver equipamiento</a></p>
+    </div>
+  </section>
+
+  <!-- QUÉ HACE -->
+  <section class="section">
+    <div class="container vi-cambia">
+      <div class="vi-cambia__video">
+        <YouTube id="KmWChISU8Ww" title="AXIS, video más inteligente y más seguro en el trabajo" />
+      </div>
+      <div>
+        <h2>Lo que cambia cuando el video es inteligente</h2>
+        <ul class="vi-bullets">
+          {beneficios.map((b) => (
+            <li><Icon name="arrow" size={18} /><span>{b}</span></li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARA QUIÉN -->
+  <section class="section section--surface">
+    <div class="container">
+      <div class="center measure mx-auto"><h2>Industrias y operaciones que lo usan</h2></div>
+      <div class="vi-grid" style="margin-top:2.5rem">
+        {sectores.map((s) => (
+          <div class="card vi-card">
+            <span class="card__icon"><Icon name={s.icono} size={32} /></span>
+            <h3>{s.titulo}</h3>
+            <p>{s.resumen}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- POR QUÉ BUILDING NETWORKS -->
+  <section class="section">
+    <div class="container">
+      <div class="center measure mx-auto"><h2>Por qué Building Networks</h2></div>
+      <div class="vi-grid vi-grid--3" style="margin-top:2.5rem">
+        <div class="card vi-card">
+          <span class="vi-card__marca">
+            <img src="/img/axis-technology-integration-partner.png" alt="AXIS Communications Technology Integration Partner" loading="lazy" width="600" height="462" />
+          </span>
+          <h3>AXIS Solution Gold Partner</h3>
+          <p>Hardware con LTS documentado y ciberseguridad desde el diseño</p>
+        </div>
+        <div class="card vi-card">
+          <span class="vi-card__marca vi-card__marca--ancha">
+            <img src="/img/camscope-corporate.webp" alt="CamScope Corporate" loading="lazy" width="700" height="159" />
+          </span>
+          <h3>CamScope</h3>
+          <p>Plataforma propia, sin licenciamiento por canal</p>
+        </div>
+        <div class="card vi-card">
+          <span class="vi-card__num" aria-hidden="true">20</span>
+          <h3>Casi veinte años en Córdoba</h3>
+          <p>Industria, logística, corporativo y sector regulado</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ====================================================================
+       E-COMMERCE · lo único que no existe en /video-inteligente/.
+       Grilla filtrable + carrito. Sin backend: ver cabecera del archivo.
+       ==================================================================== -->
+  <section class="section tienda" id="equipamiento">
+    <div class="container">
+      <div class="center measure mx-auto">
+        <p class="eyebrow">Equipamiento</p>
+        <h2>Armá tu lista de equipos</h2>
+        <p class="lead">
+          Todo lo que ves acá se instala, configura e integra con CamScope como parte del
+          servicio. Podés pedir una unidad o cien. El relevamiento sigue siendo el primer paso:
+          la lista que armes es el punto de partida de la conversación, no el final.
+        </p>
+      </div>
+
+      <div class="tienda__layout">
+        <!-- FILTROS -->
+        <aside class="tienda__filtros" aria-label="Filtros de catálogo">
+          <div class="tienda__filtros-inner">
+            <div class="filtro">
+              <label class="filtro__label" for="f-buscar">Buscar</label>
+              <input class="filtro__input" type="search" id="f-buscar" placeholder="Modelo, tipo, uso…" autocomplete="off" />
+            </div>
+
+            <fieldset class="filtro">
+              <legend class="filtro__label">Categoría</legend>
+              {CATEGORIAS.map((c) => (
+                <label class="chk"><input type="checkbox" data-filtro="categoria" value={c.id} /> <span>{c.label}</span></label>
+              ))}
+            </fieldset>
+
+            <fieldset class="filtro">
+              <legend class="filtro__label">Entorno</legend>
+              {ENTORNOS.map((e) => (
+                <label class="chk"><input type="checkbox" data-filtro="entorno" value={e.id} /> <span>{e.label}</span></label>
+              ))}
+            </fieldset>
+
+            <fieldset class="filtro">
+              <legend class="filtro__label">Capacidad</legend>
+              <label class="chk"><input type="checkbox" data-filtro="analitica" value="si" /> <span>Con analítica embebida</span></label>
+            </fieldset>
+
+            <div class="filtro">
+              <label class="filtro__label" for="f-precio">Precio hasta <output id="f-precio-out"></output></label>
+              <input class="filtro__rango" type="range" id="f-precio" min="0" max={precioMax} step="50000" value={precioMax} />
+            </div>
+
+            <button class="btn tienda__limpiar" type="button" id="f-limpiar">Limpiar filtros</button>
+          </div>
+        </aside>
+
+        <!-- GRILLA -->
+        <div class="tienda__main">
+          <div class="tienda__barra">
+            <p class="tienda__conteo" id="conteo" aria-live="polite"></p>
+            <label class="tienda__orden">
+              <span>Ordenar</span>
+              <select id="f-orden">
+                <option value="relevancia">Relevancia</option>
+                <option value="precio-asc">Menor precio</option>
+                <option value="precio-desc">Mayor precio</option>
+                <option value="nombre">Nombre</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="tienda__grid" id="grid">
+            {productos.map((p) => (
+              <article
+                class="prod"
+                data-sku={p.sku}
+                data-categoria={p.categoria}
+                data-entorno={p.entorno}
+                data-analitica={p.analitica ? 'si' : 'no'}
+                data-precio={p.precio}
+                data-nombre={p.nombre}
+                data-busca={`${p.nombre} ${p.modelo} ${p.ficha} ${p.tags.join(' ')}`.toLowerCase()}
+              >
+                <div class="prod__foto">
+                  {p.imagen
+                    ? <img src={p.imagen} alt={p.modelo} loading="lazy" />
+                    : <span class="prod__ph" aria-hidden="true"><Icon name={p.categoria === 'altavoz' ? 'speaker' : p.categoria === 'radar' ? 'target' : p.categoria === 'grabacion' ? 'server' : 'camera'} size={46} /></span>
+                  }
+                  {p.analitica && <span class="prod__flag">Analítica</span>}
+                </div>
+                <div class="prod__body">
+                  <p class="prod__modelo">{p.modelo}</p>
+                  <h3 class="prod__nombre">{p.nombre}</h3>
+                  <p class="prod__ficha">{p.ficha}</p>
+                  <ul class="prod__tags">{p.tags.map((t) => <li>{t}</li>)}</ul>
+                </div>
+                <div class="prod__pie">
+                  <p class="prod__precio" data-precio-txt={p.precio}></p>
+                  <div class="prod__acciones">
+                    <div class="qty" role="group" aria-label={`Cantidad de ${p.modelo}`}>
+                      <button type="button" class="qty__b" data-paso="-1" aria-label="Quitar uno">−</button>
+                      <input class="qty__i" type="number" value="1" min="1" max="999" aria-label="Cantidad" />
+                      <button type="button" class="qty__b" data-paso="1" aria-label="Sumar uno">+</button>
+                    </div>
+                    <button type="button" class="btn btn--solid prod__add">Agregar</button>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <p class="tienda__vacio" id="vacio" hidden>
+            Ningún equipo coincide con esos filtros. <button type="button" class="linkish" id="vacio-limpiar">Limpiar filtros</button>
+          </p>
+
+          <p class="tienda__nota">
+            Los precios son de referencia y no incluyen instalación, configuración ni integración.
+            El alcance final sale del relevamiento.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CARRITO -->
+  <button type="button" class="carrito-fab" id="carrito-abrir" aria-haspopup="dialog">
+    <Icon name="box" size={20} />
+    <span>Mi lista</span>
+    <span class="carrito-fab__n" id="carrito-n">0</span>
+  </button>
+
+  <div class="carrito-velo" id="carrito-velo" hidden></div>
+  <aside class="carrito" id="carrito" role="dialog" aria-modal="true" aria-label="Mi lista de equipos" hidden>
+    <header class="carrito__head">
+      <h2>Mi lista</h2>
+      <button type="button" class="carrito__x" id="carrito-cerrar" aria-label="Cerrar">×</button>
+    </header>
+    <div class="carrito__items" id="carrito-items"></div>
+    <footer class="carrito__pie">
+      <div class="carrito__total">
+        <span>Total estimado</span>
+        <strong id="carrito-total"></strong>
+      </div>
+      <p class="carrito__aclara">Sin instalación ni integración. El alcance se define en el relevamiento.</p>
+      <a class="btn btn--solid carrito__cta" href={withBase('/contacto/')}>Pedir cotización</a>
+      <a class="btn carrito__cta2" href={withBase('/contacto/')}>Quiero un relevamiento primero</a>
+    </footer>
+  </aside>
+
+  <!-- PILARES · resumen; el desarrollo completo vive en las FAQ -->
+  <section class="section section--surface">
+    <div class="container">
+      <div class="center measure mx-auto"><h2>Cómo funciona un sistema de video inteligente</h2></div>
+      <div class="vi-grid vi-grid--3" style="margin-top:2.5rem">
+        {pilares.map((x) => (
+          <div class="card vi-card">
+            <span class="card__icon"><Icon name={x.icono} size={34} /></span>
+            <h3>{x.titulo}</h3>
+            <p>{x.resumen}</p>
+          </div>
+        ))}
+      </div>
+      <p class="center" style="margin-top:1.6rem; color:var(--muted)">
+        El desarrollo completo de cada punto está en las <a href="#faq">preguntas frecuentes</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- BLOQUE 6 · EL CASO -->
+  <!-- El complejo no se nombra, por pedido expreso del cliente. Las ocho cifras
+       de abajo son las únicas autorizadas. El bloque va sin enlace: la ruta
+       /presentacion-de-caso-de-exito-distrito-capitalinas/ no es una página,
+       es un 301 hacia esta misma URL en public/.htaccess, así que enlazarla
+       devolvería al lector a donde ya está. -->
+  <section class="vi-caso">
+    <div class="container">
+      <div class="measure mx-auto center">
+        <p class="eyebrow" style="color:#bfe0dd">Caso de Éxito</p>
+        <h2>Distrito Capitalinas, un complejo de uso mixto en Córdoba</h2>
+        <p class="lead" style="color:rgba(255,255,255,0.9)">
+          Un sistema en operación continua desde hace más de 15 años.
+        </p>
+      </div>
+      <div class="vi-cifras">
+        {cifras.map((c) => (
+          <div class="vi-cifra">
+            <span class="vi-cifra__num">{c.valor}</span>
+            <span class="vi-cifra__label">{c.label}</span>
+          </div>
+        ))}
+      </div>
+      <div class="center vi-caso__acciones">
+        <a class="btn btn--white" href={withBase('/presentacion-de-caso-de-exito-distrito-capitalinas/')}>
+          Ver artículo en AXIS <Icon name="arrow" size={16} />
+        </a>
+        <a class="btn btn--ghost-light" href="/descargas/caso-de-exito-datacenter-capitalinas.pdf" download>
+          <Icon name="download" size={16} /> Descargar brochure
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- BLOQUE 7 · ALCANCE POR ESCENARIO -->
+  <section class="section section--surface">
+    <div class="container">
+      <div class="center measure mx-auto">
+        <p class="eyebrow">Dónde se aplica</p>
+        <h2>Alcance por escenario</h2>
+      </div>
+      <div class="vi-escenarios">
+        {escenarios.map((e) => (
+          <a class="card card--link vi-esc" href={withBase(e.href)}>
+            <span class="card__icon"><Icon name={e.icono} size={30} /></span>
+            <h3>{e.titulo}</h3>
+            <p>{e.resumen}</p>
+            <span class="vi-more">Ver más <Icon name="arrow" size={16} /></span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FAQS -->
+  <section class="section section--surface">
+    <div class="container">
+      <div class="center" id="faq"><h2>Preguntas frecuentes</h2></div>
+      <div class="vi-faq">
+        {faqs.map((f) => (
+          <details class="vi-faq__item">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA + FORMULARIO -->
+  <section class="section">
+    <div class="container vi-cta">
+      <div>
+        <h2>Empezá por el relevamiento</h2>
+        <p class="lead">
+          El punto de partida es entender qué tiene instalado tu operación hoy y qué información
+          necesita que hoy no tiene. Desde ahí definimos qué agrega valor y qué no hace falta.
+        </p>
+        <p><a href={withBase('/camscope/')}>Conocé CamScope</a></p>
+      </div>
+      <div class="card">
+        <ContactForm targetId="hubspot-form-video" />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* HERO */
+  .vi-hero { background: linear-gradient(160deg, rgba(0,70,75,0.93), rgba(0,98,105,0.80)), url("/img/video-inteligente-hero.jpg") center/cover no-repeat; color: #fff; }
+  .vi-hero__inner { padding-block: clamp(2.6rem, 6vw, 4.6rem); max-width: 780px; }
+  .vi-hero h1 { color: #fff; margin-bottom: 1.2rem; }
+
+  /* BULLETS */
+  .vi-bullets { list-style: none; padding: 0; margin: 1.6rem 0 0; display: grid; gap: 0.9rem; }
+  .vi-bullets li { display: flex; gap: 0.7rem; align-items: flex-start; font-size: 1.05rem; }
+  /* :global() porque el <svg> lo renderiza el componente Icon y lleva su
+     propio hash de scope, no el de esta página. Sin esto la regla no matchea
+     y el ícono se encoge a un ancho distinto en cada ítem. */
+  .vi-bullets :global(svg) { color: var(--teal); flex: none; margin-top: 5px; }
+
+  /* VIDEO + BULLETS */
+  .vi-cambia { display: grid; grid-template-columns: 1fr 1fr; gap: 2.6rem; align-items: center; }
+
+  /* LOGOS Y NÚMERO EN LOS DIFERENCIALES */
+  .vi-card__marca { display: flex; align-items: center; justify-content: flex-start; height: 68px; margin-bottom: 0.9rem; }
+  .vi-card__marca img { max-height: 68px; width: auto; max-width: 150px; object-fit: contain; }
+  .vi-card__marca--ancha img { max-width: 210px; max-height: 44px; }
+  .vi-card__num { display: flex; align-items: center; height: 68px; margin-bottom: 0.9rem; font-size: 2.9rem; font-weight: 300; color: var(--teal); line-height: 1; }
+
+  /* CARDS */
+  .vi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.4rem; }
+  .vi-grid--3 { grid-template-columns: repeat(3, 1fr); }
+  .vi-card { text-align: left; align-items: flex-start; }
+  .vi-card .card__icon { color: var(--teal); }
+  .vi-card h3 { font-size: 1.05rem; margin-bottom: 0.4rem; }
+  .vi-card p { color: var(--muted); margin: 0; }
+
+  /* PROSA DE LOS BLOQUES DE TEXTO */
+  .vi-prosa p { font-size: 1.05rem; }
+  .vi-prosa h3 { margin-top: 2rem; }
+
+  /* CASO (banda teal con cifras) */
+  /* Foto del complejo de fondo y el teal convertido en overlay encima. */
+  .vi-caso { position: relative; background: url("/wp-content/uploads/2024/07/distrito-capitalinas.jpg") center/cover no-repeat; color: #fff; padding-block: clamp(2.75rem, 6vw, 4.6rem); overflow: hidden; }
+  .vi-caso::before { content: ""; position: absolute; inset: 0; background: linear-gradient(160deg, rgba(0,98,105,0.92), rgba(0,70,75,0.82)); }
+  .vi-caso > * { position: relative; z-index: 1; }
+  .vi-caso h2 { color: #fff; }
+  .vi-cifras { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.4rem; margin-top: 3rem; }
+  .vi-cifra { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); border-radius: var(--radius); padding: 1.6rem 1.2rem; text-align: center; }
+  .vi-cifra__num { display: block; font-size: 1.9rem; font-weight: 400; color: #fff; line-height: 1.1; }
+  .vi-cifra__label { display: block; margin-top: 0.5rem; color: rgba(255,255,255,0.85); font-size: 0.9rem; }
+
+  /* Dos acciones: la principal en blanco sólido, la secundaria apenas
+     delineada sobre el verde para que no compita con la primera. */
+  .vi-caso__acciones { margin-top: 2.6rem; display: flex; flex-wrap: wrap; gap: 0.9rem; justify-content: center; }
+  .vi-caso__acciones .btn { display: inline-flex; align-items: center; gap: 0.45rem; }
+
+  /* ESCENARIOS */
+  .vi-escenarios { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; margin-top: 2.5rem; }
+  .vi-esc { text-align: left; align-items: flex-start; display: flex; flex-direction: column; padding: 1.6rem; }
+  .vi-esc h3 { font-size: 1.05rem; margin-bottom: 0.5rem; }
+  .vi-esc p { color: var(--muted); margin: 0 0 0.9rem; }
+  .vi-more { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: auto; color: var(--teal); font-weight: 500; font-size: 0.9rem; }
+  .vi-esc:hover .vi-more { gap: 0.6rem; }
+
+
+  /* FAQ */
+  .vi-faq { margin-top: 2rem; max-width: 980px; margin-inline: auto; display: grid; gap: 0.55rem; }
+  .vi-faq__item { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 0 1.3rem; }
+  .vi-faq__item summary { cursor: pointer; font-weight: 500; color: var(--heading); padding: 0.85rem 0; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 1rem; font-size: 0.98rem; }
+  .vi-faq__item summary::-webkit-details-marker { display: none; }
+  .vi-faq__item summary::after { content: '+'; color: var(--teal); font-size: 1.3rem; font-weight: 300; line-height: 1; flex: none; transition: transform 0.2s ease; }
+  .vi-faq__item[open] summary::after { transform: rotate(45deg); }
+  .vi-faq__item p { margin: 0 0 1rem; color: var(--fg); font-size: 0.95rem; }
+
+  /* CTA */
+  .vi-cta { display: grid; grid-template-columns: 1fr 1.1fr; gap: 3rem; align-items: start; }
+
+  @media (max-width: 980px) {
+    .vi-grid, .vi-grid--3, .vi-escenarios { grid-template-columns: repeat(2, 1fr); }
+    .vi-cifras { grid-template-columns: repeat(2, 1fr); }
+    .vi-cambia { grid-template-columns: 1fr; gap: 1.8rem; }
+    .vi-cta { grid-template-columns: 1fr; gap: 2rem; }
+  }
+  @media (max-width: 560px) {
+    .vi-grid, .vi-grid--3, .vi-escenarios { grid-template-columns: 1fr; }
+    /* Las cifras siguen de a dos: son un número corto y una etiqueta de una o
+       dos palabras, así que entran holgadas y evitan ocho pantallas de scroll. */
+    .vi-cifras { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  }
+
+  /* ===================== PROTOTIPO: TIENDA ===================== */
+  .proto-aviso {
+    margin: 0; padding: 0.55rem 1rem; text-align: center;
+    background: #3d2b00; color: #ffd98a; font-size: 0.85rem;
+  }
+  .proto-aviso a { color: #ffd98a; }
+
+  .tienda__layout { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 2.2rem; margin-top: 2.6rem; align-items: start; }
+  .tienda__filtros-inner { position: sticky; top: 90px; display: grid; gap: 1.5rem; }
+  .filtro { border: 0; padding: 0; margin: 0; display: grid; gap: 0.5rem; }
+  .filtro__label { font-size: 0.78rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--heading); padding: 0; }
+  .filtro__input { width: 100%; padding: 0.6rem 0.75rem; border: 1px solid var(--border); border-radius: 8px; font: inherit; font-size: 0.92rem; }
+  .filtro__input:focus-visible { outline: 2px solid var(--teal); outline-offset: 1px; }
+  .filtro__rango { width: 100%; accent-color: var(--teal); }
+  .chk { display: flex; align-items: center; gap: 0.5rem; font-size: 0.92rem; cursor: pointer; }
+  .chk input { accent-color: var(--teal); width: 16px; height: 16px; flex: none; }
+  .tienda__limpiar { justify-self: start; font-size: 0.85rem; padding: 0.45rem 0.9rem; }
+
+  .tienda__barra { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.3rem; }
+  .tienda__conteo { margin: 0; color: var(--muted); font-size: 0.92rem; }
+  .tienda__orden { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; color: var(--muted); }
+  .tienda__orden select { padding: 0.45rem 0.6rem; border: 1px solid var(--border); border-radius: 8px; font: inherit; font-size: 0.9rem; background: #fff; }
+
+  .tienda__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.3rem; }
+  .prod { display: flex; flex-direction: column; background: #fff; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-sm); }
+  .prod[hidden] { display: none; }
+  .prod__foto { position: relative; aspect-ratio: 4 / 3; display: grid; place-items: center; background: var(--teal-tint); }
+  .prod__foto img { width: 100%; height: 100%; object-fit: cover; }
+  .prod__ph { color: var(--teal); opacity: 0.5; }
+  .prod__flag { position: absolute; top: 0.7rem; left: 0.7rem; background: var(--teal); color: #fff; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.22rem 0.5rem; border-radius: 999px; }
+  .prod__body { padding: 1.1rem 1.1rem 0.6rem; flex: 1; }
+  .prod__modelo { margin: 0 0 0.15rem; font-size: 0.78rem; font-weight: 600; letter-spacing: 0.04em; color: var(--teal); }
+  .prod__nombre { margin: 0 0 0.5rem; font-size: 1.04rem; }
+  .prod__ficha { margin: 0 0 0.8rem; font-size: 0.89rem; color: var(--muted); line-height: 1.5; }
+  .prod__tags { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.35rem; }
+  .prod__tags li { font-size: 0.72rem; color: var(--muted); background: var(--surface); border: 1px solid var(--border); border-radius: 999px; padding: 0.15rem 0.5rem; }
+  .prod__pie { padding: 0.6rem 1.1rem 1.1rem; display: grid; gap: 0.7rem; }
+  .prod__precio { margin: 0; font-size: 1.22rem; font-weight: 500; color: var(--heading); }
+  .prod__acciones { display: flex; gap: 0.5rem; align-items: center; }
+  .qty { display: flex; align-items: center; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; flex: none; }
+  .qty__b { width: 30px; height: 36px; border: 0; background: var(--surface); color: var(--heading); font-size: 1rem; cursor: pointer; line-height: 1; }
+  .qty__b:hover { background: var(--teal-tint-2); }
+  .qty__i { width: 44px; height: 36px; border: 0; border-inline: 1px solid var(--border); text-align: center; font: inherit; font-size: 0.92rem; -moz-appearance: textfield; }
+  .qty__i::-webkit-outer-spin-button, .qty__i::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+  .prod__add { flex: 1; padding-inline: 0.5rem; }
+
+  .tienda__vacio { text-align: center; color: var(--muted); padding: 3rem 0; }
+  .linkish { background: 0; border: 0; padding: 0; font: inherit; color: var(--teal); text-decoration: underline; cursor: pointer; }
+  .tienda__nota { margin-top: 1.6rem; font-size: 0.85rem; color: var(--muted); }
+
+  /* CARRITO */
+  .carrito-fab { position: fixed; right: 1.2rem; bottom: 1.2rem; z-index: 60; display: inline-flex; align-items: center; gap: 0.5rem; background: var(--teal); color: #fff; border: 0; border-radius: 999px; padding: 0.75rem 1.15rem; font: inherit; font-weight: 600; font-size: 0.92rem; cursor: pointer; box-shadow: var(--shadow); }
+  .carrito-fab:hover { background: var(--teal-dark); }
+  .carrito-fab__n { background: #fff; color: var(--teal); border-radius: 999px; min-width: 22px; height: 22px; display: grid; place-items: center; font-size: 0.78rem; }
+  .carrito-velo { position: fixed; inset: 0; background: rgba(0,25,28,0.45); z-index: 70; }
+  .carrito { position: fixed; top: 0; right: 0; z-index: 80; width: min(390px, 100vw); height: 100dvh; background: #fff; display: flex; flex-direction: column; box-shadow: -10px 0 40px rgba(0,30,35,0.2); }
+  .carrito[hidden], .carrito-velo[hidden] { display: none; }
+  .carrito__head { display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 1.3rem; border-bottom: 1px solid var(--border); }
+  .carrito__head h2 { margin: 0; font-size: 1.1rem; }
+  .carrito__x { background: 0; border: 0; font-size: 1.7rem; line-height: 1; cursor: pointer; color: var(--muted); padding: 0 0.2rem; }
+  .carrito__items { flex: 1; overflow-y: auto; padding: 1rem 1.3rem; }
+  /* OJO: todo lo que sigue lo inyecta el JS del carrito con innerHTML, así que
+     esos nodos NO llevan el atributo de scope que Astro agrega en el template.
+     Sin :global() las reglas no matchean y las filas salen sin estilo. */
+  .carrito__items :global(.carrito__vacio) { color: var(--muted); font-size: 0.93rem; text-align: center; padding: 2.5rem 0; }
+  .carrito__items :global(.ci) { display: grid; grid-template-columns: 1fr auto; gap: 0.3rem 0.8rem; padding: 0.9rem 0; border-bottom: 1px solid var(--border); }
+  .carrito__items :global(.ci__nombre) { margin: 0; font-size: 0.95rem; font-weight: 500; color: var(--heading); }
+  .carrito__items :global(.ci__modelo) { margin: 0; font-size: 0.78rem; color: var(--teal); font-weight: 600; }
+  .carrito__items :global(.ci__precio) { margin: 0; font-size: 0.95rem; white-space: nowrap; align-self: center; }
+  .carrito__items :global(.ci__fila) { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; margin-top: 0.35rem; }
+  .carrito__items :global(.ci__quitar) { background: 0; border: 0; color: var(--muted); font-size: 0.83rem; text-decoration: underline; cursor: pointer; padding: 0; }
+  .carrito__items :global(.ci__quitar:hover) { color: #a3271f; }
+  /* El selector de cantidad también se inyecta, así que se repite en global. */
+  .carrito__items :global(.qty) { display: flex; align-items: center; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; flex: none; }
+  .carrito__items :global(.qty__b) { width: 30px; height: 34px; border: 0; background: var(--surface); color: var(--heading); font-size: 1rem; cursor: pointer; line-height: 1; }
+  .carrito__items :global(.qty__b:hover) { background: var(--teal-tint-2); }
+  .carrito__items :global(.qty__i) { width: 46px; height: 34px; border: 0; border-inline: 1px solid var(--border); text-align: center; font: inherit; font-size: 0.92rem; -moz-appearance: textfield; }
+  .carrito__items :global(.qty__i::-webkit-outer-spin-button), .carrito__items :global(.qty__i::-webkit-inner-spin-button) { -webkit-appearance: none; margin: 0; }
+  .carrito__pie { border-top: 1px solid var(--border); padding: 1.1rem 1.3rem 1.4rem; display: grid; gap: 0.7rem; }
+  .carrito__total { display: flex; align-items: baseline; justify-content: space-between; font-size: 1.05rem; }
+  .carrito__total strong { font-size: 1.35rem; font-weight: 500; color: var(--heading); }
+  .carrito__aclara { margin: 0; font-size: 0.8rem; color: var(--muted); }
+  .carrito__cta, .carrito__cta2 { width: 100%; text-align: center; }
+  .carrito__cta2 { font-size: 0.68rem; border-color: var(--border); color: var(--muted); }
+  .carrito__cta2:hover { border-color: var(--teal); background: transparent; color: var(--teal); }
+
+  @media (max-width: 980px) {
+    .tienda__layout { grid-template-columns: 1fr; }
+    .tienda__filtros-inner { position: static; grid-template-columns: repeat(2, 1fr); }
+    .tienda__grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 620px) {
+    .tienda__filtros-inner { grid-template-columns: 1fr; }
+    .tienda__grid { grid-template-columns: 1fr; }
+    .carrito { width: 100vw; }
+  }
+
+</style>
+
+<script>
+  // Prototipo: filtros + carrito, todo en el navegador. Sin backend.
+  // El carrito se guarda en localStorage para que sobreviva a un refresh;
+  // toda lectura y escritura va envuelta porque en modo privado puede tirar.
+  const money = new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', maximumFractionDigits: 0 });
+  const $ = (s: string) => document.querySelector(s);
+  const CLAVE = 'proto-carrito-vi';
+
+  // ---------------------------------------------------------------- precios
+  document.querySelectorAll<HTMLElement>('[data-precio-txt]').forEach((el) => {
+    el.textContent = money.format(Number(el.dataset.precioTxt));
+  });
+
+  // ---------------------------------------------------------------- filtros
+  const fichas = Array.from(document.querySelectorAll<HTMLElement>('.prod'));
+  const buscar = $('#f-buscar') as HTMLInputElement;
+  const orden = $('#f-orden') as HTMLSelectElement;
+  const rango = $('#f-precio') as HTMLInputElement;
+  const rangoOut = $('#f-precio-out') as HTMLOutputElement;
+  const conteo = $('#conteo') as HTMLElement;
+  const vacio = $('#vacio') as HTMLElement;
+  const grid = $('#grid') as HTMLElement;
+
+  const marcados = (k: string) =>
+    Array.from(document.querySelectorAll<HTMLInputElement>(`[data-filtro="${k}"]:checked`)).map((i) => i.value);
+
+  function aplicar() {
+    const q = buscar.value.trim().toLowerCase();
+    const cats = marcados('categoria');
+    const ents = marcados('entorno');
+    const soloAnalitica = marcados('analitica').length > 0;
+    const tope = Number(rango.value);
+    rangoOut.textContent = money.format(tope);
+
+    let visibles = 0;
+    for (const f of fichas) {
+      const d = f.dataset;
+      const ok =
+        (!q || (d.busca || '').includes(q)) &&
+        (!cats.length || cats.includes(d.categoria!)) &&
+        // "ambos" entra en cualquier filtro de entorno
+        (!ents.length || d.entorno === 'ambos' || ents.includes(d.entorno!)) &&
+        (!soloAnalitica || d.analitica === 'si') &&
+        Number(d.precio) <= tope;
+      f.hidden = !ok;
+      if (ok) visibles++;
+    }
+    conteo.textContent = visibles === fichas.length
+      ? `${fichas.length} equipos`
+      : `${visibles} de ${fichas.length} equipos`;
+    vacio.hidden = visibles > 0;
+    ordenar();
+  }
+
+  function ordenar() {
+    const modo = orden.value;
+    if (modo === 'relevancia') return;
+    const cmp: Record<string, (a: HTMLElement, b: HTMLElement) => number> = {
+      'precio-asc': (a, b) => Number(a.dataset.precio) - Number(b.dataset.precio),
+      'precio-desc': (a, b) => Number(b.dataset.precio) - Number(a.dataset.precio),
+      nombre: (a, b) => (a.dataset.nombre || '').localeCompare(b.dataset.nombre || '', 'es'),
+    };
+    [...fichas].sort(cmp[modo]).forEach((f) => grid.appendChild(f));
+  }
+
+  function limpiar() {
+    buscar.value = '';
+    document.querySelectorAll<HTMLInputElement>('[data-filtro]').forEach((i) => (i.checked = false));
+    rango.value = rango.max;
+    orden.value = 'relevancia';
+    fichas.sort((a, b) => fichas.indexOf(a) - fichas.indexOf(b));
+    aplicar();
+  }
+
+  buscar.addEventListener('input', aplicar);
+  rango.addEventListener('input', aplicar);
+  orden.addEventListener('change', aplicar);
+  document.querySelectorAll('[data-filtro]').forEach((i) => i.addEventListener('change', aplicar));
+  $('#f-limpiar')!.addEventListener('click', limpiar);
+  $('#vacio-limpiar')!.addEventListener('click', limpiar);
+
+  // --------------------------------------------------------------- cantidad
+  document.querySelectorAll<HTMLButtonElement>('.qty__b').forEach((b) => {
+    b.addEventListener('click', () => {
+      const input = b.parentElement!.querySelector('.qty__i') as HTMLInputElement;
+      const v = Math.max(1, Math.min(999, Number(input.value) + Number(b.dataset.paso)));
+      input.value = String(v);
+    });
+  });
+
+  // ---------------------------------------------------------------- carrito
+  type Linea = { sku: string; nombre: string; modelo: string; precio: number; cant: number };
+  let carrito: Linea[] = [];
+  try {
+    carrito = JSON.parse(localStorage.getItem(CLAVE) || '[]');
+  } catch { carrito = []; }
+
+  const guardar = () => { try { localStorage.setItem(CLAVE, JSON.stringify(carrito)); } catch {} };
+
+  const panel = $('#carrito') as HTMLElement;
+  const velo = $('#carrito-velo') as HTMLElement;
+  const items = $('#carrito-items') as HTMLElement;
+
+  function pintar() {
+    const n = carrito.reduce((s, l) => s + l.cant, 0);
+    ($('#carrito-n') as HTMLElement).textContent = String(n);
+    ($('#carrito-total') as HTMLElement).textContent = money.format(
+      carrito.reduce((s, l) => s + l.precio * l.cant, 0),
+    );
+    if (!carrito.length) {
+      items.innerHTML = '<p class="carrito__vacio">Todavía no agregaste equipos.</p>';
+      return;
+    }
+    items.innerHTML = carrito
+      .map(
+        (l) => `<div class="ci" data-sku="${l.sku}">
+          <div><p class="ci__modelo">${l.modelo}</p><p class="ci__nombre">${l.nombre}</p></div>
+          <p class="ci__precio">${money.format(l.precio * l.cant)}</p>
+          <div class="ci__fila">
+            <div class="qty">
+              <button type="button" class="qty__b ci__paso" data-paso="-1" aria-label="Quitar uno">−</button>
+              <input class="qty__i ci__cant" type="number" value="${l.cant}" min="1" max="999" aria-label="Cantidad">
+              <button type="button" class="qty__b ci__paso" data-paso="1" aria-label="Sumar uno">+</button>
+            </div>
+            <button type="button" class="ci__quitar">Quitar</button>
+          </div>
+        </div>`,
+      )
+      .join('');
+  }
+
+  function agregar(sku: string, cant: number) {
+    const f = fichas.find((x) => x.dataset.sku === sku)!;
+    const linea = carrito.find((l) => l.sku === sku);
+    if (linea) linea.cant = Math.min(999, linea.cant + cant);
+    else
+      carrito.push({
+        sku,
+        nombre: f.dataset.nombre!,
+        modelo: (f.querySelector('.prod__modelo') as HTMLElement).textContent!.trim(),
+        precio: Number(f.dataset.precio),
+        cant,
+      });
+    guardar();
+    pintar();
+  }
+
+  document.querySelectorAll<HTMLButtonElement>('.prod__add').forEach((b) => {
+    b.addEventListener('click', () => {
+      const ficha = b.closest('.prod') as HTMLElement;
+      const cant = Number((ficha.querySelector('.qty__i') as HTMLInputElement).value) || 1;
+      agregar(ficha.dataset.sku!, cant);
+      const txt = b.textContent;
+      b.textContent = 'Agregado ✓';
+      b.disabled = true;
+      setTimeout(() => { b.textContent = txt; b.disabled = false; }, 900);
+    });
+  });
+
+  items.addEventListener('click', (e) => {
+    const t = e.target as HTMLElement;
+    const fila = t.closest('.ci') as HTMLElement;
+    if (!fila) return;
+    const linea = carrito.find((l) => l.sku === fila.dataset.sku)!;
+    if (t.classList.contains('ci__quitar')) carrito = carrito.filter((l) => l !== linea);
+    else if (t.classList.contains('ci__paso')) {
+      linea.cant += Number(t.dataset.paso);
+      if (linea.cant < 1) carrito = carrito.filter((l) => l !== linea);
+    } else return;
+    guardar();
+    pintar();
+  });
+
+  items.addEventListener('change', (e) => {
+    const t = e.target as HTMLElement;
+    if (!t.classList.contains('ci__cant')) return;
+    const fila = t.closest('.ci') as HTMLElement;
+    const linea = carrito.find((l) => l.sku === fila.dataset.sku)!;
+    linea.cant = Math.max(1, Math.min(999, Number((t as HTMLInputElement).value) || 1));
+    guardar();
+    pintar();
+  });
+
+  const abrir = (v: boolean) => {
+    panel.hidden = !v;
+    velo.hidden = !v;
+    document.body.style.overflow = v ? 'hidden' : '';
+    if (v) ($('#carrito-cerrar') as HTMLElement).focus();
+  };
+  $('#carrito-abrir')!.addEventListener('click', () => abrir(true));
+  $('#carrito-cerrar')!.addEventListener('click', () => abrir(false));
+  velo.addEventListener('click', () => abrir(false));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !panel.hidden) abrir(false); });
+
+  pintar();
+  aplicar();
+</script>

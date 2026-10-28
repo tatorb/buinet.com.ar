@@ -24,6 +24,14 @@ interface Props {
    * NO afecta a og:title, que siempre lleva la marca (ver abajo).
    */
   brandSuffix?: boolean;
+  /**
+   * Saca la página del índice de los buscadores. Para prototipos y páginas de
+   * uso interno que viven en una URL difícil de adivinar y no están enlazadas
+   * desde ningún lado. Acordate de excluirla también del sitemap, en el filter
+   * de astro.config.mjs: el noindex solo pide que no la indexen, el sitemap la
+   * estaría ofreciendo.
+   */
+  noindex?: boolean;
 }
 
 const {
@@ -32,6 +40,7 @@ const {
   ogImage = '/og-default.jpg',
   canonical: canonicalOverride,
   brandSuffix = true,
+  noindex = false,
 } = Astro.props;
 
 // Título CON marca: es el que va a og:title en todas las páginas, porque en un
@@ -82,6 +91,7 @@ const orgLd = JSON.stringify({
     <!-- End Google Tag Manager -->
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow, noarchive, nosnippet" />}
     <link rel="canonical" href={canonical} />
     <!-- Favicon de marca (ícono real, sin texto). Es el que Google usa como
          "logo" en los resultados. sizes con los valores REALES de cada archivo
