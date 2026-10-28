@@ -388,7 +388,7 @@ const faqLd = JSON.stringify({
                 <div class="prod__foto">
                   {p.imagen
                     ? <img src={p.imagen} alt={p.modelo} loading="lazy" width="800" height="800" />
-                    : <span class="prod__ph" aria-hidden="true"><Icon name={p.categoria === 'altavoz' ? 'speaker' : p.categoria === 'radar' ? 'target' : p.categoria === 'grabacion' ? 'server' : 'camera'} size={46} /></span>
+                    : <span class="prod__ph" aria-hidden="true"><Icon name={p.categoria === 'altavoz' ? 'speaker' : p.categoria === 'radar' ? 'target' : p.categoria === 'grabacion' ? 'server' : 'camera'} size={72} /></span>
                   }
                   {p.analitica && <span class="prod__flag">Analítica</span>}
                 </div>
@@ -712,11 +712,16 @@ const faqLd = JSON.stringify({
   .prod { grid-column: span 3; display: flex; flex-direction: column; background: #fff; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-sm); }
   .prod[hidden] { display: none; }
   /* Gris neutro: el verde de marca competia con el CTA y teñia el producto. */
-  .prod__foto { position: relative; aspect-ratio: 4 / 3; display: grid; place-items: center; background: #f1f4f5; }
+  /* Cuadrada y mandataria. Antes declaraba 4/3 pero solo lo respetaban las
+     tarjetas sin foto: la imagen trae 800x800 intrinsecos y su alto automatico
+     empujaba al contenedor a cuadrado, asi que las tarjetas con foto median
+     259px y las del placeholder 194. Con la imagen en absolute el contenido ya
+     no puede alterar el alto, y las dos miden lo mismo. */
+  .prod__foto { position: relative; aspect-ratio: 1 / 1; display: grid; place-items: center; background: #f1f4f5; }
   /* Las fotos son el producto recortado sobre fondo transparente, así que van
      contenidas y con aire. Con cover se recortaría el equipo. */
-  .prod__foto img { width: 100%; height: 100%; object-fit: contain; padding: 2.4rem; }
-  .prod__ph { color: var(--teal); opacity: 0.5; }
+  .prod__foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; padding: 2.4rem; }
+  .prod__ph { color: var(--teal); opacity: 0.4; }
   /* Pastilla discreta: informa, no llama a la accion. El unico elemento con
      peso visual en la tarjeta tiene que ser el boton Agregar. */
   .prod__flag { position: absolute; top: 0.6rem; left: 0.6rem; background: #e2e7e9; color: #6c767b; font-size: 0.6rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; padding: 0.14rem 0.42rem; border-radius: 999px; }
