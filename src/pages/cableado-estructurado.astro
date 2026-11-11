@@ -2,7 +2,12 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
 import ContactForm from '../components/ContactForm.astro';
+import { getCollection } from 'astro:content';
 import { withBase } from '../utils/url';
+
+// Mapa de posts por slug, para reutilizar su imagen destacada en las cards.
+const blogBySlug = new Map((await getCollection('blog')).map((x) => [x.id, x.data]));
+const heroOf = (slug: string) => blogBySlug.get(slug)?.heroImage;
 
 // ============================================================================
 // PÁGINA DE SERVICIO — Cableado estructurado.
@@ -13,6 +18,23 @@ import { withBase } from '../utils/url';
 // una toma con luz de día de un técnico tendiendo o certificando cable, con el
 // verde de marca solo como acento. Cuando llegue, se cambia acá y listo.
 const HERO = '/wp-content/uploads/2026/07/bloom-c61f2c98-db75-4bbc-aa2d-0e1d781b2d6f.jpg';
+
+// Foto de fondo del bloque del caso, la misma que usan las otras páginas.
+const FONDO_CASO = '/wp-content/uploads/2024/07/distrito-capitalinas.jpg';
+
+// PENDIENTE: faltan los dos logos. Dejá el archivo en /public/img/ y poné la
+// ruta acá; mientras estén vacíos, el bloque de marcas no se dibuja.
+const LOGO_COMMSCOPE = '';
+const LOGO_INSTALADOR = '';
+
+// Sellos de la certificación de cada línea. `logo` vacío = se dibuja con
+// tipografía hasta que llegue el archivo.
+const sellos = [
+  { nombre: 'Fluke', pie: 'Equipo de certificación', logo: '' },
+  { nombre: 'ANSI/TIA', pie: 'Norma de desempeño', logo: '' },
+  { nombre: 'ISO/IEC', pie: 'Norma internacional', logo: '' },
+  { nombre: 'CommScope', pie: 'Instalador certificado', logo: '' },
+];
 // ============================================================================
 
 const incluye = [
@@ -33,21 +55,25 @@ const entornos = [
     titulo: 'Oficinas y edificios corporativos',
     resumen: 'Puestos de trabajo, salas de reunión, WiFi y telefonía, con el cableado oculto y documentado.',
     icono: 'building',
+    foto: '',
   },
   {
     titulo: 'Plantas industriales',
     resumen: 'Cableado blindado donde hay motores y variadores, canalizaciones protegidas y fibra para unir sectores alejados.',
     icono: 'factory',
+    foto: '',
   },
   {
     titulo: 'Minería, petróleo y energía',
     resumen: 'Instalaciones con distancias largas, polvo, humedad y temperaturas extremas, donde la fibra y los materiales para exterior son la regla.',
     icono: 'bolt',
+    foto: '',
   },
   {
     titulo: 'Obra nueva y mudanzas',
     resumen: 'El cableado se define en el plano, antes de cerrar paredes y techos.',
     icono: 'helmet',
+    foto: '',
   },
 ];
 
@@ -102,6 +128,17 @@ const encima = [
     href: '/audio-ip/',
     enlace: 'Ver audio IP',
   },
+];
+
+// Notas del cluster. A medida que se publiquen las nuevas, se agregan acá.
+// La foto de cada card sale de la imagen destacada del post, por slug.
+const notas = [
+  { titulo: 'Qué categoría elegir y qué exigir', resumen: 'Cat6, Cat6A o Cat8, y qué pedirle al instalador antes de firmar.', slug: 'cableado-estructurado-vida-util-red-empresa' },
+  { titulo: 'Se decide en el plano', resumen: 'En obra nueva, el cableado se define antes de cerrar paredes y techos.', slug: 'cuando-infraestructura-de-red-se-decide-en-el-plano' },
+  { titulo: 'Mudanza', resumen: 'La mejor ventana para repensar la infraestructura, no solo trasladarla.', slug: 'mudanza-e-infraestructura-de-red' },
+  { titulo: 'Cuándo ampliar', resumen: 'Las señales de que la red dejó de alcanzar para lo que la operación pide.', slug: 'cuando-ampliar-la-infraestructura-de-red-de-tu-empresa' },
+  { titulo: 'WiFi corporativo', resumen: 'Cómo diseñar la cobertura sin puntos ciegos sobre el cableado existente.', slug: 'wifi-corporativo-como-disenar-cobertura-sin-puntos-ciegos' },
+  { titulo: 'Antes de contratar el diseño', resumen: 'Qué preguntar para no descubrir el problema cuando ya está todo tendido.', slug: 'diseno-de-infraestructura-de-red-nueva' },
 ];
 
 // Las FAQ alimentan el acordeón visible y el schema FAQPage. Un solo origen
@@ -200,13 +237,14 @@ const serviceLd = JSON.stringify({
     </div>
   </section>
 
-  <!-- QUÉ INCLUYE -->
-  <section class="section">
+  <!-- QUÉ INCLUYE · sin título. Las frases entran de a una al hacer scroll.
+       Ver el script del final; sin JS o con prefers-reduced-motion se ven
+       todas desde el arranque. -->
+  <section class="section ce-alcance">
     <div class="container">
-      <div class="center measure mx-auto"><h2>Qué incluye la instalación</h2></div>
-      <ul class="ce-incluye">
+      <ul class="ce-incluye" id="ce-incluye">
         {incluye.map((i) => (
-          <li><Icon name="check" size={18} /><span>{i}</span></li>
+          <li class="ce-incluye__it"><Icon name="check" size={26} /><span>{i}</span></li>
         ))}
       </ul>
     </div>
@@ -226,6 +264,21 @@ const serviceLd = JSON.stringify({
         para esa categoría. Al terminar te entregamos el informe con el resultado de cada línea.
       </p>
       <p><strong>Ese informe es la prueba de que la red da el ancho de banda para el que fue diseñada.</strong></p>
+
+      <!-- Sellos de certificación. PENDIENTE: faltan los logos de Fluke,
+           ANSI/TIA e ISO/IEC. Mientras no estén, cada sello se dibuja con
+           tipografía. Para poner el logo real, dejá el archivo en
+           /public/img/ y escribí su ruta en `logo`. -->
+      <ul class="ce-sellos">
+        {sellos.map((s) => (
+          <li class="ce-sello">
+            {s.logo
+              ? <img src={s.logo} alt={s.nombre} loading="lazy" />
+              : <span class="ce-sello__txt">{s.nombre}</span>}
+            <span class="ce-sello__pie">{s.pie}</span>
+          </li>
+        ))}
+      </ul>
       <p class="ce-lectura">
         <Icon name="arrow" size={16} />
         <a href={withBase('/cableado-estructurado-vida-util-red-empresa/')}>
@@ -239,6 +292,14 @@ const serviceLd = JSON.stringify({
   <section class="section">
     <div class="container measure mx-auto center">
       <h2>Instaladores certificados CommScope</h2>
+      {/* PENDIENTE: falta el logo de CommScope y, si existe, el de instalador
+          certificado. Poner la ruta en LOGO_COMMSCOPE / LOGO_INSTALADOR. */}
+      {(LOGO_COMMSCOPE || LOGO_INSTALADOR) && (
+        <div class="ce-marcas">
+          {LOGO_COMMSCOPE && <img src={LOGO_COMMSCOPE} alt="CommScope" loading="lazy" />}
+          {LOGO_INSTALADOR && <img src={LOGO_INSTALADOR} alt="Instalador certificado CommScope" loading="lazy" />}
+        </div>
+      )}
       <p class="lead">
         Building Networks es instalador certificado de CommScope, uno de los fabricantes de
         referencia en cableado estructurado a nivel mundial.
@@ -257,9 +318,18 @@ const serviceLd = JSON.stringify({
       <div class="ce-grid" style="margin-top:2.5rem">
         {entornos.map((e) => (
           <div class="card ce-card">
-            <span class="card__icon"><Icon name={e.icono} size={32} /></span>
-            <h3>{e.titulo}</h3>
-            <p>{e.resumen}</p>
+            {/* PENDIENTE: faltan las cuatro fotos. Con `foto` vacío la card
+                muestra el ícono del entorno sobre fondo neutro, del mismo
+                alto que tendrá la foto, así la grilla no se mueve después. */}
+            <div class="ce-card__foto">
+              {e.foto
+                ? <img src={e.foto} alt={e.titulo} loading="lazy" />
+                : <span class="ce-card__ph" aria-hidden="true"><Icon name={e.icono} size={44} /></span>}
+            </div>
+            <div class="ce-card__body">
+              <h3>{e.titulo}</h3>
+              <p>{e.resumen}</p>
+            </div>
           </div>
         ))}
       </div>
@@ -317,7 +387,7 @@ const serviceLd = JSON.stringify({
   </section>
 
   <!-- EL CASO -->
-  <section class="ce-caso">
+  <section class="ce-caso" style={`background: linear-gradient(160deg, rgba(0,70,75,0.90), rgba(0,98,105,0.78)), url("${FONDO_CASO}") center/cover no-repeat;`}>
     <div class="container measure mx-auto center">
       <p class="eyebrow" style="color:#bfe0dd">Caso de éxito</p>
       <h2>El caso Distrito Capitalinas</h2>
@@ -333,6 +403,32 @@ const serviceLd = JSON.stringify({
     </div>
   </section>
 
+  <!-- NOTAS DEL CLUSTER -->
+  <section class="section">
+    <div class="container">
+      <div class="center measure mx-auto">
+        <p class="eyebrow">Para seguir leyendo</p>
+        <h2>Profundizá en cada tema</h2>
+        <p class="lead">
+          Cada decisión sobre el cableado tiene su momento. Estas notas entran en detalle sobre los
+          escenarios más comunes.
+        </p>
+      </div>
+      <div class="ce-grid ce-grid--3" style="margin-top:2.5rem">
+        {notas.map((n) => (
+          <a class="card card--link ce-nota" href={withBase(`/${n.slug}/`)}>
+            {heroOf(n.slug) && <img class="ce-nota__img" src={heroOf(n.slug)} alt={n.titulo} loading="lazy" />}
+            <div class="ce-nota__body">
+              <h3>{n.titulo}</h3>
+              <p>{n.resumen}</p>
+              <span class="ce-more">Leer más <Icon name="arrow" size={16} /></span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <!-- FAQS -->
   <section class="section section--surface">
     <div class="container">
@@ -345,9 +441,6 @@ const serviceLd = JSON.stringify({
           </details>
         ))}
       </div>
-      <p class="center ce-notas">
-        <a href={withBase('/cuando-ampliar-la-infraestructura-de-red-de-tu-empresa/')}>Cuándo ampliar la infraestructura de red de tu empresa</a>
-      </p>
     </div>
   </section>
 
@@ -373,12 +466,37 @@ const serviceLd = JSON.stringify({
   .ce-hero p { max-width: 680px; }
   .ce-hero .btn { margin-top: 1.4rem; }
 
-  /* QUÉ INCLUYE — dos columnas en escritorio, una en pantallas angostas. */
-  .ce-incluye { list-style: none; padding: 0; margin: 2.2rem auto 0; max-width: 900px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.9rem 2rem; }
-  .ce-incluye li { display: flex; gap: 0.7rem; align-items: flex-start; font-size: 1rem; }
+  /* QUÉ INCLUYE — sin título y a una sola columna: las frases son el
+     contenido, y entran de a una al hacer scroll. */
+  .ce-alcance { padding-block: clamp(3rem, 7vw, 5.5rem); }
+  .ce-incluye { list-style: none; padding: 0; margin: 0 auto; max-width: 840px; display: grid; gap: clamp(1.1rem, 2.4vw, 1.9rem); }
+  .ce-incluye__it {
+    display: flex; gap: 1rem; align-items: flex-start;
+    font-size: clamp(1.15rem, 2.4vw, 1.6rem);
+    line-height: 1.35; color: var(--heading); font-weight: 300;
+    opacity: 0; transform: translateY(18px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+  }
+  .ce-incluye__it.is-in { opacity: 1; transform: none; }
   /* :global() porque el <svg> lo renderiza el componente Icon y lleva su propio
      hash de scope, no el de esta página. */
-  .ce-incluye :global(svg) { color: var(--teal); flex: none; margin-top: 5px; }
+  .ce-incluye :global(svg) { color: var(--teal); flex: none; margin-top: 0.42em; }
+  /* Sin JS, o con el sistema pidiendo menos movimiento, se ven todas desde el
+     arranque: la animación no puede ser la condición para leer el contenido. */
+  @media (prefers-reduced-motion: reduce) {
+    .ce-incluye__it { opacity: 1; transform: none; transition: none; }
+  }
+
+  /* SELLOS DE CERTIFICACIÓN */
+  .ce-sellos { list-style: none; padding: 0; margin: 2.2rem 0 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+  .ce-sello { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem 0.8rem; text-align: center; display: grid; gap: 0.3rem; align-content: center; min-height: 104px; }
+  .ce-sello img { max-width: 100%; max-height: 42px; object-fit: contain; margin-inline: auto; }
+  .ce-sello__txt { font-size: 1.05rem; font-weight: 600; color: var(--heading); letter-spacing: 0.01em; }
+  .ce-sello__pie { font-size: 0.78rem; color: var(--muted); line-height: 1.3; }
+
+  /* LOGOS DE MARCA */
+  .ce-marcas { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 2rem; margin: 1.6rem 0 1.8rem; }
+  .ce-marcas img { max-height: 58px; width: auto; }
 
   .ce-lectura { margin-top: 1.8rem; display: flex; align-items: center; gap: 0.45rem; font-weight: 600; }
   .ce-lectura :global(svg) { color: var(--teal); flex: none; }
@@ -386,7 +504,24 @@ const serviceLd = JSON.stringify({
   /* GRILLAS */
   .ce-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.4rem; }
   .ce-grid--3 { grid-template-columns: repeat(3, 1fr); }
-  .ce-card { text-align: left; }
+  .ce-card { text-align: left; padding: 0; overflow: hidden; }
+  /* flex: none y width: 100% son necesarios: .card global es flex column con
+     align-items: center, así que sin esto el área se encoge a la altura de su
+     contenido y no toma el ancho de la tarjeta. */
+  .ce-card__foto { flex: none; width: 100%; aspect-ratio: 3 / 2; background: #f1f4f5; display: grid; place-items: center; }
+  .ce-card__foto img { width: 100%; height: 100%; object-fit: cover; }
+  .ce-card__ph { color: var(--teal); opacity: 0.38; }
+  .ce-card__body { width: 100%; padding: 1.3rem 1.4rem 1.6rem; }
+  .ce-card__body h3 { margin: 0 0 0.45rem; font-size: 1.05rem; }
+  .ce-card__body p { margin: 0; color: var(--muted); }
+
+  /* CARDS DE NOTA */
+  .ce-nota { padding: 0; overflow: hidden; text-align: left; align-items: stretch; }
+  .ce-nota__img { width: 100%; height: 175px; object-fit: cover; background: var(--surface); }
+  .ce-nota__body { padding: 1.4rem 1.5rem 1.6rem; display: flex; flex-direction: column; height: 100%; }
+  .ce-nota h3 { margin: 0 0 0.4rem; font-size: 1.12rem; }
+  .ce-nota p { color: var(--muted); margin: 0 0 0.9rem; }
+  .ce-nota .ce-more { margin: auto 0 0; }
   .ce-encima { display: flex; flex-direction: column; align-items: flex-start; text-align: left; padding: 1.6rem; }
   .ce-encima h3 { font-size: 1.05rem; margin-bottom: 0.5rem; }
   .ce-encima p { color: var(--muted); margin: 0 0 0.9rem; }
@@ -420,6 +555,7 @@ const serviceLd = JSON.stringify({
 
   @media (max-width: 980px) {
     .ce-grid, .ce-grid--3 { grid-template-columns: repeat(2, 1fr); }
+    .ce-sellos { grid-template-columns: repeat(2, 1fr); }
     .ce-cta { grid-template-columns: 1fr; gap: 2rem; }
   }
   @media (max-width: 620px) {
@@ -427,3 +563,31 @@ const serviceLd = JSON.stringify({
     .ce-incluye { grid-template-columns: 1fr; }
   }
 </style>
+
+<script>
+  // Las frases de alcance entran de a una al acercarse al viewport.
+  // Si el visitante pidió menos movimiento, se muestran todas y no se observa
+  // nada: la animación no puede ser la condición para leer el contenido.
+  const items = Array.from(document.querySelectorAll<HTMLElement>('#ce-incluye .ce-incluye__it'));
+  const quieto = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (quieto || !('IntersectionObserver' in window)) {
+    items.forEach((el) => el.classList.add('is-in'));
+  } else {
+    const io = new IntersectionObserver(
+      (entradas, obs) => {
+        // Las que entran juntas en el mismo cuadro se escalonan, así se leen
+        // de a una en vez de aparecer todas de golpe.
+        entradas
+          .filter((e) => e.isIntersecting)
+          .forEach((e, i) => {
+            const el = e.target as HTMLElement;
+            setTimeout(() => el.classList.add('is-in'), i * 110);
+            obs.unobserve(el);
+          });
+      },
+      { rootMargin: '0px 0px -12% 0px', threshold: 0.15 },
+    );
+    items.forEach((el) => io.observe(el));
+  }
+</script>
