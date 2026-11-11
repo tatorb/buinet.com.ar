@@ -45,28 +45,30 @@ jobs:
       # Build de PRODUCCIÓN: base "/" y dominio real.
       - run: npm run build
 
-      - name: Instalar lftp y sshpass
-        # El runner ya trae sshpass; el que hay que bajar es lftp. Los mirrors
-        # de Ubuntu fallan cada tanto por DNS ("Temporary failure resolving
-        # archive.ubuntu.com") y eso tumbaba el deploy entero: el 11/11/2026
-        # dejó cuatro corridas seguidas sin publicar. Se reintenta con espera
-        # creciente en vez de morir en el primer intento.
+      - name: Instalar lftp (opcional)
+        id: lftp
+        # lftp es el camino preferido porque hace el mirror incremental. Pero
+        # los mirrors de Ubuntu fallan cada tanto por DNS y el 11/11/2026
+        # eso dejó cuatro corridas seguidas sin publicar. Así que este paso
+        # NO puede tumbar el deploy: si lftp no se puede instalar, lo informa
+        # y el paso siguiente sube por sftp, que ya viene en el runner.
         run: |
           set -u
-          for intento in 1 2 3 4; do
-            if sudo apt-get update -o Acquire::Retries=3 \
-               && sudo apt-get install -y --no-install-recommends lftp sshpass; then
+          for intento in 1 2; do
+            if sudo apt-get update -o Acquire::Retries=2 \
+               && sudo apt-get install -y --no-install-recommends lftp; then
+              echo "hay_lftp=si" >> "$GITHUB_OUTPUT"
               echo "lftp instalado en el intento $intento."
               exit 0
             fi
-            espera=$((intento * 20))
-            echo "Intento $intento falló. Reintento en ${espera}s."
-            sleep "$espera"
+            [ "$intento" = 1 ] && sleep 20
           done
-          echo "::error::No se pudo instalar lftp tras 4 intentos (mirrors de Ubuntu caídos)."
-          exit 1
+          echo "hay_lftp=no" >> "$GITHUB_OUTPUT"
+          echo "::warning::No se pudo instalar lftp. Se sube por sftp."
+        continue-on-error: true
 
-      - name: Subir dist/ por SFTP (respeta wp-content)
+      - name: Subir dist/ con lftp (respeta wp-content)
+        if: steps.lftp.outputs.hay_lftp == 'si'
         env:
           SSH_HOST: ${{ secrets.SSH_HOST }}
           SSH_USER: ${{ secrets.SSH_USER }}
@@ -97,3 +99,46 @@ jobs:
           lftp -c "$OPEN mv \"$DEST\"/wp-content/upload \"$DEST\"/wp-content/uploads; bye;" || true
 
           lftp -c "$OPEN echo '--- Subiendo el sitio ---'; mirror -R --no-perms --parallel=2 --verbose --exclude-glob wp-content ./dist/ \"$DEST\"; bye;"
+
+      - name: Subir dist/ con sftp (respaldo si no hay lftp)
+        if: steps.lftp.outputs.hay_lftp != 'si'
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}
+          REMOTE_PATH: ${{ secrets.REMOTE_PATH }}
+        # Camino de respaldo: sftp y sshpass ya vienen en el runner, así que
+        # no depende de bajar ningún paquete. No usa "put -r" porque su manejo
+        # de directorios existentes cambia entre versiones de OpenSSH: en vez
+        # de eso arma un lote explícito, un -mkdir por carpeta (el guión
+        # inicial ignora el error si ya existe) y un put por archivo.
+        #
+        # Igual que el mirror de lftp, es NO DESTRUCTIVO: solo escribe lo que
+        # hay en dist/, así que wp-content queda intacto por construcción.
+        run: |
+          set -euo pipefail
+          PORT="${SSH_PORT:-22}"
+          HOST="$SSH_HOST"; HOST="${HOST##*://}"; HOST="${HOST%%/*}"
+          DEST="${REMOTE_PATH:-buinetweb/home}"
+          export SSHPASS="$SSH_PASSWORD"
+
+          LOTE="$(mktemp)"
+          {
+            echo "cd \"$DEST\""
+            # Carpetas primero. find+sort deja al padre antes que al hijo,
+            # porque el padre es prefijo del hijo.
+            (cd dist && find . -mindepth 1 -type d | sed 's|^\./||' | sort) \
+              | while IFS= read -r d; do echo "-mkdir \"$d\""; done
+            (cd dist && find . -type f | sed 's|^\./||' | sort) \
+              | while IFS= read -r f; do echo "put \"dist/$f\" \"$f\""; done
+            echo "bye"
+          } > "$LOTE"
+
+          echo "--- Subiendo $(grep -c '^put' "$LOTE") archivos en $(grep -c '^-mkdir' "$LOTE") carpetas ---"
+          sshpass -e sftp \
+            -o StrictHostKeyChecking=no \
+            -o UserKnownHostsFile=/dev/null \
+            -o ConnectTimeout=25 \
+            -P "$PORT" -b "$LOTE" "$SSH_USER@$HOST"
+          echo "--- Subida completa ---"
