@@ -45,6 +45,20 @@ jobs:
       # Build de PRODUCCIÓN: base "/" y dominio real.
       - run: npm run build
 
+      # Salida de emergencia. Guarda el sitio ya compilado como artefacto
+      # descargable desde la página de Actions. Va ANTES de los pasos de
+      # subida a propósito: corre aunque el deploy falle, así siempre hay una
+      # forma de publicar a mano sin depender de apt ni de los mirrors.
+      # include-hidden-files es obligatorio: sin eso .htaccess queda afuera y
+      # con él se van todos los redirects 301 y 410 del sitio.
+      - name: Guardar el sitio compilado como artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: sitio-compilado
+          path: dist/
+          include-hidden-files: true
+          retention-days: 14
+
       - name: Instalar lftp (opcional)
         id: lftp
         # lftp es el camino preferido porque hace el mirror incremental. Pero
