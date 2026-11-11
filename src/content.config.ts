@@ -9,6 +9,12 @@ const blog = defineCollection({
   schema: () =>
     z.object({
       title: z.string(),
+      // H1 visible, cuando tiene que decir algo distinto del title.
+      // El title va al <title> y al resultado de búsqueda, donde pelea con
+      // un límite de ancho; el H1 lo lee quien ya entró y puede ser más
+      // explicativo. Sin este campo los dos textos eran forzosamente el
+      // mismo. Si no se declara, el H1 sigue siendo el title.
+      h1: z.string().optional(),
       description: z.string().optional(),
       pubDate: z.coerce.date(),
       updatedDate: z.coerce.date().optional(),
@@ -27,6 +33,13 @@ const blog = defineCollection({
       // Las notas son Markdown y no pueden importar componentes, así que el
       // layout [post].astro lo renderiza cuando este flag está en true.
       capitalinasBanner: z.boolean().default(false),
+      // Preguntas frecuentes de la nota. Un solo origen para las dos cosas:
+      // [post].astro las dibuja como acordeón y con ellas arma el schema
+      // FAQPage, así no pueden desincronizarse. Mismo criterio que las
+      // páginas de servicio .astro, que ya lo hacían.
+      // No van en el cuerpo del Markdown: si estuvieran en los dos lados se
+      // duplicarían en pantalla.
+      faqs: z.array(z.object({ q: z.string(), a: z.string() })).default([]),
       draft: z.boolean().default(false),
     }),
 });

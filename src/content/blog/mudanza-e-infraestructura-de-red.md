@@ -36,7 +36,7 @@ Responder estas tres variables antes de la mudanza cuesta una reunión de planif
 
 ## ¿Por qué la planificación temprana cambia todo?
 
-La infraestructura de red de una sede nueva se decide mejor cuando todavía hay margen para decidir. Si la red [se piensa antes](/cuando-infraestructura-de-red-se-decide-en-el-plano/) de la mudanza, se puede definir dónde van los racks, cómo se distribuye el cableado, qué capacidad se deja prevista para lo que vendrá, dónde se ubican los puntos de acceso wifi, qué segmentación necesitan los distintos sistemas. Cada una de esas decisiones, tomada en proyecto, cuesta una fracción de lo que cuesta tomarla después.
+La infraestructura de red de una sede nueva se decide mejor cuando todavía hay margen para decidir. Si la red [se piensa antes](/cuando-infraestructura-de-red-se-decide-en-el-plano/) de la mudanza, se puede definir dónde van los racks, cómo se distribuye el [cableado de redes para la nueva sede](/cableado-estructurado/), qué capacidad se deja prevista para lo que vendrá, dónde se ubican los puntos de acceso wifi, qué segmentación necesitan los distintos sistemas. Cada una de esas decisiones, tomada en proyecto, cuesta una fracción de lo que cuesta tomarla después.
 
 Acá aparece una diferencia que un decisor con criterio reconoce. Una mudanza ejecutada con proyecto se hace una vez. Una mudanza resuelta sobre la marcha se sigue interviniendo durante años. Cada llamado para arreglar algo, cada nueva zona donde el wifi no llega, cada vez que un sistema se cae sin razón aparente, es el costo acumulado de no haber planificado bien al principio. Ese costo no aparece en la factura inicial, aparece distribuido en el tiempo, en horas de operación perdidas y en intervenciones repetidas.
 

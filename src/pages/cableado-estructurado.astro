@@ -143,6 +143,47 @@ const notas = [
   { titulo: 'Antes de contratar el diseño', resumen: 'Qué preguntar para no descubrir el problema cuando ya está todo tendido.', slug: 'diseno-de-infraestructura-de-red-nueva' },
 ];
 
+// Índice completo del cluster: las notas que tratan el cableado en sí.
+// Es distinto del bloque de cards de arriba, que destaca seis escenarios de
+// decisión. Acá va la lista entera, agrupada por tema, para que desde esta
+// página se llegue a cualquier nota en un clic. Los títulos son los de cada
+// nota, no resúmenes, así el texto del enlace coincide con el destino.
+const indiceNotas = [
+  {
+    grupo: 'Fundamentos',
+    items: [
+      { titulo: 'Qué es el cableado estructurado y qué partes tiene', slug: 'que-es-cableado-estructurado' },
+      { titulo: 'Dimensionamiento del cableado estructurado', slug: 'dimensionamiento-cableado-estructurado' },
+      { titulo: 'Cableado estructurado, qué categoría elegir y qué exigir', slug: 'cableado-estructurado-vida-util-red-empresa' },
+    ],
+  },
+  {
+    grupo: 'Cables y categorías',
+    items: [
+      { titulo: 'Cable UTP, FTP y STP, en qué se diferencian', slug: 'cable-utp-ftp-stp' },
+      { titulo: 'Cable Cat6, la categoría estándar para oficinas', slug: 'cable-cat6-oficinas' },
+      { titulo: 'Cable Cat6A, cuándo conviene en tu empresa', slug: 'cable-cat6a' },
+      { titulo: 'Cable Cat8, para qué se usa y dónde tiene sentido', slug: 'cable-cat8' },
+      { titulo: 'Fibra óptica o UTP, dónde va cada uno en tu red', slug: 'fibra-optica-vs-utp' },
+    ],
+  },
+  {
+    grupo: 'Normas, certificación y garantía',
+    items: [
+      { titulo: 'Certificación de cableado estructurado, qué es', slug: 'certificacion-cableado-estructurado' },
+      { titulo: 'Normas ANSI/TIA e ISO/IEC de cableado estructurado', slug: 'normas-cableado-estructurado-tia-iso' },
+      { titulo: 'Garantía del cableado estructurado, cómo funciona', slug: 'garantia-cableado-estructurado' },
+    ],
+  },
+  {
+    grupo: 'Entornos y equipos',
+    items: [
+      { titulo: 'Cableado estructurado en plantas industriales', slug: 'cableado-estructurado-industrial' },
+      { titulo: 'Cableado PoE para cámaras y puntos de acceso', slug: 'cableado-poe-camaras-access-point' },
+    ],
+  },
+];
+
 // Las FAQ alimentan el acordeón visible y el schema FAQPage. Un solo origen
 // para las dos cosas, así nunca se desincronizan.
 const faqs = [
@@ -426,6 +467,30 @@ const serviceLd = JSON.stringify({
     </div>
   </section>
 
+  <!-- ÍNDICE DE NOTAS DEL CLUSTER -->
+  <!-- Va sin fondo y con una línea arriba: la sección de cards que lo precede
+       y la de FAQ que lo sigue ya alternan fondo, y meter un tercer bloque
+       gris acá rompía esa alternancia. La línea lo separa igual. -->
+  <section class="section ce-indice-sec">
+    <div class="container">
+      <div class="center measure mx-auto">
+        <h2>Notas sobre cableado estructurado</h2>
+      </div>
+      <div class="ce-indice">
+        {indiceNotas.map((g) => (
+          <div class="ce-indice__col">
+            <h3 class="ce-indice__tit">{g.grupo}</h3>
+            <ul>
+              {g.items.map((n) => (
+                <li><a href={withBase(`/${n.slug}/`)}>{n.titulo}</a></li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <!-- FAQS -->
   <section class="section section--surface">
     <div class="container">
@@ -553,6 +618,15 @@ const serviceLd = JSON.stringify({
   /* EL CASO */
   .ce-caso { background: linear-gradient(160deg, var(--teal), var(--teal-dark)); color: #fff; padding-block: clamp(2.75rem, 6vw, 4.6rem); }
   .ce-caso h2 { color: #fff; }
+
+  /* Índice de notas del cluster */
+  .ce-indice-sec { border-top: 1px solid var(--border); }
+  .ce-indice { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 2rem 2.4rem; margin-top: 2.4rem; }
+  .ce-indice__tit { font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 0.9rem; }
+  .ce-indice ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 0.7rem; }
+  .ce-indice li { line-height: 1.4; }
+  .ce-indice a { font-weight: 500; color: var(--heading); text-decoration: none; border-bottom: 1px solid transparent; }
+  .ce-indice a:hover { color: var(--teal); border-bottom-color: currentColor; }
 
   /* FAQ */
   .ce-faq { max-width: 820px; margin: 2.2rem auto 0; }

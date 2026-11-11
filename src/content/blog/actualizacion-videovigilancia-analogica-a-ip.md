@@ -24,7 +24,7 @@ Buena noticia para el presupuesto. La parte más cara de una instalación no son
 
 **Los soportes y gabinetes suelen servir.** Con adaptadores en algunos casos, pero rara vez hay que rehacerlos.
 
-**Lo que sí cambia.** Las cámaras, el grabador y, sobre todo, la red. Acá está el costo real que no aparece en las primeras cotizaciones, porque un sistema IP necesita switches con presupuesto PoE suficiente, segmentación en VLAN para que el video no compita con el tráfico productivo y uplinks dimensionados. El detalle está en [cómo dimensionar un sistema de videovigilancia corporativo](/como-dimensionar-sistema-videovigilancia/).
+**Lo que sí cambia.** Las cámaras, el grabador y, sobre todo, la red. Acá está el costo real que no aparece en las primeras cotizaciones, porque un sistema IP necesita switches con presupuesto PoE suficiente, segmentación en VLAN para que el video no compita con el tráfico productivo y uplinks dimensionados. El detalle está en [cómo dimensionar un sistema de videovigilancia corporativo](/como-dimensionar-sistema-videovigilancia/), y la parte física, en el [cableado UTP para cámaras IP](/cableado-estructurado/). Te puede interesar, [Cableado PoE para cámaras y puntos de acceso](/cableado-poe-camaras-access-point/).
 
 ## La convivencia, que es lo que hace posible el gradualismo
 

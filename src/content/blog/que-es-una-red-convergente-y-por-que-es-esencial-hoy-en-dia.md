@@ -24,6 +24,8 @@ Una red convergente integra diferentes sistemas tecnológicos de una organizaci�
 
 En lugar de operar estos sistemas de manera independiente, una red convergente permite que todos trabajen juntos en armonía, optimizando los recursos y mejorando la experiencia operativa.
 
+Todos esos sistemas viajan por una sola instalación física, así que el [cableado de redes](/cableado-estructurado/) es la base sobre la que se monta la convergencia. Te puede interesar, [Qué es el cableado estructurado y qué partes tiene](/que-es-cableado-estructurado/).
+
 ##### Beneficios clave de una red convergente
 
 - **Eficiencia operativa**Al unificar todos los sistemas, las empresas pueden reducir la complejidad operativa, mejorar la velocidad de respuesta y minimizar interrupciones.

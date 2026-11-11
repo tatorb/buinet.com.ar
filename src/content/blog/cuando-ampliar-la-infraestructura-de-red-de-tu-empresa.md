@@ -42,9 +42,9 @@ Hay una diferencia importante entre ampliar la red y diseñar la ampliación de 
 
 Una empresa que crece va a estar ampliando su red durante toda su vida operativa. Esto no es una hipótesis, es la realidad de cualquier organización viva. La pregunta entonces no es si va a haber otra ampliación después de esta. La pregunta es si esa próxima ampliación va a ser un trámite simple o una nueva obra completa.
 
-La escalabilidad no es una decisión que se toma una sola vez en el [diseño inicial](/cuando-infraestructura-de-red-se-decide-en-el-plano/). Es una decisión que se sostiene en cada ampliación. Una red proyectada con criterio ampliación tras ampliación llega a los diez años funcionando bien. Una red parcheada en cada movimiento llega a los tres con un costo acumulado mucho mayor.
+La escalabilidad no es una decisión que se toma una sola vez en el [diseño inicial](/cuando-infraestructura-de-red-se-decide-en-el-plano/). Es una decisión que se sostiene en cada ampliación. Una red proyectada con criterio ampliación tras ampliación llega a los diez años funcionando bien. Una red parcheada en cada movimiento llega a los tres con un costo acumulado mucho mayor. Buena parte de eso se define en el [dimensionamiento del cableado](/dimensionamiento-cableado-estructurado/), que es lo que deja o no lugar para la etapa siguiente.
 
-En [Building Networks tomamos cada ampliación como una nueva etapa de proyecto](/infraestructura-de-red/), no como un agregado puntual. Es la única forma de garantizar que la red siga funcionando todo el tiempo, no casi siempre, a medida que la empresa crece.
+En [Building Networks tomamos cada ampliación como una nueva etapa de proyecto](/infraestructura-de-red/), no como un agregado puntual, y cuando hay que tender cable nuevo lo hacemos como [ampliación de cableado estructurado](/cableado-estructurado/) certificada. Es la única forma de garantizar que la red siga funcionando todo el tiempo, no casi siempre, a medida que la empresa crece.
 
 ## La prueba: la infraestructura como factor de decisión
 

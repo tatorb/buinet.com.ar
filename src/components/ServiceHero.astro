@@ -5,6 +5,10 @@
 // la mitad izquierda con desenfoque y verde de marca, y ahí va el texto. La
 // mitad derecha queda limpia, se ve la foto.
 //
+// El corte entre el panel y la foto es recto. Antes había un degradé verde
+// difuminado para suavizarlo, pero leía como un resplandor y se saca por
+// decisión del cliente.
+//
 // Antes cada página escribía su propio hero y el mismo degradé estaba copiado
 // en catorce lugares. Ahora el degradé, el desenfoque y el comportamiento en
 // pantallas angostas viven acá.
@@ -63,29 +67,20 @@ const { icono, eyebrow = 'Servicios y productos', titulo, lead, imagen } = Astro
     position: relative;
     width: 50%;
     min-height: 100%;
-    background: linear-gradient(100deg, rgba(0,70,75,0.92) 60%, rgba(0,98,105,0.78));
+    background: linear-gradient(100deg, rgba(0,70,75,0.86) 60%, rgba(0,98,105,0.72));
     display: flex;
     align-items: center;
   }
   @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
-    /* Con desenfoque disponible el panel puede ser más transparente: se
-       intuye la foto debajo sin que el texto pierda contraste. */
+    /* El desenfoque es suave a propósito: tiene que dejar reconocer la escena
+       de la foto detrás del panel, no taparla. Y como el desenfoque ya le
+       quita el detalle fino a la imagen, el verde puede ir bastante
+       transparente sin que el texto blanco pierda legibilidad. */
     .svch__panel {
-      -webkit-backdrop-filter: blur(16px) saturate(115%);
-      backdrop-filter: blur(16px) saturate(115%);
-      background: linear-gradient(100deg, rgba(0,70,75,0.80) 60%, rgba(0,98,105,0.62));
+      -webkit-backdrop-filter: blur(6px) saturate(108%);
+      backdrop-filter: blur(6px) saturate(108%);
+      background: linear-gradient(100deg, rgba(0,70,75,0.64) 60%, rgba(0,98,105,0.50));
     }
-  }
-  /* Borde difuso: evita el corte recto contra la foto. */
-  .svch__panel::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 100%;
-    width: clamp(40px, 6vw, 110px);
-    background: linear-gradient(to right, rgba(0,80,86,0.55), transparent);
-    pointer-events: none;
   }
 
   /* El texto arranca donde arrancaría dentro de .container, para que el hero
@@ -109,14 +104,12 @@ const { icono, eyebrow = 'Servicios y productos', titulo, lead, imagen } = Astro
 
   /* Sin foto no hay nada que desenfocar ni que dejar a la vista. */
   .svch[data-sin-foto] .svch__panel { width: 100%; backdrop-filter: none; -webkit-backdrop-filter: none; background: linear-gradient(160deg, var(--teal-dark), var(--teal)); }
-  .svch[data-sin-foto] .svch__panel::after { display: none; }
   .svch[data-sin-foto] .svch__texto { max-width: var(--container); margin-inline: auto; padding-inline: 1.5rem; }
 
   /* En pantallas angostas la mitad no alcanza para leer, así que el panel
      pasa a cubrir todo el ancho. La foto sigue abajo, atenuada. */
   @media (max-width: 860px) {
     .svch__panel { width: 100%; }
-    .svch__panel::after { display: none; }
     .svch__texto { max-width: var(--container); margin-inline: auto; padding-inline: 1.5rem; }
   }
 </style>

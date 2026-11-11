@@ -46,6 +46,8 @@ Los access points corporativos se alimentan por Power over Ethernet, es decir, p
 
 Este detalle se pasa por alto seguido. Se compra el mejor AP del catálogo y se conecta a un switch que le da la mitad de la energía que necesita, y después nadie entiende por qué el rendimiento no es el que promete la ficha técnica.
 
+El cable también entra en la cuenta. Instalamos [cableado Cat6A para puntos de acceso](/cableado-estructurado/) justamente porque disipa mejor el calor cuando la línea lleva datos y energía a la vez. Te puede interesar, [Cableado PoE para cámaras y puntos de acceso](/cableado-poe-camaras-access-point/).
+
 ## Los puntos ciegos no son un problema de señal
 
 Cuando un usuario reporta "acá no llega el wifi", la mayoría de las veces la señal está. El problema es otro.

@@ -26,7 +26,7 @@ No es lo mismo una empresa con 30 personas en una oficina que una con 30 persona
 
 ### ¿Cuántos equipos y dispositivos van a necesitar conexión?
 
-Más allá de las personas, conviene contar todo: cámaras, controladores de acceso, parlantes, sensores, impresoras de red, servidores, equipos de video. Cada uno suma carga y exige una decisión de cableado o de wifi.
+Más allá de las personas, conviene contar todo: cámaras, controladores de acceso, parlantes, sensores, impresoras de red, servidores, equipos de video. Cada uno suma carga y exige una decisión de cableado o de wifi, y de ese recuento sale el [diseño de cableado estructurado](/cableado-estructurado/) del edificio.
 
 Estas tres preguntas, bien respondidas, te permiten arrancar una conversación seria con cualquier proveedor. Pero son apenas el piso. La diferencia entre una red que va a funcionar bien y una que va a darte problemas no se decide en este nivel. Se decide en los dos que vienen.
 

@@ -24,15 +24,31 @@ const fmt = (d: Date) => d.toLocaleDateString('es-AR', { year: 'numeric', month:
 const servicio = post.data.capitalinasBanner ? null : servicioDeNota[post.id];
 const conRiel = post.data.capitalinasBanner || Boolean(servicio);
 
+// FAQPage: sale del mismo arreglo que dibuja el acordeón, así no se
+// desincronizan. Solo se emite si la nota tiene preguntas.
+const faqs = post.data.faqs ?? [];
+const faqLd = faqs.length
+  ? JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faqs.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    })
+  : null;
+
 const heroStyle = post.data.heroImage
   ? `background: linear-gradient(160deg, rgba(0,70,75,0.93), rgba(0,98,105,0.80)), url("${post.data.heroImage}") center/cover no-repeat;`
   : undefined;
 ---
 <BaseLayout title={post.data.title} description={post.data.description} canonical={post.data.canonical} brandSuffix={false}>
+  {faqLd && <script type="application/ld+json" is:inline set:html={faqLd} slot="head" />}
   <section class="svc-hero" style={heroStyle}>
     <div class="container" style="padding-block:clamp(1.9rem,4.2vw,3.1rem); max-width:820px">
       <p class="eyebrow">Novedades</p>
-      <h1 style="color:#fff">{post.data.title}</h1>
+      <h1 style="color:#fff">{post.data.h1 ?? post.data.title}</h1>
       <p class="post__meta">
         {fmt(post.data.pubDate)}{post.data.category ? ` · ${post.data.category}` : ''}{post.data.author ? ` · ${post.data.author}` : ''}
       </p>
@@ -45,6 +61,17 @@ const heroStyle = post.data.heroImage
       {servicio && <ServicioBanner servicio={servicio} />}
       <div class="post__inner prose">
       <Content />
+      {faqs.length > 0 && (
+        <section class="post__faq">
+          <h2>Preguntas frecuentes</h2>
+          {faqs.map((f) => (
+            <details class="post__faq-item">
+              <summary>{f.q}</summary>
+              <p>{f.a}</p>
+            </details>
+          ))}
+        </section>
+      )}
       {post.data.contactForm && (
         <section class="post__form">
           <h2>Escribinos</h2>
@@ -78,6 +105,11 @@ const heroStyle = post.data.heroImage
   .prose :global(th), .prose :global(td) { border: 1px solid var(--border); padding: 0.7rem 0.9rem; vertical-align: top; }
   .prose :global(tbody tr:nth-child(even)) { background: var(--surface); }
   .prose :global(tbody td:first-child) { font-weight: 500; color: var(--heading); }
+  .post__faq { margin-top: 2.6rem; }
+  .post__faq h2 { margin-bottom: 1rem; }
+  .post__faq-item { border-bottom: 1px solid var(--border); padding: 1.1rem 0; }
+  .post__faq-item summary { cursor: pointer; font-weight: 600; color: var(--heading); font-size: 1.02rem; }
+  .post__faq-item p { margin: 0.8rem 0 0; color: var(--fg); }
   .post__form { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border); }
   .post__form h2 { margin-bottom: 1.2rem; }
   .post__back { margin-top: 2.5rem; }

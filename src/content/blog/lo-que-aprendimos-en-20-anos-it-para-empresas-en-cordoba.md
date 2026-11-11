@@ -28,7 +28,7 @@ Casi 20 años proyectando y operando infraestructura en este mercado nos enseña
 
 ### La proximidad es una ventaja real
 
-En infraestructura crítica, la cercanía geográfica no es un detalle. Es la diferencia entre intervenir en minutos o en horas. Entre tener supervisión directa o depender de soporte remoto que no conoce el contexto local. Entre poder hacer un upgrade durante la noche sin coordinar con tres husos horarios o tener que adaptarse a las disponibilidades de alguien que está en otro continente. Las empresas que entendieron esto temprano operan hoy con tranquilidad. Las que lo entendieron tarde lo pagan cada vez que algo falla.
+En infraestructura crítica, la cercanía geográfica no es un detalle. Es la diferencia entre intervenir en minutos o en horas. Entre tener supervisión directa o depender de soporte remoto que no conoce el contexto local. Entre poder hacer un upgrade durante la noche sin coordinar con tres husos horarios o tener que adaptarse a las disponibilidades de alguien que está en otro continente. Las empresas que entendieron esto temprano operan hoy con tranquilidad. Las que lo entendieron tarde lo pagan cada vez que algo falla. Es también la razón por la que hacemos la [instalación de cableado estructurado en Córdoba](/cableado-estructurado/) con equipos propios.
 
 ### Cada empresa es particular, la infraestructura también
 

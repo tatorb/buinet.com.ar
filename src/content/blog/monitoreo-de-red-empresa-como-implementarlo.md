@@ -36,7 +36,7 @@ Los indicadores que aportan valor real, priorizados por lo que se ve primero cua
 
 **Disponibilidad de equipos.** ¿El switch, el router, el AP responden? Un equipo que no responde a un ping durante 30 segundos es una alerta.
 
-**Uso de ancho de banda por interfaz.** ¿Qué puertos están saturados? Un puerto de switch que llega al 90% de utilización de manera sostenida es la señal más clara de cuello de botella.
+**Uso de ancho de banda por interfaz.** ¿Qué puertos están saturados? Un puerto de switch que llega al 90% de utilización de manera sostenida es la señal más clara de cuello de botella. Cuando el cuello de botella no está en el switch sino en la línea, lo que lo descarta es un [cableado estructurado certificado](/cableado-estructurado/), con el informe de medición de cada puesto.
 
 **Latencia y pérdida de paquetes.** Entre puntos clave de la red (sede a sede, sede a Internet, sede a data center). La latencia degradada afecta especialmente a videollamadas, VoIP y aplicaciones interactivas.
 

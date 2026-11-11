@@ -28,7 +28,7 @@ La ubicación del centro de comunicaciones define todos los recorridos de cablea
 
 ### Cómo se distribuye el cableado
 
-Bandejas, ductos, recorridos verticales y horizontales. En plano se traza una red coherente. En obra terminada se traza lo que las paredes y los cielorrasos permiten, que rara vez es lo que sería óptimo.
+Bandejas, ductos, recorridos verticales y horizontales. En plano se traza una red coherente, que es la única forma de encarar el [cableado estructurado para obra nueva](/cableado-estructurado/). En obra terminada se traza lo que las paredes y los cielorrasos permiten, que rara vez es lo que sería óptimo.
 
 ### Qué capacidad se deja prevista
 

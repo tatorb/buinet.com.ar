@@ -30,6 +30,8 @@ El cable UTP (par trenzado no blindado) se clasifica por categorías, y la elecc
 
 La regla práctica: para una empresa que se está mudando, ampliando o construyendo sede, Cat 6A es la elección con mejor relación entre inversión inicial y horizonte de vida útil. La diferencia de costo del cable en sí es marginal respecto al costo total de la instalación (mano de obra, ductos, patch panels), y esa fracción compra 15 años de tranquilidad.
 
+Cada categoría tiene su nota aparte, con lo que soporta y dónde conviene: [Cat6](/cable-cat6-oficinas/), [Cat6A](/cable-cat6a/) y [Cat8](/cable-cat8/).
+
 ## Cobre versus fibra óptica: cuándo cada uno
 
 La pregunta no es cuál es mejor. Es qué usar en cada tramo.
@@ -96,6 +98,6 @@ El cableado estructurado es la única capa de la red que no se va a poder actual
 
 Por eso conviene tomarlo como una decisión estructural, no como un ítem de compra. Elegir la categoría correcta, planificar el trazado con criterio, exigir certificación en la entrega, y documentar cada punto. Es la diferencia entre una red que funciona todo el tiempo, no casi siempre, y una que empieza a molestar antes de tiempo.
 
-Si tu empresa está por construir, mudarse o ampliar, este es el momento de revisar cómo va a quedar la capa que va a heredar durante la próxima década. Conversemos sobre tu caso y evaluemos qué necesita tu infraestructura hoy y cuál va a ser el escenario cuando el negocio siga creciendo.
+Si tu empresa está por construir, mudarse o ampliar, este es el momento de revisar cómo va a quedar la capa que va a heredar durante la próxima década. Hacemos la [instalación de cableado estructurado certificado](/cableado-estructurado/) completa, desde el diseño hasta el informe de medición de cada línea. Conversemos sobre tu caso y evaluemos qué necesita tu infraestructura hoy y cuál va a ser el escenario cuando el negocio siga creciendo.
 
 [Conversemos](/contacto/)
