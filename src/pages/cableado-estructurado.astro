@@ -56,25 +56,25 @@ const entornos = [
     titulo: 'Oficinas y edificios corporativos',
     resumen: 'Puestos de trabajo, salas de reunión, WiFi y telefonía, con el cableado oculto y documentado.',
     icono: 'building',
-    foto: '',
+    foto: '/img/entornos/oficina-corporativa.webp',
   },
   {
     titulo: 'Plantas industriales',
     resumen: 'Cableado blindado donde hay motores y variadores, canalizaciones protegidas y fibra para unir sectores alejados.',
     icono: 'factory',
-    foto: '',
+    foto: '/img/entornos/planta-industrial.webp',
   },
   {
     titulo: 'Minería, petróleo y energía',
     resumen: 'Instalaciones con distancias largas, polvo, humedad y temperaturas extremas, donde la fibra y los materiales para exterior son la regla.',
     icono: 'bolt',
-    foto: '',
+    foto: '/img/entornos/mineria-energia.webp',
   },
   {
     titulo: 'Obra nueva y mudanzas',
     resumen: 'El cableado se define en el plano, antes de cerrar paredes y techos.',
     icono: 'helmet',
-    foto: '',
+    foto: '/img/entornos/obra-nueva.webp',
   },
 ];
 
@@ -318,9 +318,8 @@ const serviceLd = JSON.stringify({
       <div class="ce-grid" style="margin-top:2.5rem">
         {entornos.map((e) => (
           <div class="card ce-card">
-            {/* PENDIENTE: faltan las cuatro fotos. Con `foto` vacío la card
-                muestra el ícono del entorno sobre fondo neutro, del mismo
-                alto que tendrá la foto, así la grilla no se mueve después. */}
+            {/* Con `foto` vacío la card cae al ícono del entorno sobre fondo
+                neutro, del mismo alto, así la grilla nunca se mueve. */}
             <div class="ce-card__foto">
               {e.foto
                 ? <img src={e.foto} alt={e.titulo} loading="lazy" />
