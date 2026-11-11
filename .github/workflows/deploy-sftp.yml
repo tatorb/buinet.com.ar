@@ -55,8 +55,12 @@ jobs:
         run: |
           set -u
           for intento in 1 2; do
-            if sudo apt-get update -o Acquire::Retries=2 \
-               && sudo apt-get install -y --no-install-recommends lftp; then
+            # Timeouts cortos: sin esto cada intento tarda 4-5 minutos en
+            # morir y el paso se come doce. Con 10s se rinde enseguida y el
+            # respaldo entra casi sin demora.
+            APT_T="-o Acquire::http::Timeout=10 -o Acquire::https::Timeout=10 -o Acquire::Retries=1"
+            if sudo apt-get update $APT_T \
+               && sudo apt-get install -y --no-install-recommends $APT_T lftp; then
               echo "hay_lftp=si" >> "$GITHUB_OUTPUT"
               echo "lftp instalado en el intento $intento."
               exit 0
@@ -136,7 +140,16 @@ jobs:
           } > "$LOTE"
 
           echo "--- Subiendo $(grep -c '^put' "$LOTE") archivos en $(grep -c '^-mkdir' "$LOTE") carpetas ---"
+          # OJO con BatchMode. Pasarle -b a sftp activa BatchMode=yes de forma
+          # implícita, y eso desactiva el prompt de contraseña: sshpass se
+          # queda sin dónde inyectarla y el server responde "Permission
+          # denied". Por eso hay que volver a apagarlo a mano.
+          # PubkeyAuthentication=no evita que pierda tiempo ofreciendo claves
+          # que no existen antes de llegar a la contraseña.
           sshpass -e sftp \
+            -o BatchMode=no \
+            -o PubkeyAuthentication=no \
+            -o PreferredAuthentications=password \
             -o StrictHostKeyChecking=no \
             -o UserKnownHostsFile=/dev/null \
             -o ConnectTimeout=25 \
