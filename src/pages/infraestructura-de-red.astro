@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
+import ServiceHero from '../components/ServiceHero.astro';
 import { getCollection } from 'astro:content';
 import { partners } from '../data/servicios';
 import { site } from '../site.config';
@@ -167,19 +168,19 @@ const faqLd = JSON.stringify({
 >
   <script type="application/ld+json" is:inline set:html={faqLd} slot="head" />
   <!-- HERO -->
-  <section class="ir-hero">
-    <div class="container ir-hero__inner">
-      <span class="hero-badge"><Icon name="network" size={26} /></span>
-      <p class="eyebrow" style="color:#bfe0dd">Infraestructura de Red</p>
-      <h1>Infraestructura de red para empresas e industrias en Córdoba</h1>
-      <ul class="ir-hero__bullets">
-        {heroBullets.map((b) => (
-          <li><Icon name="arrow" size={18} /> {b}</li>
-        ))}
-      </ul>
-      <a class="btn btn--white" href={withBase('/contacto/')}>Contactar asesor comercial</a>
-    </div>
-  </section>
+  <ServiceHero
+    icono="network"
+    eyebrow="Infraestructura de Red"
+    titulo="Infraestructura de red para empresas e industrias en Córdoba"
+    imagen="/wp-content/uploads/2026/07/bloom-c61f2c98-db75-4bbc-aa2d-0e1d781b2d6f.jpg"
+  >
+    <ul>
+      {heroBullets.map((b) => (
+        <li><Icon name="arrow" size={18} /> {b}</li>
+      ))}
+    </ul>
+    <a class="btn btn--white" href={withBase('/contacto/')}>Contactar asesor comercial</a>
+  </ServiceHero>
 
   <!-- TRES MOMENTOS -->
   <section class="section section--surface">
@@ -382,13 +383,7 @@ const faqLd = JSON.stringify({
 
 <style>
   /* HERO */
-  .ir-hero { background: linear-gradient(160deg, rgba(0,70,75,0.93), rgba(0,98,105,0.80)), url("/wp-content/uploads/2026/07/bloom-c61f2c98-db75-4bbc-aa2d-0e1d781b2d6f.jpg") center/cover no-repeat; color: #fff; }
-  .ir-hero__inner { padding-block: clamp(2.6rem, 6vw, 4.6rem); max-width: 780px; }
-  .ir-hero h1 { color: #fff; margin-bottom: 1.5rem; }
-  .ir-hero__bullets { list-style: none; padding: 0; margin: 0 0 2rem; display: grid; gap: 0.7rem; }
-  .ir-hero__bullets li { display: flex; align-items: center; gap: 0.6rem; font-size: 1.02rem; color: rgba(255,255,255,0.94); }
   /* :global() — el <svg> viene de Icon y lleva otro hash de scope. */
-  .ir-hero__bullets :global(svg) { color: #bfe0dd; flex: none; }
 
   /* INTRO */
   .ir-intro { display: grid; grid-template-columns: 1.6fr 1fr; gap: 2.5rem; align-items: center; }

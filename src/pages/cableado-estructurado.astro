@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
 import ContactForm from '../components/ContactForm.astro';
+import ServiceHero from '../components/ServiceHero.astro';
 import { getCollection } from 'astro:content';
 import { withBase } from '../utils/url';
 
@@ -218,25 +219,19 @@ const serviceLd = JSON.stringify({
   <script type="application/ld+json" is:inline set:html={serviceLd} slot="head" />
   <script type="application/ld+json" is:inline set:html={faqLd} slot="head" />
 
-  <!-- HERO -->
-  <section class="ce-hero" style={`background: linear-gradient(160deg, rgba(0,70,75,0.93), rgba(0,98,105,0.80)), url("${HERO}") center/cover no-repeat;`}>
-    <div class="container ce-hero__inner">
-      <span class="hero-badge"><Icon name="network" size={26} /></span>
-      <p class="eyebrow" style="color:#bfe0dd">Servicios y productos</p>
-      <h1>Cableado estructurado UTP para empresas e industrias en Córdoba</h1>
-      <p class="lead" style="color:rgba(255,255,255,0.92)">
-        Building Networks instala cableado estructurado UTP Cat6, Cat6A y Cat8 y fibra óptica para
-        empresas e industrias de Córdoba y otras provincias. Somos instaladores certificados
-        CommScope y certificamos cada línea con equipos Fluke bajo normas ANSI/TIA e ISO/IEC.
-      </p>
-      <p style="color:rgba(255,255,255,0.85)">
-        El cableado estructurado es una de las partes principales de la red y normalmente se usa en
-        el cableado horizontal. Del diseño y el dimensionamiento del cableado depende que todos los
-        dispositivos reciban el ancho de banda que necesitan para funcionar.
-      </p>
-      <a class="btn btn--white" href={withBase('/contacto/')}>Hablá con un asesor</a>
-    </div>
-  </section>
+  <ServiceHero
+    icono="network"
+    titulo="Cableado estructurado UTP para empresas e industrias en Córdoba"
+    lead="Building Networks instala cableado estructurado UTP Cat6, Cat6A y Cat8 y fibra óptica para empresas e industrias de Córdoba y otras provincias. Somos instaladores certificados CommScope y certificamos cada línea con equipos Fluke bajo normas ANSI/TIA e ISO/IEC."
+    imagen={HERO}
+  >
+    <p>
+      El cableado estructurado es una de las partes principales de la red y normalmente se usa en
+      el cableado horizontal. Del diseño y el dimensionamiento del cableado depende que todos los
+      dispositivos reciban el ancho de banda que necesitan para funcionar.
+    </p>
+    <a class="btn btn--white" href={withBase('/contacto/')}>Hablá con un asesor</a>
+  </ServiceHero>
 
   <!-- QUÉ INCLUYE · sin título. Carrusel vertical: muestra tres frases, gira
        de abajo hacia arriba de a una y vuelve a empezar. La del medio va con
@@ -461,13 +456,6 @@ const serviceLd = JSON.stringify({
 </BaseLayout>
 
 <style>
-  /* HERO — el fondo se arma en línea para tomar la constante HERO. */
-  .ce-hero { color: #fff; }
-  .ce-hero__inner { padding-block: clamp(2.6rem, 6vw, 4.6rem); max-width: 780px; }
-  .ce-hero h1 { color: #fff; margin-bottom: 1.2rem; }
-  .ce-hero p { max-width: 680px; }
-  .ce-hero .btn { margin-top: 1.4rem; }
-
   /* QUÉ INCLUYE — carrusel vertical de tres filas.
      Sin la clase .is-rueda (que pone el script) esto es una lista común y
      completa: así se ve sin JS, y es lo que lee un buscador. */

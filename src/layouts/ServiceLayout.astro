@@ -2,6 +2,7 @@
 import { withBase } from '../utils/url';
 import BaseLayout from './BaseLayout.astro';
 import Icon from '../components/Icon.astro';
+import ServiceHero from '../components/ServiceHero.astro';
 import { servicios } from '../data/servicios';
 
 interface Props {
@@ -14,21 +15,10 @@ interface Props {
 const { slug, title, resumen, icono, description } = Astro.props;
 const otros = servicios.filter((s) => s.slug !== slug);
 const heroImg = servicios.find((s) => s.slug === slug)?.hero;
-const heroStyle = heroImg
-  ? `background: linear-gradient(160deg, rgba(0,70,75,0.93), rgba(0,98,105,0.80)), url("${heroImg}") center/cover no-repeat;`
-  : undefined;
+
 ---
 <BaseLayout title={title} description={description ?? resumen}>
-  <section class="svc-hero" style={heroStyle}>
-    <div class="container svc-hero__inner">
-      <span class="svc-hero__icon"><Icon name={icono} size={26} /></span>
-      <div>
-        <p class="eyebrow">Servicios y productos</p>
-        <h1>{title}</h1>
-        <p class="lead" style="color:var(--color-on-dark-muted)">{resumen}</p>
-      </div>
-    </div>
-  </section>
+  <ServiceHero icono={icono} titulo={title} lead={resumen} imagen={heroImg} />
 
   <section class="section">
     <div class="container svc-body">
@@ -53,10 +43,6 @@ const heroStyle = heroImg
 </BaseLayout>
 
 <style>
-  .svc-hero { background: linear-gradient(160deg, rgba(0,70,75,0.93), rgba(0,98,105,0.80)), url("/wp-content/uploads/2024/07/A4.jpg") center/cover no-repeat; color: var(--color-on-dark); }
-  .svc-hero__inner { display: flex; gap: 1.25rem; align-items: flex-start; padding-block: clamp(2rem, 4.5vw, 3.4rem); }
-  .svc-hero h1 { color: #fff; }
-  .svc-hero__icon { flex: none; width: 54px; height: 54px; border-radius: 13px; display: grid; place-items: center; background: rgba(255,255,255,0.12); color: #fff; border: 1px solid rgba(255,255,255,0.25); }
   .svc-body { display: grid; grid-template-columns: 1.7fr 1fr; gap: 2.5rem; align-items: start; }
   .prose { max-width: 62ch; }
   .prose :global(h2) { margin-top: 2rem; }
@@ -65,5 +51,5 @@ const heroStyle = heroImg
   .svc-aside { display: grid; gap: 1.25rem; position: sticky; top: 130px; }
   .svc-links { list-style: none; padding: 0; margin: 0.5rem 0 0; display: grid; gap: 0.5rem; }
   .svc-links a { font-weight: 600; color: var(--color-primary); }
-  @media (max-width: 900px) { .svc-body { grid-template-columns: 1fr; } .svc-aside { position: static; } .svc-hero__inner { flex-direction: column; } }
+  @media (max-width: 900px) { .svc-body { grid-template-columns: 1fr; } .svc-aside { position: static; }  }
 </style>

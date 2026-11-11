@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
+import ServiceHero from '../components/ServiceHero.astro';
 import ContactForm from '../components/ContactForm.astro';
 import YouTube from '../components/YouTube.astro';
 import { withBase } from '../utils/url';
@@ -230,18 +231,14 @@ const faqLd = JSON.stringify({
 >
   <script type="application/ld+json" is:inline set:html={faqLd} slot="head" />
 
-  <!-- HERO -->
-  <section class="vi-hero">
-    <div class="container vi-hero__inner">
-      <span class="hero-badge"><Icon name="camera" size={26} /></span>
-      <p class="eyebrow" style="color:#bfe0dd">Servicios y productos</p>
-      <h1>Video inteligente para empresas e industrias</h1>
-      <p class="lead" style="color:rgba(255,255,255,0.92); max-width:640px">
-        Detección, control operativo y seguridad integrados en un solo sistema.
-      </p>
-      <p style="color:rgba(255,255,255,0.85); max-width:680px">{OFERTA}</p>
-    </div>
-  </section>
+  <ServiceHero
+    icono="camera"
+    titulo="Video inteligente para empresas e industrias"
+    lead="Detección, control operativo y seguridad integrados en un solo sistema."
+    imagen="/img/video-inteligente-hero.jpg"
+  >
+    <p>{OFERTA}</p>
+  </ServiceHero>
 
   <!-- QUÉ HACE -->
   <section class="section">
@@ -414,9 +411,6 @@ const faqLd = JSON.stringify({
 
 <style>
   /* HERO */
-  .vi-hero { background: linear-gradient(160deg, rgba(0,70,75,0.93), rgba(0,98,105,0.80)), url("/img/video-inteligente-hero.jpg") center/cover no-repeat; color: #fff; }
-  .vi-hero__inner { padding-block: clamp(2.6rem, 6vw, 4.6rem); max-width: 780px; }
-  .vi-hero h1 { color: #fff; margin-bottom: 1.2rem; }
 
   /* BULLETS */
   .vi-bullets { list-style: none; padding: 0; margin: 1.6rem 0 0; display: grid; gap: 0.9rem; }
