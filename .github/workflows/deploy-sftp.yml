@@ -46,7 +46,25 @@ jobs:
       - run: npm run build
 
       - name: Instalar lftp y sshpass
-        run: sudo apt-get update && sudo apt-get install -y lftp sshpass
+        # El runner ya trae sshpass; el que hay que bajar es lftp. Los mirrors
+        # de Ubuntu fallan cada tanto por DNS ("Temporary failure resolving
+        # archive.ubuntu.com") y eso tumbaba el deploy entero: el 11/11/2026
+        # dejó cuatro corridas seguidas sin publicar. Se reintenta con espera
+        # creciente en vez de morir en el primer intento.
+        run: |
+          set -u
+          for intento in 1 2 3 4; do
+            if sudo apt-get update -o Acquire::Retries=3 \
+               && sudo apt-get install -y --no-install-recommends lftp sshpass; then
+              echo "lftp instalado en el intento $intento."
+              exit 0
+            fi
+            espera=$((intento * 20))
+            echo "Intento $intento falló. Reintento en ${espera}s."
+            sleep "$espera"
+          done
+          echo "::error::No se pudo instalar lftp tras 4 intentos (mirrors de Ubuntu caídos)."
+          exit 1
 
       - name: Subir dist/ por SFTP (respeta wp-content)
         env:
