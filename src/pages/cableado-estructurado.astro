@@ -14,18 +14,18 @@ const heroOf = (slug: string) => blogBySlug.get(slug)?.heroImage;
 // Mismo nivel que /infraestructura-de-red/ y /video-inteligente/: usa
 // BaseLayout directo, no ServiceLayout, porque tiene estructura propia.
 //
-// PENDIENTE: la foto del hero está prestada del cluster de red. El pedido es
-// una toma con luz de día de un técnico tendiendo o certificando cable, con el
-// verde de marca solo como acento. Cuando llegue, se cambia acá y listo.
+// Hero: comparte la foto con el cluster de infraestructura de red, por
+// decisión del cliente. Para cambiarla alcanza con esta constante.
 const HERO = '/wp-content/uploads/2026/07/bloom-c61f2c98-db75-4bbc-aa2d-0e1d781b2d6f.jpg';
 
 // Foto de fondo del bloque del caso, la misma que usan las otras páginas.
 const FONDO_CASO = '/wp-content/uploads/2024/07/distrito-capitalinas.jpg';
 
 // Un logo con la ruta vacía no se dibuja.
+// No existe un sello de instalador certificado aparte: va el logo corporativo
+// y el texto de la sección dice la condición. Si alguna vez aparece, se suma
+// en LOGO_INSTALADOR y el bloque lo muestra al lado.
 const LOGO_COMMSCOPE = '/img/certificaciones/commscope.webp';
-// PENDIENTE: no llegó el sello de instalador certificado. Con la ruta vacía
-// el bloque muestra solo el logo de CommScope.
 const LOGO_INSTALADOR = '';
 
 // Sellos de la certificación de cada línea. `logo` vacío = se dibuja con
@@ -208,7 +208,7 @@ const serviceLd = JSON.stringify({
 ---
 <BaseLayout
   title="Cableado estructurado UTP en Córdoba, Cat6, Cat6A y Cat8"
-  description="Instalación de cableado estructurado UTP y fibra óptica para empresas e industrias. Instaladores certificados CommScope, cada línea certificada con Fluke bajo normas ANSI/TIA e ISO/IEC."
+  description="Instalación de cableado estructurado UTP y fibra óptica para empresas e industrias. Instaladores CommScope, cada línea certificada con Fluke en Córdoba."
   canonical="/cableado-estructurado/"
   {/* Sin el sufijo " — Building Networks". El título del brief ya mide 56
       caracteres: con la marca se iba a 76 y Google corta cerca de 60. og:title
@@ -292,8 +292,6 @@ const serviceLd = JSON.stringify({
   <section class="section">
     <div class="container measure mx-auto center">
       <h2>Instaladores certificados CommScope</h2>
-      {/* PENDIENTE: falta el logo de CommScope y, si existe, el de instalador
-          certificado. Poner la ruta en LOGO_COMMSCOPE / LOGO_INSTALADOR. */}
       {(LOGO_COMMSCOPE || LOGO_INSTALADOR) && (
         <div class="ce-marcas">
           {LOGO_COMMSCOPE && <img src={LOGO_COMMSCOPE} alt="CommScope" loading="lazy" />}
