@@ -1,0 +1,429 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { withBase } from '../utils/url';
+
+// ============================================================================
+// PÁGINA DE SERVICIO — Cableado estructurado.
+// Mismo nivel que /infraestructura-de-red/ y /video-inteligente/: usa
+// BaseLayout directo, no ServiceLayout, porque tiene estructura propia.
+//
+// PENDIENTE: la foto del hero está prestada del cluster de red. El pedido es
+// una toma con luz de día de un técnico tendiendo o certificando cable, con el
+// verde de marca solo como acento. Cuando llegue, se cambia acá y listo.
+const HERO = '/wp-content/uploads/2026/07/bloom-c61f2c98-db75-4bbc-aa2d-0e1d781b2d6f.jpg';
+// ============================================================================
+
+const incluye = [
+  'Cableado UTP Cat6, Cat6A y Cat8 para datos, voz, cámaras y puntos de acceso WiFi',
+  'Cableado FTP blindado para entornos con interferencia, como plantas industriales',
+  'Fibra óptica para troncales entre pisos, edificios y sectores de planta',
+  'Montaje y ordenamiento de racks, patch panels y organizadores',
+  'Alimentación eléctrica de racks y equipos de red',
+  'Canalizaciones con bandejas, ductos y cable canal',
+  'Certificación de cada línea con equipo Fluke y entrega del informe',
+  'Etiquetado de puestos, cables y patch panels',
+  'Planos y documentación de toda la instalación',
+  'Ampliación y reordenamiento de cableado existente',
+];
+
+const entornos = [
+  {
+    titulo: 'Oficinas y edificios corporativos',
+    resumen: 'Puestos de trabajo, salas de reunión, WiFi y telefonía, con el cableado oculto y documentado.',
+    icono: 'building',
+  },
+  {
+    titulo: 'Plantas industriales',
+    resumen: 'Cableado blindado donde hay motores y variadores, canalizaciones protegidas y fibra para unir sectores alejados.',
+    icono: 'factory',
+  },
+  {
+    titulo: 'Minería, petróleo y energía',
+    resumen: 'Instalaciones con distancias largas, polvo, humedad y temperaturas extremas, donde la fibra y los materiales para exterior son la regla.',
+    icono: 'bolt',
+  },
+  {
+    titulo: 'Obra nueva y mudanzas',
+    resumen: 'El cableado se define en el plano, antes de cerrar paredes y techos.',
+    icono: 'helmet',
+  },
+];
+
+const pasos = [
+  {
+    titulo: 'Relevamiento',
+    resumen: 'Visitamos el lugar, entendemos la situación actual de tu empresa y revisamos en qué estado está la infraestructura de red.',
+  },
+  {
+    titulo: 'Diseño',
+    resumen: 'Definimos la categoría, la ubicación del rack, los recorridos y las canalizaciones. Después evaluamos qué activos de red y qué configuraciones hacen falta.',
+  },
+  { titulo: 'Instalación', resumen: 'Tendido, conectorización y montaje en racks.' },
+  { titulo: 'Certificación', resumen: 'Certificamos cada línea con equipo Fluke.' },
+  { titulo: 'Entrega', resumen: 'Te damos el informe de certificación, los planos y el etiquetado completo.' },
+];
+
+// Cada bloque enlaza a la página del servicio que corre sobre el cableado.
+const encima = [
+  {
+    titulo: 'Redes y activos',
+    resumen: 'Instalamos y configuramos switches Cisco, routers y toda la parte activa de la red. Somos partners de Cisco.',
+    icono: 'server',
+    href: '/infraestructura-de-red/',
+    enlace: 'Ver infraestructura de red',
+  },
+  {
+    titulo: 'Redes inalámbricas y WiFi',
+    resumen: 'WiFi corporativo y enlaces inalámbricos entre sedes, depósitos y plantas con equipos Cambium, de quien también somos partners.',
+    icono: 'network',
+    href: '/wifi-corporativo-como-disenar-cobertura-sin-puntos-ciegos/',
+    enlace: 'Cómo diseñar cobertura sin puntos ciegos',
+  },
+  {
+    titulo: 'Video proactivo',
+    resumen: 'Instalamos cámaras AXIS que detectan y avisan en tiempo real, en lugar de solo grabar.',
+    icono: 'camera',
+    href: '/videovigilancia/',
+    enlace: 'Ver videovigilancia',
+  },
+  {
+    titulo: 'Control de accesos',
+    resumen: 'Integramos sensores y controladores para el ingreso de personas y vehículos.',
+    icono: 'lock',
+    href: '/control-de-accesos/',
+    enlace: 'Ver control de accesos',
+  },
+  {
+    titulo: 'Audio IP',
+    resumen: 'Voceo, intercomunicadores y avisos de emergencia sobre la misma red.',
+    icono: 'speaker',
+    href: '/audio-ip/',
+    enlace: 'Ver audio IP',
+  },
+];
+
+// Las FAQ alimentan el acordeón visible y el schema FAQPage. Un solo origen
+// para las dos cosas, así nunca se desincronizan.
+const faqs = [
+  {
+    q: '¿Certifican cada línea?',
+    a: 'Sí. Certificamos todas las líneas de cableado estructurado con equipo Fluke bajo normas ANSI/TIA e ISO/IEC y te entregamos el informe.',
+  },
+  {
+    q: '¿Qué garantía tiene la instalación?',
+    a: 'Somos instaladores certificados CommScope, así que la instalación mantiene la garantía del fabricante.',
+  },
+  {
+    q: '¿Hacen solo el cableado o también configuran la red?',
+    a: 'Hacemos las dos cosas. Cableamos y también instalamos y configuramos switches, WiFi y enlaces entre sedes.',
+  },
+  {
+    q: '¿Pueden ordenar o ampliar una red que ya existe?',
+    a: 'Sí. Relevamos lo que hay, certificamos lo que se puede aprovechar y reemplazamos lo que no cumple.',
+  },
+  {
+    q: '¿Instalan en industrias, minería o energía?',
+    a: 'Sí. Estamos preparados para instalar en plantas industriales y en entornos de minería, petróleo y energía, con cableado blindado, fibra óptica y materiales para exterior.',
+  },
+  {
+    q: '¿Trabajan fuera de la ciudad de Córdoba?',
+    a: 'Sí. Trabajamos en toda la provincia de Córdoba y hacemos proyectos en otras provincias.',
+  },
+];
+
+const faqLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+});
+
+// Service: describe la prestación en sí. areaServed sale del alcance real que
+// declara la página, Córdoba y otras provincias del país.
+const serviceLd = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Cableado estructurado UTP y fibra óptica',
+  serviceType: 'Instalación de cableado estructurado',
+  description:
+    'Instalación de cableado estructurado UTP Cat6, Cat6A y Cat8 y fibra óptica para empresas e industrias. Instaladores certificados CommScope, con certificación de cada línea mediante equipos Fluke bajo normas ANSI/TIA e ISO/IEC.',
+  url: 'https://buinet.com.ar/cableado-estructurado/',
+  provider: { '@type': 'Organization', name: 'Building Networks S.A.', url: 'https://buinet.com.ar/' },
+  areaServed: [
+    { '@type': 'AdministrativeArea', name: 'Córdoba, Argentina' },
+    { '@type': 'Country', name: 'Argentina' },
+  ],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Qué incluye la instalación',
+    itemListElement: incluye.map((i) => ({
+      '@type': 'Offer',
+      itemOffered: { '@type': 'Service', name: i },
+    })),
+  },
+});
+---
+<BaseLayout
+  title="Cableado estructurado UTP en Córdoba, Cat6, Cat6A y Cat8"
+  description="Instalación de cableado estructurado UTP y fibra óptica para empresas e industrias. Instaladores certificados CommScope, cada línea certificada con Fluke bajo normas ANSI/TIA e ISO/IEC."
+  canonical="/cableado-estructurado/"
+  {/* Sin el sufijo " — Building Networks". El título del brief ya mide 56
+      caracteres: con la marca se iba a 76 y Google corta cerca de 60. og:title
+      sí lleva la marca, que es donde importa al compartir el enlace. */}
+  brandSuffix={false}
+>
+  <script type="application/ld+json" is:inline set:html={serviceLd} slot="head" />
+  <script type="application/ld+json" is:inline set:html={faqLd} slot="head" />
+
+  <!-- HERO -->
+  <section class="ce-hero" style={`background: linear-gradient(160deg, rgba(0,70,75,0.93), rgba(0,98,105,0.80)), url("${HERO}") center/cover no-repeat;`}>
+    <div class="container ce-hero__inner">
+      <span class="hero-badge"><Icon name="network" size={26} /></span>
+      <p class="eyebrow" style="color:#bfe0dd">Servicios y productos</p>
+      <h1>Cableado estructurado UTP para empresas e industrias en Córdoba</h1>
+      <p class="lead" style="color:rgba(255,255,255,0.92)">
+        Building Networks instala cableado estructurado UTP Cat6, Cat6A y Cat8 y fibra óptica para
+        empresas e industrias de Córdoba y otras provincias. Somos instaladores certificados
+        CommScope y certificamos cada línea con equipos Fluke bajo normas ANSI/TIA e ISO/IEC.
+      </p>
+      <p style="color:rgba(255,255,255,0.85)">
+        El cableado estructurado es una de las partes principales de la red y normalmente se usa en
+        el cableado horizontal. Del diseño y el dimensionamiento del cableado depende que todos los
+        dispositivos reciban el ancho de banda que necesitan para funcionar.
+      </p>
+      <a class="btn btn--white" href={withBase('/contacto/')}>Hablá con un asesor</a>
+    </div>
+  </section>
+
+  <!-- QUÉ INCLUYE -->
+  <section class="section">
+    <div class="container">
+      <div class="center measure mx-auto"><h2>Qué incluye la instalación</h2></div>
+      <ul class="ce-incluye">
+        {incluye.map((i) => (
+          <li><Icon name="check" size={18} /><span>{i}</span></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- CERTIFICACIÓN -->
+  <section class="section section--surface">
+    <div class="container measure mx-auto">
+      <h2>Cada línea certificada</h2>
+      <p class="lead">
+        Un cableado puede funcionar el primer día y aun así no cumplir con la categoría instalada.
+        La única forma de saberlo es certificarlo.
+      </p>
+      <p>
+        Certificamos cada línea de cableado estructurado con un equipo Fluke. La certificación
+        compara el desempeño real de cada enlace con lo que exigen las normas ANSI/TIA e ISO/IEC
+        para esa categoría. Al terminar te entregamos el informe con el resultado de cada línea.
+      </p>
+      <p><strong>Ese informe es la prueba de que la red da el ancho de banda para el que fue diseñada.</strong></p>
+      <p class="ce-lectura">
+        <Icon name="arrow" size={16} />
+        <a href={withBase('/cableado-estructurado-vida-util-red-empresa/')}>
+          Cableado estructurado, qué categoría elegir y qué exigir
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <!-- COMMSCOPE -->
+  <section class="section">
+    <div class="container measure mx-auto center">
+      <h2>Instaladores certificados CommScope</h2>
+      <p class="lead">
+        Building Networks es instalador certificado de CommScope, uno de los fabricantes de
+        referencia en cableado estructurado a nivel mundial.
+      </p>
+      <p>Al ser una instalación certificada, tu cableado mantiene la garantía del fabricante.</p>
+    </div>
+  </section>
+
+  <!-- DÓNDE INSTALAMOS -->
+  <section class="section section--surface">
+    <div class="container">
+      <div class="center measure mx-auto">
+        <h2>Dónde instalamos</h2>
+        <p class="lead">Estamos preparados para instalar cableado estructurado en cualquier entorno de trabajo.</p>
+      </div>
+      <div class="ce-grid" style="margin-top:2.5rem">
+        {entornos.map((e) => (
+          <div class="card ce-card">
+            <span class="card__icon"><Icon name={e.icono} size={32} /></span>
+            <h3>{e.titulo}</h3>
+            <p>{e.resumen}</p>
+          </div>
+        ))}
+      </div>
+      <p class="center ce-notas">
+        <a href={withBase('/cuando-infraestructura-de-red-se-decide-en-el-plano/')}>Infraestructura de red en obra, se decide en el plano</a>
+        <span aria-hidden="true">·</span>
+        <a href={withBase('/mudanza-e-infraestructura-de-red/')}>Mudanza de empresa, cómo encarar la red de la nueva sede</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- CÓMO TRABAJAMOS -->
+  <section class="section">
+    <div class="container">
+      <div class="center measure mx-auto"><h2>Cómo trabajamos</h2></div>
+      <ol class="ce-pasos">
+        {pasos.map((p, i) => (
+          <li class="ce-paso">
+            <span class="ce-paso__n" aria-hidden="true">{i + 1}</span>
+            <div>
+              <h3>{p.titulo}</h3>
+              <p>{p.resumen}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- NO SOLO CABLEAMOS -->
+  <section class="section section--surface">
+    <div class="container">
+      <div class="center measure mx-auto">
+        <h2>No solo cableamos</h2>
+        <p class="lead">
+          El cableado es la base sobre la que funciona todo lo demás. Por eso no lo hacemos aislado,
+          diseñamos e instalamos también los sistemas que van a correr sobre esa red.
+        </p>
+      </div>
+      <div class="ce-grid ce-grid--3" style="margin-top:2.5rem">
+        {encima.map((e) => (
+          <a class="card card--link ce-encima" href={withBase(e.href)}>
+            <span class="card__icon"><Icon name={e.icono} size={30} /></span>
+            <h3>{e.titulo}</h3>
+            <p>{e.resumen}</p>
+            <span class="ce-more">{e.enlace} <Icon name="arrow" size={16} /></span>
+          </a>
+        ))}
+      </div>
+      <p class="center measure mx-auto ce-cierre-grid">
+        Una sola empresa diseña la red, la cablea, la configura y le monta encima cada sistema.
+        <strong> Cuando algo falla, hay un solo responsable.</strong>
+      </p>
+    </div>
+  </section>
+
+  <!-- EL CASO -->
+  <section class="ce-caso">
+    <div class="container measure mx-auto center">
+      <p class="eyebrow" style="color:#bfe0dd">Caso de éxito</p>
+      <h2>El caso Distrito Capitalinas</h2>
+      <p class="lead" style="color:rgba(255,255,255,0.92)">
+        Diseñamos, instalamos y operamos la red del Distrito Capitalinas, en Córdoba. Tiene 42
+        switches y 1.176 puertos activos, y funciona de forma continua hace más de 15 años.
+      </p>
+      <p style="color:rgba(255,255,255,0.85)">
+        Como diferencial, el complejo cuenta con un data center de alta disponibilidad. Centraliza
+        la acometida de todo el complejo y es el recurso fundamental para la continuidad de los
+        servicios que se prestan ahí.
+      </p>
+    </div>
+  </section>
+
+  <!-- FAQS -->
+  <section class="section section--surface">
+    <div class="container">
+      <div class="center" id="faq"><h2>Preguntas frecuentes</h2></div>
+      <div class="ce-faq">
+        {faqs.map((f) => (
+          <details class="ce-faq__item">
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+      <p class="center ce-notas">
+        <a href={withBase('/cuando-ampliar-la-infraestructura-de-red-de-tu-empresa/')}>Cuándo ampliar la infraestructura de red de tu empresa</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- CIERRE -->
+  <section class="section">
+    <div class="container ce-cta">
+      <div>
+        <h2>Hablemos de tu red</h2>
+        <p class="lead">Escribinos y coordinamos un relevamiento o una reunión de asesoramiento.</p>
+      </div>
+      <div class="card">
+        <ContactForm targetId="hubspot-form-cableado" />
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* HERO — el fondo se arma en línea para tomar la constante HERO. */
+  .ce-hero { color: #fff; }
+  .ce-hero__inner { padding-block: clamp(2.6rem, 6vw, 4.6rem); max-width: 780px; }
+  .ce-hero h1 { color: #fff; margin-bottom: 1.2rem; }
+  .ce-hero p { max-width: 680px; }
+  .ce-hero .btn { margin-top: 1.4rem; }
+
+  /* QUÉ INCLUYE — dos columnas en escritorio, una en pantallas angostas. */
+  .ce-incluye { list-style: none; padding: 0; margin: 2.2rem auto 0; max-width: 900px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.9rem 2rem; }
+  .ce-incluye li { display: flex; gap: 0.7rem; align-items: flex-start; font-size: 1rem; }
+  /* :global() porque el <svg> lo renderiza el componente Icon y lleva su propio
+     hash de scope, no el de esta página. */
+  .ce-incluye :global(svg) { color: var(--teal); flex: none; margin-top: 5px; }
+
+  .ce-lectura { margin-top: 1.8rem; display: flex; align-items: center; gap: 0.45rem; font-weight: 600; }
+  .ce-lectura :global(svg) { color: var(--teal); flex: none; }
+
+  /* GRILLAS */
+  .ce-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.4rem; }
+  .ce-grid--3 { grid-template-columns: repeat(3, 1fr); }
+  .ce-card { text-align: left; }
+  .ce-encima { display: flex; flex-direction: column; align-items: flex-start; text-align: left; padding: 1.6rem; }
+  .ce-encima h3 { font-size: 1.05rem; margin-bottom: 0.5rem; }
+  .ce-encima p { color: var(--muted); margin: 0 0 0.9rem; }
+  .ce-more { margin-top: auto; font-weight: 600; color: var(--teal); display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.92rem; }
+  .ce-more :global(svg) { flex: none; }
+  .ce-cierre-grid { margin-top: 2.2rem; font-size: 1.05rem; }
+
+  /* ENLACES A NOTAS */
+  .ce-notas { margin-top: 1.8rem; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem 0.9rem; font-weight: 600; }
+  .ce-notas span { color: var(--muted); }
+
+  /* CÓMO TRABAJAMOS */
+  .ce-pasos { list-style: none; padding: 0; margin: 2.5rem auto 0; max-width: 760px; display: grid; gap: 1.6rem; }
+  .ce-paso { display: grid; grid-template-columns: 48px 1fr; gap: 1.1rem; align-items: start; }
+  .ce-paso__n { width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; background: var(--teal-tint); color: var(--teal); font-size: 1.15rem; font-weight: 600; }
+  .ce-paso h3 { margin: 0.5rem 0 0.35rem; font-size: 1.1rem; }
+  .ce-paso p { margin: 0; color: var(--muted); }
+
+  /* EL CASO */
+  .ce-caso { background: linear-gradient(160deg, var(--teal), var(--teal-dark)); color: #fff; padding-block: clamp(2.75rem, 6vw, 4.6rem); }
+  .ce-caso h2 { color: #fff; }
+
+  /* FAQ */
+  .ce-faq { max-width: 820px; margin: 2.2rem auto 0; }
+  .ce-faq__item { border-bottom: 1px solid var(--border); padding: 1.1rem 0; }
+  .ce-faq__item summary { cursor: pointer; font-weight: 600; color: var(--heading); font-size: 1.02rem; }
+  .ce-faq__item p { margin: 0.8rem 0 0; color: var(--fg); }
+
+  /* CIERRE */
+  .ce-cta { display: grid; grid-template-columns: 1fr 1fr; gap: 2.6rem; align-items: start; }
+
+  @media (max-width: 980px) {
+    .ce-grid, .ce-grid--3 { grid-template-columns: repeat(2, 1fr); }
+    .ce-cta { grid-template-columns: 1fr; gap: 2rem; }
+  }
+  @media (max-width: 620px) {
+    .ce-grid, .ce-grid--3 { grid-template-columns: 1fr; }
+    .ce-incluye { grid-template-columns: 1fr; }
+  }
+</style>
