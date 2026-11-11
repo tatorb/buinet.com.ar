@@ -22,18 +22,19 @@ const HERO = '/wp-content/uploads/2026/07/bloom-c61f2c98-db75-4bbc-aa2d-0e1d781b
 // Foto de fondo del bloque del caso, la misma que usan las otras páginas.
 const FONDO_CASO = '/wp-content/uploads/2024/07/distrito-capitalinas.jpg';
 
-// PENDIENTE: faltan los dos logos. Dejá el archivo en /public/img/ y poné la
-// ruta acá; mientras estén vacíos, el bloque de marcas no se dibuja.
-const LOGO_COMMSCOPE = '';
+// Un logo con la ruta vacía no se dibuja.
+const LOGO_COMMSCOPE = '/img/certificaciones/commscope.webp';
+// PENDIENTE: no llegó el sello de instalador certificado. Con la ruta vacía
+// el bloque muestra solo el logo de CommScope.
 const LOGO_INSTALADOR = '';
 
 // Sellos de la certificación de cada línea. `logo` vacío = se dibuja con
 // tipografía hasta que llegue el archivo.
 const sellos = [
-  { nombre: 'Fluke', pie: 'Equipo de certificación', logo: '' },
-  { nombre: 'ANSI/TIA', pie: 'Norma de desempeño', logo: '' },
-  { nombre: 'ISO/IEC', pie: 'Norma internacional', logo: '' },
-  { nombre: 'CommScope', pie: 'Instalador certificado', logo: '' },
+  { nombre: 'Fluke', pie: 'Equipo de certificación', logo: '/img/certificaciones/fluke.webp' },
+  { nombre: 'ANSI/TIA', pie: 'Norma de desempeño', logo: '/img/certificaciones/ansi-tia.webp' },
+  { nombre: 'ISO/IEC', pie: 'Norma internacional', logo: '/img/certificaciones/iso-iec.webp' },
+  { nombre: 'CommScope', pie: 'Instalador certificado', logo: '/img/certificaciones/commscope.webp' },
 ];
 // ============================================================================
 
@@ -237,14 +238,15 @@ const serviceLd = JSON.stringify({
     </div>
   </section>
 
-  <!-- QUÉ INCLUYE · sin título. Las frases entran de a una al hacer scroll.
-       Ver el script del final; sin JS o con prefers-reduced-motion se ven
-       todas desde el arranque. -->
+  <!-- QUÉ INCLUYE · sin título. Carrusel vertical: muestra tres frases, gira
+       de abajo hacia arriba de a una y vuelve a empezar. La del medio va con
+       más escala. Ver el script del final; sin JS o con prefers-reduced-motion
+       la lista se muestra entera y quieta. -->
   <section class="section ce-alcance">
     <div class="container">
-      <ul class="ce-incluye" id="ce-incluye">
+      <ul class="ce-rueda" id="ce-rueda" aria-label="Qué incluye la instalación">
         {incluye.map((i) => (
-          <li class="ce-incluye__it"><Icon name="check" size={26} /><span>{i}</span></li>
+          <li class="ce-rueda__it"><Icon name="check" size={26} /><span>{i}</span></li>
         ))}
       </ul>
     </div>
@@ -265,10 +267,8 @@ const serviceLd = JSON.stringify({
       </p>
       <p><strong>Ese informe es la prueba de que la red da el ancho de banda para el que fue diseñada.</strong></p>
 
-      <!-- Sellos de certificación. PENDIENTE: faltan los logos de Fluke,
-           ANSI/TIA e ISO/IEC. Mientras no estén, cada sello se dibuja con
-           tipografía. Para poner el logo real, dejá el archivo en
-           /public/img/ y escribí su ruta en `logo`. -->
+      <!-- Sellos de certificación. Un sello sin `logo` cae al nombre en
+           tipografía, así la tira no se rompe si falta un archivo. -->
       <ul class="ce-sellos">
         {sellos.map((s) => (
           <li class="ce-sello">
@@ -400,6 +400,11 @@ const serviceLd = JSON.stringify({
         la acometida de todo el complejo y es el recurso fundamental para la continuidad de los
         servicios que se prestan ahí.
       </p>
+      <p class="ce-caso__acciones">
+        <a class="btn btn--white" href="/descargas/caso-de-exito-datacenter-capitalinas.pdf" download>
+          <Icon name="download" size={16} /> Descargar el caso
+        </a>
+      </p>
     </div>
   </section>
 
@@ -466,26 +471,46 @@ const serviceLd = JSON.stringify({
   .ce-hero p { max-width: 680px; }
   .ce-hero .btn { margin-top: 1.4rem; }
 
-  /* QUÉ INCLUYE — sin título y a una sola columna: las frases son el
-     contenido, y entran de a una al hacer scroll. */
+  /* QUÉ INCLUYE — carrusel vertical de tres filas.
+     Sin la clase .is-rueda (que pone el script) esto es una lista común y
+     completa: así se ve sin JS, y es lo que lee un buscador. */
   .ce-alcance { padding-block: clamp(3rem, 7vw, 5.5rem); }
-  .ce-incluye { list-style: none; padding: 0; margin: 0 auto; max-width: 840px; display: grid; gap: clamp(1.1rem, 2.4vw, 1.9rem); }
-  .ce-incluye__it {
-    display: flex; gap: 1rem; align-items: flex-start;
-    font-size: clamp(1.15rem, 2.4vw, 1.6rem);
+  .ce-rueda { list-style: none; padding: 0; margin: 0 auto; max-width: 860px; display: grid; gap: clamp(1rem, 2.2vw, 1.6rem); }
+  .ce-rueda__it {
+    display: flex; gap: 1rem; align-items: center;
+    font-size: clamp(1.1rem, 2.2vw, 1.45rem);
     line-height: 1.35; color: var(--heading); font-weight: 300;
-    opacity: 0; transform: translateY(18px);
-    transition: opacity 0.55s ease, transform 0.55s ease;
   }
-  .ce-incluye__it.is-in { opacity: 1; transform: none; }
   /* :global() porque el <svg> lo renderiza el componente Icon y lleva su propio
      hash de scope, no el de esta página. */
-  .ce-incluye :global(svg) { color: var(--teal); flex: none; margin-top: 0.42em; }
-  /* Sin JS, o con el sistema pidiendo menos movimiento, se ven todas desde el
-     arranque: la animación no puede ser la condición para leer el contenido. */
-  @media (prefers-reduced-motion: reduce) {
-    .ce-incluye__it { opacity: 1; transform: none; transition: none; }
+  .ce-rueda :global(svg) { color: var(--teal); flex: none; }
+
+  /* Modo carrusel. --fila la fija el script según la fila más alta. */
+  .ce-rueda.is-rueda {
+    position: relative; display: block; gap: 0;
+    height: calc(var(--fila) * 3); overflow: hidden;
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 22%, #000 78%, transparent);
+    mask-image: linear-gradient(to bottom, transparent, #000 22%, #000 78%, transparent);
   }
+  .is-rueda .ce-rueda__it {
+    position: absolute; inset-inline: 0; height: var(--fila);
+    padding-inline: clamp(0.5rem, 3vw, 2.5rem);
+    opacity: 0; transform: translateY(calc(var(--fila) * 3));
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease;
+    will-change: transform, opacity;
+  }
+  /* Las tres visibles. La del medio manda: escala completa y color pleno. */
+  .is-rueda .ce-rueda__it[data-slot="0"] { transform: translateY(0) scale(0.84); opacity: 0.3; }
+  .is-rueda .ce-rueda__it[data-slot="1"] { transform: translateY(var(--fila)) scale(1.1); opacity: 1; }
+  .is-rueda .ce-rueda__it[data-slot="2"] { transform: translateY(calc(var(--fila) * 2)) scale(0.84); opacity: 0.3; }
+  /* Sale por arriba. */
+  .is-rueda .ce-rueda__it[data-slot="out"] { transform: translateY(calc(var(--fila) * -1)) scale(0.8); opacity: 0; }
+  /* Esperando abajo: sin transición, para que el salto de vuelta al fondo no
+     se vea cruzar la caja entera. */
+  .is-rueda .ce-rueda__it[data-slot="wait"] { transition: none; }
+
+  /* Con el sistema pidiendo menos movimiento el script ni arranca y queda la
+     lista completa: la animación no puede ser la condición para leer. */
 
   /* SELLOS DE CERTIFICACIÓN */
   .ce-sellos { list-style: none; padding: 0; margin: 2.2rem 0 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
@@ -565,29 +590,58 @@ const serviceLd = JSON.stringify({
 </style>
 
 <script>
-  // Las frases de alcance entran de a una al acercarse al viewport.
-  // Si el visitante pidió menos movimiento, se muestran todas y no se observa
-  // nada: la animación no puede ser la condición para leer el contenido.
-  const items = Array.from(document.querySelectorAll<HTMLElement>('#ce-incluye .ce-incluye__it'));
-  const quieto = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Carrusel vertical del alcance. Muestra tres frases, la del medio con más
+  // escala, y gira de abajo hacia arriba de a una, en loop.
+  //
+  // El HTML de base es la lista entera y quieta. El modo carrusel lo enciende
+  // este script agregando .is-rueda, así que sin JS, con el script roto o con
+  // el sistema pidiendo menos movimiento, se leen las diez frases.
+  const rueda = document.getElementById('ce-rueda');
+  const quieto = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-  if (quieto || !('IntersectionObserver' in window)) {
-    items.forEach((el) => el.classList.add('is-in'));
-  } else {
-    const io = new IntersectionObserver(
-      (entradas, obs) => {
-        // Las que entran juntas en el mismo cuadro se escalonan, así se leen
-        // de a una en vez de aparecer todas de golpe.
-        entradas
-          .filter((e) => e.isIntersecting)
-          .forEach((e, i) => {
-            const el = e.target as HTMLElement;
-            setTimeout(() => el.classList.add('is-in'), i * 110);
-            obs.unobserve(el);
-          });
-      },
-      { rootMargin: '0px 0px -12% 0px', threshold: 0.15 },
-    );
-    items.forEach((el) => io.observe(el));
+  if (rueda && !quieto.matches) {
+    const items = Array.from(rueda.querySelectorAll<HTMLElement>('.ce-rueda__it'));
+    const n = items.length;
+
+    if (n > 3) {
+      // La altura de fila la manda la frase más alta, medida con la lista
+      // todavía en modo estático. Así ninguna queda cortada.
+      const alto = Math.max(...items.map((el) => el.getBoundingClientRect().height));
+      rueda.style.setProperty('--fila', `${Math.ceil(alto) + 18}px`);
+      rueda.classList.add('is-rueda');
+
+      let desde = 0;
+      const pintar = () => {
+        items.forEach((el, i) => {
+          const rel = (i - desde + n) % n;
+          el.dataset.slot = rel <= 2 ? String(rel) : rel === n - 1 ? 'out' : 'wait';
+          // aria-hidden en las que no se ven, para que un lector de pantalla
+          // no anuncie texto invisible.
+          el.setAttribute('aria-hidden', rel <= 2 ? 'false' : 'true');
+        });
+      };
+      pintar();
+
+      let timer: ReturnType<typeof setInterval> | null = null;
+      const arrancar = () => { if (!timer) timer = setInterval(() => { desde = (desde + 1) % n; pintar(); }, 2600); };
+      const frenar = () => { if (timer) { clearInterval(timer); timer = null; } };
+
+      // Gira solo mientras se ve y la pestaña está activa: fuera de pantalla
+      // no tiene sentido gastar cuadros.
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(
+          ([e]) => (e.isIntersecting && !document.hidden ? arrancar() : frenar()),
+          { threshold: 0.25 },
+        ).observe(rueda);
+      } else {
+        arrancar();
+      }
+      document.addEventListener('visibilitychange', () => (document.hidden ? frenar() : arrancar()));
+      // Pausa al pasar el mouse o al entrar con el teclado, para poder leer.
+      rueda.addEventListener('mouseenter', frenar);
+      rueda.addEventListener('mouseleave', arrancar);
+      rueda.addEventListener('focusin', frenar);
+      rueda.addEventListener('focusout', arrancar);
+    }
   }
 </script>
