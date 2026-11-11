@@ -57,6 +57,17 @@ export const servicios: Servicio[] = [
       'Establecemos redes convergentes de alta capacidad, facilitando la comunicación LAN o inalámbrica fluida entre dispositivos y garantizando un desempeño confiable y continuo.',
   },
   {
+    // Va pegado a Infraestructura de Red: son la misma capa, el cableado
+    // físico y los activos que corren encima.
+    slug: 'cableado-estructurado',
+    titulo: 'Cableado Estructurado',
+    href: '/cableado-estructurado/',
+    icono: 'network',
+    hero: '/wp-content/uploads/2026/07/bloom-c61f2c98-db75-4bbc-aa2d-0e1d781b2d6f.jpg',
+    resumen:
+      'Instalamos cableado estructurado UTP Cat6, Cat6A y Cat8 y fibra óptica. Somos instaladores certificados CommScope y certificamos cada línea con equipos Fluke.',
+  },
+  {
     slug: 'audio-ip',
     titulo: 'Audio IP',
     href: '/audio-ip/',
