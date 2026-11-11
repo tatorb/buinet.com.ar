@@ -66,23 +66,47 @@ jobs:
         # eso dejó cuatro corridas seguidas sin publicar. Así que este paso
         # NO puede tumbar el deploy: si lftp no se puede instalar, lo informa
         # y el paso siguiente sube por sftp, que ya viene en el runner.
+        #
+        # El paso entero no puede durar más de dos minutos. Dos cosas lo
+        # garantizan, y las dos hacen falta:
+        #
+        # 1) timeout-minutes, que es la única red que no se puede escapar.
+        #    Un apt colgado se mata ahí y el deploy sigue por sftp.
+        # 2) Un chequeo de DNS antes de llamar a apt. Es lo que realmente
+        #    falla: la resolución de archive.ubuntu.com. Los timeouts de
+        #    Acquire::http no sirven para esto, porque son de la conexión
+        #    HTTP y el nombre se resuelve antes de abrirla. Por eso la
+        #    corrida 105 se quedó trece minutos en este paso con los
+        #    timeouts ya puestos.
+        timeout-minutes: 2
         run: |
           set -u
+          APT_T="-o Acquire::http::Timeout=10 -o Acquire::https::Timeout=10 -o Acquire::Retries=1"
+
+          rendirse() {
+            echo "hay_lftp=no" >> "$GITHUB_OUTPUT"
+            echo "::warning::$1 Se sube por sftp, que ya viene en el runner."
+            exit 0
+          }
+
           for intento in 1 2; do
-            # Timeouts cortos: sin esto cada intento tarda 4-5 minutos en
-            # morir y el paso se come doce. Con 10s se rinde enseguida y el
-            # respaldo entra casi sin demora.
-            APT_T="-o Acquire::http::Timeout=10 -o Acquire::https::Timeout=10 -o Acquire::Retries=1"
-            if sudo apt-get update $APT_T \
-               && sudo apt-get install -y --no-install-recommends $APT_T lftp; then
+            # getent agota los resolvers configurados y vuelve; no se cuelga
+            # como apt. Con timeout arriba por las dudas.
+            if ! timeout 8 getent hosts archive.ubuntu.com >/dev/null 2>&1; then
+              echo "Intento $intento: no resuelve archive.ubuntu.com."
+              [ "$intento" = 1 ] && { sleep 10; continue; }
+              rendirse "El runner no resuelve los mirrors de Ubuntu."
+            fi
+            if timeout 45 sudo apt-get update $APT_T \
+               && timeout 45 sudo apt-get install -y --no-install-recommends $APT_T lftp; then
               echo "hay_lftp=si" >> "$GITHUB_OUTPUT"
               echo "lftp instalado en el intento $intento."
               exit 0
             fi
-            [ "$intento" = 1 ] && sleep 20
+            echo "Intento $intento: apt no pudo instalar lftp."
+            [ "$intento" = 1 ] && sleep 10
           done
-          echo "hay_lftp=no" >> "$GITHUB_OUTPUT"
-          echo "::warning::No se pudo instalar lftp. Se sube por sftp."
+          rendirse "apt no pudo instalar lftp."
         continue-on-error: true
 
       - name: Subir dist/ con lftp (respeta wp-content)
