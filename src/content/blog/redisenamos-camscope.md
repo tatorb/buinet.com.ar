@@ -20,7 +20,7 @@ Uno de los diferenciales más importantes de **[CamScope](https://camscope.buine
 
 CamScope fue construido para **integrarse y adaptarse** a capacidades de dispositivos de última generación, ampliando las posibilidades del sistema sin forzar integraciones ni depender de tecnologías genéricas.
 
-Todo este desarrollo inaugura una nueva etapa, en la que convergen dos de nuestras verticales más potentes: **[CamScope](https://camscope.buinet.com.ar/)**, como sistema de gestión inteligente, y **nuestro [Data Center en Capitalinas](/data-center/)**, como infraestructura propia para alojarlo en la nube. Esta sinergia permite operar CamScope desde **nuestra nube**, con todos los beneficios que eso implica: mayor disponibilidad, acceso remoto y físico seguro, escalabilidad bajo demanda y respaldo profesional continuo. Lo que antes eran ideas, hoy tiene soporte para crecer sin límites.
+Todo este desarrollo inaugura una nueva etapa, en la que convergen dos de nuestras verticales más potentes: **[CamScope](https://camscope.buinet.com.ar/)**, como sistema de gestión inteligente, y **nuestro [Datacenter Capitalinas](/data-center/)**, como infraestructura propia para alojarlo en la nube. Esta sinergia permite operar CamScope desde **nuestra nube**, con todos los beneficios que eso implica: mayor disponibilidad, acceso remoto y físico seguro, escalabilidad bajo demanda y respaldo profesional continuo. Lo que antes eran ideas, hoy tiene soporte para crecer sin límites.
 
 Ya está disponible. Y para quienes quieran ver el nuevo CamScope en funcionamiento, les compartimos este video:
 

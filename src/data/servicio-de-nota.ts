@@ -117,7 +117,7 @@ export const copyPorServicio: Record<string, CopyBanner> = {
   'data-center': {
     pregunta: '¿Buscás dónde alojar tu infraestructura crítica?',
     apoyo: 'Housing en entorno controlado, con energía y conectividad redundantes.',
-    cta: 'Ver data center',
+    cta: 'Ver Datacenter Capitalinas',
   },
   'infraestructura-de-red': {
     pregunta: '¿Tu red sostiene lo que le estás pidiendo?',

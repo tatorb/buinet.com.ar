@@ -50,7 +50,7 @@ Un entorno seguro, limpio y tecnológicamente controlado proyecta seriedad y com
 
 Según el **Observatorio PYME (2023)**, el 57% de las empresas de servicios argentinas considera que la confianza y la percepción de seguridad son los factores más influyentes en la fidelización del cliente.
 
-Un ejemplo cercano es el **[Distrito Capitalinas](https://www.capitalinas.com/)** en Córdoba, donde la implementación de sistemas de [videovigilancia](/videovigilancia/), [control de accesos](/control-de-accesos/), [sistema de audio IP](/audio-ip/) y monitoreo inteligente permite que cada usuario perciba tecnología, control y seguridad desde el momento en que ingresa. Esta percepción eleva significativamente la experiencia de uso de las instalaciones, reforzando la identidad del edificio como espacio moderno, confiable y de alto estándar.
+Un ejemplo cercano es el **[Distrito Capitalinas](/presentacion-de-caso-de-exito-distrito-capitalinas/)** en Córdoba, donde la implementación de sistemas de [videovigilancia](/videovigilancia/), [control de accesos](/control-de-accesos/), [sistema de audio IP](/audio-ip/) y monitoreo inteligente permite que cada usuario perciba tecnología, control y seguridad desde el momento en que ingresa. Esta percepción eleva significativamente la experiencia de uso de las instalaciones, reforzando la identidad del edificio como espacio moderno, confiable y de alto estándar.
 
 Por eso, cuando un cliente ve cámaras modernas, pantallas de monitoreo y escucha comunicaciones claras, percibe eficiencia y cuidado. La seguridad se convierte en parte de la marca.
 

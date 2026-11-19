@@ -27,7 +27,7 @@ export const site = {
 // Menú principal — replica el del sitio actual (nombres y orden).
 export const nav = [
   { label: 'Home', href: '/' },
-  { label: 'Data Center', href: '/data-center/' },
+  { label: 'Datacenter Capitalinas', href: '/data-center/' },
   { label: 'Infraestructura de Red', href: '/infraestructura-de-red/' },
   { label: 'Videovigilancia', href: '/videovigilancia/' },
   { label: 'Audio IP', href: '/audio-ip/' },
