@@ -38,7 +38,7 @@ Los indicadores que aportan valor real, priorizados por lo que se ve primero cua
 
 **Uso de ancho de banda por interfaz.** ¿Qué puertos están saturados? Un puerto de switch que llega al 90% de utilización de manera sostenida es la señal más clara de cuello de botella. Cuando el cuello de botella no está en el switch sino en la línea, lo que lo descarta es un [cableado estructurado certificado](/cableado-estructurado/), con el informe de medición de cada puesto.
 
-**Latencia y pérdida de paquetes.** Entre puntos clave de la red (sede a sede, sede a Internet, sede a data center). La latencia degradada afecta especialmente a videollamadas, VoIP y aplicaciones interactivas.
+**Latencia y pérdida de paquetes.** Entre puntos clave de la red (sede a sede, sede a Internet, sede a datacenter). La latencia degradada afecta especialmente a videollamadas, VoIP y aplicaciones interactivas.
 
 **Uso de CPU y memoria de equipos activos.** Un switch al 95% de CPU va a empezar a perder paquetes antes de caerse. La alerta temprana permite intervenir antes.
 

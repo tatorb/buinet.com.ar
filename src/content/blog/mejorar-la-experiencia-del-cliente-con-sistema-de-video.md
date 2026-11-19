@@ -22,7 +22,7 @@ La videovigilancia moderna se ha convertido en un recurso clave para elevar la e
 
 ### 1. Transparencia y confianza
 
-Registrar cada punto de contacto con el cliente —desde la recepción hasta la entrega del vehículo— genera una sensación de seguridad y profesionalismo.
+Registrar cada punto de contacto con el cliente, desde la recepción hasta la entrega del vehículo, genera una sensación de seguridad y profesionalismo.
 En el caso de Ginn Auto, las cámaras de red Axis permiten verificar en segundos si un daño existía antes del ingreso al taller, reduciendo reclamos y fortaleciendo la relación con el cliente.
 
 *Impacto operativo:* menos conflictos, procesos documentados y mayor satisfacción del cliente.
@@ -33,7 +33,7 @@ Los sistemas de **audio IP integrados**, como [CamScope de Building Networks](ht
 
 Ginn Auto utiliza 16 altavoces Axis distribuidos según la altura y el nivel de ruido ambiente. Así logra comunicación fluida entre taller, recepción y sala de exposición, además de crear un ambiente sonoro agradable para los clientes.
 
-Según el artículo de Axis *“[Sound detection for actionable insights](https://newsroom.axis.com/news/sound-detection-audio-analytics)”*, la integración del audio con analíticas incluso permite detectar eventos inusuales —como un grito o un golpe fuerte— y activar alertas inmediatas. Este tipo de respuesta rápida contribuye tanto a la seguridad como a la percepción de profesionalismo.
+Según el artículo de Axis *“[Sound detection for actionable insights](https://newsroom.axis.com/news/sound-detection-audio-analytics)”*, la integración del audio con analíticas incluso permite detectar eventos inusuales, como un grito o un golpe fuerte, y activar alertas inmediatas. Este tipo de respuesta rápida contribuye tanto a la seguridad como a la percepción de profesionalismo.
 
 ### 3. Eficiencia y control inteligente
 
@@ -59,7 +59,7 @@ Por eso, cuando un cliente ve cámaras modernas, pantallas de monitoreo y escuch
 Antes de invertir, su empresa debe seguir un enfoque planificado.
 Primero, identificar las zonas críticas (taller, showroom, estacionamiento) y la experiencia esperada en cada una. Luego, evaluar la capacidad de red existente para integrar cámaras IP y altavoces PoE.
 
-Las soluciones modulares —como las presentadas por Axis en *“[Video surveillance for temporary structures](https://newsroom.axis.com/blog/temporary-structures)”*— permiten escalar fácilmente la cobertura de video y audio según las necesidades de expansión o eventos temporales.
+Las soluciones modulares, como las presentadas por Axis en *“[Video surveillance for temporary structures](https://newsroom.axis.com/blog/temporary-structures)”*, permiten escalar fácilmente la cobertura de video y audio según las necesidades de expansión o eventos temporales.
 
 La clave es pensar la videovigilancia como parte de la estrategia de experiencia de cliente, no solo como un elemento de seguridad.
 

@@ -9,7 +9,7 @@ draft: false
 ## Cuando la seguridad industrial se vuelve una prioridad operativa
 
 En Argentina, la preocupación por la seguridad industrial crece año a año. Según la **Confederación Argentina de la Mediana Empresa (CAME)**, el 56 % de las pymes considera que la inseguridad aumentará en los próximos meses.
-A esto se suma que la tasa de robos en el país —973 por cada 100.000 habitantes— duplica el promedio latinoamericano.
+A esto se suma que la tasa de robos en el país, 973 por cada 100.000 habitantes, duplica el promedio latinoamericano.
 
 En este contexto, las industrias metalúrgicas, de reciclaje o fabricación enfrentan un doble desafío: **proteger activos de alto valor** y **mantener operaciones continuas sin interrupciones**.
 La videovigilancia inteligente se consolida como una herramienta estratégica. Ya no se trata solo de registrar lo que ocurre, sino de **prevenir pérdidas, reducir costos operativos y fortalecer la trazabilidad de la seguridad**.
@@ -35,7 +35,7 @@ Las empresas locales viven realidades similares: robos de insumos, accesos no au
 Implementar un modelo de videovigilancia inteligente no requiere una estructura global, sino **visión operativa y planificación**.
 Estos son los pasos recomendados:
 
-- **Diagnóstico de riesgo:** el punto de partida es identificar áreas críticas —como depósitos, accesos y zonas de carga— donde se concentran materiales o activos de valor.
+- **Diagnóstico de riesgo:** el punto de partida es identificar áreas críticas, como depósitos, accesos y zonas de carga, donde se concentran materiales o activos de valor.
 
 - **Elección de la tecnología adecuada:** optar por cámaras con analíticas integradas que permitan detectar movimiento, cruces de línea o presencia inusual sin generar falsas alarmas.
 

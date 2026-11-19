@@ -40,7 +40,7 @@ El dato es real pero se lee mal. El MTBF es una medida estadística sobre una po
 
 ## Un dato propio, diez años en Capitalinas
 
-En el complejo Capitalinas, donde operamos el data center desde 2008, hubo cámaras AXIS que estuvieron diez años en servicio y salieron por decisión de proyecto, no por falla. El día que se reemplazaron seguían funcionando.
+En el complejo Capitalinas, donde operamos el datacenter desde 2008, hubo cámaras AXIS que estuvieron diez años en servicio y salieron por decisión de proyecto, no por falla. El día que se reemplazaron seguían funcionando.
 
 Ese número no es lo habitual y conviene leer por qué pasó. Equipo de línea profesional, instalación correcta, alimentación estable, gabinete adecuado al ambiente y firmware al día durante todo el ciclo. La calidad del hardware puso el piso, las condiciones de instalación pusieron el resto. Ninguna de las dos cosas alcanza sola.
 

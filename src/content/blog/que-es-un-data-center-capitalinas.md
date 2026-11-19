@@ -1,5 +1,5 @@
 ---
-title: "¿Qué es un Data Center?"
+title: "¿Qué es un Datacenter?"
 description: "...y por qué el Datacenter Capitalinas es una gran opción en Córdoba?"
 heroImage: "/wp-content/uploads/2025/05/PORTADA-DATA-CENTER-100.webp"
 pubDate: 2025-05-20
@@ -11,21 +11,21 @@ draft: false
 
 Imaginá entrar a una segura en un ambiente controlado, monitorizado y con temperatura constante cerca de los 23 °C. Las luces LED blancas iluminan pasillos perfectamente ordenados, donde filas de racks metálicos alojan servidores que parpadean sin pausa. El aire acondicionado nunca se apaga, la energía nunca se corta, internet nunca se cae.
 
-Esto es un **Data Center**: una instalación diseñada para que todo funcione siempre. Un entorno controlado y seguro donde las empresas alojan su infraestructura crítica, protegen sus datos y aseguran la continuidad operativa, sin interrupciones.
+Esto es un **Datacenter**: una instalación diseñada para que todo funcione siempre. Un entorno controlado y seguro donde las empresas alojan su infraestructura crítica, protegen sus datos y aseguran la continuidad operativa, sin interrupciones.
 
 **Córdoba**, por ejemplo, cuenta con el **Datacenter Capitalinas**, gestionado por **Building Networks**. Este centro de datos combina tecnología de primer nivel con un soporte técnico cercano y especializado, ideal para organizaciones que priorizan la estabilidad, la seguridad y la eficiencia.
 
  
 
-![Fotografía de Data Center](/wp-content/uploads/2025/01/datacenter-1024x576.webp)
+![Fotografía de Datacenter](/wp-content/uploads/2025/01/datacenter-1024x576.webp)
 
  
 
-### ¿Para qué sirve un Data Center?
+### ¿Para qué sirve un Datacenter?
 
-Un Data Center permite que los sistemas digitales de una empresa funcionen de forma estable, segura y permanente. Desde una tienda online hasta un ERP o un sistema contable, todo necesita estar alojado en un entorno que evite caídas, pérdidas de datos o interrupciones.
+Un Datacenter permite que los sistemas digitales de una empresa funcionen de forma estable, segura y permanente. Desde una tienda online hasta un ERP o un sistema contable, todo necesita estar alojado en un entorno que evite caídas, pérdidas de datos o interrupciones.
 
-Las funciones principales de un Data Center son:
+Las funciones principales de un Datacenter son:
 
 - 
 
@@ -43,9 +43,9 @@ Sin un entorno como este, muchas empresas dependen de equipos internos que no fu
 
  
 
-### ¿Cuál es el valor de tener un Data Center cerca?
+### ¿Cuál es el valor de tener un Datacenter cerca?
 
-Contar con un Data Center en la misma ciudad o región puede marcar una gran diferencia para muchas organizaciones, sobre todo cuando se requiere:
+Contar con un Datacenter en la misma ciudad o región puede marcar una gran diferencia para muchas organizaciones, sobre todo cuando se requiere:
 
 - 
 
@@ -98,7 +98,7 @@ Servicio principal:**
 
  
 
-[Visitá la sección Data Center en nuestro sitio web.](/data-center/)
+[Visitá la sección Datacenter en nuestro sitio web.](/data-center/)
 
 ### Ubicación estratégica:
 

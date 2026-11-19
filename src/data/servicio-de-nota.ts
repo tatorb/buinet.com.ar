@@ -63,7 +63,7 @@ export const servicioDeNota: Record<string, string> = {
   'sistema-audio-ip-planta-industrial': 'audio-ip',
   'voceo-evacuacion-emergencia': 'audio-ip',
 
-  // ---- Data center ----
+  // ---- Datacenter ----
   // Las cuatro notas con capitalinasBanner: true no muestran este banner
   // (ver [post].astro). Quedan mapeadas igual por si ese flag cambia.
   'cuando-contratar-un-datacenter': 'data-center',

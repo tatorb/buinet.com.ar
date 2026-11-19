@@ -14,9 +14,9 @@ Lejos de ser un costo aislado de seguridad, el proyecto buscó habilitar nuevas 
 
 ## De la protección a la inteligencia
 
-[El sistema integrado por **162 cámaras Axis** —dome, box y PTZ—, cambió las reglas del juego](https://www.axis.com/es-es/customer-story/swedish-furniture-retailer-axis-cameras). Con tecnologías como **[Lightfinder](https://www.axis.com/solutions/lightfinder)** para escenarios de baja luz y **[Zipstream](https://www.axis.com/solutions/zipstream)** para reducir el consumo de ancho de banda y almacenamiento, IKEA logró una solución que no solo daba seguridad, sino que **ahorraba costos operativos (OPEX)**.
+[El sistema integrado por **162 cámaras Axis**, dome, box y PTZ, cambió las reglas del juego](https://www.axis.com/es-es/customer-story/swedish-furniture-retailer-axis-cameras). Con tecnologías como **[Lightfinder](https://www.axis.com/solutions/lightfinder)** para escenarios de baja luz y **[Zipstream](https://www.axis.com/solutions/zipstream)** para reducir el consumo de ancho de banda y almacenamiento, IKEA logró una solución que no solo daba seguridad, sino que **ahorraba costos operativos (OPEX)**.
 
-Lo más interesante es que la red de cámaras pronto superó su propósito inicial. Inspirado en [casos como **Aisle 24** en Canadá ](https://newsroom.axis.com/en-us/press-release/aisle-24-adopts-state-of-the-art-security-solution-to-accelerate-cashierless)—que combina cámaras y control de acceso inteligente en tiendas sin cajero—, IKEA comenzó a usar la analítica para entender el **recorrido de los clientes**. Mapas de calor, conteo de visitantes y hasta correlación con sistemas de punto de venta (POS) le permitieron diseñar espacios más atractivos y medir el éxito de planogramas.
+Lo más interesante es que la red de cámaras pronto superó su propósito inicial. Inspirado en [casos como **Aisle 24** en Canadá ](https://newsroom.axis.com/en-us/press-release/aisle-24-adopts-state-of-the-art-security-solution-to-accelerate-cashierless), que combina cámaras y control de acceso inteligente en tiendas sin cajero, IKEA comenzó a usar la analítica para entender el **recorrido de los clientes**. Mapas de calor, conteo de visitantes y hasta correlación con sistemas de punto de venta (POS) le permitieron diseñar espacios más atractivos y medir el éxito de planogramas.
 
 ## Una narrativa común en el retail global
 

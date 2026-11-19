@@ -26,17 +26,17 @@ Pero esto no aplica a todas sus líneas: depende del modelo, el chip y las neces
 
 Estas cámaras no solo generan video: **producen metadata en tiempo real** que permite búsquedas forenses más rápidas, análisis estadísticos y decisiones proactivas.
 
-El hecho de que este procesamiento ocurra en el propio dispositivo —lo que se conoce como **edge AI**— reduce significativamente los costos de almacenamiento, el uso de ancho de banda y la latencia en la respuesta.
+El hecho de que este procesamiento ocurra en el propio dispositivo, lo que se conoce como **edge AI**, reduce significativamente los costos de almacenamiento, el uso de ancho de banda y la latencia en la respuesta.
 
 En nuestra experiencia como integradores, el enfoque híbrido (edge + servidor + nube) permite diseñar soluciones flexibles y eficientes. Procesamos datos críticos localmente, almacenamos lo necesario y accedemos a interfaces remotas con seguridad. Esta arquitectura favorece una respuesta ágil y un control total del sistema.
 
-Uno de los usos más extendidos —y con mejores resultados— es la reducción de falsas alarmas. Cuando la IA está correctamente entrenada y aplicada, distingue entre movimientos irrelevantes y eventos que requieren atención. Eso tiene un impacto directo en la eficiencia operativa.
+Uno de los usos más extendidos, y con mejores resultados, es la reducción de falsas alarmas. Cuando la IA está correctamente entrenada y aplicada, distingue entre movimientos irrelevantes y eventos que requieren atención. Eso tiene un impacto directo en la eficiencia operativa.
 
 #### Más allá del hype: el verdadero desafío está en la decisión previa
 
 De acuerdo con un relevamiento de Axis en más de 60 países, muchos actores del sector se acercan a la IA impulsados por el temor a quedarse afuera más que por una necesidad real.
 
-Este fenómeno —el FOMO tecnológico— lleva muchas veces a decisiones apuradas, con inversiones que luego requieren rediseño.
+Este fenómeno, el FOMO tecnológico, lleva muchas veces a decisiones apuradas, con inversiones que luego requieren rediseño.
 
 Desde nuestro lugar en Building Networks, vemos ese patrón a diario.
 
