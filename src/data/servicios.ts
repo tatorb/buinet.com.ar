@@ -40,7 +40,7 @@ export const servicios: Servicio[] = [
   },
   {
     slug: 'data-center',
-    titulo: 'Data Center',
+    titulo: 'Datacenter Capitalinas',
     href: '/data-center/',
     icono: 'server',
     hero: '/wp-content/uploads/2024/07/Datacenter-Hero.jpg',

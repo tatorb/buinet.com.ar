@@ -49,7 +49,7 @@ Este tipo de integración ofrece beneficios tangibles:
 **- Mantenimiento eficiente:** actualizaciones centralizadas mediante Axis Device Manager.
 
 Pero más allá de la seguridad documental, la videovigilancia IP hoy es clave para **garantizar visibilidad continua en entornos peligrosos**.
-Las [cámaras con visión térmica, detección automática de movimiento y alertas inteligentes](/videovigilancia/) permiten **reducir la exposición humana** en áreas críticas —como zonas de maquinaria, depósitos químicos o muelles de carga— y activar **protocolos automáticos de emergencia** en caso de incendio, intrusión o condiciones inseguras.
+Las [cámaras con visión térmica, detección automática de movimiento y alertas inteligentes](/videovigilancia/) permiten **reducir la exposición humana** en áreas críticas, como zonas de maquinaria, depósitos químicos o muelles de carga, y activar **protocolos automáticos de emergencia** en caso de incendio, intrusión o condiciones inseguras.
 
 De esta forma, los sistemas de videovigilancia se transforman en un componente esencial de la **seguridad laboral** y la **gestión de riesgos industriales**, ayudando a minimizar incidentes, mejorar la respuesta ante emergencias y proteger tanto a los empleados como a la infraestructura.
 

@@ -22,7 +22,7 @@ Gracias a procesadores de aprendizaje profundo integrados (DLPU, Deep Learning P
 
 La calidad visual también es clave: tecnologías como **Lightfinder 2.0** permiten capturar colores reales en entornos de baja iluminación, mientras que **Forensic WDR** asegura detalles nítidos incluso con cambios bruscos de luz. Por eso, un logotipo en el capó o una placa de datos puede verificarse en milisegundos, aunque la iluminación no sea uniforme.
 
-En términos de resiliencia, si la red falla, las cámaras continúan grabando en tarjetas SD internas o dispositivos locales. Esta autonomía reduce la dependencia de un data center y garantiza continuidad operativa en un entorno industrial exigente.
+En términos de resiliencia, si la red falla, las cámaras continúan grabando en tarjetas SD internas o dispositivos locales. Esta autonomía reduce la dependencia de un datacenter y garantiza continuidad operativa en un entorno industrial exigente.
 
 El resultado es una producción más segura, con menos errores humanos y mayor consistencia de calidad, todo sin interrumpir la velocidad de la línea.
 
@@ -72,7 +72,7 @@ Al trabajar junto a socios globales como [Axis](https://www.axis.com/), y entend
 
 ## FAQs
 
-**¿Necesito un data center para usar cámaras con IA en mi planta?**
+**¿Necesito un datacenter para usar cámaras con IA en mi planta?**
 
 No necesariamente. Muchas funciones de detección y clasificación ocurren directamente en la cámara (edge computing). Esto reduce la dependencia de infraestructura central y hace viable la adopción en plantas con redes limitadas.
 

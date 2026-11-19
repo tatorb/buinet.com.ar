@@ -54,7 +54,7 @@ Para un decisor que está planificando una obra, esto se traduce en algo concret
 
 ## La prueba: Distrito Capitalinas
 
-El Distrito Capitalinas es el epicentro de la actividad corporativa de Córdoba, y la infraestructura de red de todo el complejo se diseñó en plano, no en obra. Building Networks entró al proyecto cuando los edificios todavía eran trazos sobre papel, y desde ese momento se previó cómo iban a convivir los sistemas que después se montaron encima: la videovigilancia, los controles de acceso, el audio IP, la conectividad para las empresas que iban a operar adentro, los servidores del data center, los esquemas de energía.
+El Distrito Capitalinas es el epicentro de la actividad corporativa de Córdoba, y la infraestructura de red de todo el complejo se diseñó en plano, no en obra. Building Networks entró al proyecto cuando los edificios todavía eran trazos sobre papel, y desde ese momento se previó cómo iban a convivir los sistemas que después se montaron encima: la videovigilancia, los controles de acceso, el audio IP, la conectividad para las empresas que iban a operar adentro, los servidores del datacenter, los esquemas de energía.
 
 El resultado es una infraestructura que sostiene una enorme cantidad de sistemas funcionando al mismo tiempo, sin que las empresas que operan en el complejo tengan que pensar en ella. Esa es la diferencia que marca el momento en el que entra una empresa al proyecto. No se ve, pero se sostiene durante años.
 

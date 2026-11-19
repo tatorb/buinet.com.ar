@@ -36,7 +36,7 @@ interface Props {
 
 const {
   title,
-  description = 'Building Networks: diseño e implementación de redes convergentes, data center, videovigilancia (CamScope), control de acceso, audio IP y conectividad. Córdoba, Argentina.',
+  description = 'Building Networks: diseño e implementación de redes convergentes, datacenter, videovigilancia (CamScope), control de acceso, audio IP y conectividad. Córdoba, Argentina.',
   ogImage = '/og-default.jpg',
   canonical: canonicalOverride,
   brandSuffix = true,
@@ -52,7 +52,7 @@ const fullTitle = title && !brandSuffix ? title : brandedTitle;
 const canonical = new URL(canonicalOverride ?? Astro.url.pathname, Astro.site);
 
 // JSON-LD Organization (global, en todas las páginas). Los datos salen de
-// site.config para no duplicarlos; subOrganization enlaza con Data Center
+// site.config para no duplicarlos; subOrganization enlaza con Datacenter
 // Capitalinas. El FAQPage de /videovigilancia/ se define aparte y no se toca.
 const orgLd = JSON.stringify({
   '@context': 'https://schema.org',
@@ -72,7 +72,7 @@ const orgLd = JSON.stringify({
   sameAs: [site.social.linkedin, site.social.instagram],
   subOrganization: {
     '@type': 'Organization',
-    name: 'Data Center Capitalinas',
+    name: 'Datacenter Capitalinas',
     url: 'https://capitalinasdc.com/',
   },
 });

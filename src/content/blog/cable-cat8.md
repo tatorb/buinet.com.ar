@@ -13,7 +13,7 @@ draft: false
 ---
 Cat8 es la categoría de cable de cobre más alta que hoy contemplan las normas. Soporta velocidades de 25 y 40 Gbps con una frecuencia de hasta 2.000 MHz.
 
-No es un cable para llevar a los puestos de trabajo. Está pensado para conexiones cortas y de mucha velocidad dentro de salas técnicas y data centers.
+No es un cable para llevar a los puestos de trabajo. Está pensado para conexiones cortas y de mucha velocidad dentro de salas técnicas y datacenters.
 
 ## Qué lo diferencia de Cat6A
 
@@ -26,7 +26,7 @@ No es un cable para llevar a los puestos de trabajo. Está pensado para conexion
 
 - Conexiones entre switches dentro de un mismo rack o entre racks cercanos
 - Conexiones entre servidores y switches en salas técnicas
-- Data centers y salas de equipos con mucho tráfico interno
+- Datacenters y salas de equipos con mucho tráfico interno
 
 Para los puestos de trabajo, los puntos de acceso WiFi y las cámaras, la elección sigue estando entre [Cat6](/cable-cat6-oficinas/) y [Cat6A](/cable-cat6a/).
 

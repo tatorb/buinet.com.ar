@@ -9,7 +9,7 @@ draft: false
 ## Un nuevo rol para la videovigilancia industrial
 
 En la industria moderna, la productividad ya no depende solo de la velocidad de las máquinas, sino de la capacidad para **detectar y resolver anomalías antes de que se transformen en fallos costosos**.
-Los sistemas de videovigilancia inteligente —tradicionalmente diseñados para seguridad— se están transformando en **herramientas de eficiencia operativa**.
+Los sistemas de videovigilancia inteligente, tradicionalmente diseñados para seguridad, se están transformando en **herramientas de eficiencia operativa**.
 
 Cada segundo cuenta en una línea de producción. Un error de sincronización o una falla imperceptible puede detener toda una planta. Aquí la **videovigilancia con analítica avanzada** cambia el paradigma: observar no para vigilar, sino para **mejorar el rendimiento**.
 

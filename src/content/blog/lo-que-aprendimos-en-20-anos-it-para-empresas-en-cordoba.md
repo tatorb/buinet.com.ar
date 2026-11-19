@@ -20,7 +20,7 @@ Hoy las empresas locales medianas y grandes tienen requerimientos de continuidad
 
 Junto con eso cambió también qué busca una empresa al evaluar dónde instalarse. Hace 15 años, una empresa que evaluaba un complejo corporativo pesaba la ubicación, la categoría edilicia, los amenities, la arquitectura. La infraestructura tecnológica figuraba en los pliegos como un detalle más, casi como el sistema de aire acondicionado.
 
-Hoy el orden cambió. La conectividad, la convergencia, la capacidad de procesamiento, la calidad del data center cercano: todo eso pasó a estar en el centro de la conversación. Las empresas evalúan lugares por la robustez de su infraestructura tecnológica con el mismo criterio con que antes evaluaban los amenities. No es casual. Es el resultado natural de operar en un mercado donde la tecnología dejó de ser un soporte y pasó a ser parte del producto.
+Hoy el orden cambió. La conectividad, la convergencia, la capacidad de procesamiento, la calidad del datacenter cercano: todo eso pasó a estar en el centro de la conversación. Las empresas evalúan lugares por la robustez de su infraestructura tecnológica con el mismo criterio con que antes evaluaban los amenities. No es casual. Es el resultado natural de operar en un mercado donde la tecnología dejó de ser un soporte y pasó a ser parte del producto.
 
 ## Lo que aprendimos haciendo infraestructura en Córdoba
 
@@ -44,7 +44,7 @@ Casi 18 años operando el Datacenter Capitalinas sin interrupciones. La primera 
 
 ## La infraestructura como factor de decisión empresarial
 
-Lo que era un detalle técnico hace 20 años hoy es una variable estratégica. Las empresas que vienen creciendo en Córdoba lo saben porque lo vivieron: el momento en que la infraestructura dejó de ser un costo y pasó a ser un activo. El momento en que descubrieron que la calidad de la red, del data center, de la conectividad, definía cuánto podían crecer y a qué velocidad.
+Lo que era un detalle técnico hace 20 años hoy es una variable estratégica. Las empresas que vienen creciendo en Córdoba lo saben porque lo vivieron: el momento en que la infraestructura dejó de ser un costo y pasó a ser un activo. El momento en que descubrieron que la calidad de la red, del datacenter, de la conectividad, definía cuánto podían crecer y a qué velocidad.
 
 Lo que era una intuición para algunos hace 15 años, hoy es la realidad de cualquier empresa local que aspira a operar con estándares similares a los de las multinacionales. La infraestructura tecnológica pasó a ser, en Córdoba como en cualquier otra ciudad seria, un factor de decisión empresarial. Building Networks acompaña ese cambio desde adentro, con la convicción de que una infraestructura que funciona todo el tiempo, no casi siempre, es la única base sobre la que una empresa puede crecer sin sobresaltos.
 

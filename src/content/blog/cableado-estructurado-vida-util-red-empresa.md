@@ -26,7 +26,7 @@ El cable UTP (par trenzado no blindado) se clasifica por categorías, y la elecc
 
 **Cat 6A.** Soporta 10 Gbps hasta 100 metros. Es la elección estándar actual para instalaciones nuevas en oficinas corporativas de gama media y alta. La diferencia de costo respecto a Cat 6 es del 20 al 30%, pero deja preparada la red para migraciones futuras sin cambiar cable.
 
-**Cat 7 y Cat 8.** Cat 7 soporta 10 Gbps con blindaje individual por par (STP), reduciendo interferencia electromagnética. Cat 8 soporta 25 y 40 Gbps hasta 30 metros, y su uso está limitado a data centers o entornos industriales con exigencias específicas. Para oficinas corporativas tradicionales, Cat 8 es sobreingeniería y Cat 6A cubre bien la operación proyectada a diez años.
+**Cat 7 y Cat 8.** Cat 7 soporta 10 Gbps con blindaje individual por par (STP), reduciendo interferencia electromagnética. Cat 8 soporta 25 y 40 Gbps hasta 30 metros, y su uso está limitado a datacenters o entornos industriales con exigencias específicas. Para oficinas corporativas tradicionales, Cat 8 es sobreingeniería y Cat 6A cubre bien la operación proyectada a diez años.
 
 La regla práctica: para una empresa que se está mudando, ampliando o construyendo sede, Cat 6A es la elección con mejor relación entre inversión inicial y horizonte de vida útil. La diferencia de costo del cable en sí es marginal respecto al costo total de la instalación (mano de obra, ductos, patch panels), y esa fracción compra 15 años de tranquilidad.
 
@@ -40,7 +40,7 @@ La fibra óptica es imprescindible en el backbone: la conexión entre pisos, ent
 
 El cobre sigue siendo la elección para el cableado horizontal: lo que llega al puesto de trabajo, al access point, a la cámara IP, al control de acceso. La razón es doble. Primero, la mayoría de los dispositivos finales no tienen puerto de fibra. Segundo, el cobre transporta energía además de datos, lo que habilita PoE.
 
-En una empresa promedio, el ratio típico es 90% cobre horizontal más 10% fibra backbone. En un data center o en una industria con procesos distribuidos, la proporción de fibra crece. En una operación logística con largas distancias entre depósitos, la fibra pasa a ser mayoría.
+En una empresa promedio, el ratio típico es 90% cobre horizontal más 10% fibra backbone. En un datacenter o en una industria con procesos distribuidos, la proporción de fibra crece. En una operación logística con largas distancias entre depósitos, la fibra pasa a ser mayoría.
 
 ## PoE cambia la ecuación del cable
 

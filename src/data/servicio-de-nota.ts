@@ -63,7 +63,7 @@ export const servicioDeNota: Record<string, string> = {
   'sistema-audio-ip-planta-industrial': 'audio-ip',
   'voceo-evacuacion-emergencia': 'audio-ip',
 
-  // ---- Data center ----
+  // ---- Datacenter ----
   // Las cuatro notas con capitalinasBanner: true no muestran este banner
   // (ver [post].astro). Quedan mapeadas igual por si ese flag cambia.
   'cuando-contratar-un-datacenter': 'data-center',
@@ -117,7 +117,7 @@ export const copyPorServicio: Record<string, CopyBanner> = {
   'data-center': {
     pregunta: '¿Buscás dónde alojar tu infraestructura crítica?',
     apoyo: 'Housing en entorno controlado, con energía y conectividad redundantes.',
-    cta: 'Ver data center',
+    cta: 'Ver Datacenter Capitalinas',
   },
   'infraestructura-de-red': {
     pregunta: '¿Tu red sostiene lo que le estás pidiendo?',

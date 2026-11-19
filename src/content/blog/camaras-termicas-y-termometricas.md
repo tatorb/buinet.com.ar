@@ -8,7 +8,7 @@ draft: false
 ---
 #### Cuando la temperatura cambia, algo está pasando. La diferencia no está en “si” lo vamos a ver, sino en cuándo lo detectamos.
 
-En entornos críticos —desde un perímetro extenso hasta una planta industrial, un laboratorio o un data center— muchos riesgos no aparecen a simple vista. Se anuncian de manera silenciosa, como una **variación mínima de temperatura** que todavía no se ve en una cámara óptica… pero que ya está ahí.
+En entornos críticos, desde un perímetro extenso hasta una planta industrial, un laboratorio o un datacenter, muchos riesgos no aparecen a simple vista. Se anuncian de manera silenciosa, como una **variación mínima de temperatura** que todavía no se ve en una cámara óptica… pero que ya está ahí.
 
 Ahí es donde la tecnología térmica deja de ser “ver en la oscuridad” y pasa a ser algo más valioso: **anticiparse**.
 
@@ -40,7 +40,7 @@ No reemplaza a los sistemas existentes: los potencia. En video, la térmica suma
 
 Un [ejemplo claro es el uso en investigación y operaciones: el centro IAAPS](https://www.axis.com/customer-story/temperature-monitoring-solution-research) (Reino Unido, asociado a la Universidad de Bath) trabajaba con pruebas vinculadas a propulsión marina basada en metanol. El desafío no era únicamente vigilar: era **supervisar condiciones térmicas**, identificar comportamientos anómalos y generar información útil **antes** de que una falla impacte en el sistema.
 
-Este enfoque aparece cada vez más en entornos donde la continuidad manda: laboratorios, utilities, manufactura, oil & gas, logística y data centers.
+Este enfoque aparece cada vez más en entornos donde la continuidad manda: laboratorios, utilities, manufactura, oil & gas, logística y datacenters.
 
 ### Normativa y buenas prácticas: por qué “medir y prevenir” también es cumplimiento
 
