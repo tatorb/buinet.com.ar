@@ -22,7 +22,7 @@ import { site } from '../site.config';
     <div class="container contacto">
       <div class="contacto__info">
         <h2>Datos de contacto</h2>
-        <p class="contacto__item"><Icon name="shield" size={18} /> <span><strong>{site.legalName}</strong><br />{site.address.street}<br />({site.address.zip}) {site.address.city}, {site.address.country}</span></p>
+        <p class="contacto__item"><Icon name="shield" size={18} /> <span><strong>{site.legalName}</strong><br />{site.address.street}<br />{site.address.zip} {site.address.city}, {site.address.country}</span></p>
         <p class="contacto__item"><Icon name="arrow" size={18} /> <a href={`mailto:${site.email}`}>{site.email}</a></p>
         <p class="contacto__item"><Icon name="arrow" size={18} /> <a href={`tel:${site.phoneHref}`}>{site.phone}</a></p>
 

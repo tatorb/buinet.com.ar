@@ -10,7 +10,7 @@ export const site = {
   phone: '+54 351 5544150',
   phoneHref: '+543515544150',
   address: {
-    street: 'Humberto Primo 670, piso 6, oficina 66, Edificio Fragueiro',
+    street: 'Humberto Primo 670, piso 6, oficina F66, Edificio Fragueiro',
     zip: 'X5000FAN',
     city: 'Córdoba',
     region: 'Córdoba',

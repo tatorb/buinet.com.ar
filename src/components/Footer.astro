@@ -12,7 +12,7 @@ const cols = nav.filter((n) => n.href !== '/');
       <address>
         <strong>BUILDING NETWORKS</strong><br />
         {site.address.street}<br />
-        ({site.address.zip}) {site.address.city}, {site.address.country}
+        {site.address.zip} {site.address.city}, {site.address.country}
       </address>
       <div class="site-footer__social">
         <a href={site.social.linkedin} aria-label="LinkedIn" target="_blank" rel="noopener">
