@@ -26,6 +26,14 @@ const { targetId = 'hubspot-form' } = Astro.props;
         formId: '97d3db1d-fec8-41e4-9d92-88e606500dfe',
         region: 'na1',
         target: '#' + el.getAttribute('data-hs-target'),
+        // Avisa al dataLayer del envío exitoso, para medir el contacto.
+        // La función la define EventosContacto.astro, que además escucha el
+        // mensaje que HubSpot manda a la ventana por si este callback no
+        // llegara a correr. Esa función ignora el segundo aviso, así que el
+        // evento se manda una sola vez por envío.
+        onFormSubmitted: function () {
+          if (window.bnFormularioEnviado) window.bnFormularioEnviado();
+        },
       });
     });
   });

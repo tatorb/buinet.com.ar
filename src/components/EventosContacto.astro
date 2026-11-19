@@ -1,0 +1,149 @@
+---
+// Medición de contactos. Avisa al dataLayer cada vez que alguien usa una vía
+// de contacto, para que Tag Manager pueda mandar el evento a GA4.
+//
+// Va en BaseLayout, así que corre en las 86 páginas. No cambia nada de lo que
+// se ve: solo escucha.
+//
+// IMPORTANTE: esto deja los eventos en el dataLayer. Para que lleguen a GA4
+// hay que crear en Tag Manager, aparte, un disparador por cada nombre de
+// evento y una etiqueta de GA4 que lo mande.
+//
+// Escucha un solo clic en todo el documento y deduce de ahí qué pasó, en vez
+// de poner un escuchador por enlace. Dos razones: no hay que tocar ninguna de
+// las páginas, y funciona igual con los enlaces que aparecen después de que
+// carga la página, como los que reescribe Cloudflare.
+---
+<script is:inline>
+  (function () {
+    'use strict';
+
+    window.dataLayer = window.dataLayer || [];
+
+    function ruta() {
+      return window.location.pathname;
+    }
+
+    function push(evento, extra) {
+      var dato = { event: evento, page_path: ruta() };
+      for (var k in extra) {
+        if (Object.prototype.hasOwnProperty.call(extra, k)) dato[k] = extra[k];
+      }
+      window.dataLayer.push(dato);
+    }
+
+    // Dónde ocurrió el clic. "pie" y "encabezado" se deciden por el lugar del
+    // enlace en la página; "contacto" y "cuerpo", por la página en la que está.
+    function zona(el) {
+      if (el.closest('footer')) return 'pie';
+      if (el.closest('header')) return 'encabezado';
+      if (/^\/contacto\/?$/.test(ruta())) return 'contacto';
+      return 'cuerpo';
+    }
+
+    // El teléfono, el mail y WhatsApp no viven en el menú. Si algún día se
+    // agregara uno ahí, cuenta como "cuerpo", porque "encabezado" no es un
+    // valor previsto para estos tres eventos.
+    function zonaContacto(el) {
+      var z = zona(el);
+      return z === 'encabezado' ? 'cuerpo' : z;
+    }
+
+    // Texto del enlace sin acentos, en minúsculas y con los espacios normalizados.
+    function texto(a) {
+      return (a.textContent || '')
+        .normalize('NFD')
+        .replace(/[̀-ͯ]/g, '')
+        .toLowerCase()
+        .replace(/\s+/g, ' ')
+        .trim();
+    }
+
+    // "Coordinar reunión" y "Coordinar reunión con un asesor". Se reconoce por
+    // el texto y no por una marca en el HTML, así un botón nuevo con ese texto
+    // queda medido solo, sin tocar nada más.
+    function esReunion(a) {
+      return texto(a).indexOf('coordinar reunion') === 0;
+    }
+
+    // Cloudflare reemplaza los mailto: por /cdn-cgi/l/email-protection y los
+    // devuelve a mailto: con su propio script al cargar la página. Si ese
+    // script todavía no corrió, o está bloqueado, el enlace sigue ofuscado,
+    // así que se reconocen las dos formas.
+    function esMail(a, href) {
+      return (
+        href.indexOf('mailto:') === 0 ||
+        href.indexOf('/cdn-cgi/l/email-protection') !== -1 ||
+        !!a.querySelector('.__cf_email__')
+      );
+    }
+
+    function esWhatsapp(href) {
+      return /(^whatsapp:)|((^|\/\/|\.)(wa\.me|api\.whatsapp\.com|web\.whatsapp\.com))/.test(href);
+    }
+
+    // Enlace interno que termina en /contacto/. Se usa la ruta ya resuelta por
+    // el navegador, así da igual si el href era relativo o absoluto.
+    function vaAContacto(a) {
+      if (a.host && a.host !== window.location.host) return false;
+      return /\/contacto\/?$/.test(a.pathname || '');
+    }
+
+    // Un clic dispara UN evento. El orden de las comparaciones es lo que lo
+    // garantiza: "Coordinar reunión" gana sobre el mailto que lleva detrás y
+    // sobre el enlace a /contacto/, así que esos nunca se cuentan dos veces.
+    // Va en fase de captura para que lo registre aunque algo más cancele el clic.
+    document.addEventListener(
+      'click',
+      function (ev) {
+        var destino = ev.target;
+        if (!destino || !destino.closest) return;
+        var a = destino.closest('a[href]');
+        if (!a) return;
+
+        var href = a.getAttribute('href') || '';
+
+        if (esReunion(a)) {
+          push('meeting_request_click', { cta_location: zonaContacto(a) });
+          return;
+        }
+        if (href.indexOf('tel:') === 0) {
+          push('click_phone', { contact_location: zonaContacto(a) });
+          return;
+        }
+        if (esMail(a, href)) {
+          push('click_email', { contact_location: zonaContacto(a) });
+          return;
+        }
+        if (esWhatsapp(href)) {
+          push('click_whatsapp', { contact_location: zonaContacto(a) });
+          return;
+        }
+        if (vaAContacto(a)) {
+          push('contact_cta_click', { cta_location: zona(a) });
+        }
+      },
+      true
+    );
+
+    // ---- Formulario de HubSpot ----
+    // El envío llega por dos caminos, el callback del embed y el mensaje que
+    // HubSpot manda a la ventana. Los dos avisan del mismo envío con
+    // milisegundos de diferencia, así que se usan los dos por seguridad y esta
+    // ventana de tiempo deja pasar solo el primero.
+    var ultimoEnvio = 0;
+    window.bnFormularioEnviado = function () {
+      var ahora = Date.now();
+      if (ahora - ultimoEnvio < 3000) return;
+      ultimoEnvio = ahora;
+      push('generate_lead', { form_location: ruta() });
+    };
+
+    window.addEventListener('message', function (ev) {
+      var d = ev && ev.data;
+      if (!d || d.type !== 'hsFormCallback') return;
+      if (d.eventName !== 'onFormSubmitted') return; // solo el envío exitoso
+      window.bnFormularioEnviado();
+    });
+  })();
+</script>
